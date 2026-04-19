@@ -4,148 +4,144 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>OPC Platform — 一个人的公司，无限可能</title>
-<meta name="description" content="OPC赋能平台：连接独立创业者与AI Agent，揭榜挂帅67个AI项目，打造超级个体">
+<meta name="description" content="OPC赋能平台：67个AI项目，2.5亿预算。连接独立创业者与AI Agent，数字分身社交。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
+/* ===== RESET & BASE ===== */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050508;--bg2:#0a0a10;--bg3:#111118;--bg4:#18181f;
-  --t1:#e8e8ed;--t2:#8888a0;--t3:#505068;
-  --accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--cyan:#06b6d4;--pink:#ec4899;
-  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
-  --glow:rgba(99,102,241,0.15);
-  --r:16px;--r2:20px;
-  --ease:cubic-bezier(0.16,1,0.3,1);
+  --bg:#07070b;--bg2:#0c0c14;--bg3:#13131d;--bg4:#1a1a28;
+  --t1:#ededf2;--t2:#9393ab;--t3:#58586e;
+  --accent:#7c5cfc;--accent2:#a78bfa;--green:#34d399;--gold:#fbbf24;--cyan:#22d3ee;--pink:#f472b6;
+  --border:rgba(255,255,255,0.06);--border-h:rgba(255,255,255,0.12);
+  --glow:rgba(124,92,252,0.12);--glow2:rgba(34,211,238,0.08);
+  --ease:cubic-bezier(0.16,1,0.3,1);--ease-out:cubic-bezier(0,0,0.2,1);
 }
-html{scroll-behavior:smooth}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--accent);color:#fff}
-a{color:inherit;text-decoration:none}
 
-/* ===== NOISE OVERLAY ===== */
-body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ===== NOISE ===== */
+body::after{content:'';position:fixed;inset:0;z-index:10000;pointer-events:none;opacity:.022;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:all .3s}
-.nav.scrolled{background:rgba(5,5,8,0.92);box-shadow:0 1px 30px rgba(0,0,0,0.3)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(7,7,11,0.65);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--border);transition:background .4s,box-shadow .4s}
+.nav.on{background:rgba(7,7,11,0.92);box-shadow:0 1px 40px rgba(0,0,0,0.4)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-0.5px}
-.nav-logo .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:-.4px;text-decoration:none;color:var(--t1)}
+.nav-logo .m{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--glow)}
 .nav-links{display:flex;align-items:center;gap:2px}
-.nl{padding:7px 14px;border-radius:8px;color:var(--t2);font-size:13px;font-weight:500;transition:all .25s var(--ease)}
-.nl:hover{color:var(--t1);background:rgba(255,255,255,0.05)}
-.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--t2);font-size:11px;cursor:pointer;transition:all .25s;margin-left:8px}
-.lang-btn:hover{border-color:var(--accent);color:var(--t1)}
-.mobile-menu{display:none;background:none;border:none;color:var(--t1);font-size:24px;cursor:pointer}
+.nl{padding:7px 14px;border-radius:8px;color:var(--t2);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s var(--ease);position:relative}
+.nl:hover{color:var(--t1);background:rgba(255,255,255,0.04)}
+.nl::after{content:'';position:absolute;bottom:2px;left:50%;width:0;height:2px;background:var(--accent);border-radius:1px;transition:all .3s var(--ease);transform:translateX(-50%)}
+.nl:hover::after{width:60%}
+.lang{padding:5px 12px;border-radius:6px;border:1px solid var(--border-h);background:transparent;color:var(--t2);font-size:11px;cursor:pointer;transition:all .25s;margin-left:8px}
+.lang:hover{border-color:var(--accent);color:var(--t1);box-shadow:0 0 16px var(--glow)}
+.mob{display:none;background:none;border:none;color:var(--t1);font-size:22px;cursor:pointer}
 
 /* ===== HERO ===== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,rgba(6,182,212,0.04) 40%,transparent 70%);pointer-events:none;animation:pulse 8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%);opacity:.4}
-.hero-content{position:relative;max-width:800px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 8px;border-radius:100px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);font-size:12px;color:var(--accent2);margin-bottom:32px;font-weight:500}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:24px}
-.hero h1 .line{display:block}
-.hero h1 .grad{background:linear-gradient(135deg,#fff 0%,var(--accent2) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 6s ease infinite}
-@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.hero p{font-size:17px;color:var(--t2);max-width:560px;margin:0 auto 40px;line-height:1.8;font-weight:400}
-.hero-stats{display:flex;justify-content:center;gap:48px;margin-bottom:48px;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat .num{font-size:clamp(28px,4vw,44px);font-weight:900;font-family:'Inter',monospace;letter-spacing:-1px;background:linear-gradient(180deg,var(--t1),var(--t2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-stat .label{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s var(--ease);box-shadow:0 0 30px rgba(99,102,241,0.2)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(99,102,241,0.3)}
-.btn-s{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;border:1px solid var(--border2);background:rgba(255,255,255,0.03);color:var(--t1);font-size:14px;font-weight:500;cursor:pointer;transition:all .3s var(--ease)}
-.btn-s:hover{border-color:var(--accent);background:rgba(99,102,241,0.05);transform:translateY(-2px)}
-.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--t3);font-size:11px;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 32px 60px;overflow:hidden}
+.hero-glow{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse,var(--glow) 0%,var(--glow2) 35%,transparent 70%);pointer-events:none;animation:glow-pulse 10s ease-in-out infinite alternate}
+@keyframes glow-pulse{0%{opacity:.5;transform:translateX(-50%) scale(1)}100%{opacity:.8;transform:translateX(-50%) scale(1.15)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black,transparent)}
+.hero-c{position:relative;max-width:820px;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 8px;border-radius:100px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.12);font-size:12.5px;color:var(--accent2);margin-bottom:36px;font-weight:500;letter-spacing:.2px}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-size:clamp(40px,7.5vw,76px);font-weight:900;letter-spacing:-2.5px;line-height:1.02;margin-bottom:4px}
+.hero h1 .grad{background:linear-gradient(135deg,#fff 0%,var(--accent2) 40%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:grad 8s ease infinite}
+@keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--t2);max-width:580px;margin:24px auto 44px;line-height:1.85;font-weight:400}
+.hero-stats{display:flex;justify-content:center;gap:0;margin-bottom:48px;flex-wrap:wrap}
+.hero-stat{padding:0 36px;border-right:1px solid var(--border)}
+.hero-stat:first-child{padding-left:0}
+.hero-stat:last-child{border-right:none;padding-right:0}
+.hero-stat .n{font-size:clamp(30px,4.5vw,48px);font-weight:900;font-family:'Inter',monospace;letter-spacing:-2px;color:var(--t1)}
+.hero-stat .l{font-size:10.5px;color:var(--t3);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;margin-top:4px}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-1{display:inline-flex;align-items:center;gap:8px;padding:15px 36px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6d4cf7);color:#fff;font-size:14.5px;font-weight:600;border:none;cursor:pointer;transition:all .35s var(--ease);box-shadow:0 0 40px var(--glow),0 4px 20px rgba(0,0,0,0.3);letter-spacing:.2px}
+.btn-1:hover{transform:translateY(-2px);box-shadow:0 0 60px var(--glow),0 8px 40px rgba(0,0,0,0.4)}
+.btn-2{display:inline-flex;align-items:center;gap:8px;padding:15px 36px;border-radius:12px;border:1px solid var(--border-h);background:rgba(255,255,255,0.02);color:var(--t1);font-size:14.5px;font-weight:500;cursor:pointer;transition:all .35s var(--ease);letter-spacing:.2px}
+.btn-2:hover{border-color:var(--accent);background:rgba(124,92,252,0.04);transform:translateY(-2px);box-shadow:0 0 30px var(--glow)}
 
-/* ===== SECTION ===== */
-.section{padding:100px 32px}
-.section-header{text-align:center;margin-bottom:64px}
-.section-tag{display:inline-block;padding:4px 12px;border-radius:6px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.12);font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:16px}
-.section-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
-.section-header h2 .hl{color:var(--accent2)}
-.section-header p{color:var(--t2);font-size:15px;max-width:520px;margin:0 auto}
-.container{max-width:1200px;margin:0 auto}
-.zh,.en{transition:opacity .2s}
+/* ===== SECTION SHARED ===== */
+.sec{padding:120px 32px}
+.sec-h{text-align:center;margin-bottom:72px}
+.sec-tag{display:inline-block;padding:5px 14px;border-radius:6px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.1);font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:2.5px;font-weight:700;margin-bottom:18px}
+.sec-h h2{font-size:clamp(30px,4.5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:14px}
+.sec-h h2 .hl{background:linear-gradient(135deg,var(--accent2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sec-h p{color:var(--t2);font-size:15px;max-width:520px;margin:0 auto;line-height:1.8}
+.con{max-width:1200px;margin:0 auto}
 
-/* ===== MODULE GRID ===== */
-.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.mcard{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:28px;transition:all .4s var(--ease);overflow:hidden}
-.mcard::before{content:'';position:absolute;inset:0;border-radius:var(--r2);background:linear-gradient(135deg,rgba(99,102,241,0.05),transparent);opacity:0;transition:opacity .4s}
-.mcard:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.mcard:hover::before{opacity:1}
-.mcard .icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
-.mcard h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
-.mcard .desc{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:16px}
-.mcard .feats{list-style:none;margin-bottom:20px}
-.mcard .feats li{font-size:12.5px;color:var(--t2);padding:4px 0;display:flex;align-items:center;gap:8px}
-.mcard .feats li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
-.mcard .links{display:flex;gap:8px}
-.mcard .links a{padding:7px 16px;border-radius:8px;font-size:12px;font-weight:600;transition:all .25s}
-.mcard .links .demo{background:var(--accent);color:#fff}
-.mcard .links .demo:hover{background:var(--accent2)}
-.badge{position:absolute;top:16px;right:16px;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:0.5px}
-.badge-live{background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2)}
-.badge-soon{background:rgba(245,158,11,0.1);color:var(--gold);border:1px solid rgba(245,158,11,0.2)}
+/* ===== MODULE CARDS ===== */
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all .5s var(--ease);overflow:hidden;cursor:default}
+.mc::before{content:'';position:absolute;inset:0;border-radius:18px;background:linear-gradient(160deg,rgba(124,92,252,0.04),transparent 50%);opacity:0;transition:opacity .5s}
+.mc::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-h),transparent);opacity:0;transition:opacity .5s}
+.mc:hover{border-color:var(--border-h);transform:translateY(-6px);box-shadow:0 24px 80px rgba(0,0,0,0.35),0 0 60px rgba(124,92,252,0.04)}
+.mc:hover::before,.mc:hover::after{opacity:1}
+.mc .ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:22px;position:relative}
+.mc h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px;position:relative}
+.mc .ds{font-size:13.5px;color:var(--t2);line-height:1.75;margin-bottom:18px;position:relative}
+.mc .ft{list-style:none;margin-bottom:22px;position:relative}
+.mc .ft li{font-size:12.5px;color:var(--t2);padding:4px 0;display:flex;align-items:center;gap:8px}
+.mc .ft li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;opacity:.6}
+.mc .lk{position:relative}
+.mc .lk a{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:9px;font-size:12.5px;font-weight:600;background:var(--accent);color:#fff;transition:all .25s var(--ease);text-decoration:none}
+.mc .lk a:hover{background:var(--accent2);transform:translateX(2px)}
+.bdg{position:absolute;top:18px;right:18px;padding:4px 11px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:.5px;z-index:1}
+.bdg-l{background:rgba(52,211,153,0.08);color:var(--green);border:1px solid rgba(52,211,153,0.15)}
 
 /* ===== ROADMAP ===== */
-.rp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.rp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px}
-.rp-phase{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--accent2);font-weight:700;margin-bottom:8px}
-.rp-card h4{font-size:15px;font-weight:700;margin-bottom:12px}
-.rp-card .items{font-size:12px;color:var(--t2);line-height:2.2}
-.rp-card .items .done{color:var(--green)}
-.rp-card .items .todo{color:var(--t3)}
+.rg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rc{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .3s var(--ease)}
+.rc:hover{border-color:var(--border-h)}
+.rc .ph{font-size:10px;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent2);font-weight:700;margin-bottom:10px}
+.rc h4{font-size:16px;font-weight:700;margin-bottom:14px;letter-spacing:-.2px}
+.rc .its{font-size:12.5px;color:var(--t2);line-height:2.4}
+.rc .its .d{color:var(--green)}.rc .its .t{color:var(--t3)}
+
+/* ===== CTA SECTION ===== */
+.cta-sec{padding:100px 32px;text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none}
 
 /* ===== FOOTER ===== */
-.footer{border-top:1px solid var(--border);padding:48px 32px;text-align:center}
-.footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px;flex-wrap:wrap}
-.footer-links a{font-size:12px;color:var(--t3);transition:color .2s}
-.footer-links a:hover{color:var(--accent2)}
-.footer-copy{font-size:11px;color:var(--t3)}
-
-/* ===== GLOW ORBS ===== */
-.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.15}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .mgrid{grid-template-columns:1fr 1fr}
-  .rp-grid{grid-template-columns:1fr 1fr}
-  .hero-stats{gap:24px}
-  .nav-links .nl{padding:7px 8px;font-size:12px}
-}
-@media(max-width:640px){
-  .mgrid{grid-template-columns:1fr}
-  .rp-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .mobile-menu{display:block}
-  .hero h1{letter-spacing:-1px}
-  .hero-stats{gap:16px}
-  .hero-stat .num{font-size:24px}
-  .section{padding:60px 16px}
-}
+.ft{border-top:1px solid var(--border);padding:56px 32px 40px;text-align:center}
+.ft-links{display:flex;justify-content:center;gap:28px;margin-bottom:20px;flex-wrap:wrap}
+.ft-links a{font-size:12px;color:var(--t3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--accent2)}
+.ft-cp{font-size:11px;color:var(--t3);letter-spacing:.3px}
 
 /* ===== ANIMATIONS ===== */
-.fade-up{opacity:0;transform:translateY(30px);transition:all .8s var(--ease)}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+.up{opacity:0;transform:translateY(40px);transition:all .9s var(--ease)}
+.up.v{opacity:1;transform:translateY(0)}
+.up-d1{transition-delay:.1s}.up-d2{transition-delay:.2s}.up-d3{transition-delay:.3s}.up-d4{transition-delay:.35s}
+
+.zh,.en{transition:opacity .15s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px){
+  .mg{grid-template-columns:1fr 1fr}
+  .rg{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:0}
+  .hero-stat{padding:0 20px}
+}
+@media(max-width:640px){
+  .mg,.rg{grid-template-columns:1fr}
+  .nav-links{display:none}.mob{display:block}
+  .hero h1{letter-spacing:-1.5px}
+  .hero-stat{padding:0 16px}.hero-stat .n{font-size:24px}
+  .sec{padding:80px 16px}
+  .hero{padding:80px 16px 40px}
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav" id="nav">
-<div class="nav-in">
-  <a href="#" class="nav-logo">
-    <div class="mark">◆</div>
-    <span>OPC <span style="color:var(--accent2)">Platform</span></span>
-  </a>
+<nav class="nav" id="nv"><div class="nav-in">
+  <a href="#" class="nav-logo"><div class="m">◆</div><span>OPC <span style="color:var(--accent2)">Platform</span></span></a>
   <div class="nav-links">
     <a href="platform.html" class="nl"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
     <a href="government.html" class="nl"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
@@ -153,216 +149,70 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     <a href="legends.html" class="nl"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
     <a href="academy.html" class="nl"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
     <a href="health.html" class="nl"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
-    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+    <button class="lang" onclick="togLang()">🌐 EN/中</button>
   </div>
-  <button class="mobile-menu" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">☰</button>
-</div>
-</nav>
+  <button class="mob" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">☰</button>
+</div></nav>
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-grid"></div>
-<div class="orb" style="width:400px;height:400px;background:var(--accent);top:10%;left:10%"></div>
-<div class="orb" style="width:300px;height:300px;background:var(--cyan);bottom:20%;right:15%"></div>
-<div class="hero-content">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    <span class="zh">67个AI项目 · 2.5亿预算 · 正在寻找你</span>
-    <span class="en" style="display:none">67 AI Projects · ¥250M Budget · Looking for you</span>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-c">
+    <div class="hero-badge"><span class="dot"></span><span class="zh">67个AI项目 · 2.5亿预算 · 正在寻找你</span><span class="en" style="display:none">67 AI Projects · ¥250M Budget</span></div>
+    <h1><span class="zh grad">一个人的公司</span><span class="en grad" style="display:none">One Person Company</span></h1>
+    <p class="hero-sub"><span class="zh">连接独立创业者与AI Agent<br>揭榜挂帅赋能 · 数字分身社交 · 构建去中心化的创业智慧网络</span><span class="en" style="display:none">Connecting independent entrepreneurs with AI Agents<br>Government projects · Digital twins · Decentralized intelligence network</span></p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">67</div><div class="l"><span class="zh">AI项目</span><span class="en" style="display:none">Projects</span></div></div>
+      <div class="hero-stat"><div class="n">2.5亿</div><div class="l"><span class="zh">总预算</span><span class="en" style="display:none">Budget</span></div></div>
+      <div class="hero-stat"><div class="n">26</div><div class="l"><span class="zh">行业</span><span class="en" style="display:none">Industries</span></div></div>
+      <div class="hero-stat"><div class="n">∞</div><div class="l"><span class="zh">可能</span><span class="en" style="display:none">Possible</span></div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="platform.html" class="btn-1"><span class="zh">进入平台 →</span><span class="en" style="display:none">Enter →</span></a>
+      <a href="#mod" class="btn-2"><span class="zh">探索模块</span><span class="en" style="display:none">Explore</span></a>
+    </div>
   </div>
-  <h1>
-    <span class="line"><span class="zh grad">一个人的公司</span><span class="en grad" style="display:none">One Person</span></span>
-    <span class="line" style="color:var(--t2);font-weight:400;font-size:.45em;letter-spacing:0;margin-top:8px">
-      <span class="zh">无限可能的创业未来</span>
-      <span class="en" style="display:none">Company, Infinite Possibilities</span>
-    </span>
-  </h1>
-  <p>
-    <span class="zh">连接独立创业者与AI Agent，揭榜挂帅赋能，数字分身社交，构建去中心化的创业智慧网络</span>
-    <span class="en" style="display:none">Connect independent entrepreneurs with AI Agents. Government projects, digital twins, decentralized创业 intelligence network</span>
-  </p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num">67</div><div class="label"><span class="zh">AI项目</span><span class="en" style="display:none">Projects</span></div></div>
-    <div class="hero-stat"><div class="num">2.5亿</div><div class="label"><span class="zh">总预算</span><span class="en" style="display:none">Budget</span></div></div>
-    <div class="hero-stat"><div class="num">26</div><div class="label"><span class="zh">行业</span><span class="en" style="display:none">Industries</span></div></div>
-    <div class="hero-stat"><div class="num">∞</div><div class="label"><span class="zh">可能</span><span class="en" style="display:none">Possibilities</span></div></div>
-  </div>
-  <div class="hero-cta">
-    <a href="platform.html" class="btn-p">
-      <span class="zh">进入平台 →</span>
-      <span class="en" style="display:none">Enter Platform →</span>
-    </a>
-    <a href="#modules" class="btn-s">
-      <span class="zh">探索模块</span>
-      <span class="en" style="display:none">Explore</span>
-    </a>
-  </div>
-</div>
-<div class="scroll-hint">
-  <span>↓</span>
-</div>
 </section>
 
 <!-- MODULES -->
-<section class="section" id="modules">
-<div class="container">
-  <div class="section-header fade-up">
-    <div class="section-tag"><span class="zh">核心能力</span><span class="en" style="display:none">Capabilities</span></div>
-    <h2><span class="zh">六大模块，<span class="hl">全面赋能</span></span><span class="en" style="display:none">Six Modules, <span class="hl">Full Empowerment</span></span></h2>
-    <p><span class="zh">从项目对接到个人成长，全方位支持你的OPC之旅</span><span class="en" style="display:none">From project matching to personal growth</span></p>
+<section class="sec" id="mod"><div class="con">
+  <div class="sec-h up">
+    <div class="sec-tag"><span class="zh">核心能力</span><span class="en" style="display:none">Capabilities</span></div>
+    <h2><span class="zh">六大模块，<span class="hl">全面赋能</span></span><span class="en" style="display:none">Six Modules, <span class="hl">Full Power</span></span></h2>
+    <p><span class="zh">从项目对接到个人成长，全方位支持你的OPC之旅</span><span class="en" style="display:none">From projects to personal growth</span></p>
   </div>
-  <div class="mgrid">
-
-    <div class="mcard fade-up">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#6366f122,#6366f108)">🏛️</div>
-      <h3><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Government Projects</span></h3>
-      <p class="desc"><span class="zh">江苏省属企业AI场景需求。67个真实项目，26个行业，总预算超2.5亿元。</span><span class="en" style="display:none">67 real AI projects across 26 industries, ¥250M+ budget.</span></p>
-      <ul class="feats">
-        <li><span class="zh">智能匹配与筛选</span><span class="en" style="display:none">Smart matching</span></li>
-        <li><span class="zh">在线投标</span><span class="en" style="display:none">Online bidding</span></li>
-      </ul>
-      <div class="links"><a href="government.html" class="demo"><span class="zh">浏览项目 →</span><span class="en" style="display:none">Browse →</span></a></div>
-    </div>
-
-    <div class="mcard fade-up" style="transition-delay:.1s">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#06b6d422,#06b6d408)">🤖</div>
-      <h3><span class="zh">超级个体</span><span class="en" style="display:none">Super Agent</span></h3>
-      <p class="desc"><span class="zh">A2A架构的AI Agent协作平台。连接SecondMe数字分身，Agent间自主交流。</span><span class="en" style="display:none">A2A agent collaboration with SecondMe digital twins.</span></p>
-      <ul class="feats">
-        <li><span class="zh">SecondMe 数字分身</span><span class="en" style="display:none">SecondMe integration</span></li>
-        <li><span class="zh">AI Agent 对话</span><span class="en" style="display:none">Agent chat</span></li>
-      </ul>
-      <div class="links"><a href="superagent.html" class="demo"><span class="zh">体验平台 →</span><span class="en" style="display:none">Try it →</span></a></div>
-    </div>
-
-    <div class="mcard fade-up" style="transition-delay:.2s">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#f59e0b22,#f59e0b08)">👑</div>
-      <h3><span class="zh">名人堂</span><span class="en" style="display:none">Hall of Fame</span></h3>
-      <p class="desc"><span class="zh">18位传奇人物深度剖析。与乔布斯、马斯克、马云等AI对话，获取商业建议。</span><span class="en" style="display:none">18 legends. Chat with AI versions of Jobs, Musk, Ma.</span></p>
-      <ul class="feats">
-        <li><span class="zh">与传奇人物AI对话</span><span class="en" style="display:none">Chat with legends</span></li>
-        <li><span class="zh">商业哲学DNA</span><span class="en" style="display:none">Business philosophy</span></li>
-      </ul>
-      <div class="links"><a href="legends.html" class="demo"><span class="zh">探索传奇 →</span><span class="en" style="display:none">Explore →</span></a></div>
-    </div>
-
-    <div class="mcard fade-up">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#22c55e22,#22c55e08)">📚</div>
-      <h3><span class="zh">OPC 学院</span><span class="en" style="display:none">OPC Academy</span></h3>
-      <p class="desc"><span class="zh">创业技能成长平台。精品课程、学习路径、导师匹配、技能认证。</span><span class="en" style="display:none">Courses, learning paths, mentor matching, certifications.</span></p>
-      <ul class="feats">
-        <li><span class="zh">6门精品课程</span><span class="en" style="display:none">6 courses</span></li>
-        <li><span class="zh">3位认证导师</span><span class="en" style="display:none">3 mentors</span></li>
-      </ul>
-      <div class="links"><a href="academy.html" class="demo"><span class="zh">进入学院 →</span><span class="en" style="display:none">Enter →</span></a></div>
-    </div>
-
-    <div class="mcard fade-up" style="transition-delay:.1s">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#ec489922,#ec489908)">❤️</div>
-      <h3><span class="zh">OPC 健康</span><span class="en" style="display:none">OPC Health</span></h3>
-      <p class="desc"><span class="zh">Keep模式健康管理。20种运动、每日打卡、排行榜、成就系统。</span><span class="en" style="display:none">Keep-style health: 20 exercises, daily check-in, leaderboard.</span></p>
-      <ul class="feats">
-        <li><span class="zh">20种运动类型</span><span class="en" style="display:none">20 activity types</span></li>
-        <li><span class="zh">排行榜+成就</span><span class="en" style="display:none">Leaderboard + badges</span></li>
-      </ul>
-      <div class="links"><a href="health.html" class="demo"><span class="zh">管理健康 →</span><span class="en" style="display:none">Manage →</span></a></div>
-    </div>
-
-    <div class="mcard fade-up" style="transition-delay:.2s">
-      <span class="badge badge-live"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span>
-      <div class="icon" style="background:linear-gradient(135deg,#818cf822,#818cf808)">📊</div>
-      <h3><span class="zh">全功能平台</span><span class="en" style="display:none">All-in-One</span></h3>
-      <p class="desc"><span class="zh">整合所有模块的一站式平台。在一个页面体验全部功能。</span><span class="en" style="display:none">All modules unified in one platform.</span></p>
-      <ul class="feats">
-        <li><span class="zh">Tab切换导航</span><span class="en" style="display:none">Tab navigation</span></li>
-        <li><span class="zh">统一数据看板</span><span class="en" style="display:none">Unified dashboard</span></li>
-      </ul>
-      <div class="links"><a href="platform.html" class="demo"><span class="zh">进入平台 →</span><span class="en" style="display:none">Enter →</span></a></div>
-    </div>
-
+  <div class="mg">
+    <div class="mc up up-d1"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(124,92,252,.12),rgba(124,92,252,.03))">🏛️</div><h3><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></h3><p class="ds"><span class="zh">江苏省属企业AI场景需求。67个真实项目，26个行业，总预算超2.5亿元。</span><span class="en" style="display:none">67 real AI projects, 26 industries, ¥250M+ budget.</span></p><ul class="ft"><li><span class="zh">智能匹配与筛选</span><span class="en" style="display:none">Smart matching</span></li><li><span class="zh">在线投标</span><span class="en" style="display:none">Online bidding</span></li></ul><div class="lk"><a href="government.html"><span class="zh">浏览项目 →</span><span class="en" style="display:none">Browse →</span></a></div></div>
+    <div class="mc up up-d2"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(34,211,238,.03))">🤖</div><h3><span class="zh">超级个体</span><span class="en" style="display:none">Super Agent</span></h3><p class="ds"><span class="zh">A2A架构的AI Agent协作平台。连接SecondMe数字分身，Agent间自主交流。</span><span class="en" style="display:none">A2A agent collaboration with SecondMe digital twins.</span></p><ul class="ft"><li><span class="zh">SecondMe 数字分身</span><span class="en" style="display:none">SecondMe twin</span></li><li><span class="zh">AI Agent 对话</span><span class="en" style="display:none">Agent chat</span></li></ul><div class="lk"><a href="superagent.html"><span class="zh">体验平台 →</span><span class="en" style="display:none">Try it →</span></a></div></div>
+    <div class="mc up up-d3"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(251,191,36,.03))">👑</div><h3><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></h3><p class="ds"><span class="zh">18位传奇人物深度剖析。与乔布斯、马斯克、马云等AI对话，获取商业建议。</span><span class="en" style="display:none">18 legends. Chat with AI versions of Jobs, Musk, Ma.</span></p><ul class="ft"><li><span class="zh">与传奇人物AI对话</span><span class="en" style="display:none">Chat with legends</span></li><li><span class="zh">商业哲学DNA</span><span class="en" style="display:none">Philosophy DNA</span></li></ul><div class="lk"><a href="legends.html"><span class="zh">探索传奇 →</span><span class="en" style="display:none">Explore →</span></a></div></div>
+    <div class="mc up up-d1"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(52,211,153,.03))">📚</div><h3><span class="zh">OPC 学院</span><span class="en" style="display:none">Academy</span></h3><p class="ds"><span class="zh">创业技能成长平台。精品课程、学习路径、导师匹配、技能认证。</span><span class="en" style="display:none">Courses, paths, mentors, certifications.</span></p><ul class="ft"><li><span class="zh">6门精品课程</span><span class="en" style="display:none">6 courses</span></li><li><span class="zh">3位认证导师</span><span class="en" style="display:none">3 mentors</span></li></ul><div class="lk"><a href="academy.html"><span class="zh">进入学院 →</span><span class="en" style="display:none">Enter →</span></a></div></div>
+    <div class="mc up up-d2"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(244,114,182,.12),rgba(244,114,182,.03))">❤️</div><h3><span class="zh">OPC 健康</span><span class="en" style="display:none">Health</span></h3><p class="ds"><span class="zh">Keep模式健康管理。20种运动、每日打卡、排行榜、成就系统。</span><span class="en" style="display:none">Keep-style health: 20 exercises, check-in, leaderboard.</span></p><ul class="ft"><li><span class="zh">20种运动类型</span><span class="en" style="display:none">20 activities</span></li><li><span class="zh">排行榜+成就</span><span class="en" style="display:none">Leaderboard+badges</span></li></ul><div class="lk"><a href="health.html"><span class="zh">管理健康 →</span><span class="en" style="display:none">Manage →</span></a></div></div>
+    <div class="mc up up-d3"><span class="bdg bdg-l"><span class="zh">已上线</span><span class="en" style="display:none">Live</span></span><div class="ic" style="background:linear-gradient(135deg,rgba(124,92,252,.12),rgba(34,211,238,.06))">📊</div><h3><span class="zh">全功能平台</span><span class="en" style="display:none">All-in-One</span></h3><p class="ds"><span class="zh">整合所有模块的一站式平台。在一个页面体验全部功能。</span><span class="en" style="display:none">All modules unified in one platform.</span></p><ul class="ft"><li><span class="zh">Tab切换导航</span><span class="en" style="display:none">Tab navigation</span></li><li><span class="zh">统一数据看板</span><span class="en" style="display:none">Dashboard</span></li></ul><div class="lk"><a href="platform.html"><span class="zh">进入平台 →</span><span class="en" style="display:none">Enter →</span></a></div></div>
   </div>
-</div>
-</section>
+</div></section>
 
 <!-- ROADMAP -->
-<section class="section" style="background:var(--bg2)">
-<div class="container">
-  <div class="section-header fade-up">
-    <div class="section-tag">Roadmap</div>
-    <h2><span class="zh">发展<span class="hl">路线</span></span><span class="en" style="display:none">Development <span class="hl">Roadmap</span></span></h2>
+<section class="sec" style="background:var(--bg2)"><div class="con">
+  <div class="sec-h up"><div class="sec-tag">Roadmap</div><h2><span class="zh">发展<span class="hl">路线</span></span><span class="en" style="display:none">Road<span class="hl">map</span></span></h2></div>
+  <div class="rg">
+    <div class="rc up up-d1"><div class="ph">Phase 1</div><h4><span class="zh">核心平台</span><span class="en" style="display:none">Core</span></h4><div class="its"><div class="d">✅ <span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></div><div class="d">✅ <span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></div><div class="d">✅ <span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></div><div class="d">✅ <span class="zh">学院</span><span class="en" style="display:none">Academy</span></div><div class="d">✅ <span class="zh">健康</span><span class="en" style="display:none">Health</span></div></div></div>
+    <div class="rc up up-d2"><div class="ph">Phase 2</div><h4><span class="zh">功能增强</span><span class="en" style="display:none">Enhance</span></h4><div class="its"><div class="t">🔲 <span class="zh">用户系统</span><span class="en" style="display:none">Users</span></div><div class="t">🔲 <span class="zh">匹配算法</span><span class="en" style="display:none">Matching</span></div><div class="t">🔲 <span class="zh">支付集成</span><span class="en" style="display:none">Payment</span></div><div class="t">🔲 <span class="zh">移动端</span><span class="en" style="display:none">Mobile</span></div></div></div>
+    <div class="rc up up-d3"><div class="ph">Phase 3</div><h4><span class="zh">社区生态</span><span class="en" style="display:none">Community</span></h4><div class="its"><div class="t">🔲 <span class="zh">OPC社区</span><span class="en" style="display:none">Community</span></div><div class="t">🔲 <span class="zh">协作空间</span><span class="en" style="display:none">Collab</span></div><div class="t">🔲 <span class="zh">知识图谱</span><span class="en" style="display:none">Graph</span></div><div class="t">🔲 <span class="zh">AI网络</span><span class="en" style="display:none">AI Net</span></div></div></div>
+    <div class="rc up up-d4"><div class="ph">Phase 4</div><h4><span class="zh">全球化</span><span class="en" style="display:none">Global</span></h4><div class="its"><div class="t">🔲 <span class="zh">多语言</span><span class="en" style="display:none">i18n</span></div><div class="t">🔲 <span class="zh">海外市场</span><span class="en" style="display:none">Overseas</span></div><div class="t">🔲 <span class="zh">小程序</span><span class="en" style="display:none">Mini App</span></div><div class="t">🔲 <span class="zh">开放API</span><span class="en" style="display:none">Open API</span></div></div></div>
   </div>
-  <div class="rp-grid">
-    <div class="rp-card fade-up">
-      <div class="rp-phase">Phase 1</div>
-      <h4><span class="zh">核心平台</span><span class="en" style="display:none">Core</span></h4>
-      <div class="items">
-        <div class="done">✅ <span class="zh">名人堂</span><span class="en" style="display:none">Hall of Fame</span></div>
-        <div class="done">✅ <span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></div>
-        <div class="done">✅ <span class="zh">超级个体</span><span class="en" style="display:none">Super Agent</span></div>
-        <div class="done">✅ <span class="zh">OPC学院</span><span class="en" style="display:none">Academy</span></div>
-        <div class="done">✅ <span class="zh">OPC健康</span><span class="en" style="display:none">Health</span></div>
-      </div>
-    </div>
-    <div class="rp-card fade-up" style="transition-delay:.1s">
-      <div class="rp-phase">Phase 2</div>
-      <h4><span class="zh">功能增强</span><span class="en" style="display:none">Enhance</span></h4>
-      <div class="items">
-        <div class="todo">🔲 <span class="zh">用户系统</span><span class="en" style="display:none">User System</span></div>
-        <div class="todo">🔲 <span class="zh">匹配算法</span><span class="en" style="display:none">Matching</span></div>
-        <div class="todo">🔲 <span class="zh">支付集成</span><span class="en" style="display:none">Payment</span></div>
-        <div class="todo">🔲 <span class="zh">移动端适配</span><span class="en" style="display:none">Mobile</span></div>
-      </div>
-    </div>
-    <div class="rp-card fade-up" style="transition-delay:.2s">
-      <div class="rp-phase">Phase 3</div>
-      <h4><span class="zh">社区生态</span><span class="en" style="display:none">Community</span></h4>
-      <div class="items">
-        <div class="todo">🔲 <span class="zh">OPC社区</span><span class="en" style="display:none">Community</span></div>
-        <div class="todo">🔲 <span class="zh">协作空间</span><span class="en" style="display:none">Collab Space</span></div>
-        <div class="todo">🔲 <span class="zh">知识图谱</span><span class="en" style="display:none">Knowledge Graph</span></div>
-        <div class="todo">🔲 <span class="zh">AI匹配网络</span><span class="en" style="display:none">AI Network</span></div>
-      </div>
-    </div>
-    <div class="rp-card fade-up" style="transition-delay:.3s">
-      <div class="rp-phase">Phase 4</div>
-      <h4><span class="zh">全球化</span><span class="en" style="display:none">Global</span></h4>
-      <div class="items">
-        <div class="todo">🔲 <span class="zh">多语言</span><span class="en" style="display:none">i18n</span></div>
-        <div class="todo">🔲 <span class="zh">海外市场</span><span class="en" style="display:none">Global Market</span></div>
-        <div class="todo">🔲 <span class="zh">小程序</span><span class="en" style="display:none">Mini Program</span></div>
-        <div class="todo">🔲 <span class="zh">API开放</span><span class="en" style="display:none">Open API</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
+</div></section>
 
 <!-- CTA -->
-<section class="section" style="text-align:center">
-<div class="container fade-up">
-  <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:16px">
-    <span class="zh">开始你的 <span style="color:var(--accent2)">OPC</span> 之旅</span>
-    <span class="en" style="display:none">Start Your <span style="color:var(--accent2)">OPC</span> Journey</span>
-  </h2>
-  <p style="color:var(--t2);font-size:15px;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto">
-    <span class="zh">加入OPC Platform，与全球独立创业者一起学习、连接、合作、成长</span>
-    <span class="en" style="display:none">Join OPC Platform — learn, connect, collaborate, grow</span>
-  </p>
-  <a href="platform.html" class="btn-p" style="font-size:15px;padding:16px 40px">
-    <span class="zh">立即进入平台 →</span>
-    <span class="en" style="display:none">Enter Platform →</span>
-  </a>
-</div>
-</section>
+<section class="cta-sec"><div class="con up">
+  <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:800;letter-spacing:-1.5px;margin-bottom:18px"><span class="zh">开始你的 <span style="color:var(--accent2)">OPC</span> 之旅</span><span class="en" style="display:none">Start Your <span style="color:var(--accent2)">OPC</span> Journey</span></h2>
+  <p style="color:var(--t2);font-size:15px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8"><span class="zh">与全球独立创业者一起学习、连接、合作、成长</span><span class="en" style="display:none">Learn, connect, collaborate, grow with global entrepreneurs</span></p>
+  <a href="platform.html" class="btn-1" style="font-size:15px;padding:16px 44px"><span class="zh">立即进入平台 →</span><span class="en" style="display:none">Enter Now →</span></a>
+</div></section>
 
 <!-- FOOTER -->
-<footer class="footer">
-<div class="footer-links">
+<footer class="ft">
+<div class="ft-links">
   <a href="platform.html"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
   <a href="government.html"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
   <a href="superagent.html"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
@@ -370,26 +220,20 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <a href="academy.html"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
   <a href="health.html"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
 </div>
-<p class="footer-copy">© 2026 OPC Platform · <span class="zh">一个人的公司，无限可能</span><span class="en" style="display:none">One Person Company, Infinite Possibilities</span></p>
+<p class="ft-cp">© 2026 OPC Platform · <span class="zh">一个人的公司，无限可能</span><span class="en" style="display:none">One Person Company, Infinite Possibilities</span></p>
 </footer>
 
 <script>
-// Nav scroll effect
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
-})
-
-// Fade-up on scroll
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
-},{threshold:0.1})
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el))
-
-// Bilingual
+// Nav scroll
+window.addEventListener('scroll',()=>{document.getElementById('nv').classList.toggle('on',window.scrollY>60)});
+// Scroll reveal
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.up').forEach(el=>obs.observe(el));
+// i18n
 let lang=localStorage.getItem('opc-lang')||'zh';
-function toggleLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);applyLang()}
-function applyLang(){document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');document.documentElement.lang=lang==='zh'?'zh-CN':'en'}
-applyLang()
+function togLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);applyLang()}
+function applyLang(){document.querySelectorAll('.zh').forEach(e=>e.style.display=lang==='zh'?'':'none');document.querySelectorAll('.en').forEach(e=>e.style.display=lang==='en'?'':'none')}
+applyLang();
 </script>
 </body>
 </html>
