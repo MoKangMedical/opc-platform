@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC Legends — One Person Company Hall of Fame</title>
+    <meta name="description" content="The greatest one-person companies in history. Business thinking, case studies, and playbooks from solopreneurs who built empires alone.">
+    <meta property="og:title" content="OPC Legends — One Person Company Hall of Fame">
+    <meta property="og:description" content="Business thinking & case studies from the world's most successful solopreneurs.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OPC Legends — One Person Company Hall of Fame",
+        "description": "The greatest one-person companies in history. Business thinking, case studies, and playbooks from solopreneurs who built empires alone.",
+        "url": "https://mokangmedical.github.io/opc-legends/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://mokangmedical.github.io/opc-legends/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "OPC Legends Profiles",
+        "description": "Profiles of the world's most successful one-person company founders",
+        "numberOfItems": 18,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Person",
+                    "name": "Pieter Levels",
+                    "description": "Serial Shipper • Nomad Founder",
+                    "url": "https://levels.io"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Person",
+                    "name": "Naval Ravikant",
+                    "description": "Philosopher • Investor • AngelList Founder",
+                    "url": "https://nav.al"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Person",
+                    "name": "James Clear",
+                    "description": "Author • Habit Architect",
+                    "url": "https://jamesclear.com"
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-icon">🏛️</span>
+            <span class="logo-text">OPC <span class="accent">Platform</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">首页</a>
+            <a href="legends.html" class="nav-link">名人堂</a>
+            <a href="government.html" class="nav-link">揭榜挂帅</a>
+            <a href="superagent.html" class="nav-link">超级个体</a>
+            <a href="https://github.com/MoKangMedical/opc-platform" class="nav-link" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-lines"></div>
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">ONE PERSON COMPANY • HALL OF FAME</div>
+            <h1 class="hero-title">
+                <span class="line">The Legends Who</span>
+                <span class="line gradient-text">Built Empires Alone</span>
+            </h1>
+            <p class="hero-subtitle">
+                Deep dives into the business thinking, strategies, and playbooks of the world's most successful solopreneurs. No VC. No co-founders. Just one person changing the game.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num" data-count="18">0</span>
+                    <span class="stat-label">Legends Profiled</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">$<span data-count="2">0</span>B+</span>
+                    <span class="stat-label">Combined Revenue</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="7">0</span>
+                    <span class="stat-label">Business Models</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="50">0</span>
+                    <span class="stat-label">Key Insights</span>
+                </div>
+            </div>
+            <a href="#legends" class="hero-cta">
+                Explore the Legends
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-section" id="legends">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PROFILES</span>
+                <h2 class="section-title">The Legends</h2>
+                <p class="section-desc">Each built a world-class business as a one-person company. Click to explore their thinking.</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search legends by name, role, or expertise...">
+                <button id="clearSearch" class="clear-search" style="display: none;">×</button>
+            </div>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="saas">SaaS</button>
+                <button class="filter-btn" data-filter="content">Content</button>
+                <button class="filter-btn" data-filter="finance">Finance</button>
+                <button class="filter-btn" data-filter="creator">Creator</button>
+                <button class="filter-btn" data-filter="consulting">Consulting</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="media">Media</button>
+            </div>
+            <div class="legends-grid" id="legendsGrid">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Legend Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section" id="philosophy">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">MINDSET</span>
+                <h2 class="section-title">Business Philosophy DNA</h2>
+                <p class="section-desc">The shared mental models across all OPC legends.</p>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="phi-icon">⚡</div>
+                    <h3>Leverage Over Labor</h3>
+                    <p>"Give me a lever long enough and I can move the world." — Every legend uses code, content, or capital as leverage instead of hiring people.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">Pieter Levels</span>
+                        <span class="phi-tag">Levelsio</span>
+                        <span class="phi-tag">Marc Lou</span>
+                    </div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="phi-icon">🎯</div>
+                    <h3>Revenue First, Scale Later</h3>
+                    <p>Profitability from day one. No burning cash for growth. Every dollar earned validates the product before expanding.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">Sahil Lavingia</span>
+                        <span class="phi-tag">Daniel Vassallo</span>
+                        <span class="phi-tag">Jon Yongfook</span>
+                    </div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="phi-icon">🔄</div>
+                    <h3>Build in Public</h3>
+                    <p>Transparency as marketing. Sharing revenue numbers, mistakes, and learnings builds trust and audience simultaneously.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">Pieter Levels</span>
+                        <span class="phi-tag">Marc Lou</span>
+                        <span class="phi-tag">Jack Butcher</span>
+                    </div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="phi-icon">🏗️</div>
+                    <h3>Own Your Distribution</h3>
+                    <p>Never rely on a single platform. Build email lists, personal brands, and direct audience relationships that no algorithm can take away.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">James Clear</span>
+                        <span class="phi-tag">Tim Ferriss</span>
+                        <span class="phi-tag">Naval Ravikant</span>
+                    </div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="phi-icon">🧩</div>
+                    <h3>Simplicity as Strategy</h3>
+                    <p>The best OPC products are dead simple. Complexity requires teams. Simplicity scales infinitely with zero marginal cost.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">Notion (early)</span>
+                        <span class="phi-tag">Craigslist</span>
+                        <span class="phi-tag">Plausible</span>
+                    </div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="phi-icon">♾️</div>
+                    <h3>Compound Everything</h3>
+                    <p>Content compounds. Audience compounds. Code compounds. Every small action should create lasting value that grows over time.</p>
+                    <div class="phi-examples">
+                        <span class="phi-tag">James Clear</span>
+                        <span class="phi-tag">Naval Ravikant</span>
+                        <span class="phi-tag">Derek Sivers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="cases-section" id="cases">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">DEEP DIVES</span>
+                <h2 class="section-title">Case Studies</h2>
+                <p class="section-desc">Detailed breakdowns of how OPC legends built and scaled their businesses.</p>
+            </div>
+            <div class="cases-list">
+                <!-- Case 1 -->
+                <div class="case-card" data-case="1">
+                    <div class="case-number">01</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">SaaS + Portfolio</span>
+                            <span class="case-revenue">$3.5M+ ARR</span>
+                        </div>
+                        <h3 class="case-title">Pieter Levels — The Serial Shipper</h3>
+                        <p class="case-desc">How one developer built 70+ products, with 4 becoming million-dollar businesses, all while traveling the world. Revenue, Nomad List, Remote OK, and Photo AI generate over $3.5M/year with zero employees.</p>
+                        <div class="case-tags">
+                            <span>Build in Public</span>
+                            <span>Ship Fast</span>
+                            <span>Multiple Revenue</span>
+                            <span>No VC</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 2 -->
+                <div class="case-card" data-case="2">
+                    <div class="case-number">02</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">Finance + Philosophy</span>
+                            <span class="case-revenue">$1B+ Net Worth</span>
+                        </div>
+                        <h3 class="case-title">Naval Ravikant — The Leverage Philosopher</h3>
+                        <p class="case-desc">AngelList co-founder who codified the wealth creation framework. "Seek wealth, not money." His Almanack became the most-shared business text of the decade — written by one person's thinking.</p>
+                        <div class="case-tags">
+                            <span>Leverage</span>
+                            <span>Specific Knowledge</span>
+                            <span>Long-term Games</span>
+                            <span>Philosophy</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 3 -->
+                <div class="case-card" data-case="3">
+                    <div class="case-number">03</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">Creator Economy</span>
+                            <span class="case-revenue">$10M+ Revenue</span>
+                        </div>
+                        <h3 class="case-title">James Clear — The Habit Machine</h3>
+                        <p class="case-desc">Turned a blog about habits into Atomic Habits — 15M+ copies sold, $10M+/year from a single book. The newsletter reaches 2M+ subscribers. No team, no co-authors, just compounding content.</p>
+                        <div class="case-tags">
+                            <span>Content Compounding</span>
+                            <span>Book Empire</span>
+                            <span>Email List</span>
+                            <span>Systems</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 4 -->
+                <div class="case-card" data-case="4">
+                    <div class="case-number">04</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">SaaS</span>
+                            <span class="case-revenue">$30M+ ARR</span>
+                        </div>
+                        <h3 class="case-title">37signals — The Anti-Startup Startup</h3>
+                        <p class="case-desc">Basecamp and HEY email. $30M+ ARR with ~70 employees but founded on radical OPC principles: no VC, no growth pressure, profitable from month one. Jason & David wrote the playbook everyone follows.</p>
+                        <div class="case-tags">
+                            <span>Bootstrapped</span>
+                            <span>Anti-VC</span>
+                            <span>Calm Company</span>
+                            <span>Opinionated Software</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 5 -->
+                <div class="case-card" data-case="5">
+                    <div class="case-number">05</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">Creator + SaaS</span>
+                            <span class="case-revenue">$2M+ ARR</span>
+                        </div>
+                        <h3 class="case-title">Sahil Lavingia — The Minimalist Founder</h3>
+                        <p class="case-desc">Built Gumroad to $10M+ ARR, then rebuilt it as a calm company after a failed VC round. Now also writes, paints, and invests. The poster child for "small is beautiful" in tech.</p>
+                        <div class="case-tags">
+                            <span>Resilience</span>
+                            <span>Minimalism</span>
+                            <span>Creator Economy</span>
+                            <span>Pivot</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 6 -->
+                <div class="case-card" data-case="6">
+                    <div class="case-number">06</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">Design + NFT</span>
+                            <span class="case-revenue">$5M+ Revenue</span>
+                        </div>
+                        <h3 class="case-title">Jack Butcher — Visualize Value</h3>
+                        <p class="case-desc">From agency designer to one-person visual thinking empire. Visualize Value, Checks VV, and Opepen generated $5M+ through courses, NFTs, and visual frameworks. All built by one person with Figma.</p>
+                        <div class="case-tags">
+                            <span>Visual Thinking</span>
+                            <span>Web3</span>
+                            <span>One Product</span>
+                            <span>Aesthetic</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+                <!-- Case 7 -->
+                <div class="case-card" data-case="7">
+                    <div class="case-number">07</div>
+                    <div class="case-body">
+                        <div class="case-meta">
+                            <span class="case-category">Education + Media</span>
+                            <span class="case-revenue">$5M+ Revenue</span>
+                        </div>
+                        <h3 class="case-title">Ali Abdaal — The Productivity Teacher</h3>
+                        <p class="case-desc">Doctor-turned-YouTuber who built a $5M+/year media empire by teaching productivity. 5M+ YouTube subscribers, bestselling author, and creator of multiple courses. Proves that teaching is the ultimate leverage.</p>
+                        <div class="case-tags">
+                            <span>YouTube</span>
+                            <span>Productivity</span>
+                            <span>Education</span>
+                            <span>Creator Economy</span>
+                        </div>
+                    </div>
+                    <div class="case-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playbook Section -->
+    <section class="playbook-section" id="playbook">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">ACTIONABLE</span>
+                <h2 class="section-title">The OPC Playbook</h2>
+                <p class="section-desc">Distilled wisdom from 18 legends. The framework for building your own one-person company.</p>
+            </div>
+            <div class="playbook-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 1</div>
+                    <div class="timeline-content">
+                        <h3>Find Your Specific Knowledge</h3>
+                        <p>What comes naturally to you but is hard for others? Naval calls it "specific knowledge" — the thing you'd do for free. Every legend started here: Pieter with coding + design, James with writing, Naval with thinking.</p>
+                        <div class="timeline-quote">"Specific knowledge is found by pursuing your genuine curiosity and passion rather than whatever is hot right now." — Naval Ravikant</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 2</div>
+                    <div class="timeline-content">
+                        <h3>Build Leverage</h3>
+                        <p>Code, content, or capital. Write code that works while you sleep. Create content that compounds. Invest capital that grows. No legend succeeded without leverage. Labor without leverage = no escape from the 9-5.</p>
+                        <div class="timeline-quote">"Forget rich vs poor, white collar vs blue collar. It's now leveraged vs unleveraged." — Naval Ravikant</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 3</div>
+                    <div class="timeline-content">
+                        <h3>Ship Ugly, Ship Fast</h3>
+                        <p>Pieter ships a new product every week. Marc Lou launched 20+ products in 2 years. The first version of every legend's flagship product was embarrassingly simple. Perfectionism is the enemy of OPC.</p>
+                        <div class="timeline-quote">"If you're not embarrassed by the first version of your product, you've launched too late." — Reid Hoffman</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 4</div>
+                    <div class="timeline-content">
+                        <h3>Own Your Audience</h3>
+                        <p>Build an email list. Grow on Twitter/X. Create a blog. James Clear spent 3 years building his newsletter before Atomic Habits. The audience IS the product. Everything else is a monetization layer.</p>
+                        <div class="timeline-quote">"The best marketing is a great product + honest storytelling." — Jack Butcher</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 5</div>
+                    <div class="timeline-content">
+                        <h3>Monetize Without Scaling Headcount</h3>
+                        <p>SaaS subscriptions, digital products, courses, books, licensing. Every model that works for OPC has one thing in common: marginal cost approaches zero. You sell once, deliver infinitely.</p>
+                        <div class="timeline-quote">"Charge for the outcome, not your time." — Daniel Vassallo</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Phase 6</div>
+                    <div class="timeline-content">
+                        <h3>Stay Small, Stay Sovereign</h3>
+                        <p>The goal isn't to build a big company. It's to build a great life. Derek Sivers sold CD Baby for $22M and gave it all to charity. The legends optimize for freedom, not empire.</p>
+                        <div class="timeline-quote">"Success is when you can stop doing what you dislike." — Derek Sivers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Models -->
+    <section class="models-section" id="models">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">MODELS</span>
+                <h2 class="section-title">7 Proven OPC Revenue Models</h2>
+            </div>
+            <div class="models-grid">
+                <div class="model-card">
+                    <div class="model-icon">💻</div>
+                    <h3>SaaS</h3>
+                    <p>Recurring revenue from software. Plausible, Bannerbear, Cronfire.</p>
+                    <div class="model-range">$1K - $500K MRR</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">📝</div>
+                    <h3>Content + Books</h3>
+                    <p>Writing that compounds. Atomic Habits, The Almanack, Anything You Want.</p>
+                    <div class="model-range">$100K - $10M/year</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">🎓</div>
+                    <h3>Courses & Community</h3>
+                    <p>Teach what you know. Visualize Value, Building a Second Brain.</p>
+                    <div class="model-range">$50K - $2M/year</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">📊</div>
+                    <h3>Data & APIs</h3>
+                    <p>Sell structured data. Nomad List, Remote OK, IndieHackers.</p>
+                    <div class="model-range">$10K - $200K MRR</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">🎨</div>
+                    <h3>Digital Products</h3>
+                    <p>Templates, assets, tools. Gumroad, Figma plugins, design systems.</p>
+                    <div class="model-range">$5K - $100K/month</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">🔗</div>
+                    <h3>Marketplace / Platform</h3>
+                    <p>Connect supply and demand. Gumroad, Coinvise, early Craigslist.</p>
+                    <div class="model-range">$10K - $1M/month</div>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">💰</div>
+                    <h3>Investing + Advisory</h3>
+                    <p>Angel investing, advisory shares. Naval, Jason Fried, Tim Ferriss.</p>
+                    <div class="model-range">$100K - $50M+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">OPC <span class="accent">Legends</span></span>
+                    <p class="footer-tagline">One Person. Infinite Possibilities.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/MoKangMedical/opc-legends" target="_blank">GitHub</a>
+                    <a href="#legends">Legends</a>
+                    <a href="#philosophy">Philosophy</a>
+                    <a href="#playbook">Playbook</a>
+                </div>
+                <div class="footer-copy">
+                    <p>Built with ❤️ by the OPC community. Open source on <a href="https://github.com/MoKangMedical/opc-legends" target="_blank">GitHub</a>.</p>
+                    <p class="footer-year">© 2026 OPC Legends</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
