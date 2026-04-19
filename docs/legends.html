@@ -541,5 +541,108 @@ function applyLang(){
 }
 applyLang();
 </script>
+
+<!-- LEGEND CHAT MODAL -->
+<div id="legendChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:300;align-items:center;justify-content:center">
+<div style="background:#111;border:1px solid #2a2a3a;border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
+  <div style="padding:16px 20px;border-bottom:1px solid #2a2a3a;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span id="chatLegendEmoji" style="font-size:28px">🍎</span>
+      <div>
+        <div id="chatLegendName" style="font-weight:700;font-size:16px">史蒂夫·乔布斯</div>
+        <div style="font-size:11px;color:#f59e0b">OPC传奇 · AI对话</div>
+      </div>
+    </div>
+    <button onclick="closeLegendChat()" style="background:none;border:none;color:#888;font-size:22px;cursor:pointer">&times;</button>
+  </div>
+  <div id="legendChatMessages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px"></div>
+  <div style="padding:12px 16px;border-top:1px solid #2a2a3a;display:flex;gap:8px">
+    <input id="legendChatInput" type="text" placeholder="向这位传奇人物提问..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendLegendChat()">
+    <button onclick="sendLegendChat()" style="padding:10px 20px;border-radius:10px;background:#f59e0b;color:#000;border:none;font-weight:700;cursor:pointer;font-size:13px">发送</button>
+  </div>
+</div>
+</div>
+<script>
+// ===== LEGEND CHAT =====
+const LEGENDS_CHAT = {
+  pieter_levels: {name:'Pieter Levels', emoji:'🚀', greeting:'Hey! I\'m Pieter. I\'ve built 70+ products and 4 hit $1M+ revenue. Ask me anything about shipping fast, building in public, or indie hacking. 你好！有什么想问的？'},
+  naval_ravikant: {name:'Naval Ravikant', emoji:'💰', greeting:'Hello. I\'m Naval. Let\'s talk about wealth creation, leverage, specific knowledge, or building your own one-person company. 你好，聊聊财富创造？'},
+  james_clear: {name:'James Clear', emoji:'📚', greeting:'Hi! I\'m James. I wrote Atomic Habits and built a 2M+ subscriber newsletter. Ask me about habits, writing, content strategy, or building systems. 你好！'},
+  elon_musk: {name:'埃隆·马斯克', emoji:'🚀', greeting:'你好，我是马斯克。关于第一性原理思考、大胆愿景、极限工作、或者任何你想聊的话题，尽管问。'},
+  steve_jobs: {name:'史蒂夫·乔布斯', emoji:'🍎', greeting:'你好，我是乔布斯。关于产品设计、用户体验、简约美学、或者如何做出改变世界的产品，尽管问。'},
+  jack_ma: {name:'马云', emoji:'🛒', greeting:'你好，我是马云。创业者最重要的是眼光和坚持。有什么想聊的？关于创业、商业生态、还是人生感悟？'},
+  huang_renjun: {name:'黄仁勋', emoji:'🎮', greeting:'你好，我是黄仁勋。关于AI、GPU、平台思维、或者如何在技术浪潮中抓住机会，尽管问。'},
+  zhang_yiming: {name:'张一鸣', emoji:'📱', greeting:'你好，我是张一鸣。关于算法、全球化、人才密度、或者如何打造产品，尽管问。'},
+};
+
+let currentLegendId = '';
+
+function openLegendChat(legendId) {
+  const legend = LEGENDS_CHAT[legendId];
+  if (!legend) return;
+  currentLegendId = legendId;
+  document.getElementById('chatLegendEmoji').textContent = legend.emoji;
+  document.getElementById('chatLegendName').textContent = legend.name;
+  document.getElementById('legendChatMessages').innerHTML = `<div style="background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:13.5px;line-height:1.7;align-self:flex-start;max-width:85%">${legend.greeting}</div>`;
+  document.getElementById('legendChatModal').style.display = 'flex';
+  document.getElementById('legendChatInput').focus();
+}
+
+function closeLegendChat() {
+  document.getElementById('legendChatModal').style.display = 'none';
+}
+
+async function sendLegendChat() {
+  const input = document.getElementById('legendChatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  
+  const container = document.getElementById('legendChatMessages');
+  
+  // 用户消息
+  const userDiv = document.createElement('div');
+  userDiv.style.cssText = 'background:#f59e0b;color:#000;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-end;max-width:85%;font-weight:500';
+  userDiv.textContent = msg;
+  container.appendChild(userDiv);
+  
+  // 加载
+  const loadingDiv = document.createElement('div');
+  loadingDiv.style.cssText = 'background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;align-self:flex-start;color:#888';
+  loadingDiv.textContent = '正在思考...';
+  container.appendChild(loadingDiv);
+  container.scrollTop = container.scrollHeight;
+  
+  // 历史
+  const history = [];
+  container.querySelectorAll('div').forEach(el => {
+    if (el === loadingDiv) return;
+    if (el.style.background.includes('f59e0b') || el.style.background.includes('gold')) {
+      history.push({role:'user', content:el.textContent});
+    } else if (el !== container.firstElementChild) {
+      history.push({role:'assistant', content:el.textContent});
+    }
+  });
+  
+  const API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+  
+  try {
+    const resp = await fetch(`${API}/api/chat/legend/${currentLegendId}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({messages: history.slice(-10)})
+    });
+    const data = await resp.json();
+    loadingDiv.textContent = data.response || '抱歉，我暂时无法回答';
+    loadingDiv.style.color = '#eee';
+  } catch(e) {
+    loadingDiv.textContent = '⚠️ 网络错误，请稍后再试';
+    loadingDiv.style.color = '#ef4444';
+  }
+  
+  container.scrollTop = container.scrollHeight;
+}
+
+</script>
 </body>
 </html>
