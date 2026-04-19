@@ -155,6 +155,8 @@ a{color:var(--accent2);text-decoration:none}
   <button class="tab-btn active" onclick="switchTab('gov')">🏛️ 揭榜挂帅</button>
   <button class="tab-btn" onclick="switchTab('agent')">🤖 超级个体</button>
   <button class="tab-btn" onclick="switchTab('legends')">👑 名人堂</button>
+  <button class="tab-btn" onclick="switchTab('academy')">📚 学院</button>
+  <button class="tab-btn" onclick="switchTab('health')">❤️ 健康</button>
 </div>
 </div>
 
@@ -317,6 +319,48 @@ a{color:var(--accent2);text-decoration:none}
 </div>
 </section>
 
+<!-- SECTION: 学院 -->
+<section class="section" id="sec-academy">
+<div class="container">
+  <div class="section-head">
+    <h2><span class="zh">📚 OPC学院 — 创业者技能成长平台</span><span class="en" style="display:none">📚 OPC Academy — Skill Growth</span></h2>
+    <p><span class="zh">从零到一打造你的独立创业能力。课程 · 认证 · 导师</span><span class="en" style="display:none">Build your OPC skills from scratch. Courses · Certs · Mentors</span></p>
+  </div>
+  <div class="section-stats">
+    <div class="stat-card"><div class="val">24</div><div class="lbl"><span class="zh">精品课程</span><span class="en" style="display:none">Courses</span></div></div>
+    <div class="stat-card"><div class="val">6</div><div class="lbl"><span class="zh">学习路径</span><span class="en" style="display:none">Paths</span></div></div>
+    <div class="stat-card"><div class="val">12</div><div class="lbl"><span class="zh">认证导师</span><span class="en" style="display:none">Mentors</span></div></div>
+    <div class="stat-card"><div class="val">4</div><div class="lbl"><span class="zh">技能认证</span><span class="en" style="display:none">Certs</span></div></div>
+  </div>
+  <div style="text-align:center;padding:40px">
+    <a href="academy.html" class="btn-primary" style="padding:14px 32px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600">
+      <span class="zh">进入学院 →</span><span class="en" style="display:none">Enter Academy →</span>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- SECTION: 健康 -->
+<section class="section" id="sec-health">
+<div class="container">
+  <div class="section-head">
+    <h2><span class="zh">❤️ OPC健康 — 创业者健康管理</span><span class="en" style="display:none">❤️ OPC Health — Entrepreneur Wellness</span></h2>
+    <p><span class="zh">每日签到 · 压力管理 · 运动追踪 · AI健康洞察</span><span class="en" style="display:none">Daily check-in · Stress mgmt · Exercise tracking · AI insights</span></p>
+  </div>
+  <div class="section-stats">
+    <div class="stat-card"><div class="val">📊</div><div class="lbl"><span class="zh">健康仪表盘</span><span class="en" style="display:none">Dashboard</span></div></div>
+    <div class="stat-card"><div class="val">📝</div><div class="lbl"><span class="zh">每日签到</span><span class="en" style="display:none">Check-in</span></div></div>
+    <div class="stat-card"><div class="val">🏃</div><div class="lbl"><span class="zh">运动追踪</span><span class="en" style="display:none">Exercise</span></div></div>
+    <div class="stat-card"><div class="val">💡</div><div class="lbl"><span class="zh">AI洞察</span><span class="en" style="display:none">AI Insights</span></div></div>
+  </div>
+  <div style="text-align:center;padding:40px">
+    <a href="health.html" class="btn-primary" style="padding:14px 32px;border-radius:10px;background:var(--green);color:#fff;text-decoration:none;font-weight:600">
+      <span class="zh">进入健康 →</span><span class="en" style="display:none">Enter Health →</span>
+    </a>
+  </div>
+</div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
 <div class="container">
@@ -348,7 +392,7 @@ function switchTab(tab){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('sec-'+tab).classList.add('active');
   document.querySelectorAll('.tab-btn').forEach(b=>{
-    if(b.textContent.includes(tab==='gov'?'揭榜':tab==='agent'?'超级':'名人'))b.classList.add('active');
+    if(b.textContent.includes(tab==='gov'?'揭榜':tab==='agent'?'超级':tab==='legends'?'名人':tab==='academy'?'学院':'健康'))b.classList.add('active');
   });
   window.scrollTo({top:document.querySelector('.tab-nav').offsetTop-64,behavior:'smooth'});
 }
