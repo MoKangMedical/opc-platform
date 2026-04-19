@@ -1,142 +1,135 @@
 """
-OPC Platform - SecondMe Integration
+OPC Platform - SecondMe OAuth2 Callback
+处理SecondMe授权回调
 """
-from fastapi import APIRouter, HTTPException, Request, Query
-from fastapi.responses import RedirectResponse
-import httpx
-import json
+from fastapi import APIRouter, Request, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse
 import os
-import time
-from datetime import datetime, timedelta
+import json
+import httpx
 
 router = APIRouter(prefix="/api/secondme", tags=["SecondMe"])
 
-# 正确的 SecondMe URLs
-SECONDEME_API = "https://api.mindverse.com/gate/lab"
-SECONDEME_OAUTH = "https://go.second-me.cn/oauth"
-
-CLIENT_ID = os.getenv("SECONDEME_CLIENT_ID", "52754d67-3e5e-4f5e-889f-d823147927d7")
-CLIENT_SECRET = os.getenv("SECONDEME_CLIENT_SECRET", "271c76f3753064447a43c5cfd0e7af5f05d842ee6b9db1b293073ec08c61f0c4")
-REDIRECT_URI = os.getenv("SECONDEME_REDIRECT_URI", "https://opc-platform.onrender.com/api/secondme/callback")
-
-_app_token_cache = {"token": None, "expires": None}
-
-
-@router.get("/oauth/login")
-async def oauth_login():
-    """跳转 SecondMe 授权"""
-    import secrets
-    state = secrets.token_urlsafe(16)
-    url = f"{SECONDEME_OAUTH}/?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code&state={state}"
-    return RedirectResponse(url=url)
-
+# SecondMe OAuth2配置
+SECONDME_CLIENT_ID = os.getenv("SECONDME_CLIENT_ID", "52754d67")
+SECONDME_CLIENT_SECRET = os.getenv("SECONDME_CLIENT_SECRET", "271c76f")
+SECONDME_AUTH_URL = "https://app.mindos.com/oauth/authorize"
+SECONDME_TOKEN_URL = "https://app.mindos.com/oauth/token"
+SECONDME_API_URL = "https://app.mindos.com/gate/lab"
 
 @router.get("/callback")
-async def oauth_callback(code: str = Query(None), state: str = Query(None), error: str = Query(None)):
-    """OAuth 回调"""
-    if error or not code:
-        return RedirectResponse(url=f"https://opc-platform.onrender.com/superagent.html?sm_error={error or 'no_code'}")
+async def oauth_callback(code: str = None, state: str = None, error: str = None):
+    """SecondMe OAuth2回调处理"""
+    if error:
+        return HTMLResponse(f"""
+        <html>
+        <head><title>授权失败</title></head>
+        <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+            <h1>❌ 授权失败</h1>
+            <p>错误信息: {error}</p>
+            <a href="/">返回首页</a>
+        </body>
+        </html>
+        """)
     
+    if not code:
+        raise HTTPException(400, "Missing authorization code")
+    
+    # 交换access token
     try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            # 用授权码换 token
-            resp = await client.post(
-                f"{SECONDEME_API}/api/oauth/token/code",
-                data={
-                    "grant_type": "authorization_code",
-                    "code": code,
-                    "redirect_uri": REDIRECT_URI,
-                    "client_id": CLIENT_ID,
-                    "client_secret": CLIENT_SECRET,
-                },
-            )
-            data = resp.json()
-            
-            if data.get("code") != 0:
-                msg = data.get("message", "token_failed")
-                return RedirectResponse(url=f"https://opc-platform.onrender.com/superagent.html?sm_error={msg}")
-            
-            access_token = data["data"]["accessToken"]
-            
-            # 获取用户信息
-            user_resp = await client.get(
-                f"{SECONDEME_API}/api/secondme/user/info",
-                headers={"Authorization": f"Bearer {access_token}"},
-            )
-            user_data = user_resp.json()
-            user_info = user_data.get("data", {}) if user_data.get("code") == 0 else {}
-            
-            import urllib.parse
-            profile = json.dumps({
-                "name": user_info.get("name", "SecondMe用户"),
-                "bio": user_info.get("bio", ""),
-                "avatar": user_info.get("avatar", ""),
-                "token": access_token,
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.post(SECONDME_TOKEN_URL, data={
+                "grant_type": "authorization_code",
+                "code": code,
+                "client_id": SECONDME_CLIENT_ID,
+                "client_secret": SECONDME_CLIENT_SECRET,
+                "redirect_uri": "https://opc-platform.onrender.com/api/secondme/callback"
             })
-            encoded = urllib.parse.quote(profile)
-            return RedirectResponse(
-                url=f"https://opc-platform.onrender.com/superagent.html?sm_connected=true&sm_profile={encoded}"
-            )
+            
+            if resp.status_code == 200:
+                token_data = resp.json()
+                access_token = token_data.get("access_token")
+                
+                # 获取用户信息
+                user_resp = await client.get(
+                    f"{SECONDME_API_URL}/user/me",
+                    headers={"Authorization": f"Bearer {access_token}"}
+                )
+                
+                if user_resp.status_code == 200:
+                    user_data = user_resp.json()
+                    return HTMLResponse(f"""
+                    <html>
+                    <head>
+                        <title>授权成功</title>
+                        <style>
+                            body {{ font-family: sans-serif; text-align: center; padding: 50px; background: #0a0a0f; color: #e4e4ef; }}
+                            .card {{ background: #111118; border-radius: 12px; padding: 30px; max-width: 400px; margin: 0 auto; }}
+                            .success {{ color: #00d68f; }}
+                            a {{ color: #6c5ce7; }}
+                        </style>
+                    </head>
+                    <body>
+                        <div class="card">
+                            <h1 class="success">✅ 授权成功</h1>
+                            <p>欢迎, {user_data.get('nickname', '用户')}!</p>
+                            <p>您的SecondMe数字分身已连接到OPC平台</p>
+                            <script>
+                                // 将token保存到localStorage
+                                localStorage.setItem('secondme_token', '{access_token}');
+                                localStorage.setItem('secondme_user', JSON.stringify({json.dumps(user_data)}));
+                                // 3秒后跳转
+                                setTimeout(() => window.location.href = '/superagent.html', 3000);
+                            </script>
+                            <a href="/superagent.html">立即体验 →</a>
+                        </div>
+                    </body>
+                    </html>
+                    """)
+            
+            return HTMLResponse("""
+            <html>
+            <head><title>授权失败</title></head>
+            <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+                <h1>❌ 获取用户信息失败</h1>
+                <a href="/">返回首页</a>
+            </body>
+            </html>
+            """)
+            
     except Exception as e:
-        return RedirectResponse(url=f"https://opc-platform.onrender.com/superagent.html?sm_error=server_error")
+        return HTMLResponse(f"""
+        <html>
+        <head><title>授权错误</title></head>
+        <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+            <h1>❌ 授权过程出错</h1>
+            <p>{str(e)}</p>
+            <a href="/">返回首页</a>
+        </body>
+        </html>
+        """)
 
 
-@router.post("/connect")
-async def connect_apikey(request: Request):
-    """通过 API Key 连接"""
-    body = await request.json()
-    api_key = body.get("api_key", "")
-    if not api_key.startswith("sk-"):
-        raise HTTPException(400, "Invalid API Key")
-    try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(
-                f"{SECONDEME_API}/api/secondme/user/info",
-                headers={"Authorization": f"Bearer {api_key}"},
-            )
-            data = resp.json()
-            if data.get("code") != 0:
-                raise HTTPException(401, "Invalid")
-            return {"success": True, "profile": data.get("data", {})}
-    except httpx.RequestError:
-        raise HTTPException(502, "Cannot reach SecondMe")
+@router.get("/authorize")
+async def authorize():
+    """生成SecondMe授权链接"""
+    import urllib.parse
+    params = {
+        "client_id": SECONDME_CLIENT_ID,
+        "redirect_uri": "https://opc-platform.onrender.com/api/secondme/callback",
+        "response_type": "code",
+        "scope": "user:read chat:write",
+        "state": "opc_platform"
+    }
+    auth_url = f"{SECONDME_AUTH_URL}?{urllib.parse.urlencode(params)}"
+    return {"auth_url": auth_url}
 
 
-@router.post("/chat")
-async def chat(request: Request):
-    """与 SecondMe 对话"""
-    body = await request.json()
-    api_key = body.get("api_key", "")
-    message = body.get("message", "")
-    session_id = body.get("session_id")
-    if not api_key or not message:
-        raise HTTPException(400, "api_key and message required")
-    try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            payload = {"message": message}
-            if session_id:
-                payload["sessionId"] = session_id
-            resp = await client.post(
-                f"{SECONDEME_API}/api/secondme/chat/stream",
-                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-                json=payload,
-            )
-            content = ""
-            new_sid = session_id
-            for line in resp.text.split("\n"):
-                line = line.strip()
-                if line.startswith("data: "):
-                    d = line[6:]
-                    if d == "[DONE]":
-                        break
-                    try:
-                        chunk = json.loads(d)
-                        if "sessionId" in chunk:
-                            new_sid = chunk["sessionId"]
-                        for c in chunk.get("choices", []):
-                            content += c.get("delta", {}).get("content", "")
-                    except:
-                        pass
-            return {"response": content, "session_id": new_sid}
-    except Exception as e:
-        raise HTTPException(502, str(e))
+@router.get("/status")
+async def check_status():
+    """检查SecondMe连接状态"""
+    return {
+        "client_id": SECONDME_CLIENT_ID,
+        "callback_url": "https://opc-platform.onrender.com/api/secondme/callback",
+        "status": "ready"
+    }
