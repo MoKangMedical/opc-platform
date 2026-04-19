@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="sm-widget.css">
 <style>
 :root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--orange:#ff8a50;--red:#ff6b6b;--green:#00d68f;--blue:#4ea8de;--purple:#a78bfa;--gold:#f0c040;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -142,6 +141,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <a href="platform.html" class="nav-lk">平台</a><a href="government.html" class="nav-lk">揭榜挂帅</a>
 <a href="superagent.html" class="nav-lk a">超级个体</a><a href="legends.html" class="nav-lk">名人堂</a>
 <a href="academy.html" class="nav-lk">学院</a><a href="health.html" class="nav-lk">健康</a>
+    <a href="chat.html" class="nl">💬 聊天</a>
 <button class="lbtn" onclick="tgl()">🌐 EN/中</button>
 </div><button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
 </div></nav>
@@ -233,5 +233,4 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
 </script>
-<script src="sm-widget.js"></script>
 </body></html>
