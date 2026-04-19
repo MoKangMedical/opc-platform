@@ -338,7 +338,6 @@
     <h1>每个创业者都有一个<br>AI Agent 数字分身</h1>
     <p>OPC超级个体平台，让每个创业者拥有专属AI Agent。Agent之间通过A2A协议自主交流、匹配项目、协作创新，构建去中心化的创业智慧网络。</p>
 </section>
-
 <!-- SECONDEME CONNECTION -->
 <div style="background:#0f0f1a;border:1px solid #2a2a3a;border-radius:16px;padding:28px;margin:24px 0">
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
@@ -399,6 +398,156 @@
   </div>
 </div>
 
+
+
+
+<!-- AGENT CHAT MODAL -->
+<div id="agentChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center">
+<div style="background:var(--bg-card,#111);border:1px solid var(--border,#222);border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
+  <div style="padding:16px 20px;border-bottom:1px solid var(--border,#222);display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span id="chatAgentEmoji" style="font-size:24px">🎯</span>
+      <div>
+        <div id="chatAgentName" style="font-weight:600;font-size:15px">项目猎手</div>
+        <div style="font-size:11px;color:#888">AI Agent · 在线</div>
+      </div>
+    </div>
+    <button onclick="closeAgentChat()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer">&times;</button>
+  </div>
+  <div id="chatMessages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+    <div class="chat-msg bot" style="background:#1a1a2e;border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-start;max-width:85%">你好！我是你的AI Agent，有什么可以帮你的？</div>
+  </div>
+  <div style="padding:12px 16px;border-top:1px solid var(--border,#222);display:flex;gap:8px">
+    <input id="chatInput" type="text" placeholder="输入消息..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendAgentChat()">
+    <button onclick="sendAgentChat()" style="padding:10px 20px;border-radius:10px;background:#6366f1;color:#fff;border:none;font-weight:600;cursor:pointer;font-size:13px">发送</button>
+  </div>
+</div>
+</div>
+
+<style>
+.chat-msg.bot{background:#1a1a2e!important;border-radius:12px 12px 12px 4px!important}
+.chat-msg.user{background:#6366f1!important;color:#fff!important;border-radius:12px 12px 4px 12px!important;align-self:flex-end!important;max-width:85%!important}
+.chat-msg{padding:12px 16px;font-size:13.5px;line-height:1.6;animation:fadeInUp .3s}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.chat-btn{padding:6px 14px;border-radius:8px;background:#6366f1;color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s;margin-top:10px}
+.chat-btn:hover{background:#818cf8}
+</style>
+
+<script>
+let currentChatAgent = '';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+
+// 4个预设Agent
+const CHAT_AGENTS = [
+  {id:'hunter', name:'项目猎手', emoji:'🎯', desc:'智能匹配项目需求'},
+  {id:'architect', name:'方案架构师', emoji:'💡', desc:'设计技术方案'},
+  {id:'assistant', name:'商务助手', emoji:'🤝', desc:'管理客户关系'},
+  {id:'analyst', name:'数据分析师', emoji:'📊', desc:'分析行业趋势'},
+];
+
+function openAgentChat(agentId) {
+  const agent = CHAT_AGENTS.find(a => a.id === agentId);
+  if (!agent) return;
+  currentChatAgent = agentId;
+  document.getElementById('chatAgentEmoji').textContent = agent.emoji;
+  document.getElementById('chatAgentName').textContent = agent.name;
+  document.getElementById('chatMessages').innerHTML = `<div class="chat-msg bot" style="background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-start;max-width:85%">你好！我是「${agent.name}」，${agent.desc}。有什么需要帮助的吗？</div>`;
+  document.getElementById('agentChatModal').style.display = 'flex';
+  document.getElementById('chatInput').focus();
+}
+
+function closeAgentChat() {
+  document.getElementById('agentChatModal').style.display = 'none';
+}
+
+async function sendAgentChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  
+  const container = document.getElementById('chatMessages');
+  
+  // 添加用户消息
+  const userDiv = document.createElement('div');
+  userDiv.className = 'chat-msg user';
+  userDiv.style.cssText = 'background:#6366f1;color:#fff;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-end;max-width:85%';
+  userDiv.textContent = msg;
+  container.appendChild(userDiv);
+  
+  // 添加加载动画
+  const loadingDiv = document.createElement('div');
+  loadingDiv.className = 'chat-msg bot';
+  loadingDiv.style.cssText = 'background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;align-self:flex-start;color:#888';
+  loadingDiv.textContent = '思考中...';
+  container.appendChild(loadingDiv);
+  container.scrollTop = container.scrollHeight;
+  
+  // 收集历史消息
+  const history = [];
+  container.querySelectorAll('.chat-msg').forEach(el => {
+    if (el === loadingDiv) return;
+    if (el.classList.contains('user')) {
+      history.push({role: 'user', content: el.textContent});
+    } else if (el !== container.querySelector('.chat-msg')) {
+      history.push({role: 'assistant', content: el.textContent});
+    }
+  });
+  
+  try {
+    const resp = await fetch(`${API_BASE}/api/chat/agent/${currentChatAgent}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({messages: history.slice(-10)})  // 最近10条
+    });
+    const data = await resp.json();
+    
+    loadingDiv.textContent = data.response || '抱歉，我暂时无法回答';
+    loadingDiv.style.color = '#eee';
+  } catch(e) {
+    loadingDiv.textContent = '⚠️ 网络错误，请稍后再试';
+    loadingDiv.style.color = '#ef4444';
+  }
+  
+  container.scrollTop = container.scrollHeight;
+}
+
+// 在页面加载后，给Agent卡片添加"对话"按钮
+document.addEventListener('DOMContentLoaded', () => {
+  // 找到所有Agent卡片，添加对话按钮
+  const cards = document.querySelectorAll('.agent-card');
+  cards.forEach(card => {
+    const title = card.querySelector('h3');
+    if (!title) return;
+    const titleText = title.textContent.trim();
+    
+    // 匹配Agent类型
+    let agentId = '';
+    if (titleText.includes('猎手') || titleText.includes('Hunter')) agentId = 'hunter';
+    else if (titleText.includes('架构') || titleText.includes('Architect')) agentId = 'architect';
+    else if (titleText.includes('商务') || titleText.includes('Assistant')) agentId = 'assistant';
+    else if (titleText.includes('分析') || titleText.includes('Analyst')) agentId = 'analyst';
+    
+    if (agentId) {
+      const btn = document.createElement('button');
+      btn.className = 'chat-btn';
+      btn.innerHTML = '💬 对话';
+      btn.onclick = () => openAgentChat(agentId);
+      card.appendChild(btn);
+    }
+  });
+  
+  // 也给用户创建的Agent添加通用对话功能
+  document.querySelectorAll('[data-agent-type]').forEach(el => {
+    const type = el.dataset.agentType;
+    const btn = document.createElement('button');
+    btn.className = 'chat-btn';
+    btn.innerHTML = '💬 对话';
+    btn.onclick = () => openAgentChat(type);
+    el.appendChild(btn);
+  });
+});
+</script>
 <!-- SECONDEME CHAT MODAL -->
 <div id="secondmeChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:300;align-items:center;justify-content:center">
 <div style="background:#111;border:1px solid #2a2a3a;border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
@@ -1172,152 +1321,6 @@ applyLang();
 </script>
 
 
-<!-- AGENT CHAT MODAL -->
-<div id="agentChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center">
-<div style="background:var(--bg-card,#111);border:1px solid var(--border,#222);border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
-  <div style="padding:16px 20px;border-bottom:1px solid var(--border,#222);display:flex;justify-content:space-between;align-items:center">
-    <div style="display:flex;align-items:center;gap:10px">
-      <span id="chatAgentEmoji" style="font-size:24px">🎯</span>
-      <div>
-        <div id="chatAgentName" style="font-weight:600;font-size:15px">项目猎手</div>
-        <div style="font-size:11px;color:#888">AI Agent · 在线</div>
-      </div>
-    </div>
-    <button onclick="closeAgentChat()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer">&times;</button>
-  </div>
-  <div id="chatMessages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
-    <div class="chat-msg bot" style="background:#1a1a2e;border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-start;max-width:85%">你好！我是你的AI Agent，有什么可以帮你的？</div>
-  </div>
-  <div style="padding:12px 16px;border-top:1px solid var(--border,#222);display:flex;gap:8px">
-    <input id="chatInput" type="text" placeholder="输入消息..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendAgentChat()">
-    <button onclick="sendAgentChat()" style="padding:10px 20px;border-radius:10px;background:#6366f1;color:#fff;border:none;font-weight:600;cursor:pointer;font-size:13px">发送</button>
-  </div>
-</div>
-</div>
 
-<style>
-.chat-msg.bot{background:#1a1a2e!important;border-radius:12px 12px 12px 4px!important}
-.chat-msg.user{background:#6366f1!important;color:#fff!important;border-radius:12px 12px 4px 12px!important;align-self:flex-end!important;max-width:85%!important}
-.chat-msg{padding:12px 16px;font-size:13.5px;line-height:1.6;animation:fadeInUp .3s}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.chat-btn{padding:6px 14px;border-radius:8px;background:#6366f1;color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s;margin-top:10px}
-.chat-btn:hover{background:#818cf8}
-</style>
-
-<script>
-let currentChatAgent = '';
-const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
-
-// 4个预设Agent
-const CHAT_AGENTS = [
-  {id:'hunter', name:'项目猎手', emoji:'🎯', desc:'智能匹配项目需求'},
-  {id:'architect', name:'方案架构师', emoji:'💡', desc:'设计技术方案'},
-  {id:'assistant', name:'商务助手', emoji:'🤝', desc:'管理客户关系'},
-  {id:'analyst', name:'数据分析师', emoji:'📊', desc:'分析行业趋势'},
-];
-
-function openAgentChat(agentId) {
-  const agent = CHAT_AGENTS.find(a => a.id === agentId);
-  if (!agent) return;
-  currentChatAgent = agentId;
-  document.getElementById('chatAgentEmoji').textContent = agent.emoji;
-  document.getElementById('chatAgentName').textContent = agent.name;
-  document.getElementById('chatMessages').innerHTML = `<div class="chat-msg bot" style="background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-start;max-width:85%">你好！我是「${agent.name}」，${agent.desc}。有什么需要帮助的吗？</div>`;
-  document.getElementById('agentChatModal').style.display = 'flex';
-  document.getElementById('chatInput').focus();
-}
-
-function closeAgentChat() {
-  document.getElementById('agentChatModal').style.display = 'none';
-}
-
-async function sendAgentChat() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  
-  const container = document.getElementById('chatMessages');
-  
-  // 添加用户消息
-  const userDiv = document.createElement('div');
-  userDiv.className = 'chat-msg user';
-  userDiv.style.cssText = 'background:#6366f1;color:#fff;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-end;max-width:85%';
-  userDiv.textContent = msg;
-  container.appendChild(userDiv);
-  
-  // 添加加载动画
-  const loadingDiv = document.createElement('div');
-  loadingDiv.className = 'chat-msg bot';
-  loadingDiv.style.cssText = 'background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;align-self:flex-start;color:#888';
-  loadingDiv.textContent = '思考中...';
-  container.appendChild(loadingDiv);
-  container.scrollTop = container.scrollHeight;
-  
-  // 收集历史消息
-  const history = [];
-  container.querySelectorAll('.chat-msg').forEach(el => {
-    if (el === loadingDiv) return;
-    if (el.classList.contains('user')) {
-      history.push({role: 'user', content: el.textContent});
-    } else if (el !== container.querySelector('.chat-msg')) {
-      history.push({role: 'assistant', content: el.textContent});
-    }
-  });
-  
-  try {
-    const resp = await fetch(`${API_BASE}/api/chat/agent/${currentChatAgent}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({messages: history.slice(-10)})  // 最近10条
-    });
-    const data = await resp.json();
-    
-    loadingDiv.textContent = data.response || '抱歉，我暂时无法回答';
-    loadingDiv.style.color = '#eee';
-  } catch(e) {
-    loadingDiv.textContent = '⚠️ 网络错误，请稍后再试';
-    loadingDiv.style.color = '#ef4444';
-  }
-  
-  container.scrollTop = container.scrollHeight;
-}
-
-// 在页面加载后，给Agent卡片添加"对话"按钮
-document.addEventListener('DOMContentLoaded', () => {
-  // 找到所有Agent卡片，添加对话按钮
-  const cards = document.querySelectorAll('.agent-card');
-  cards.forEach(card => {
-    const title = card.querySelector('h3');
-    if (!title) return;
-    const titleText = title.textContent.trim();
-    
-    // 匹配Agent类型
-    let agentId = '';
-    if (titleText.includes('猎手') || titleText.includes('Hunter')) agentId = 'hunter';
-    else if (titleText.includes('架构') || titleText.includes('Architect')) agentId = 'architect';
-    else if (titleText.includes('商务') || titleText.includes('Assistant')) agentId = 'assistant';
-    else if (titleText.includes('分析') || titleText.includes('Analyst')) agentId = 'analyst';
-    
-    if (agentId) {
-      const btn = document.createElement('button');
-      btn.className = 'chat-btn';
-      btn.innerHTML = '💬 对话';
-      btn.onclick = () => openAgentChat(agentId);
-      card.appendChild(btn);
-    }
-  });
-  
-  // 也给用户创建的Agent添加通用对话功能
-  document.querySelectorAll('[data-agent-type]').forEach(el => {
-    const type = el.dataset.agentType;
-    const btn = document.createElement('button');
-    btn.className = 'chat-btn';
-    btn.innerHTML = '💬 对话';
-    btn.onclick = () => openAgentChat(type);
-    el.appendChild(btn);
-  });
-});
-</script>
 </body>
 </html>
