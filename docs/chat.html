@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC Chat - 实时沟通中心</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #111118;
+            --bg-card-hover: #16161f;
+            --bg-surface: #0e0e15;
+            --border: #1e1e2e;
+            --border-hover: #2a2a40;
+            --text: #e4e4ef;
+            --text-dim: #8888a0;
+            --text-muted: #55556a;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --accent-glow: rgba(108, 92, 231, 0.15);
+            --gold: #f0c040;
+            --green: #00d68f;
+            --red: #ff6b6b;
+            --blue: #4ecdc4;
+            --orange: #fdcb6e;
+            --pink: #fd79a8;
+            --purple: #9b59b6;
+            --font-display: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; }
+        
+        .app { display: flex; height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 280px; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--accent-light); }
+        .btn-new { background: var(--accent); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+        .btn-new:hover { background: var(--accent-light); }
+        .room-list { flex: 1; overflow-y: auto; padding: 12px; }
+        .room-item { padding: 14px; border-radius: var(--radius); cursor: pointer; transition: var(--transition); margin-bottom: 4px; border: 1px solid transparent; }
+        .room-item:hover { background: var(--bg-card-hover); border-color: var(--border); }
+        .room-item.active { background: var(--accent-glow); border-color: var(--accent); }
+        .room-name { font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+        .badge { font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; background: var(--accent-glow); color: var(--accent-light); }
+        .badge.agent { background: rgba(155, 89, 182, 0.2); color: var(--purple); }
+        .room-meta { font-size: 0.8rem; color: var(--text-dim); margin-top: 6px; }
+        .room-last { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 4px; }
+        
+        /* Main Chat */
+        .chat-main { flex: 1; display: flex; flex-direction: column; background: var(--bg); min-width: 0; }
+        .chat-header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-card); }
+        .chat-title { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; }
+        .chat-desc { font-size: 0.85rem; color: var(--text-dim); }
+        .header-actions { display: flex; gap: 8px; align-items: center; }
+        .status { padding: 6px 12px; font-size: 0.75rem; border-radius: 4px; display: flex; align-items: center; gap: 6px; }
+        .status.on { background: rgba(0, 214, 143, 0.15); color: var(--green); }
+        .status.off { background: rgba(255, 107, 107, 0.15); color: var(--red); }
+        .status.wait { background: rgba(253, 203, 110, 0.15); color: var(--orange); }
+        .btn-sm { background: var(--bg-card-hover); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+        .btn-sm:hover { border-color: var(--accent); color: var(--accent-light); }
+        .btn-sm.purple { border-color: var(--purple); color: var(--purple); }
+        
+        /* Messages */
+        .messages { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+        .msg { display: flex; gap: 12px; max-width: 80%; animation: fadeInUp 0.3s ease; }
+        .msg.self { flex-direction: row-reverse; margin-left: auto; }
+        .msg.agent { }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .msg-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-card); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; border: 2px solid var(--border); }
+        .msg.agent .msg-avatar { border-color: var(--purple); }
+        .msg.self .msg-avatar { border-color: var(--accent); }
+        .msg-body { background: var(--bg-card); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); }
+        .msg.self .msg-body { background: var(--accent-glow); border-color: var(--accent); }
+        .msg.agent .msg-body { background: rgba(155, 89, 182, 0.1); border-color: var(--purple); }
+        .msg-sender { font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; color: var(--text-dim); }
+        .msg.self .msg-sender { color: var(--accent-light); }
+        .msg.agent .msg-sender { color: var(--purple); }
+        .msg-text { font-size: 0.95rem; line-height: 1.5; word-break: break-word; }
+        .msg-time { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .sys-msg { text-align: center; padding: 8px; font-size: 0.8rem; color: var(--text-muted); }
+        .sys-msg .hl { color: var(--accent-light); }
+        
+        /* Typing */
+        .typing { display: none; padding: 8px 24px; font-size: 0.8rem; color: var(--text-dim); }
+        .typing.active { display: block; }
+        .dots { display: inline-flex; gap: 4px; }
+        .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); animation: bounce 1.4s infinite ease-in-out; }
+        .dots span:nth-child(1) { animation-delay: 0s; }
+        .dots span:nth-child(2) { animation-delay: 0.2s; }
+        .dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        
+        /* Input */
+        .input-area { padding: 16px 24px; border-top: 1px solid var(--border); background: var(--bg-card); }
+        .input-row { display: flex; gap: 12px; align-items: flex-end; }
+        .input-field { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 12px; font-size: 0.95rem; font-family: var(--font-body); resize: none; min-height: 48px; max-height: 120px; transition: var(--transition); }
+        .input-field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .btn-send { background: var(--accent); color: #fff; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn-send:hover { background: var(--accent-light); }
+        
+        /* SecondMe Panel */
+        .sm-panel { display: none; background: var(--bg-card); border: 1px solid var(--purple); border-radius: var(--radius); padding: 16px 24px; margin: 0 24px; margin-top: 16px; }
+        .sm-panel.active { display: block; }
+        .sm-panel h4 { color: var(--purple); margin-bottom: 8px; font-size: 0.95rem; }
+        .sm-panel p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px; }
+        .sm-input { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 12px; }
+        .sm-input:focus { outline: none; border-color: var(--purple); }
+        .sm-btn { width: 100%; background: var(--purple); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 500; cursor: pointer; transition: var(--transition); }
+        .sm-btn:hover { opacity: 0.9; }
+        
+        /* Agent indicator */
+        .agent-ind { display: none; background: rgba(155, 89, 182, 0.15); border: 1px solid var(--purple); padding: 8px 16px; margin: 0 24px; border-radius: 8px; font-size: 0.85rem; color: var(--purple); align-items: center; gap: 8px; }
+        .agent-ind.active { display: flex; }
+        
+        /* Online sidebar */
+        .online { width: 240px; background: var(--bg-card); border-left: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+        .online-header { padding: 20px; border-bottom: 1px solid var(--border); font-family: var(--font-display); font-weight: 600; }
+        .online-list { flex: 1; overflow-y: auto; padding: 12px; }
+        .section-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 8px; }
+        .section-title:first-child { margin-top: 0; }
+        .online-user { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 8px; transition: var(--transition); cursor: pointer; }
+        .online-user:hover { background: var(--bg-card-hover); }
+        .online-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative; }
+        .online-avatar.agent { border: 2px solid var(--purple); }
+        .online-dot { position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--bg-card); }
+        
+        /* Modal */
+        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-bg.active { display: flex; }
+        .modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 480px; }
+        .modal h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 20px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 6px; }
+        .form-input { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 12px 14px; border-radius: 8px; font-size: 0.95rem; }
+        .form-input:focus { outline: none; border-color: var(--accent); }
+        .form-select { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 12px 14px; border-radius: 8px; cursor: pointer; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+        .btn-cancel { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+        .btn-cancel:hover { border-color: var(--text-dim); }
+        .btn-primary { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .btn-primary:hover { background: var(--accent-light); }
+        
+        @media (max-width: 1024px) { .online { display: none; } }
+        @media (max-width: 768px) { .sidebar { width: 240px; } }
+        @media (max-width: 640px) { .sidebar { display: none; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span>◆</span> OPC Chat</div>
+            <button class="btn-new" onclick="showModal()">+ 新建</button>
+        </div>
+        <div class="room-list" id="rooms"></div>
+    </div>
+    <div class="chat-main">
+        <div class="chat-header">
+            <div><div class="chat-title" id="roomName">选择聊天室</div><div class="chat-desc" id="roomDesc">开始实时交流</div></div>
+            <div class="header-actions">
+                <div class="status wait" id="status"><span>●</span> 连接中...</div>
+                <button class="btn-sm purple" onclick="toggleSM()">🧠 SecondMe</button>
+            </div>
+        </div>
+        <div class="sm-panel" id="smPanel">
+            <h4>🧠 连接SecondMe数字分身</h4>
+            <p>输入你的SecondMe路由，让Agent加入聊天</p>
+            <input class="sm-input" id="smRoute" placeholder="例如: xiaolin110" />
+            <button class="sm-btn" onclick="connectSM()">连接Agent</button>
+        </div>
+        <div class="agent-ind" id="agentInd"><span>🧠</span><span id="agentText">Agent模式</span></div>
+        <div class="messages" id="msgs"><div class="sys-msg">欢迎来到 <span class="hl">OPC Chat</span>！选择聊天室开始</div></div>
+        <div class="typing" id="typing"><span class="dots"><span></span><span></span><span></span></span> Agent正在输入...</div>
+        <div class="input-area">
+            <div class="input-row">
+                <textarea class="input-field" id="input" placeholder="输入消息... (Enter发送)" rows="1"></textarea>
+                <button class="btn-send" onclick="send()">发送 ➤</button>
+            </div>
+        </div>
+    </div>
+    <div class="online">
+        <div class="online-header">在线成员</div>
+        <div class="online-list">
+            <div class="section-title">创业者</div>
+            <div class="online-user"><div class="online-avatar">👤<div class="online-dot"></div></div><div><div>我</div><div style="font-size:0.75rem;color:var(--text-dim)">创业者</div></div></div>
+            <div class="section-title">AI Agent</div>
+            <div class="online-user" id="smAgent" style="display:none"><div class="online-avatar agent">🧠<div class="online-dot"></div></div><div><div id="smName">Agent</div><div style="font-size:0.75rem;color:var(--text-dim)">数字分身</div></div></div>
+        </div>
+    </div>
+</div>
+<div class="modal-bg" id="modal">
+    <div class="modal">
+        <h3>新建聊天室</h3>
+        <div class="form-group"><label class="form-label">房间名称</label><input class="form-input" id="newName" placeholder="例如: AI创业讨论组" /></div>
+        <div class="form-group"><label class="form-label">描述</label><input class="form-input" id="newDesc" placeholder="简短描述" /></div>
+        <div class="form-group"><label class="form-label">类型</label><select class="form-select" id="newType"><option value="public">公开</option><option value="agent_hybrid">人机混合</option></select></div>
+        <div class="modal-actions"><button class="btn-cancel" onclick="hideModal()">取消</button><button class="btn-primary" onclick="createRoom()">创建</button></div>
+    </div>
+</div>
+<script>
+const API=location.origin,WS=(location.protocol==='https:'?'wss:':'ws:')+'//'+location.host,UID=1;
+let roomId=null,ws=null,connected=false,agentMode=false,smRoute=null;
+document.addEventListener('DOMContentLoaded',()=>{loadRooms();connectWS();setupInput();fetch(API+'/api/chat/seed-rooms',{method:'POST'}).then(()=>loadRooms()).catch(console.error)});
+
+function connectWS(){
+    const s=document.getElementById('status');
+    s.className='status wait';s.innerHTML='<span>●</span> 连接中...';
+    ws=new WebSocket(WS+'/api/chat/ws?user_id='+UID);
+    ws.onopen=()=>{connected=true;s.className='status on';s.innerHTML='<span>●</span> 已连接';if(roomId)joinRoom(roomId)};
+    ws.onmessage=e=>handleMsg(JSON.parse(e.data));
+    ws.onclose=()=>{connected=false;s.className='status off';s.innerHTML='<span>●</span> 已断开';setTimeout(connectWS,3000)};
+}
+
+function handleMsg(d){
+    const t=document.getElementById('typing');
+    if(d.type==='message')addMsg(d);
+    else if(d.type==='agent_response'){t.classList.remove('active');addMsg(d,true)}
+    else if(d.type==='system')addSys(d.content);
+    else if(d.type==='error')addSys('错误: '+d.content,true);
+}
+
+async function loadRooms(){
+    const r=await fetch(API+'/api/chat/rooms'),d=await r.json();
+    document.getElementById('rooms').innerHTML=d.rooms.map(r=>`
+        <div class="room-item ${roomId===r.id?'active':''}" onclick="selectRoom(${r.id},'${esc(r.name)}','${esc(r.description||'')}')">
+            <div class="room-name">${r.name}${r.room_type==='agent_hybrid'?'<span class="badge agent">Agent</span>':''}</div>
+            ${r.last_message?`<div class="room-last">${r.last_message.sender_name?r.last_message.sender_name+': ':''}${esc(r.last_message.content||'')}</div>`:''}
+            <div class="room-meta">👥 ${r.member_count} 成员</div>
+        </div>`).join('');
+}
+
+async function selectRoom(id,name,desc){
+    if(roomId&&ws&&connected)ws.send(JSON.stringify({type:'leave',room_id:roomId}));
+    roomId=id;
+    document.getElementById('roomName').textContent=name;
+    document.getElementById('roomDesc').textContent=desc||'实时聊天中';
+    document.querySelectorAll('.room-item').forEach(e=>{e.classList.remove('active');if(e.textContent.includes(name.replace(/[^\w\u4e00-\u9fa5]/g,'')))e.classList.add('active')});
+    const m=document.getElementById('msgs');m.innerHTML='<div class="sys-msg">加载中...</div>';
+    const r=await fetch(API+'/api/chat/rooms/'+id+'/messages'),d=await r.json();
+    m.innerHTML=d.messages.length?d.messages.map(m=>renderMsg(m)).join(''):'<div class="sys-msg">还没有消息</div>';
+    scrollToBottom();joinRoom(id);
+}
+
+function joinRoom(id){if(ws&&connected)ws.send(JSON.stringify({type:'join',room_id:id}))}
+
+function renderMsg(d,isAgent){
+    const self=d.sender_type==='user'&&d.sender_id===UID;
+    const agent=d.sender_type==='agent'||isAgent;
+    return`<div class="msg ${self?'self':''} ${agent?'agent':''}">
+        <div class="msg-avatar">${agent?'🧠':'👤'}</div>
+        <div class="msg-body"><div class="msg-sender">${esc(d.sender_name||'用户')}</div><div class="msg-text">${esc(d.content)}</div><div class="msg-time">${fmtTime(d.timestamp||d.created_at)}</div></div></div>`;
+}
+
+function addMsg(d,isAgent){
+    const m=document.getElementById('msgs');
+    const empty=m.querySelector('.sys-msg');
+    if(empty&&empty.textContent.includes('还没有'))empty.remove();
+    m.insertAdjacentHTML('beforeend',renderMsg(d,isAgent));
+    scrollToBottom();
+}
+
+function addSys(text,err){
+    const m=document.getElementById('msgs');
+    m.insertAdjacentHTML('beforeend',`<div class="sys-msg">${err?'<span style="color:var(--red)">'+esc(text)+'</span>':text}</div>`);
+    scrollToBottom();
+}
+
+function send(){
+    const i=document.getElementById('input'),c=i.value.trim();
+    if(!c||!roomId||!connected)return;
+    if(agentMode&&smRoute){
+        ws.send(JSON.stringify({type:'agent_chat',room_id:roomId,content:c,target_secondme:smRoute}));
+        document.getElementById('typing').classList.add('active');
+    }else{
+        ws.send(JSON.stringify({type:'message',room_id:roomId,content:c}));
+    }
+    i.value='';i.style.height='auto';
+}
+
+function toggleSM(){document.getElementById('smPanel').classList.toggle('active')}
+
+async function connectSM(){
+    const r=document.getElementById('smRoute').value.trim();
+    if(!r){alert('请输入路由');return}
+    if(!roomId){alert('请先选择聊天室');return}
+    const res=await fetch(API+'/api/chat/rooms/'+roomId+'/invite-agent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secondme_route:r})});
+    const d=await res.json();
+    if(res.ok){
+        smRoute=r;agentMode=true;
+        document.getElementById('agentInd').classList.add('active');
+        document.getElementById('agentText').textContent='正在与 '+r+' 的Agent 对话';
+        document.getElementById('smAgent').style.display='flex';
+        document.getElementById('smName').textContent=r+'的Agent';
+        document.getElementById('smPanel').classList.remove('active');
+        addSys('🧠 Agent ('+r+') 已加入');
+    }else{alert(d.detail||'连接失败')}
+}
+
+function showModal(){document.getElementById('modal').classList.add('active')}
+function hideModal(){document.getElementById('modal').classList.remove('active')}
+
+async function createRoom(){
+    const n=document.getElementById('newName').value.trim(),de=document.getElementById('newDesc').value.trim(),t=document.getElementById('newType').value;
+    if(!n){alert('请输入名称');return}
+    const r=await fetch(API+'/api/chat/rooms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,description:de,room_type:t,user_id:UID})});
+    const d=await r.json();
+    if(r.ok){hideModal();loadRooms();selectRoom(d.id,n,de)}
+}
+
+function setupInput(){
+    const i=document.getElementById('input');
+    i.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+    i.addEventListener('input',()=>{i.style.height='auto';i.style.height=Math.min(i.scrollHeight,120)+'px'});
+}
+
+function scrollToBottom(){const m=document.getElementById('msgs');m.scrollTop=m.scrollHeight}
+function fmtTime(s){const d=new Date(s),n=new Date(),df=n-d;if(df<60000)return'刚刚';if(df<3600000)return Math.floor(df/60000)+'分钟前';if(df<86400000)return d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric'})}
+function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML}
+setInterval(()=>{if(ws&&connected)ws.send(JSON.stringify({type:'ping'}))},30000);
+</script>
+</body>
+</html>
