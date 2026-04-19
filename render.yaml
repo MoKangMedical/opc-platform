@@ -2,8 +2,10 @@ services:
   - type: web
     name: opc-platform
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python start.py
     envVars:
       - key: PYTHON_VERSION
-        value: "3.11"
+        value: "3.11.9"
+      - key: PYTHONUNBUFFERED
+        value: "1"
