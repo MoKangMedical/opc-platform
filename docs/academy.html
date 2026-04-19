@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="sm-widget.css">
 <style>
 :root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--purple:#a78bfa;--purple2:#6366f1;--green:#00d68f;--gold:#f0c040;--red:#ff6b6b;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--rs:10px;--e:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -123,6 +122,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <a href="legends.html" class="nav-lk">名人堂</a>
 <a href="academy.html" class="nav-lk a">学院</a>
 <a href="health.html" class="nav-lk">健康</a>
+    <a href="chat.html" class="nl">💬 聊天</a>
 <button class="lbtn" onclick="tgl()">🌐 EN/中</button>
 </div>
 <button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
@@ -313,5 +313,4 @@ el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;
 });
 }
 </script>
-<script src="sm-widget.js"></script>
 </body></html>
