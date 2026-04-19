@@ -339,6 +339,262 @@
     <p>OPC超级个体平台，让每个创业者拥有专属AI Agent。Agent之间通过A2A协议自主交流、匹配项目、协作创新，构建去中心化的创业智慧网络。</p>
 </section>
 
+<!-- SECONDEME CONNECTION -->
+<div style="background:#0f0f1a;border:1px solid #2a2a3a;border-radius:16px;padding:28px;margin:24px 0">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:flex;align-items:center;justify-content:center;font-size:24px">🧠</div>
+    <div>
+      <h2 style="font-size:20px;font-weight:700;margin:0"><span class="zh">连接 SecondMe 数字分身</span><span class="en" style="display:none">Connect SecondMe Digital Twin</span></h2>
+      <p style="font-size:12px;color:#888;margin:2px 0 0"><span class="zh">让你的 Agent 拥有你的个性、记忆和思维方式</span><span class="en" style="display:none">Give your Agent your personality, memory, and thinking</span></p>
+    </div>
+  </div>
+  
+  <div id="secondmeStatus" style="display:none;background:#1a1a2e;border-radius:10px;padding:16px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div id="secondmeAvatar" style="width:40px;height:40px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:20px">🧠</div>
+      <div>
+        <div id="secondmeName" style="font-weight:600;font-size:14px">已连接</div>
+        <div style="font-size:11px;color:#22c55e">● SecondMe 在线</div>
+      </div>
+      <button onclick="openSecondmeChat()" style="margin-left:auto;padding:8px 18px;border-radius:8px;background:#f59e0b;color:#000;font-size:12px;font-weight:700;border:none;cursor:pointer">💬 <span class="zh">对话</span><span class="en" style="display:none">Chat</span></button>
+    </div>
+  </div>
+  
+  <div id="secondmeConnect">
+    <p style="font-size:13px;color:#999;margin-bottom:16px">
+      <span class="zh">点击按钮，自动跳转 SecondMe 授权，一键连接你的AI分身</span>
+      <span class="en" style="display:none">Click to authorize SecondMe and connect your AI twin</span>
+    </p>
+    <button onclick="autoConnectSecondme()" id="smConnectBtn" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px">
+      <span style="font-size:20px">🧠</span>
+      <span class="zh">一键连接 SecondMe 数字分身</span>
+      <span class="en" style="display:none">Connect SecondMe Digital Twin</span>
+    </button>
+    <p style="font-size:11px;color:#666;margin-top:8px;text-align:center">
+      <span class="zh">还没有账号？<a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">免费创建 SecondMe</a>（5分钟）</span>
+      <span class="en" style="display:none">No account? <a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">Create free</a> (5 min)</span>
+    </p>
+    <div id="secondmeError" style="color:#ef4444;font-size:12px;margin-top:8px;display:none"></div>
+  </div>
+  
+  <div style="margin-top:16px;padding-top:16px;border-top:1px solid #222">
+    <h3 style="font-size:14px;margin-bottom:10px"><span class="zh">🔗 SecondMe 能做什么？</span><span class="en" style="display:none">🔗 What can SecondMe do?</span></h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">🧠</div>
+        <div style="font-size:13px;font-weight:600"><span class="zh">个性化AI分身</span><span class="en" style="display:none">Personalized AI</span></div>
+        <div style="font-size:11px;color:#888"><span class="zh">基于你的记忆和个性训练</span><span class="en" style="display:none">Trained on your memory</span></div>
+      </div>
+      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">🤝</div>
+        <div style="font-size:13px;font-weight:600"><span class="zh">Agent间协作</span><span class="en" style="display:none">Agent Collaboration</span></div>
+        <div style="font-size:11px;color:#888"><span class="zh">你的分身与其他Agent对话</span><span class="en" style="display:none">Your twin talks to agents</span></div>
+      </div>
+      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">🌐</div>
+        <div style="font-size:13px;font-weight:600"><span class="zh">跨平台社交</span><span class="en" style="display:none">Cross-platform</span></div>
+        <div style="font-size:11px;color:#888"><span class="zh">在OPC社区代表你</span><span class="en" style="display:none">Represents you in OPC</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECONDEME CHAT MODAL -->
+<div id="secondmeChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:300;align-items:center;justify-content:center">
+<div style="background:#111;border:1px solid #2a2a3a;border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
+  <div style="padding:16px 20px;border-bottom:1px solid #2a2a3a;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:24px">🧠</span>
+      <div>
+        <div id="smChatName" style="font-weight:700;font-size:15px">SecondMe 数字分身</div>
+        <div style="font-size:11px;color:#f59e0b">你的AI分身 · 在线</div>
+      </div>
+    </div>
+    <button onclick="closeSecondmeChat()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer">&times;</button>
+  </div>
+  <div id="smChatMessages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+    <div style="background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:13.5px;line-height:1.7;align-self:flex-start;max-width:85%">你好！我是你的 SecondMe 数字分身，有什么想聊的？我会用你的方式思考和回复。</div>
+  </div>
+  <div style="padding:12px 16px;border-top:1px solid #2a2a3a;display:flex;gap:8px">
+    <input id="smChatInput" type="text" placeholder="和你的数字分身对话..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendSecondmeChat()">
+    <button onclick="sendSecondmeChat()" style="padding:10px 20px;border-radius:10px;background:#f59e0b;color:#000;font-weight:700;cursor:pointer;font-size:13px">发送</button>
+  </div>
+</div>
+</div>
+
+<script>
+let secondmeApiKey = localStorage.getItem('opc-secondme-key') || '';
+let secondmeSessionId = null;
+const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+
+// 页面加载时检查连接状态
+// 检查 OAuth 回调
+handleSecondmeCallback();
+
+if (secondmeApiKey) {
+  checkSecondmeConnection();
+}
+
+// 一键连接 SecondMe (OAuth2)
+function autoConnectSecondme() {
+  const btn = document.getElementById('smConnectBtn');
+  btn.innerHTML = '<span style="font-size:20px">⏳</span> <span>正在跳转到 SecondMe...</span>';
+  btn.style.opacity = '0.7';
+  
+  // 直接跳转到 SecondMe OAuth 授权页面
+  const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+  window.location.href = `${SM_API}/api/secondme/oauth/login`;
+}
+
+// 处理 OAuth 回调后的 URL 参数
+function handleSecondmeCallback() {
+  const params = new URLSearchParams(window.location.search);
+  
+  if (params.get('sm_connected') === 'true') {
+    const profileStr = params.get('sm_profile');
+    if (profileStr) {
+      try {
+        const profile = JSON.parse(decodeURIComponent(profileStr));
+        secondmeApiKey = profile.token;
+        localStorage.setItem('opc-secondme-key', profile.token);
+        localStorage.setItem('opc-secondme-profile', JSON.stringify(profile));
+        
+        document.getElementById('secondmeConnect').style.display = 'none';
+        document.getElementById('secondmeStatus').style.display = 'block';
+        document.getElementById('secondmeName').textContent = profile.name || '已连接';
+        if (profile.avatar) {
+          document.getElementById('secondmeAvatar').innerHTML = `<img src="${profile.avatar}" style="width:40px;height:40px;border-radius:50%">`;
+        }
+        
+        // 清理 URL 参数
+        window.history.replaceState({}, '', 'superagent.html');
+      } catch(e) {
+        console.log('Parse profile error:', e);
+      }
+    }
+  }
+  
+  if (params.get('sm_error')) {
+    const err = params.get('sm_error');
+    const msgs = {
+      'no_code': '授权未完成，请重试',
+      'token_failed': '获取Token失败，请重试',
+      'server_error': '服务器错误，请稍后重试',
+    };
+    showSmError(msgs[err] || '连接失败: ' + err);
+    window.history.replaceState({}, '', 'superagent.html');
+  }
+}
+
+// 兼容旧的 API Key 连接方式
+async function connectSecondme() {
+  const key = document.getElementById('secondmeApiKey')?.value?.trim();
+  if (!key || !key.startsWith('sk-')) {
+    autoConnectSecondme();
+    return;
+  }
+  
+  try {
+    const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+    const resp = await fetch(`${SM_API}/api/secondme/connect`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({api_key: key})
+    });
+    const data = await resp.json();
+    
+    if (data.success) {
+      secondmeApiKey = key;
+      localStorage.setItem('opc-secondme-key', key);
+      document.getElementById('secondmeConnect').style.display = 'none';
+      document.getElementById('secondmeStatus').style.display = 'block';
+      document.getElementById('secondmeName').textContent = data.profile?.name || '已连接';
+    }
+  } catch(e) {
+    showSmError('网络错误: ' + e.message);
+  }
+}
+
+async function checkSecondmeConnection() {
+  try {
+    const resp = await fetch(`${SM_API}/api/secondme/connect`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({api_key: secondmeApiKey})
+    });
+    const data = await resp.json();
+    if (data.success) {
+      document.getElementById('secondmeConnect').style.display = 'none';
+      document.getElementById('secondmeStatus').style.display = 'block';
+      document.getElementById('secondmeName').textContent = data.profile?.name || '已连接';
+    }
+  } catch(e) {}
+}
+
+function openSecondmeChat() {
+  document.getElementById('secondmeChatModal').style.display = 'flex';
+  document.getElementById('smChatInput').focus();
+}
+
+function closeSecondmeChat() {
+  document.getElementById('secondmeChatModal').style.display = 'none';
+}
+
+async function sendSecondmeChat() {
+  const input = document.getElementById('smChatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  
+  const container = document.getElementById('smChatMessages');
+  
+  // 用户消息
+  const userDiv = document.createElement('div');
+  userDiv.style.cssText = 'background:#f59e0b;color:#000;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-end;max-width:85%;font-weight:500';
+  userDiv.textContent = msg;
+  container.appendChild(userDiv);
+  
+  // 加载
+  const loadingDiv = document.createElement('div');
+  loadingDiv.style.cssText = 'background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;align-self:flex-start;color:#888';
+  loadingDiv.textContent = '你的分身在思考...';
+  container.appendChild(loadingDiv);
+  container.scrollTop = container.scrollHeight;
+  
+  try {
+    const resp = await fetch(`${SM_API}/api/secondme/chat`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        api_key: secondmeApiKey,
+        message: msg,
+        session_id: secondmeSessionId,
+      })
+    });
+    const data = await resp.json();
+    
+    if (data.session_id) secondmeSessionId = data.session_id;
+    loadingDiv.textContent = data.response || '分身暂时无法回复';
+    loadingDiv.style.color = '#eee';
+  } catch(e) {
+    loadingDiv.textContent = '⚠️ 连接错误，请检查 API Key';
+    loadingDiv.style.color = '#ef4444';
+  }
+  
+  container.scrollTop = container.scrollHeight;
+}
+
+function showSmError(msg) {
+  const el = document.getElementById('secondmeError');
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 5000);
+}
+</script>
+
+
+
+
 <!-- A2A Architecture -->
 <section class="arch-section" id="architecture">
     <h2 class="arch-title">A2A 架构：四层协议栈</h2>
@@ -915,259 +1171,6 @@ function applyLang(){
 applyLang();
 </script>
 
-
-<!-- SECONDEME CONNECTION -->
-<div style="background:#0f0f1a;border:1px solid #2a2a3a;border-radius:16px;padding:28px;margin:24px 0">
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:flex;align-items:center;justify-content:center;font-size:24px">🧠</div>
-    <div>
-      <h2 style="font-size:20px;font-weight:700;margin:0"><span class="zh">连接 SecondMe 数字分身</span><span class="en" style="display:none">Connect SecondMe Digital Twin</span></h2>
-      <p style="font-size:12px;color:#888;margin:2px 0 0"><span class="zh">让你的 Agent 拥有你的个性、记忆和思维方式</span><span class="en" style="display:none">Give your Agent your personality, memory, and thinking</span></p>
-    </div>
-  </div>
-  
-  <div id="secondmeStatus" style="display:none;background:#1a1a2e;border-radius:10px;padding:16px;margin-bottom:16px">
-    <div style="display:flex;align-items:center;gap:12px">
-      <div id="secondmeAvatar" style="width:40px;height:40px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:20px">🧠</div>
-      <div>
-        <div id="secondmeName" style="font-weight:600;font-size:14px">已连接</div>
-        <div style="font-size:11px;color:#22c55e">● SecondMe 在线</div>
-      </div>
-      <button onclick="openSecondmeChat()" style="margin-left:auto;padding:8px 18px;border-radius:8px;background:#f59e0b;color:#000;font-size:12px;font-weight:700;border:none;cursor:pointer">💬 <span class="zh">对话</span><span class="en" style="display:none">Chat</span></button>
-    </div>
-  </div>
-  
-  <div id="secondmeConnect">
-    <p style="font-size:13px;color:#999;margin-bottom:16px">
-      <span class="zh">点击按钮，自动跳转 SecondMe 授权，一键连接你的AI分身</span>
-      <span class="en" style="display:none">Click to authorize SecondMe and connect your AI twin</span>
-    </p>
-    <button onclick="autoConnectSecondme()" id="smConnectBtn" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px">
-      <span style="font-size:20px">🧠</span>
-      <span class="zh">一键连接 SecondMe 数字分身</span>
-      <span class="en" style="display:none">Connect SecondMe Digital Twin</span>
-    </button>
-    <p style="font-size:11px;color:#666;margin-top:8px;text-align:center">
-      <span class="zh">还没有账号？<a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">免费创建 SecondMe</a>（5分钟）</span>
-      <span class="en" style="display:none">No account? <a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">Create free</a> (5 min)</span>
-    </p>
-    <div id="secondmeError" style="color:#ef4444;font-size:12px;margin-top:8px;display:none"></div>
-  </div>
-  
-  <div style="margin-top:16px;padding-top:16px;border-top:1px solid #222">
-    <h3 style="font-size:14px;margin-bottom:10px"><span class="zh">🔗 SecondMe 能做什么？</span><span class="en" style="display:none">🔗 What can SecondMe do?</span></h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
-      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
-        <div style="font-size:20px;margin-bottom:6px">🧠</div>
-        <div style="font-size:13px;font-weight:600"><span class="zh">个性化AI分身</span><span class="en" style="display:none">Personalized AI</span></div>
-        <div style="font-size:11px;color:#888"><span class="zh">基于你的记忆和个性训练</span><span class="en" style="display:none">Trained on your memory</span></div>
-      </div>
-      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
-        <div style="font-size:20px;margin-bottom:6px">🤝</div>
-        <div style="font-size:13px;font-weight:600"><span class="zh">Agent间协作</span><span class="en" style="display:none">Agent Collaboration</span></div>
-        <div style="font-size:11px;color:#888"><span class="zh">你的分身与其他Agent对话</span><span class="en" style="display:none">Your twin talks to agents</span></div>
-      </div>
-      <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px">
-        <div style="font-size:20px;margin-bottom:6px">🌐</div>
-        <div style="font-size:13px;font-weight:600"><span class="zh">跨平台社交</span><span class="en" style="display:none">Cross-platform</span></div>
-        <div style="font-size:11px;color:#888"><span class="zh">在OPC社区代表你</span><span class="en" style="display:none">Represents you in OPC</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECONDEME CHAT MODAL -->
-<div id="secondmeChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:300;align-items:center;justify-content:center">
-<div style="background:#111;border:1px solid #2a2a3a;border-radius:16px;width:90%;max-width:600px;height:80vh;display:flex;flex-direction:column;overflow:hidden">
-  <div style="padding:16px 20px;border-bottom:1px solid #2a2a3a;display:flex;justify-content:space-between;align-items:center">
-    <div style="display:flex;align-items:center;gap:10px">
-      <span style="font-size:24px">🧠</span>
-      <div>
-        <div id="smChatName" style="font-weight:700;font-size:15px">SecondMe 数字分身</div>
-        <div style="font-size:11px;color:#f59e0b">你的AI分身 · 在线</div>
-      </div>
-    </div>
-    <button onclick="closeSecondmeChat()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer">&times;</button>
-  </div>
-  <div id="smChatMessages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
-    <div style="background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:13.5px;line-height:1.7;align-self:flex-start;max-width:85%">你好！我是你的 SecondMe 数字分身，有什么想聊的？我会用你的方式思考和回复。</div>
-  </div>
-  <div style="padding:12px 16px;border-top:1px solid #2a2a3a;display:flex;gap:8px">
-    <input id="smChatInput" type="text" placeholder="和你的数字分身对话..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none" onkeydown="if(event.key==='Enter')sendSecondmeChat()">
-    <button onclick="sendSecondmeChat()" style="padding:10px 20px;border-radius:10px;background:#f59e0b;color:#000;font-weight:700;cursor:pointer;font-size:13px">发送</button>
-  </div>
-</div>
-</div>
-
-<script>
-let secondmeApiKey = localStorage.getItem('opc-secondme-key') || '';
-let secondmeSessionId = null;
-const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
-
-// 页面加载时检查连接状态
-// 检查 OAuth 回调
-handleSecondmeCallback();
-
-if (secondmeApiKey) {
-  checkSecondmeConnection();
-}
-
-// 一键连接 SecondMe (OAuth2)
-function autoConnectSecondme() {
-  const btn = document.getElementById('smConnectBtn');
-  btn.innerHTML = '<span style="font-size:20px">⏳</span> <span>正在跳转到 SecondMe...</span>';
-  btn.style.opacity = '0.7';
-  
-  // 直接跳转到 SecondMe OAuth 授权页面
-  const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
-  window.location.href = `${SM_API}/api/secondme/oauth/login`;
-}
-
-// 处理 OAuth 回调后的 URL 参数
-function handleSecondmeCallback() {
-  const params = new URLSearchParams(window.location.search);
-  
-  if (params.get('sm_connected') === 'true') {
-    const profileStr = params.get('sm_profile');
-    if (profileStr) {
-      try {
-        const profile = JSON.parse(decodeURIComponent(profileStr));
-        secondmeApiKey = profile.token;
-        localStorage.setItem('opc-secondme-key', profile.token);
-        localStorage.setItem('opc-secondme-profile', JSON.stringify(profile));
-        
-        document.getElementById('secondmeConnect').style.display = 'none';
-        document.getElementById('secondmeStatus').style.display = 'block';
-        document.getElementById('secondmeName').textContent = profile.name || '已连接';
-        if (profile.avatar) {
-          document.getElementById('secondmeAvatar').innerHTML = `<img src="${profile.avatar}" style="width:40px;height:40px;border-radius:50%">`;
-        }
-        
-        // 清理 URL 参数
-        window.history.replaceState({}, '', 'superagent.html');
-      } catch(e) {
-        console.log('Parse profile error:', e);
-      }
-    }
-  }
-  
-  if (params.get('sm_error')) {
-    const err = params.get('sm_error');
-    const msgs = {
-      'no_code': '授权未完成，请重试',
-      'token_failed': '获取Token失败，请重试',
-      'server_error': '服务器错误，请稍后重试',
-    };
-    showSmError(msgs[err] || '连接失败: ' + err);
-    window.history.replaceState({}, '', 'superagent.html');
-  }
-}
-
-// 兼容旧的 API Key 连接方式
-async function connectSecondme() {
-  const key = document.getElementById('secondmeApiKey')?.value?.trim();
-  if (!key || !key.startsWith('sk-')) {
-    autoConnectSecondme();
-    return;
-  }
-  
-  try {
-    const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
-    const resp = await fetch(`${SM_API}/api/secondme/connect`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({api_key: key})
-    });
-    const data = await resp.json();
-    
-    if (data.success) {
-      secondmeApiKey = key;
-      localStorage.setItem('opc-secondme-key', key);
-      document.getElementById('secondmeConnect').style.display = 'none';
-      document.getElementById('secondmeStatus').style.display = 'block';
-      document.getElementById('secondmeName').textContent = data.profile?.name || '已连接';
-    }
-  } catch(e) {
-    showSmError('网络错误: ' + e.message);
-  }
-}
-
-async function checkSecondmeConnection() {
-  try {
-    const resp = await fetch(`${SM_API}/api/secondme/connect`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({api_key: secondmeApiKey})
-    });
-    const data = await resp.json();
-    if (data.success) {
-      document.getElementById('secondmeConnect').style.display = 'none';
-      document.getElementById('secondmeStatus').style.display = 'block';
-      document.getElementById('secondmeName').textContent = data.profile?.name || '已连接';
-    }
-  } catch(e) {}
-}
-
-function openSecondmeChat() {
-  document.getElementById('secondmeChatModal').style.display = 'flex';
-  document.getElementById('smChatInput').focus();
-}
-
-function closeSecondmeChat() {
-  document.getElementById('secondmeChatModal').style.display = 'none';
-}
-
-async function sendSecondmeChat() {
-  const input = document.getElementById('smChatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  
-  const container = document.getElementById('smChatMessages');
-  
-  // 用户消息
-  const userDiv = document.createElement('div');
-  userDiv.style.cssText = 'background:#f59e0b;color:#000;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:13.5px;line-height:1.6;align-self:flex-end;max-width:85%;font-weight:500';
-  userDiv.textContent = msg;
-  container.appendChild(userDiv);
-  
-  // 加载
-  const loadingDiv = document.createElement('div');
-  loadingDiv.style.cssText = 'background:#1a1a2e;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:13.5px;align-self:flex-start;color:#888';
-  loadingDiv.textContent = '你的分身在思考...';
-  container.appendChild(loadingDiv);
-  container.scrollTop = container.scrollHeight;
-  
-  try {
-    const resp = await fetch(`${SM_API}/api/secondme/chat`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        api_key: secondmeApiKey,
-        message: msg,
-        session_id: secondmeSessionId,
-      })
-    });
-    const data = await resp.json();
-    
-    if (data.session_id) secondmeSessionId = data.session_id;
-    loadingDiv.textContent = data.response || '分身暂时无法回复';
-    loadingDiv.style.color = '#eee';
-  } catch(e) {
-    loadingDiv.textContent = '⚠️ 连接错误，请检查 API Key';
-    loadingDiv.style.color = '#ef4444';
-  }
-  
-  container.scrollTop = container.scrollHeight;
-}
-
-function showSmError(msg) {
-  const el = document.getElementById('secondmeError');
-  el.textContent = msg;
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 5000);
-}
-</script>
 
 <!-- AGENT CHAT MODAL -->
 <div id="agentChatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center">
