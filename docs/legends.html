@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sm-widget.css">
 <style>
 :root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--gold:#f0c040;--gold2:#f59e0b;--orange:#ff8a50;--red:#ff6b6b;--green:#00d68f;--blue:#4ea8de;--purple:#a78bfa;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -108,6 +109,44 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 @media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.lg,.phi,.cs,.rm{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}}
 .mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
 @media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
+
+/* Legend Chat Widget */
+.chat-w{position:fixed;bottom:90px;right:24px;z-index:9998;width:400px;max-height:560px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;animation:ci .3s var(--e)}
+.chat-w.show{display:flex}
+.chat-hdr{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.chat-hdr-ava{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.chat-hdr-info{flex:1}
+.chat-hdr-name{font-family:var(--fd);font-size:15px;font-weight:600}
+.chat-hdr-status{font-size:11px;color:var(--green);display:flex;align-items:center;gap:4px}
+.chat-hdr-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.chat-close{background:none;border:none;color:var(--t3);font-size:1.2rem;cursor:pointer;padding:4px}
+.chat-close:hover{color:var(--t1)}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;min-height:300px}
+.chat-msg{max-width:85%}
+.chat-msg.bot{align-self:flex-start}
+.chat-msg.user{align-self:flex-end}
+.chat-bubble{padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.6}
+.chat-msg.bot .chat-bubble{background:var(--bg2);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--t1)}
+.chat-msg.user .chat-bubble{background:linear-gradient(135deg,var(--gold),var(--orange));color:#000;border-bottom-right-radius:4px;font-weight:500}
+.chat-time{font-size:10px;color:var(--t3);margin-top:4px}
+.chat-input{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
+.chat-input input{flex:1;background:var(--bg2);border:1px solid var(--border);color:var(--t1);padding:10px 14px;border-radius:10px;font-size:13px;font-family:var(--fb);outline:none}
+.chat-input input:focus{border-color:var(--gold)}
+.chat-input button{background:var(--gold);border:none;color:#000;width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.chat-input button:hover{transform:scale(1.05)}
+.chat-welcome{text-align:center;padding:40px 20px;color:var(--t3)}
+.chat-welcome .cw-icon{font-size:3rem;margin-bottom:12px}
+.chat-welcome .cw-name{font-family:var(--fd);font-size:1.2rem;font-weight:600;color:var(--t1);margin-bottom:4px}
+.chat-welcome .cw-desc{font-size:13px;line-height:1.6}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;justify-content:center}
+.chat-sug{padding:6px 14px;border-radius:100px;background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.15);color:var(--gold);font-size:12px;cursor:pointer;transition:all .2s}
+.chat-sug:hover{background:rgba(240,192,64,.15)}
+.chat-typing{display:none;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;max-width:80px}
+.chat-typing.show{display:flex;gap:4px;align-items:center}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--t3);animation:tp 1.4s infinite}
+.chat-typing span:nth-child(2){animation-delay:.2s}
+.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes tp{0%,60%,100%{opacity:.3;transform:scale(.8)}30%{opacity:1;transform:scale(1)}}
 </style>
 </head>
 <body>
@@ -161,6 +200,25 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <div class="ft-l"><a href="index.html">首页</a><a href="platform.html">平台</a><a href="superagent.html">超级个体</a></div>
 </div></footer>
 
+<script src="sm-widget.js"></script>
+
+<!-- Chat Widget -->
+<div class="chat-w" id="chatW">
+<div class="chat-hdr">
+<div class="chat-hdr-ava" id="chatAva"></div>
+<div class="chat-hdr-info">
+<div class="chat-hdr-name" id="chatName"></div>
+<div class="chat-hdr-status" id="chatStatus">Agent Online</div>
+</div>
+<button class="chat-close" onclick="closeChat()">✕</button>
+</div>
+<div class="chat-msgs" id="chatMsgs"></div>
+<div class="chat-input">
+<input type="text" id="chatIn" placeholder="输入消息..." onkeydown="if(event.key==='Enter')sendMsg()">
+<button onclick="sendMsg()">➤</button>
+</div>
+</div>
+
 <script>
 const LEGENDS=[
 {name:"Pieter Levels",role:"Serial SaaS Entrepreneur",avatar:"🧑‍💻",rev:"$3.5M+ ARR",tags:["SaaS","Build in Public","Remote"],cat:"SaaS",desc:"Built 70+ products, 4 became million-dollar businesses. Revenue, Nomad List, Remote OK, Photo AI generate $3.5M/year with zero employees. 70多个产品，4个百万级业务，零员工。",color:"#6366f1"},
@@ -198,7 +256,7 @@ grid.innerHTML=filtered.map((l,i)=>`<div class="lc ai" style="animation-delay:${
 <div class="lc-head"><div class="lc-ava" style="background:${l.color}22">${l.avatar}</div><div><div class="lc-name">${l.name}</div><div class="lc-role">${l.role}</div><div class="lc-rev">${l.rev}</div></div></div>
 <div class="lc-tags">${l.tags.map(t=>`<span class="lt">${t}</span>`).join('')}</div>
 <p class="lc-desc">${l.desc}</p>
-<button class="lc-btn" onclick="alert('💬 Chat with ${l.name}\n\nThis feature connects to their AI Agent via A2A protocol.')">💬 Chat with ${l.name}</button>
+<button class="lc-btn" onclick="openChat(${LEGENDS.indexOf(l)})">💬 Chat with ${l.name}</button>
 </div>`).join('');
 }
 
@@ -253,5 +311,167 @@ renderLegends();
 
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+
+// ===== Legend Chat System =====
+let currentLegend=null;
+const chatHistory={};
+
+const LEGEND_PERSONAS={
+'Pieter Levels':{
+system:'你是Pieter Levels，一个连续创业发布者。你已经构建了70多个产品，其中4个成为百万美元级业务。你相信公开构建(Ship in Public)、快速发布、不要融资。你的风格直接、简洁、务实。你会用中英文混合回答。',
+suggestions:['你如何选择做什么产品？','帮我分析一个SaaS想法','你的收入来源有哪些？','如何做到零员工月入百万？'],
+greeting:'Hey! I\'m Pieter. I\'ve shipped 70+ products. 4 hit $1M+. No VC, no employees. What\'s on your mind?'
+},
+'Naval Ravikant':{
+system:'你是Naval Ravikant，AngelList联合创始人、投资哲学家。你以杠杆理论和财富创造框架闻名。你的风格是深邃、简洁、富有哲理。你喜欢用格言和比喻。你会用中英文混合回答。',
+suggestions:['什么是独特知识？','如何获取杠杆？','财富vs金钱的区别？','如何做长期决策？'],
+greeting:'Hey. Naval here. Seek wealth, not money. Leverage is the key. How can I help you think clearer?'
+},
+'James Clear':{
+system:'你是James Clear，《原子习惯》作者，1500万册畅销书作家。你相信习惯系统、微小改进的复利效应。你的风格温暖、科学、实用。你会用中英文混合回答。',
+suggestions:['如何建立好习惯？','习惯堆叠是什么？','如何写一本畅销书？','内容如何复利增长？'],
+greeting:'Hi! James here. Small habits, big results. What habit are you working on?'
+},
+'Jason Fried':{
+system:'你是Jason Fried，Basecamp/37signals创始人。你反VC、反增长压力、信奉"冷静公司"。你的风格直接、自信、略带叛逆。你会用中英文混合回答。',
+suggestions:['为什么不要融资？','如何做一个冷静公司？','远程工作怎么管理？','软件应该简单到什么程度？'],
+greeting:'Hey. Jason from Basecamp. We\'ve been profitable since month one. No VC. What do you want to know?'
+},
+'Sahil Lavingia':{
+system:'你是Sahil Lavingia，Gumroad创始人。你经历过融资失败然后重建公司为"冷静公司"。你也是作家和画家。你信奉极简主义和"小即是美"。你会用中英文混合回答。',
+suggestions:['融资失败后怎么办？','如何重建公司？','小而美的模式可行吗？','创作者经济怎么看？'],
+greeting:'Hey! Sahil here. I built Gumroad, lost it almost, then rebuilt it smaller and better. Ask me anything.'
+},
+'Marc Lou':{
+system:'你是Marc Lou，极速发布者，2年发布20多个产品。你相信快速发布、不怕失败、持续迭代。你的风格轻松、幽默、行动导向。你会用中英文混合回答。',
+suggestions:['如何快速发布一个产品？','ShipFast是什么？','你用什么技术栈？','独立开发者的一天？'],
+greeting:'Yo! Marc here. I ship a product every month. Speed > Perfection. What are you building?'
+}
+};
+
+function openChat(idx){
+const l=LEGENDS[idx];
+currentLegend=l;
+const w=document.getElementById('chatW');
+const msgs=document.getElementById('chatMsgs');
+document.getElementById('chatAva').textContent=l.avatar;
+document.getElementById('chatAva').style.background=l.color+'22';
+document.getElementById('chatName').textContent=l.name;
+document.getElementById('chatStatus').textContent='Agent Online';
+
+const hist=chatHistory[l.name];
+if(hist&&hist.length>0){
+msgs.innerHTML=hist.join('');
+}else{
+const persona=LEGEND_PERSONAS[l.name]||{suggestions:['你好！','你能教我什么？','你的成功秘诀？'],greeting:`Hi! I'm ${l.name}. How can I help you today?`};
+msgs.innerHTML=`<div class="chat-welcome">
+<div class="cw-icon">${l.avatar}</div>
+<div class="cw-name">${l.name}</div>
+<div class="cw-desc">${persona.greeting}</div>
+<div class="chat-suggestions">${(persona.suggestions||[]).map(s=>`<div class="chat-sug" onclick="quickAsk('${s.replace(/'/g,"\\'")}')">${s}</div>`).join('')}</div>
+</div>`;
+}
+w.classList.add('show');
+document.getElementById('chatIn').focus();
+msgs.scrollTop=msgs.scrollHeight;
+}
+
+function closeChat(){document.getElementById('chatW').classList.remove('show');}
+
+function quickAsk(text){
+document.getElementById('chatIn').value=text;
+sendMsg();
+}
+
+function sendMsg(){
+const input=document.getElementById('chatIn');
+const text=input.value.trim();
+if(!text||!currentLegend)return;
+input.value='';
+
+const msgs=document.getElementById('chatMsgs');
+const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
+// Remove welcome if exists
+const welcome=msgs.querySelector('.chat-welcome');
+if(welcome)welcome.remove();
+
+// Add user message
+const userHtml=`<div class="chat-msg user"><div class="chat-bubble">${escHtml(text)}</div><div class="chat-time">${t}</div></div>`;
+msgs.insertAdjacentHTML('beforeend',userHtml);
+
+// Show typing
+const typing=`<div class="chat-typing show" id="typing"><span></span><span></span><span></span></div>`;
+msgs.insertAdjacentHTML('beforeend',typing);
+msgs.scrollTop=msgs.scrollHeight;
+
+// Store in history
+if(!chatHistory[currentLegend.name])chatHistory[currentLegend.name]=[];
+chatHistory[currentLegend.name].push(userHtml);
+
+// Simulate AI response
+setTimeout(()=>{
+const typingEl=document.getElementById('typing');
+if(typingEl)typingEl.remove();
+const response=generateResponse(currentLegend.name,text);
+const botHtml=`<div class="chat-msg bot"><div class="chat-bubble">${response}</div><div class="chat-time">${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+msgs.insertAdjacentHTML('beforeend',botHtml);
+chatHistory[currentLegend.name].push(botHtml);
+msgs.scrollTop=msgs.scrollHeight;
+},1200+Math.random()*800);
+}
+
+function generateResponse(name,question){
+const persona=LEGEND_PERSONAS[name];
+if(!persona)return`${name}: 这是一个很好的问题！让我想想...`;
+
+// Smart response generation based on question keywords
+const q=question.toLowerCase();
+
+if(q.includes('产品')||q.includes('product')||q.includes('idea')||q.includes('想法')){
+const responses=[
+`${name}: 好问题！我的建议是：先找到一个你自己会用的产品。最好的产品来自你自己的痛点。不要问"市场有多大"，问"这个问题有多痛"。Ship fast, iterate faster. 🚀`,
+`${name}: 关于产品选择——我通常会问自己三个问题：1) 这件事我能持续做5年吗？2) 边际成本接近零吗？3) 我能找到100个愿意付费的用户吗？三个都是Yes，就做。`,
+`${name}: Ideas are worthless, execution is everything. 最好的验证方式就是直接发布。如果你对第一个版本不感到尴尬，说明你发布得太晚了。`
+];
+return responses[Math.floor(Math.random()*responses.length)];
+}
+if(q.includes('赚钱')||q.includes('收入')||q.includes('money')||q.includes('revenue')||q.includes('收入')){
+const responses=[
+`${name}: 赚钱的核心是创造价值，然后找到一个杠杆来放大它。代码、内容、资本——选一个你最擅长的杠杆。我选了代码+内容。💰`,
+`${name}: 收入来源要多元化。我有SaaS订阅、课程、咨询、投资。不要把所有鸡蛋放在一个篮子里。但也不要同时追两只兔子。`,
+`${name}: Charge for the outcome, not your time. 这是我最重要的领悟。当你能用一个产品解决N个人的问题时，你就拥有了真正的杠杆。`
+];
+return responses[Math.floor(Math.random()*responses.length)];
+}
+if(q.includes('习惯')||q.includes('habit')||q.includes('改变')){
+const responses=[
+`${name}: 习惯的关键不是意志力，而是系统。身份改变 → 流程改变 → 结果改变。不要说"我要跑步"，说"我是一个跑步者"。🏃`,
+`${name}: 习惯堆叠(Habit Stacking)：把新习惯绑定到已有习惯上。比如：泡完咖啡后，我会写10分钟日记。简单，但复利惊人。`,
+`${name}: 1%的改善，持续一年，你会进步37倍。这不是鸡汤，这是数学。关键是你今天能做什么1%的改善？`
+];
+return responses[Math.floor(Math.random()*responses.length)];
+}
+if(q.includes('杠杆')||q.includes('leverage')||q.includes('怎么开始')||q.includes('start')){
+const responses=[
+`${name}: 杠杆的三种形式：1) 代码——写一次，服务百万人 2) 内容——写一次，持续传播 3) 资本——让钱为你工作。选一个，深入掌握。`,
+`${name}: 特定知识(Specific Knowledge)是你的起点。什么是你做起来毫不费力但别人觉得很困难的事？那就是你的独特知识。找到它，然后用杠杆放大。`,
+`${name}: 不要问"我需要什么资源"，问"我有什么资源"。从零开始的人最大的优势是没有包袱。用代码作为杠杆，一个人也能改变世界。`
+];
+return responses[Math.floor(Math.random()*responses.length)];
+}
+
+// Default responses
+const defaults=[
+`${name}: 很好的问题！我的经验是——最重要的不是想清楚再做，而是一边做一边想。Perfect is the enemy of good. 先发布，再优化。`,
+`${name}: 谢谢你的问题！在这个领域，我学到最重要的一课是：保持小、保持灵活、保持盈利。不要为了增长而增长。`,
+`${name}: Interesting question. 我的建议：找到你热爱的事，用杠杆放大它，然后公开构建，让世界看到你的作品。`,
+`${name}: 好问题！我见过太多人花6个月做完美的产品，然后发现没人需要。我更喜欢花6天做一个MVP，然后根据反馈迭代。`,
+`${name}: 说实话，这没有标准答案。但我相信一个原则：做有复利的事。内容会复利，代码会复利，关系会复利。今天播下的种子，未来会结出百倍的果实。`
+];
+return defaults[Math.floor(Math.random()*defaults.length)];
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body></html>
