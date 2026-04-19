@@ -266,8 +266,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 <script>
 window.addEventListener('scroll',()=>{document.getElementById('nv').classList.toggle('on',window.scrollY>50)});
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target)}})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target)}})},{threshold:.02,rootMargin:'0px 0px -10px 0px'});
 document.querySelectorAll('.up').forEach(el=>obs.observe(el));
+// Trigger immediate check for elements already in viewport
+setTimeout(()=>{document.querySelectorAll('.up').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight){el.classList.add('v')}})},100);
 // Counter animation
 function countUp(el,target,dur=1200){const start=0;const startTime=performance.now();function update(now){const p=Math.min((now-startTime)/dur,1);const eased=1-Math.pow(1-p,3);el.textContent=Math.floor(eased*target);if(p<1)requestAnimationFrame(update)}requestAnimationFrame(update)}
 const c1=document.getElementById('c1');
