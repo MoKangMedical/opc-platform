@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sm-widget.css">
 <style>
 :root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--green:#00d68f;--green2:#10b981;--gold:#f0c040;--red:#ff6b6b;--blue:#4ea8de;--purple:#a78bfa;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -234,4 +235,5 @@ function stab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.to
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
 </script>
+<script src="sm-widget.js"></script>
 </body></html>
