@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OPC Health | OPC健康 - 创业者健康管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--pink:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.zh,.en{transition:opacity .2s}
+.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;cursor:pointer;margin-left:8px}
+.lang-btn:hover{border-color:var(--accent);color:var(--t1)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--t1);text-decoration:none}
+.nav-logo .dot{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{padding:7px 12px;border-radius:8px;color:var(--t2);font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
+.hero{padding:120px 0 40px;text-align:center;background:linear-gradient(180deg,#0d1a0d 0%,var(--bg) 100%)}
+.hero h1{font-size:clamp(24px,4vw,42px);font-weight:700;margin-bottom:12px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--t2);font-size:15px;max-width:550px;margin:0 auto}
+
+/* Health Score */
+.score-section{display:flex;justify-content:center;margin:32px 0}
+.score-circle{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--green) 0deg,var(--green) calc(var(--score)*3.6deg),var(--bg3) calc(var(--score)*3.6deg));display:flex;align-items:center;justify-content:center;position:relative}
+.score-inner{width:150px;height:150px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:48px;font-weight:700;font-family:'Space Grotesk',monospace}
+.score-label{font-size:12px;color:var(--t3)}
+
+/* Dashboard Grid */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:24px 0}
+.dcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.dcard .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dcard .icon{font-size:24px}
+.dcard .val{font-size:28px;font-weight:700;font-family:'Space Grotesk',monospace}
+.dcard .unit{font-size:14px;color:var(--t3);margin-left:4px}
+.dcard .lbl{font-size:12px;color:var(--t3);margin-top:2px}
+.dcard .bar{height:6px;background:var(--bg3);border-radius:3px;margin-top:12px;overflow:hidden}
+.dcard .bar-fill{height:100%;border-radius:3px;transition:width .5s}
+
+/* Check-in Form */
+.checkin{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:24px 0}
+.checkin h2{font-size:20px;margin-bottom:20px}
+.form-row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.form-group{flex:1;min-width:200px}
+.form-group label{display:block;font-size:13px;color:var(--t2);margin-bottom:6px}
+.slider-wrap{display:flex;align-items:center;gap:12px}
+.slider-wrap input[type=range]{flex:1;accent-color:var(--accent)}
+.slider-val{font-size:20px;font-weight:700;width:36px;text-align:center}
+input[type=number],textarea{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--t1);font-size:14px;font-family:inherit}
+textarea{height:60px;resize:vertical}
+.btn{padding:12px 28px;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{filter:brightness(1.1)}
+
+/* Insights */
+.insights{margin:24px 0}
+.insight-card{background:var(--bg2);border-left:4px solid;padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:12px}
+.insight-warning{border-color:var(--red)}
+.insight-recommendation{border-color:var(--gold)}
+.insight-encouragement{border-color:var(--green)}
+.insight-card h3{font-size:15px;margin-bottom:4px}
+.insight-card p{font-size:13px;color:var(--t2)}
+
+/* Exercise Log */
+.exercise-form{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
+.exercise-form select,.exercise-form input{padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--t1);font-size:14px}
+.exercise-log{display:flex;flex-wrap:wrap;gap:8px}
+.ex-tag{padding:6px 14px;border-radius:20px;font-size:12px;background:var(--bg3);color:var(--t2)}
+
+.footer{border-top:1px solid var(--border);padding:24px 0;margin-top:40px;text-align:center;font-size:12px;color:var(--t3)}
+@media(max-width:768px){.dgrid{grid-template-columns:1fr}.form-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+  <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
+  <div class="nav-links">
+    <a href="platform.html" class="nav-link"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
+    <a href="government.html" class="nav-link"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
+    <a href="superagent.html" class="nav-link"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
+    <a href="legends.html" class="nav-link"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
+    <a href="academy.html" class="nav-link"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
+    <a href="health.html" class="nav-link active"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+  <h1><span class="zh">❤️ <span class="grad">OPC 健康</span> — 创业者健康管理</span><span class="en" style="display:none">❤️ <span class="grad">OPC Health</span> — Entrepreneur Wellness</span></h1>
+  <p><span class="zh">关注你的身心状态，保持最佳创业状态</span><span class="en" style="display:none">Track your wellness, stay in peak entrepreneurial form</span></p>
+</div>
+</section>
+
+<div class="container">
+
+<!-- Health Score -->
+<div class="score-section">
+  <div class="score-circle" style="--score:75">
+    <div class="score-inner">
+      <div class="score-num" id="healthScore">--</div>
+      <div class="score-label"><span class="zh">健康评分</span><span class="en" style="display:none">Health Score</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Cards -->
+<div class="dgrid" id="dashboard">
+  <div class="dcard">
+    <div class="header"><span class="icon">😊</span></div>
+    <div class="val" id="avgMood">--</div>
+    <div class="lbl"><span class="zh">7日平均心情</span><span class="en" style="display:none">7-Day Avg Mood</span></div>
+    <div class="bar"><div class="bar-fill" id="moodBar" style="width:0;background:var(--green)"></div></div>
+  </div>
+  <div class="dcard">
+    <div class="header"><span class="icon">😰</span></div>
+    <div class="val" id="avgStress">--</div>
+    <div class="lbl"><span class="zh">7日平均压力</span><span class="en" style="display:none">7-Day Avg Stress</span></div>
+    <div class="bar"><div class="bar-fill" id="stressBar" style="width:0;background:var(--red)"></div></div>
+  </div>
+  <div class="dcard">
+    <div class="header"><span class="icon">😴</span></div>
+    <div class="val" id="avgSleep">--</div>
+    <div class="lbl"><span class="zh">7日平均睡眠</span><span class="en" style="display:none">7-Day Avg Sleep</span></div>
+    <div class="bar"><div class="bar-fill" id="sleepBar" style="width:0;background:var(--cyan)"></div></div>
+  </div>
+  <div class="dcard">
+    <div class="header"><span class="icon">🏃</span></div>
+    <div class="val" id="monthExercise">--</div>
+    <div class="lbl"><span class="zh">本月运动(分钟)</span><span class="en" style="display:none">Monthly Exercise (min)</span></div>
+    <div class="bar"><div class="bar-fill" id="exerciseBar" style="width:0;background:var(--gold)"></div></div>
+  </div>
+</div>
+
+<!-- Daily Check-in -->
+<div class="checkin" id="checkinForm">
+  <h2><span class="zh">📝 今日签到</span><span class="en" style="display:none">📝 Daily Check-in</span></h2>
+  <div class="form-row">
+    <div class="form-group">
+      <label><span class="zh">😊 心情</span><span class="en" style="display:none">😊 Mood</span> <span class="slider-val" id="moodVal">5</span></label>
+      <div class="slider-wrap">
+        <span>1</span>
+        <input type="range" min="1" max="10" value="5" id="moodSlider" oninput="document.getElementById('moodVal').textContent=this.value">
+        <span>10</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><span class="zh">⚡ 精力</span><span class="en" style="display:none">⚡ Energy</span> <span class="slider-val" id="energyVal">5</span></label>
+      <div class="slider-wrap">
+        <span>1</span>
+        <input type="range" min="1" max="10" value="5" id="energySlider" oninput="document.getElementById('energyVal').textContent=this.value">
+        <span>10</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><span class="zh">😰 压力</span><span class="en" style="display:none">😰 Stress</span> <span class="slider-val" id="stressVal">5</span></label>
+      <div class="slider-wrap">
+        <span>1</span>
+        <input type="range" min="1" max="10" value="5" id="stressSlider" oninput="document.getElementById('stressVal').textContent=this.value">
+        <span>10</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label><span class="zh">⏰ 工作时长(小时)</span><span class="en" style="display:none">⏰ Work Hours</span></label>
+      <input type="number" id="workHours" value="8" min="0" max="24" step="0.5">
+    </div>
+    <div class="form-group">
+      <label><span class="zh">😴 睡眠时长(小时)</span><span class="en" style="display:none">😴 Sleep Hours</span></label>
+      <input type="number" id="sleepHours" value="7" min="0" max="24" step="0.5">
+    </div>
+  </div>
+  <div class="form-group" style="margin-bottom:16px">
+    <label><span class="zh">📝 备注</span><span class="en" style="display:none">📝 Notes</span></label>
+    <textarea id="checkinNotes" placeholder="今天的状态如何？"></textarea>
+  </div>
+  <button class="btn btn-primary" onclick="submitCheckin()">
+    <span class="zh">✅ 提交签到</span><span class="en" style="display:none">✅ Submit Check-in</span>
+  </button>
+  <span id="checkinMsg" style="margin-left:16px;font-size:13px;color:var(--green)"></span>
+</div>
+
+<!-- Exercise Log -->
+<div class="dcard" style="margin:24px 0">
+  <h2 style="margin-bottom:16px"><span class="zh">🏃 运动记录</span><span class="en" style="display:none">🏃 Exercise Log</span></h2>
+  <div class="exercise-form">
+    <select id="exerciseType">
+      <option value="running"><span class="zh">跑步</span><span class="en" style="display:none">Running</span></option>
+      <option value="walking"><span class="zh">散步</span><span class="en" style="display:none">Walking</span></option>
+      <option value="gym"><span class="zh">健身</span><span class="en" style="display:none">Gym</span></option>
+      <option value="yoga"><span class="zh">瑜伽</span><span class="en" style="display:none">Yoga</span></option>
+      <option value="swimming"><span class="zh">游泳</span><span class="en" style="display:none">Swimming</span></option>
+      <option value="cycling"><span class="zh">骑行</span><span class="en" style="display:none">Cycling</span></option>
+      <option value="other"><span class="zh">其他</span><span class="en" style="display:none">Other</span></option>
+    </select>
+    <input type="number" id="exerciseDuration" placeholder="时长(分钟)" value="30" min="1">
+    <select id="exerciseIntensity">
+      <option value="light"><span class="zh">轻度</span><span class="en" style="display:none">Light</span></option>
+      <option value="moderate"><span class="zh">中度</span><span class="en" style="display:none">Moderate</span></option>
+      <option value="intense"><span class="zh">高强度</span><span class="en" style="display:none">Intense</span></option>
+    </select>
+    <button class="btn btn-primary" onclick="logExercise()">
+      <span class="zh">记录</span><span class="en" style="display:none">Log</span>
+    </button>
+  </div>
+  <div class="exercise-log" id="exerciseLog"></div>
+</div>
+
+<!-- Insights -->
+<div class="insights">
+  <h2 style="margin-bottom:16px"><span class="zh">💡 健康洞察</span><span class="en" style="display:none">💡 Health Insights</span></h2>
+  <div id="insightsList">
+    <div class="insight-card insight-encouragement">
+      <h3>🌟 <span class="zh">开始你的健康之旅</span><span class="en" style="display:none">Start Your Health Journey</span></h3>
+      <p><span class="zh">完成首次签到后，AI将为你生成个性化健康洞察</span><span class="en" style="display:none">Complete your first check-in for AI-powered health insights</span></p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer class="footer">
+  <p><span class="zh">OPC Health · 让每个OPC都能保持最佳状态</span><span class="en" style="display:none">OPC Health · Every OPC at their best</span></p>
+</footer>
+
+<script>
+const API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+const USER_ID = 1;
+
+// Load dashboard
+async function loadDashboard() {
+  try {
+    const resp = await fetch(`${API}/api/health/dashboard?user_id=${USER_ID}`);
+    const data = await resp.json();
+    
+    document.getElementById('healthScore').textContent = data.health_score;
+    document.querySelector('.score-circle').style.setProperty('--score', data.health_score);
+    
+    const ws = data.weekly_stats;
+    document.getElementById('avgMood').textContent = ws.avg_mood;
+    document.getElementById('avgStress').textContent = ws.avg_stress;
+    document.getElementById('avgSleep').textContent = ws.avg_sleep_hours + 'h';
+    document.getElementById('monthExercise').textContent = data.monthly_stats.total_exercise_minutes;
+    
+    document.getElementById('moodBar').style.width = (ws.avg_mood * 10) + '%';
+    document.getElementById('stressBar').style.width = (ws.avg_stress * 10) + '%';
+    document.getElementById('sleepBar').style.width = Math.min(100, ws.avg_sleep_hours / 8 * 100) + '%';
+    document.getElementById('exerciseBar').style.width = Math.min(100, data.monthly_stats.exercise_goal_progress) + '%';
+    
+    // Insights
+    if (data.insights.length > 0) {
+      const html = data.insights.map(i => {
+        const cls = i.type === 'warning' ? 'insight-warning' : i.type === 'recommendation' ? 'insight-recommendation' : 'insight-encouragement';
+        return `<div class="insight-card ${cls}"><h3>${i.title}</h3><p>${i.content}</p></div>`;
+      }).join('');
+      document.getElementById('insightsList').innerHTML = html;
+    }
+  } catch(e) { console.log('Dashboard load error:', e); }
+}
+
+// Submit check-in
+async function submitCheckin() {
+  const params = new URLSearchParams({
+    user_id: USER_ID,
+    mood_score: document.getElementById('moodSlider').value,
+    energy_level: document.getElementById('energySlider').value,
+    stress_level: document.getElementById('stressSlider').value,
+    work_hours: document.getElementById('workHours').value,
+    sleep_hours: document.getElementById('sleepHours').value,
+    notes: document.getElementById('checkinNotes').value,
+  });
+  
+  try {
+    const resp = await fetch(`${API}/api/health/checkin?${params}`, {method: 'POST'});
+    const data = await resp.json();
+    document.getElementById('checkinMsg').textContent = '✅ ' + data.message;
+    loadDashboard();
+  } catch(e) {
+    document.getElementById('checkinMsg').textContent = '❌ 提交失败';
+    document.getElementById('checkinMsg').style.color = 'var(--red)';
+  }
+}
+
+// Log exercise
+async function logExercise() {
+  const params = new URLSearchParams({
+    user_id: USER_ID,
+    exercise_type: document.getElementById('exerciseType').value,
+    duration: document.getElementById('exerciseDuration').value,
+    intensity: document.getElementById('exerciseIntensity').value,
+  });
+  
+  try {
+    const resp = await fetch(`${API}/api/health/exercise?${params}`, {method: 'POST'});
+    const data = await resp.json();
+    loadDashboard();
+    
+    const type = document.getElementById('exerciseType').value;
+    const dur = document.getElementById('exerciseDuration').value;
+    document.getElementById('exerciseLog').innerHTML += `<span class="ex-tag">${type} ${dur}min ✅</span>`;
+  } catch(e) { console.log('Exercise log error:', e); }
+}
+
+// Bilingual
+let lang = localStorage.getItem('opc-lang') || 'zh';
+function toggleLang() { lang = lang === 'zh' ? 'en' : 'zh'; localStorage.setItem('opc-lang', lang); applyLang(); }
+function applyLang() {
+  document.querySelectorAll('.zh').forEach(el => el.style.display = lang === 'zh' ? '' : 'none');
+  document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+}
+applyLang();
+
+loadDashboard();
+</script>
+</body>
+</html>
