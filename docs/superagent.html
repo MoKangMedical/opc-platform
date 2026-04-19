@@ -938,14 +938,19 @@ applyLang();
   </div>
   
   <div id="secondmeConnect">
-    <p style="font-size:13px;color:#999;margin-bottom:12px">
-      <span class="zh">还没有 SecondMe？<a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">去创建</a>，5分钟即可拥有你的AI分身</span>
-      <span class="en" style="display:none">Don't have a SecondMe? <a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">Create one</a> in 5 minutes</span>
+    <p style="font-size:13px;color:#999;margin-bottom:16px">
+      <span class="zh">点击按钮，自动跳转 SecondMe 授权，一键连接你的AI分身</span>
+      <span class="en" style="display:none">Click to authorize SecondMe and connect your AI twin</span>
     </p>
-    <div style="display:flex;gap:8px">
-      <input id="secondmeApiKey" type="text" placeholder="输入 SecondMe API Key (sk-...)" style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid #333;background:#0a0a14;color:#eee;font-size:13px;outline:none;font-family:monospace">
-      <button onclick="connectSecondme()" style="padding:10px 20px;border-radius:10px;background:#f59e0b;color:#000;font-weight:700;border:none;cursor:pointer;font-size:13px"><span class="zh">连接</span><span class="en" style="display:none">Connect</span></button>
-    </div>
+    <button onclick="autoConnectSecondme()" id="smConnectBtn" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px">
+      <span style="font-size:20px">🧠</span>
+      <span class="zh">一键连接 SecondMe 数字分身</span>
+      <span class="en" style="display:none">Connect SecondMe Digital Twin</span>
+    </button>
+    <p style="font-size:11px;color:#666;margin-top:8px;text-align:center">
+      <span class="zh">还没有账号？<a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">免费创建 SecondMe</a>（5分钟）</span>
+      <span class="en" style="display:none">No account? <a href="https://app.mindos.com" target="_blank" style="color:#f59e0b">Create free</a> (5 min)</span>
+    </p>
     <div id="secondmeError" style="color:#ef4444;font-size:12px;margin-top:8px;display:none"></div>
   </div>
   
@@ -1000,18 +1005,74 @@ let secondmeSessionId = null;
 const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
 // 页面加载时检查连接状态
+// 检查 OAuth 回调
+handleSecondmeCallback();
+
 if (secondmeApiKey) {
   checkSecondmeConnection();
 }
 
+// 一键连接 SecondMe (OAuth2)
+function autoConnectSecondme() {
+  const btn = document.getElementById('smConnectBtn');
+  btn.innerHTML = '<span style="font-size:20px">⏳</span> <span>正在跳转到 SecondMe...</span>';
+  btn.style.opacity = '0.7';
+  
+  // 直接跳转到 SecondMe OAuth 授权页面
+  const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+  window.location.href = `${SM_API}/api/secondme/oauth/login`;
+}
+
+// 处理 OAuth 回调后的 URL 参数
+function handleSecondmeCallback() {
+  const params = new URLSearchParams(window.location.search);
+  
+  if (params.get('sm_connected') === 'true') {
+    const profileStr = params.get('sm_profile');
+    if (profileStr) {
+      try {
+        const profile = JSON.parse(decodeURIComponent(profileStr));
+        secondmeApiKey = profile.token;
+        localStorage.setItem('opc-secondme-key', profile.token);
+        localStorage.setItem('opc-secondme-profile', JSON.stringify(profile));
+        
+        document.getElementById('secondmeConnect').style.display = 'none';
+        document.getElementById('secondmeStatus').style.display = 'block';
+        document.getElementById('secondmeName').textContent = profile.name || '已连接';
+        if (profile.avatar) {
+          document.getElementById('secondmeAvatar').innerHTML = `<img src="${profile.avatar}" style="width:40px;height:40px;border-radius:50%">`;
+        }
+        
+        // 清理 URL 参数
+        window.history.replaceState({}, '', 'superagent.html');
+      } catch(e) {
+        console.log('Parse profile error:', e);
+      }
+    }
+  }
+  
+  if (params.get('sm_error')) {
+    const err = params.get('sm_error');
+    const msgs = {
+      'no_code': '授权未完成，请重试',
+      'token_failed': '获取Token失败，请重试',
+      'server_error': '服务器错误，请稍后重试',
+    };
+    showSmError(msgs[err] || '连接失败: ' + err);
+    window.history.replaceState({}, '', 'superagent.html');
+  }
+}
+
+// 兼容旧的 API Key 连接方式
 async function connectSecondme() {
-  const key = document.getElementById('secondmeApiKey').value.trim();
+  const key = document.getElementById('secondmeApiKey')?.value?.trim();
   if (!key || !key.startsWith('sk-')) {
-    showSmError('请输入有效的 SecondMe API Key (sk- 开头)');
+    autoConnectSecondme();
     return;
   }
   
   try {
+    const SM_API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
     const resp = await fetch(`${SM_API}/api/secondme/connect`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -1025,11 +1086,6 @@ async function connectSecondme() {
       document.getElementById('secondmeConnect').style.display = 'none';
       document.getElementById('secondmeStatus').style.display = 'block';
       document.getElementById('secondmeName').textContent = data.profile?.name || '已连接';
-      if (data.profile?.avatar) {
-        document.getElementById('secondmeAvatar').innerHTML = `<img src="${data.profile.avatar}" style="width:40px;height:40px;border-radius:50%">`;
-      }
-    } else {
-      showSmError(data.error || '连接失败');
     }
   } catch(e) {
     showSmError('网络错误: ' + e.message);
