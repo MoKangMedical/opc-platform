@@ -2,487 +2,219 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>OPC Platform | One-Stop Empowerment - 一站式OPC赋能平台</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC Platform | 一站式赋能平台</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--accent:#a78bfa;--accent2:#6366f1;--red:#ff6b6b;--orange:#ff8a50;--green:#00d68f;--blue:#4ea8de;--gold:#f0c040;--purple:#a78bfa;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#222230;--t1:#f0f0f5;--t2:#a0a0b8;--t3:#666680;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--border:#2a2a3a;--radius:12px}
-body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
-a{color:var(--accent2);text-decoration:none}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--t1)}
-.nav-logo .accent{color:var(--accent)}
-.nav-links{display:flex;gap:4px}
-.nav-link{padding:8px 14px;border-radius:8px;color:var(--t2);font-size:14px;font-weight:500;transition:all .2s}
-.nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
-.nav-link.github{display:flex;align-items:center;gap:6px}
-
-/* HERO */
-.hero{padding:140px 0 80px;text-align:center;background:linear-gradient(180deg,#0f0f1a 0%,var(--bg) 100%)}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fff 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:18px;color:var(--t2);max-width:600px;margin:0 auto 32px}
-.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat .num{font-size:36px;font-weight:700;color:var(--accent)}
-.hero-stat .label{font-size:13px;color:var(--t3)}
-
-/* TAB NAV */
-.tab-nav{position:sticky;top:64px;z-index:90;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0}
-.tab-nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto}
-.tab-btn{padding:16px 24px;font-size:15px;font-weight:600;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.tab-btn:hover{color:var(--t2)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
-
-/* SECTIONS */
-.section{display:none;padding:40px 0 80px}
-.section.active{display:block}
-.section-head{margin-bottom:32px}
-.section-head h2{font-size:28px;font-weight:700;margin-bottom:8px}
-.section-head p{color:var(--t2);font-size:15px}
-.section-stats{display:flex;gap:24px;margin-bottom:24px;flex-wrap:wrap}
-.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;min-width:140px}
-.stat-card .val{font-size:24px;font-weight:700;color:var(--accent)}
-.stat-card .lbl{font-size:12px;color:var(--t3)}
-
-/* FILTERS */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;padding:16px 0;border-bottom:1px solid var(--border)}
-.fb{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--t2);font-size:13px;cursor:pointer;transition:all .2s}
-.fb:hover{border-color:var(--accent);color:var(--t1)}
-.fb.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-/* PROJECT GRID */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-.pc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .3s}
-.pc:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,0.1)}
-.pc .pt{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:10px}
-.pc h3{font-size:16px;font-weight:600;margin-bottom:6px;line-height:1.4}
-.pc .pp{font-size:13px;color:var(--t3);margin-bottom:8px}
-.pc .pd{font-size:13px;color:var(--t2);margin-bottom:12px;line-height:1.5}
-.pc .pf{display:flex;gap:16px;font-size:13px;margin-bottom:8px}
-.pc .pf span{color:var(--gold)}
-.pc .ptech{font-size:12px;color:var(--t3);border-top:1px solid var(--border);padding-top:8px}
-
-/* AGENT CARDS */
-.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.agent-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s}
-.agent-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.agent-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--bg3)}
-.agent-card h3{font-size:18px;margin-bottom:4px}
-.agent-card .role{font-size:13px;color:var(--accent);margin-bottom:12px}
-.agent-card .skills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.agent-card .skill{padding:3px 10px;border-radius:12px;font-size:11px;background:var(--bg3);color:var(--t2)}
-
-/* A2A DEMO */
-.a2a-demo{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:32px}
-.a2a-demo h3{margin-bottom:16px}
-.a2a-log{background:var(--bg);border-radius:8px;padding:16px;max-height:300px;overflow-y:auto;font-family:monospace;font-size:13px}
-.a2a-msg{padding:8px 0;border-bottom:1px solid var(--border)}
-.a2a-msg .from{color:var(--accent);font-weight:600}
-.a2a-msg .to{color:var(--green);font-weight:600}
-
-/* LEGENDS */
-.legends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.legend-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s}
-.legend-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.legend-card .emoji{font-size:40px;margin-bottom:12px}
-.legend-card h3{font-size:18px;margin-bottom:2px}
-.legend-card .lrole{font-size:13px;color:var(--gold);margin-bottom:12px}
-.legend-card .quote{font-size:13px;color:var(--t2);font-style:italic;border-left:3px solid var(--gold);padding-left:12px;margin-top:12px}
-
-/* FOOTER */
-.footer{border-top:1px solid var(--border);padding:48px 0;background:var(--bg2)}
-.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px}
-.footer-brand{max-width:300px}
-.footer-brand h3{font-size:18px;margin-bottom:8px}
-.footer-brand p{font-size:13px;color:var(--t3)}
-.footer-links{display:flex;gap:48px}
-.footer-col h4{font-size:14px;margin-bottom:12px;color:var(--t2)}
-.footer-col a{display:block;font-size:13px;color:var(--t3);margin-bottom:8px}
-.footer-col a:hover{color:var(--accent)}
-
-@media(max-width:768px){
-  .nav-links{gap:0}
-  .nav-link{padding:8px 10px;font-size:13px}
-  .hero h1{font-size:28px}
-  .hero-stats{gap:24px}
-  .pgrid{grid-template-columns:1fr}
-  .tab-nav-inner{padding:0 12px}
-  .tab-btn{padding:12px 16px;font-size:14px}
-}
-
-body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
-.nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
-.nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
-.nav-links{display:flex;align-items:center;gap:2px}
-.nl{padding:6px 12px;border-radius:7px;color:#8888a0;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
-.nl:hover{color:#e8e8ed;background:rgba(255,255,255,0.05)}
-.nl.a{color:#e8e8ed;background:rgba(99,102,241,0.1)}
-.lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
-.lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
+.c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
+.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+.nav-l .d{color:var(--accent)}
+.nav-lks{display:flex;align-items:center;gap:32px}
+.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
+.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.hero{min-height:55vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(167,139,250,.06),transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(99,102,241,.04),transparent 50%)}
+.hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15);padding:8px 20px;border-radius:100px;margin-bottom:28px;animation:fu .8s var(--e) both}
+.ht{font-family:var(--fd);font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.08;margin-bottom:20px;letter-spacing:-.03em;animation:fu .8s var(--e) .1s both}
+.ht .g{background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hd{font-size:1.1rem;color:var(--t2);max-width:600px;margin:0 auto 40px;line-height:1.7;animation:fu .8s var(--e) .2s both}
+.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;max-width:720px;margin:0 auto 40px;animation:fu .8s var(--e) .3s both}
+.sc{background:var(--bg2);padding:24px 16px;text-align:center;transition:background .3s}
+.sc:hover{background:var(--card2)}
+.sn{font-family:var(--fd);font-size:2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
+.sn.r{color:var(--red)}.sn.g{color:var(--gold)}.sn.b{color:var(--blue)}.sn.gr{color:var(--green)}
+.sl{font-size:.78rem;color:var(--t3);font-weight:500}
+.modules{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:800px;margin:0 auto;animation:fu .8s var(--e) .4s both}
+.mod{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:12px 16px;border-radius:12px;text-decoration:none;color:var(--t2);font-size:.88rem;font-weight:500;transition:all .3s var(--e)}
+.mod:hover{border-color:var(--border2);color:var(--t1);transform:translateY(-2px)}
+.mod.a{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.06)}
+/* Module Sections */
+.ms{padding:60px 0;border-top:1px solid var(--border)}
+.ms-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.ms-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.ms-link{color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;transition:opacity .2s}
+.ms-link:hover{opacity:.7}
+/* Project mini cards */
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.pm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
+.pm:hover{border-color:var(--border2);transform:translateY(-2px)}
+.pm-cat{font-size:.72rem;padding:3px 8px;border-radius:4px;margin-bottom:10px;display:inline-block}
+.pm-title{font-family:var(--fd);font-size:1rem;font-weight:600;margin-bottom:6px}
+.pm-desc{font-size:.82rem;color:var(--t2);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pm-meta{display:flex;gap:12px;font-size:.78rem;color:var(--t3)}
+.pm-budget{color:var(--gold);font-weight:600}
+/* Agent mini cards */
+.am-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.am{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
+.am:hover{border-color:var(--border2);transform:translateY(-2px)}
+.am-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.am-ava{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.am-name{font-family:var(--fd);font-size:.95rem;font-weight:600}
+.am-role{font-size:.78rem;color:var(--t2)}
+.am-stats{display:flex;gap:16px}
+.as{text-align:center}.as-v{font-family:var(--fd);font-size:1rem;font-weight:700}.as-l{font-size:.68rem;color:var(--t3)}
+/* Legend mini */
+.lm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.lm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;transition:all .3s var(--e)}
+.lm:hover{border-color:var(--border2);transform:translateY(-2px)}
+.lm-ava{font-size:2rem;margin-bottom:8px}
+.lm-name{font-family:var(--fd);font-size:.9rem;font-weight:600;margin-bottom:2px}
+.lm-rev{font-size:.78rem;color:var(--gold);font-weight:600}
+/* Course mini */
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.cm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
+.cm:hover{border-color:var(--border2);transform:translateY(-2px)}
+.cm-icon{font-size:1.5rem;margin-bottom:8px}
+.cm-title{font-family:var(--fd);font-size:.95rem;font-weight:600;margin-bottom:4px}
+.cm-teacher{font-size:.8rem;color:var(--t2);margin-bottom:8px}
+.cm-meta{display:flex;gap:8px;font-size:.72rem}
+/* Health mini */
+.hm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;text-align:center;max-width:480px;margin:0 auto}
+.hm-score{font-family:var(--fd);font-size:3rem;font-weight:700;color:var(--green);margin-bottom:4px}
+.hm-streak{font-size:1rem;color:var(--gold);margin-bottom:16px}
+.hm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hmi{text-align:center}
+.hmi-icon{font-size:1.3rem}
+.hmi-val{font-family:var(--fd);font-size:1rem;font-weight:600}
+.hmi-lab{font-size:.7rem;color:var(--t3)}
+footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-index:1}
+.ft-i{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.ft-t{color:var(--t3);font-size:.82rem}.ft-l{display:flex;gap:24px}
+.ft-l a{color:var(--t3);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-l a:hover{color:var(--t1)}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.ai{animation:ci .6s var(--e) both}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.modules{grid-template-columns:repeat(3,1fr)}.pm-grid,.am-grid,.lm-grid,.cm-grid{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}.hm-grid{grid-template-columns:repeat(2,1fr)}}
+.mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
+@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}.modules{grid-template-columns:repeat(2,1fr)}}
 </style>
-</head>
-<body>
+</head><body>
+<nav class="nav"><div class="nav-i">
+<a href="index.html" class="nav-l"><span class="d">◆</span> OPC Platform</a>
+<div class="nav-lks" id="nl">
+<a href="platform.html" class="nav-lk a">平台</a><a href="government.html" class="nav-lk">揭榜挂帅</a>
+<a href="superagent.html" class="nav-lk">超级个体</a><a href="legends.html" class="nav-lk">名人堂</a>
+<a href="academy.html" class="nav-lk">学院</a><a href="health.html" class="nav-lk">健康</a>
+<button class="lbtn" onclick="tgl()">🌐 EN/中</button>
+</div><button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
+</div></nav>
 
-<!-- NAV -->
-<nav class="nav">
-<div class="nav-in">
-  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:#818cf8">Platform</span></span></a>
-  <div class="nav-links">
-    <a href="platform.html" class="nl a"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
-    <a href="government.html" class="nl"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
-    <a href="superagent.html" class="nl"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
-    <a href="legends.html" class="nl"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
-    <a href="academy.html" class="nl"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
-    <a href="health.html" class="nl"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
-    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
-  </div>
+<section class="hero"><div class="hero-c">
+<div class="badge" data-en="ONE-STOP PLATFORM">一站式 OPC 赋能平台</div>
+<h1 class="ht"><span class="g" data-en="One-Stop OPC Empowerment Platform">一站式 OPC 赋能平台</span></h1>
+<p class="hd" data-en="Connect, showcase, and empower independent entrepreneurs worldwide. 67 AI projects · A2A SuperAgent · Legends wisdom · Academy · Health.">连接、展示、赋能全球独立创业者。揭榜挂帅67个AI项目 · A2A超级个体 · 名人堂智慧</p>
+<div class="sr">
+<div class="sc"><div class="sn r">67</div><div class="sl" data-en="AI Projects">AI场景项目</div></div>
+<div class="sc"><div class="sn g">2.5亿+</div><div class="sl" data-en="Total Budget">项目总预算</div></div>
+<div class="sc"><div class="sn b">21</div><div class="sl" data-en="Enterprises">省属企业</div></div>
+<div class="sc"><div class="sn gr">18</div><div class="sl" data-en="Legends">传奇人物</div></div>
 </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-<div class="container">
-  <h1>一站式OPC 赋能平台</h1>
-  <p>连接、展示、赋能全球独立创业者。揭榜挂帅67个AI项目 · A2A超级个体 · 名人堂智慧</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num">67</div><div class="label">AI场景项目</div></div>
-    <div class="hero-stat"><div class="num">2.5亿+</div><div class="label">项目总预算</div></div>
-    <div class="hero-stat"><div class="num">21</div><div class="label">省属企业</div></div>
-    <div class="hero-stat"><div class="num">18</div><div class="label">传奇人物</div></div>
-  </div>
+<div class="modules">
+<a href="government.html" class="mod">🏛️ <span data-en="Marketplace">揭榜挂帅</span></a>
+<a href="superagent.html" class="mod">🤖 <span data-en="SuperAgent">超级个体</span></a>
+<a href="legends.html" class="mod">👑 <span data-en="Legends">名人堂</span></a>
+<a href="academy.html" class="mod">📚 <span data-en="Academy">学院</span></a>
+<a href="health.html" class="mod">❤️ <span data-en="Health">健康</span></a>
 </div>
-</section>
-
-<!-- TAB NAV -->
-<div class="tab-nav">
-<div class="tab-nav-inner">
-  <button class="tab-btn active" onclick="switchTab('gov')">🏛️ 揭榜挂帅</button>
-  <button class="tab-btn" onclick="switchTab('agent')">🤖 超级个体</button>
-  <button class="tab-btn" onclick="switchTab('legends')">👑 名人堂</button>
-  <button class="tab-btn" onclick="switchTab('academy')">📚 学院</button>
-  <button class="tab-btn" onclick="switchTab('health')">❤️ 健康</button>
-</div>
+</div></section><section class="c">
+<!-- Marketplace Preview -->
+<div class="ms" id="gov">
+<div class="ms-head"><h2 class="ms-title">🏛️ <span data-en="Challenge Marketplace — AI Scenarios">揭榜挂帅 — AI场景需求</span></h2><a href="government.html" class="ms-link" data-en="View All 67 →">查看全部 67 个 →</a></div>
+<div class="pm-grid" id="projGrid"></div>
 </div>
 
-<!-- SECTION: 揭榜挂帅 -->
-<section class="section active" id="sec-gov">
-<div class="container">
-  <div class="section-head">
-    <h2>🏛️ 揭榜挂帅 — 江苏省属企业AI场景需求</h2>
-    <p>67个真实AI应用场景，覆盖26个行业领域，总预算超2.5亿元</p>
-  </div>
-  <div class="section-stats">
-    <div class="stat-card"><div class="val">67</div><div class="lbl">项目总数</div></div>
-    <div class="stat-card"><div class="val">26</div><div class="lbl">行业领域</div></div>
-    <div class="stat-card"><div class="val">21</div><div class="lbl">省属企业</div></div>
-    <div class="stat-card"><div class="val">2.5亿+</div><div class="lbl">总预算</div></div>
-  </div>
-  <div class="filters" id="filters">
-<button class="fb active" data-f="all">全部 (67)</button><button class="fb" data-f="交通">交通 (10)</button><button class="fb" data-f="安全监测">安全监测 (7)</button><button class="fb" data-f="先进制造">先进制造 (6)</button><button class="fb" data-f="农业">农业 (6)</button><button class="fb" data-f="物流仓储">物流仓储 (5)</button><button class="fb" data-f="环保">环保 (5)</button><button class="fb" data-f="传媒">传媒 (3)</button><button class="fb" data-f="商务服务">商务服务 (3)</button><button class="fb" data-f="能源">能源 (2)</button><button class="fb" data-f="跨境电商">跨境电商 (2)</button><button class="fb" data-f="化工">化工 (2)</button><button class="fb" data-f="服务业">服务业 (2)</button><button class="fb" data-f="新能源">新能源 (1)</button><button class="fb" data-f="储能">储能 (1)</button><button class="fb" data-f="保险">保险 (1)</button><button class="fb" data-f="医疗健康">医疗健康 (1)</button><button class="fb" data-f="航空安全">航空安全 (1)</button><button class="fb" data-f="纺织服装">纺织服装 (1)</button><button class="fb" data-f="供应链">供应链 (1)</button><button class="fb" data-f="综合管理">综合管理 (1)</button><button class="fb" data-f="建筑">建筑 (1)</button><button class="fb" data-f="金融">金融 (1)</button><button class="fb" data-f="水利">水利 (1)</button><button class="fb" data-f="城市规划">城市规划 (1)</button><button class="fb" data-f="算力">算力 (1)</button><button class="fb" data-f="数据服务">数据服务 (1)</button>
-  </div>
-  <div class="pgrid" id="pgrid">
-<div class="pc" data-i="新能源"><div class="pt" style="background:#06b6d415;color:#06b6d4;border:1px solid #06b6d430">新能源</div><h3>海上风电场智能运维场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">融合人工智能技术，在海上风电项目建设智能运维系统中对风机状态进行实时评估和远程运维，实现海上风电机组无人巡检、故障预测维护，提升运维效率和安全性。</p><div class="pf"><span>💰 ¥200-300万</span><span>👤 叶兴沛</span></div><div class="ptech">🔧 ['人工智能', '物联网', '大数据']</div></div>
-<div class="pc" data-i="能源"><div class="pt" style="background:#f9731615;color:#f97316;border:1px solid #f9731630">能源</div><h3>智慧电厂全景感知与自主优化场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">部署智能传感、工业互联网平台和自主控制系统，构建AI+数字孪生电厂，涵盖燃料输送智能调度、机组参数实时监控、无人巡检及智能决策优化。</p><div class="pf"><span>💰 ¥200-300万</span><span>👤 王强</span></div><div class="ptech">🔧 ['人工智能', '数字孪生', '物联网']</div></div>
-<div class="pc" data-i="储能"><div class="pt" style="background:#4ade8015;color:#4ade80;border:1px solid #4ade8030">储能</div><h3>300MW级高温绝热压缩空气储能系统全过程智能运行场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">建设智能灵活调控+实时滚动优化+高精度故障诊断三位一体的全过程智能运行体系，提升安全性、经济性与调峰支撑能力。</p><div class="pf"><span>💰 ¥800-800万</span><span>👤 杨正</span></div><div class="ptech">🔧 ['人工智能', '故障诊断']</div></div>
-<div class="pc" data-i="能源"><div class="pt" style="background:#f9731615;color:#f97316;border:1px solid #f9731630">能源</div><h3>基于火焰视觉感知与高温气象场测量的锅炉燃烧智能管控场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">利用AI视觉感知和高温气象场测量技术，对锅炉燃烧过程进行智能管控和优化。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 叶兴沛</span></div><div class="ptech">🔧 ['人工智能', '计算机视觉']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>施工安全智能监测场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">利用无人机、机器狗、安全传感器等，在电厂基建工地和重大施工项目应用智慧工地解决方案，实现高危作业智能监测预警、施工现场数字孪生可视化和违规行为自动抓拍。</p><div class="pf"><span>💰 ¥200-300万</span><span>👤 王毅</span></div><div class="ptech">🔧 ['人工智能', '无人机', '数字孪生']</div></div>
-<div class="pc" data-i="物流仓储"><div class="pt" style="background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30">物流仓储</div><h3>煤炭码头船舶安全靠泊引导场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">构建多源感知+AI融合决策的智能靠泊引导体系，通过激光雷达、无人机等硬件，实时采集船舶动态与水文气象数据，实现智能分析及风险预警。</p><div class="pf"><span>💰 ¥180-180万</span><span>👤 胡高斌</span></div><div class="ptech">🔧 ['人工智能', 'SLAM算法', '深度学习']</div></div>
-<div class="pc" data-i="保险"><div class="pt" style="background:#fb923c15;color:#fb923c;border:1px solid #fb923c30">保险</div><h3>一站式智能保险规划场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">嵌入客户需求分析与产品知识库，实现保障缺口量化、智能产品匹配与标准化建议书一键生成，为代理人提供实时专业支持。</p><div class="pf"><span>💰 ¥150-150万</span><span>👤 兰峰</span></div><div class="ptech">🔧 ['人工智能', '知识库']</div></div>
-<div class="pc" data-i="医疗健康"><div class="pt" style="background:#f43f5e15;color:#f43f5e;border:1px solid #f43f5e30">医疗健康</div><h3>主动集体健康管理场景</h3><p class="pp">🏢 江苏省国信集团有限公司</p><p class="pd">通过定制智能穿戴设备持续采集患者生命体征数据，结合AI算法分析预警，推动病区护理数字化升级，助力老年心血管疾病管理从被动救治转主动预防。</p><div class="pf"><span>💰 ¥100-100万</span><span>👤 顾博森</span></div><div class="ptech">🔧 ['人工智能', '可穿戴设备']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>路网营运知识工程及高质量数据集建设场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">围绕路网运行复杂高频业务场景，聚焦多模态数据集规范建设、知识库语义对齐、跨系统数据动态调用等关键难题，开展江苏高速EI路网智能体知识工程建设技术与应用模式研究。</p><div class="pf"><span>💰 ¥200-200万</span><span>👤 王浩淼</span></div><div class="ptech">🔧 ['人工智能', '知识图谱', '大数据']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>路网智慧管控场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">基于AI视频分析与交通流预测技术，实现路网事件自动检测、拥堵预警、应急资源智能调度，提升高速公路运营管控效率与安全水平。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 王浩淼</span></div><div class="ptech">🔧 ['人工智能', '计算机视觉']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>定制化出行服务场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">运用AI分析用户出行习惯和实时路况，提供个性化路线规划、一站式出行服务、伴随式信息服务，提升出行体验。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 王浩淼</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>智能客服场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">基于交通行业大模型优化意图识别与语义理解，结合出行者路线咨询、收费标准解读、路况查询等需求，构建智慧客服智能体系统，提升常见出行问题应答准确率。</p><div class="pf"><span>💰 ¥700-700万</span><span>👤 钱旻</span></div><div class="ptech">🔧 ['人工智能', '大模型', 'NLP']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>智慧收费清分与结算场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">基于智能数据分析技术以及模型算法，构建结算对账优化系统，实现结算对账体系优化，有效减少对账差错、提升工作效率。</p><div class="pf"><span>💰 ¥2400-2400万</span><span>👤 奚韩</span></div><div class="ptech">🔧 ['人工智能', '数据分析']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>桥梁经常检查场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">研发GNSS-激光雷达SLAM导航定位协调技术、智能视觉病害识别算法、厘米级病害定位等关键技术，构建智能化桥梁巡检体系。</p><div class="pf"><span>💰 ¥150-150万</span><span>👤 郑俊秋</span></div><div class="ptech">🔧 ['人工智能', '无人机', 'SLAM']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>桥梁智慧化运维场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">探索基于监测视频开展桥梁坍塌、桥面大变形等重大风险自动识别算法研究，融合结构健康监测数据与AI图形识别能力提升桥梁风险预警能力。</p><div class="pf"><span>💰 ¥220-220万</span><span>👤 郑俊秋</span></div><div class="ptech">🔧 ['人工智能', '计算机视觉']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>无人机融合应用场景</h3><p class="pp">🏢 江苏交通控股有限公司</p><p class="pd">打通无人机与现有高速公路作业系统和数据中台融合，持续提升算法识别的准确性场景丰富性。</p><div class="pf"><span>💰 ¥1000-1000万</span><span>👤 田鹏</span></div><div class="ptech">🔧 ['人工智能', '无人机']</div></div>
-<div class="pc" data-i="传媒"><div class="pt" style="background:#ec489915;color:#ec4899;border:1px solid #ec489930">传媒</div><h3>媒体生产全链路智能协同与任务调度系统</h3><p class="pp">🏢 江苏省广播电视集团有限公司</p><p class="pd">构建媒体内容生产全链路AI协同平台，实现选题策划、素材采集、内容编辑、审核发布、效果分析的智能化调度与任务分配。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 席鲁江</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="传媒"><div class="pt" style="background:#ec489915;color:#ec4899;border:1px solid #ec489930">传媒</div><h3>江苏省城市足球联赛智慧赛事分析及产业化应用场景</h3><p class="pp">🏢 江苏省广播电视集团有限公司</p><p class="pd">利用AI技术对足球联赛进行智慧赛事分析，涵盖球员表现评估、战术分析、观众行为洞察，推动赛事产业化发展。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 席鲁江</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="传媒"><div class="pt" style="background:#ec489915;color:#ec4899;border:1px solid #ec489930">传媒</div><h3>面向演唱会及大型演艺的AI智能化舞台全流程模拟与合成平台</h3><p class="pp">🏢 江苏省广播电视集团有限公司</p><p class="pd">构建以AI为核心的全链路虚拟制作平台，实现舞台视觉、灯光、镜头等全要素智能化生成控制，突破实时渲染与协同调度技术。</p><div class="pf"><span>💰 ¥100-100万</span><span>👤 席鲁江</span></div><div class="ptech">🔧 ['人工智能', '虚拟制作', '实时渲染']</div></div>
-<div class="pc" data-i="航空安全"><div class="pt" style="background:#e879f915;color:#e879f9;border:1px solid #e879f930">航空安全</div><h3>机场飞行区安全风险智能监测与预警场景</h3><p class="pp">🏢 东部机场集团有限公司</p><p class="pd">结合监控、雷达数据，运用多源传感融合和AI计算机视觉技术，实现跑道非法入侵、鸟击、外来物损伤、无人机干扰等核心风险智能识别、实时预警与协同处置。</p><div class="pf"><span>💰 ¥600-600万</span><span>👤 王苗苗</span></div><div class="ptech">🔧 ['人工智能', '计算机视觉', '传感器融合']</div></div>
-<div class="pc" data-i="纺织服装"><div class="pt" style="background:#f472b615;color:#f472b6;border:1px solid #f472b630">纺织服装</div><h3>AI技术赋能3D服装设计应用场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">聚焦服装研发需求，智能分析市场趋势与客户画像，3D虚拟打样减少浪费，解决研发周期长、成本高、适配差痛点。</p><div class="pf"><span>💰 ¥150-150万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '3D虚拟打样']</div></div>
-<div class="pc" data-i="跨境电商"><div class="pt" style="background:#a78bfa15;color:#a78bfa;border:1px solid #a78bfa30">跨境电商</div><h3>跨境电商选品从经验驱动转为数据驱动场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">以AI赋能B2B贸易为核心，构建覆盖建站获客-内容生成-智能营销-一键通关全流程的一站式数字外贸服务平台。</p><div class="pf"><span>💰 ¥360-360万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '大数据']</div></div>
-<div class="pc" data-i="跨境电商"><div class="pt" style="background:#a78bfa15;color:#a78bfa;border:1px solid #a78bfa30">跨境电商</div><h3>苏豪云大模型驱动跨境电商全链路数字营销与合规服务场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">依托自主微调的苏豪云电商垂直大模型，构建智能化内容生成与合规引擎，融合AI自然语言处理技术与跨境电商业务规则。</p><div class="pf"><span>💰 ¥500-500万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '大模型', 'NLP']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>轮胎智能制造AI应用场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">将AI技术应用于轮胎智能制造全流程，包括工艺参数优化、质量在线检测、设备预测性维护，提升生产效率和产品质量。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>轮胎产品研发与材料创新AI场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">利用AI加速轮胎产品研发，包括新材料配方优化、产品性能仿真预测、研发周期缩短，推动材料创新与产品升级。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="供应链"><div class="pt" style="background:#fbbf2415;color:#fbbf24;border:1px solid #fbbf2430">供应链</div><h3>智慧供应链与绿色制造场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">构建AI驱动的智慧供应链管理平台，实现采购、生产、物流全链路智能化协同，结合绿色制造理念降低碳排放。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>安全生产智能预警与管控场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">融合AI视觉与物联网技术构建立体化安全防控体系，实现风险感知、研判、处置闭环，变被动为主动预防。</p><div class="pf"><span>💰 ¥500-500万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '物联网', '计算机视觉']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>安全生产便携式智能预警与管控场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">融合安全法律法规、深度算法管理，实现拍照识别后自动比对显示隐患内容，达成安全隐患排查自动化、智能化。</p><div class="pf"><span>💰 ¥70-70万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '图像识别']</div></div>
-<div class="pc" data-i="化工"><div class="pt" style="background:#6366f115;color:#6366f1;border:1px solid #6366f130">化工</div><h3>化工安全与经营智能决策应用场景</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">融合AI算力、大模型、智能感知等技术，围绕安全可控、提质增效、数智赋能目标，落地多场景智能化应用。</p><div class="pf"><span>💰 ¥47-47万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '大模型', '智能感知']</div></div>
-<div class="pc" data-i="综合管理"><div class="pt" style="background:#94a3b815;color:#94a3b8;border:1px solid #94a3b830">综合管理</div><h3>基于数据中台的AI+智能风险管控平台</h3><p class="pp">🏢 江苏省苏豪控股集团有限公司</p><p class="pd">融合数据中台、AI视觉模型及知识图谱技术，构建数据资产体系、打造AI服务，推进主数据标准化与稽核智能协同。</p><div class="pf"><span>💰 ¥350-350万</span><span>👤 邢梦婷</span></div><div class="ptech">🔧 ['人工智能', '数据中台', '知识图谱']</div></div>
-<div class="pc" data-i="商务服务"><div class="pt" style="background:#14b8a615;color:#14b8a6;border:1px solid #14b8a630">商务服务</div><h3>招投标人工智能场景应用</h3><p class="pp">🏢 中国江苏国际经济技术合作集团有限公司</p><p class="pd">将AI技术应用于招投标全流程，包括智能标书编制、投标报价分析、合规审查、评标辅助，提升招投标效率与公平性。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="建筑"><div class="pt" style="background:#d9770615;color:#d97706;border:1px solid #d9770630">建筑</div><h3>建筑行业大模型场景</h3><p class="pp">🏢 中国江苏国际经济技术合作集团有限公司</p><p class="pd">开发建筑行业垂直大模型，覆盖建筑设计、施工管理、造价估算、质量检测等场景，推动建筑行业智能化转型。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大模型']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>智慧农业无人机巡田及协同作业场景</h3><p class="pp">🏢 江苏省农垦集团有限公司</p><p class="pd">利用无人机群协同巡田，结合AI图像分析实现作物长势监测、病虫害识别、精准施药，提升农业生产效率。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 闵祺</span></div><div class="ptech">🔧 ['人工智能', '无人机']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>生物育种精准化研发场景</h3><p class="pp">🏢 江苏省农垦集团有限公司</p><p class="pd">运用AI基因组分析和表型识别技术，加速生物育种研发进程，实现种质资源精准评价、杂交组合智能预测。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 闵祺</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>数智赋能全链条种子生产场景</h3><p class="pp">🏢 江苏省农垦集团有限公司</p><p class="pd">构建种子生产全链条数字化平台，从品种选育、田间管理、收获加工到质量检测实现AI赋能与智能化管控。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 闵祺</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>AI+智能制造质量提升</h3><p class="pp">🏢 徐州矿务集团有限公司</p><p class="pd">应用AI视觉检测和数据分析技术，实现制造过程质量实时监控、缺陷自动识别、工艺参数智能优化，全面提升产品质量。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 吕海军</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>AI+高温合金粉末智能制造工艺优化</h3><p class="pp">🏢 徐州矿务集团有限公司</p><p class="pd">利用AI优化高温合金粉末制备工艺，包括粉末粒度分布控制、烧结参数优化、产品性能预测，提升材料制造水平。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 谢奎</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>AI+煤矿重大灾害智能决策</h3><p class="pp">🏢 徐州矿务集团有限公司</p><p class="pd">构建煤矿重大灾害AI智能决策系统，实现瓦斯突出、水害、顶板事故等灾害的智能预警与应急决策支持。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 吕海军</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>AI+煤矿工业视频智能预警</h3><p class="pp">🏢 徐州矿务集团有限公司</p><p class="pd">基于AI视频分析技术，对煤矿井下作业环境进行实时监控，自动识别人员违规行为、设备异常状态、安全隐患并预警。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 吕海军</span></div><div class="ptech">🔧 ['人工智能', '计算机视觉']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>江苏风牧融合海上牧场场景</h3><p class="pp">🏢 江苏省沿海开发集团有限公司</p><p class="pd">探索海上风电与海洋牧场融合发展模式，利用AI技术实现风电设施与养殖环境的智能协同管控。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>江苏沿海人工智能+渔业养殖场景</h3><p class="pp">🏢 江苏省沿海开发集团有限公司</p><p class="pd">将AI技术应用于沿海渔业养殖，包括水质智能监测、投喂精准控制、病害预警诊断、产量预测分析。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="物流仓储"><div class="pt" style="background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30">物流仓储</div><h3>散货无人作业自动清舱场景</h3><p class="pp">🏢 江苏省港口集团有限公司</p><p class="pd">利用AI驱动的无人化设备实现散货码头船舶清舱作业自动化，提升作业效率、降低人员安全风险。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '无人作业']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>港口安全全过程可视化管控应用场景</h3><p class="pp">🏢 江苏省港口集团有限公司</p><p class="pd">构建港口安全全过程AI可视化管控平台，实现港区人员车辆管理、作业安全监控、应急指挥调度的智能化。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>新一代港口智能门座起重机研发及产业化场景</h3><p class="pp">🏢 江苏省港口集团有限公司</p><p class="pd">研发搭载AI控制系统的智能门座起重机，实现自动抓取、精准定位、防碰撞预警，推动港口装卸设备智能化升级。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="物流仓储"><div class="pt" style="background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30">物流仓储</div><h3>绿色智慧干散货码头全要素管控与全流程无人化应用场景</h3><p class="pp">🏢 江苏省港口集团有限公司</p><p class="pd">打造绿色智慧干散货码头，实现从船舶靠泊、装卸运输到堆存管理的全流程无人化与全要素智能管控。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '无人作业']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>基于Su-Flow铁路大模型的铁路客流动态预测与智能运营</h3><p class="pp">🏢 江苏省铁路集团有限公司</p><p class="pd">基于自研Su-Flow铁路大模型，实现铁路客流动态预测、运力智能调配、运营方案优化，提升铁路运营效率。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大模型']</div></div>
-<div class="pc" data-i="交通"><div class="pt" style="background:#3b82f615;color:#3b82f6;border:1px solid #3b82f630">交通</div><h3>基于铁路工程管理平台的无人机航拍技术应用研究</h3><p class="pp">🏢 江苏省铁路集团有限公司</p><p class="pd">研究无人机航拍技术在铁路工程管理中的应用，实现工程进度监测、施工质量检查、线路巡检的智能化。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '无人机']</div></div>
-<div class="pc" data-i="环保"><div class="pt" style="background:#10b98115;color:#10b981;border:1px solid #10b98130">环保</div><h3>生态环境垂直AI大模型基座产品及场景应用</h3><p class="pp">🏢 江苏省环保集团有限公司</p><p class="pd">构建生态环境领域垂直AI大模型，覆盖大气监测、水质评估、土壤检测、生态修复等多个环保场景。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大模型']</div></div>
-<div class="pc" data-i="环保"><div class="pt" style="background:#10b98115;color:#10b981;border:1px solid #10b98130">环保</div><h3>区域大气环境精准管控及成效评估产品</h3><p class="pp">🏢 江苏省环保集团有限公司</p><p class="pd">利用AI分析大气环境监测数据，实现污染源精准识别、扩散路径模拟、管控措施效果评估，支撑区域大气治理。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="环保"><div class="pt" style="background:#10b98115;color:#10b981;border:1px solid #10b98130">环保</div><h3>水环境低空应急溯源管控</h3><p class="pp">🏢 江苏省环保集团有限公司</p><p class="pd">结合无人机低空巡查与AI图像分析，实现水环境污染事件的快速发现、应急溯源和精准管控。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="环保"><div class="pt" style="background:#10b98115;color:#10b981;border:1px solid #10b98130">环保</div><h3>监测站点高效运维及具身智能设备研发</h3><p class="pp">🏢 江苏省环保集团有限公司</p><p class="pd">研发具身智能设备用于环境监测站点运维，包括自动巡检、设备校准、故障诊断，提升运维效率。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '具身智能']</div></div>
-<div class="pc" data-i="环保"><div class="pt" style="background:#10b98115;color:#10b981;border:1px solid #10b98130">环保</div><h3>生态环境高质量数据集标注和建设</h3><p class="pp">🏢 江苏省环保集团有限公司</p><p class="pd">构建生态环境领域高质量AI训练数据集，包括遥感影像标注、物种识别数据、环境质量数据的系统化建设。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '数据标注']</div></div>
-<div class="pc" data-i="化工"><div class="pt" style="background:#6366f115;color:#6366f1;border:1px solid #6366f130">化工</div><h3>储气库卤水制盐综合利用工程</h3><p class="pp">🏢 江苏省盐业集团有限责任公司</p><p class="pd">利用AI技术优化储气库卤水制盐工艺流程，实现资源综合利用效率提升、能耗降低、产品质量控制。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="先进制造"><div class="pt" style="background:#8b5cf615;color:#8b5cf6;border:1px solid #8b5cf630">先进制造</div><h3>包装质量检测</h3><p class="pp">🏢 江苏省盐业集团有限责任公司</p><p class="pd">基于AI视觉检测技术，实现产品包装质量自动检测，包括外观缺陷识别、标签校验、密封性检测，提升质检效率。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '视觉检测']</div></div>
-<div class="pc" data-i="物流仓储"><div class="pt" style="background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30">物流仓储</div><h3>仓储智能管理+物料精准配送</h3><p class="pp">🏢 江苏省盐业集团有限责任公司</p><p class="pd">构建AI驱动的智能仓储管理系统，实现库存智能预测、物料精准配送、仓储空间优化，降低物流成本。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="农业"><div class="pt" style="background:#22c55e15;color:#22c55e;border:1px solid #22c55e30">农业</div><h3>绿色智慧储粮场景</h3><p class="pp">🏢 江苏省粮食集团有限责任公司</p><p class="pd">利用AI技术实现粮仓环境智能调控、虫害早期预警、粮食品质监测，推动绿色储粮与减损降耗。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="物流仓储"><div class="pt" style="background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30">物流仓储</div><h3>粮食物流码头智能化管理场景</h3><p class="pp">🏢 江苏省粮食集团有限责任公司</p><p class="pd">构建粮食物流码头AI智能管理平台，实现装卸调度优化、库存动态管理、物流路径规划的智能化。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="安全监测"><div class="pt" style="background:#ef444415;color:#ef4444;border:1px solid #ef444430">安全监测</div><h3>粮食企业安全生产与应急管理场景</h3><p class="pp">🏢 江苏省粮食集团有限责任公司</p><p class="pd">利用AI技术实现粮食企业安全生产监控、粉尘爆炸预警、消防应急调度，保障粮食仓储安全。</p><div class="pf"><span>💰 ¥100-300万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="金融"><div class="pt" style="background:#a855f715;color:#a855f7;border:1px solid #a855f730">金融</div><h3>股权投资场景</h3><p class="pp">🏢 江苏高科技投资集团有限公司</p><p class="pd">利用AI分析市场数据和企业信息，辅助股权投资决策，包括项目筛选、尽职调查、估值分析、风险评估。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="服务业"><div class="pt" style="background:#84cc1615;color:#84cc16;border:1px solid #84cc1630">服务业</div><h3>会员消费场景</h3><p class="pp">🏢 南京金陵饭店集团有限公司</p><p class="pd">运用AI分析会员消费行为数据，实现精准营销、个性化推荐、会员价值分析，提升客户忠诚度和消费转化。</p><div class="pf"><span>💰 ¥50-150万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="服务业"><div class="pt" style="background:#84cc1615;color:#84cc16;border:1px solid #84cc1630">服务业</div><h3>人工智能+电商运营</h3><p class="pp">🏢 江苏钟山宾馆集团有限公司</p><p class="pd">将AI技术应用于酒店电商运营，包括智能定价、需求预测、客户画像分析、在线客服机器人。</p><div class="pf"><span>💰 ¥50-150万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="水利"><div class="pt" style="background:#0ea5e915;color:#0ea5e9;border:1px solid #0ea5e930">水利</div><h3>构建苏水源大模型与超级智能体</h3><p class="pp">🏢 南水北调东线江苏水源有限责任公司</p><p class="pd">构建南水北调东线专属大模型与超级智能体，实现水资源调度优化、工程安全监测、运行决策智能化。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大模型']</div></div>
-<div class="pc" data-i="商务服务"><div class="pt" style="background:#14b8a615;color:#14b8a6;border:1px solid #14b8a630">商务服务</div><h3>AI赋能招标采购全流程智能化服务平台</h3><p class="pp">🏢 江苏省国有资本投资运营集团有限公司</p><p class="pd">构建AI驱动的招标采购智能平台，涵盖智能问答、寻源洞察、文件审查预警与智能评审，提升采购效率与合规性。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="商务服务"><div class="pt" style="background:#14b8a615;color:#14b8a6;border:1px solid #14b8a630">商务服务</div><h3>报关单AI智能制单与智能通关大模型平台</h3><p class="pp">🏢 江苏省国有资本投资运营集团有限公司</p><p class="pd">利用AI大模型实现报关单智能填制、商品归类辅助、通关风险预警，提升跨境贸易通关效率。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大模型']</div></div>
-<div class="pc" data-i="城市规划"><div class="pt" style="background:#2dd4bf15;color:#2dd4bf;border:1px solid #2dd4bf30">城市规划</div><h3>城市体检评估场景</h3><p class="pp">🏢 江苏省规划设计集团有限公司</p><p class="pd">运用AI技术对城市发展进行多维度体检评估，包括人口分析、交通评估、环境监测、公共服务评价，支撑城市规划。</p><div class="pf"><span>💰 ¥50-200万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能']</div></div>
-<div class="pc" data-i="算力"><div class="pt" style="background:#818cf815;color:#818cf8;border:1px solid #818cf830">算力</div><h3>算力调度场景</h3><p class="pp">🏢 江苏省数据集团有限公司</p><p class="pd">构建AI算力智能调度平台，实现异构算力资源的统一管理、任务智能分配、资源利用率优化。</p><div class="pf"><span>💰 ¥500-1000万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '算力调度']</div></div>
-<div class="pc" data-i="数据服务"><div class="pt" style="background:#38bdf815;color:#38bdf8;border:1px solid #38bdf830">数据服务</div><h3>数据供给场景</h3><p class="pp">🏢 江苏省数据集团有限公司</p><p class="pd">构建高质量数据供给平台，利用AI实现数据采集、清洗、标注、确权、流通的全链路智能化管理。</p><div class="pf"><span>💰 ¥200-500万</span><span>👤 待补充</span></div><div class="ptech">🔧 ['人工智能', '大数据']</div></div>
-  </div>
+<!-- SuperAgent Preview -->
+<div class="ms" id="sa">
+<div class="ms-head"><h2 class="ms-title">🤖 <span data-en="SuperAgent Network">超级个体网络</span></h2><a href="superagent.html" class="ms-link" data-en="View All →">查看全部 →</a></div>
+<div class="am-grid" id="agentGrid"></div>
 </div>
-</section>
 
-<!-- SECTION: 超级个体 -->
-<section class="section" id="sec-agent">
-<div class="container">
-  <div class="section-head">
-    <h2>🤖 超级个体 — A2A智能协作平台</h2>
-    <p>基于Agent-to-Agent架构，打造数字化超级个体，实现智能匹配与协作</p>
-  </div>
-  <div class="section-stats">
-    <div class="stat-card"><div class="val">4</div><div class="lbl">核心Agent</div></div>
-    <div class="stat-card"><div class="val">67</div><div class="lbl">可匹配项目</div></div>
-    <div class="stat-card"><div class="val">A2A</div><div class="lbl">通信协议</div></div>
-    <div class="stat-card"><div class="val">MIMO</div><div class="lbl">AI引擎</div></div>
-  </div>
-  <div class="agent-grid">
-    <div class="agent-card">
-      <div class="agent-avatar">🎯</div>
-      <h3>项目猎手</h3>
-      <div class="role">Project Hunter Agent</div>
-      <p style="font-size:13px;color:var(--t2);margin-bottom:12px">智能扫描揭榜挂帅平台，精准匹配技术能力与项目需求</p>
-      <div class="skills"><span class="skill">需求分析</span><span class="skill">技术匹配</span><span class="skill">预算评估</span></div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-avatar">💡</div>
-      <h3>方案架构师</h3>
-      <div class="role">Solution Architect Agent</div>
-      <p style="font-size:13px;color:var(--t2);margin-bottom:12px">基于项目需求生成技术方案，输出专业投标文档</p>
-      <div class="skills"><span class="skill">方案设计</span><span class="skill">技术选型</span><span class="skill">文档生成</span></div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-avatar">🤝</div>
-      <h3>商务助手</h3>
-      <div class="role">Business Assistant Agent</div>
-      <p style="font-size:13px;color:var(--t2);margin-bottom:12px">管理客户关系，跟踪项目进度，协调多方沟通</p>
-      <div class="skills"><span class="skill">客户管理</span><span class="skill">进度跟踪</span><span class="skill">沟通协调</span></div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-avatar">📊</div>
-      <h3>数据分析师</h3>
-      <div class="role">Data Analyst Agent</div>
-      <p style="font-size:13px;color:var(--t2);margin-bottom:12px">分析行业趋势，评估项目价值，生成数据报告</p>
-      <div class="skills"><span class="skill">趋势分析</span><span class="skill">价值评估</span><span class="skill">报告生成</span></div>
-    </div>
-  </div>
-  <div class="a2a-demo">
-    <h3>🔗 A2A 通信演示</h3>
-    <p style="color:var(--t2);font-size:13px;margin-bottom:16px">模拟Agent间的智能协作通信过程</p>
-    <div class="a2a-log" id="a2a-log">
-      <div class="a2a-msg"><span class="from">🎯 项目猎手</span> → 扫描到新项目：「海上风电场智能运维场景」，预算200-300万，匹配度 92%</div>
-      <div class="a2a-msg"><span class="from">🎯 项目猎手</span> → <span class="to">💡 方案架构师</span>：请评估技术可行性</div>
-      <div class="a2a-msg"><span class="to">💡 方案架构师</span> → 技术评估完成：可采用IoT传感器+AI预测模型，预估开发周期3个月</div>
-      <div class="a2a-msg"><span class="from">💡 方案架构师</span> → <span class="to">📊 数据分析师</span>：需要行业对标数据</div>
-      <div class="a2a-msg"><span class="to">📊 数据分析师</span> → 行业报告显示：海上风电智能运维市场规模年增长28%，竞品均价350万</div>
-      <div class="a2a-msg"><span class="from">📊 数据分析师</span> → <span class="to">🤝 商务助手</span>：建议报价280万，附技术方案</div>
-      <div class="a2a-msg"><span class="to">🤝 商务助手</span> → 已生成投标方案，准备联系江苏省国信集团 ✓</div>
-    </div>
-    <button onclick="runA2ADemo()" style="margin-top:16px;padding:10px 24px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;font-size:14px">▶ 重新运行演示</button>
-  </div>
+<!-- Legends Preview -->
+<div class="ms" id="lg">
+<div class="ms-head"><h2 class="ms-title">👑 <span data-en="Hall of Fame">名人堂</span></h2><a href="legends.html" class="ms-link" data-en="View All 18 →">查看全部 18 位 →</a></div>
+<div class="lm-grid" id="legendGrid"></div>
 </div>
-</section>
 
-<!-- SECTION: 名人堂 -->
-<section class="section" id="sec-legends">
-<div class="container">
-  <div class="section-head">
-    <h2>👑 OPC名人堂 — 传奇人物</h2>
-    <p>全球最成功的独立创业者，学习他们的商业思维与成功之道</p>
-  </div>
-  <div class="legends-grid" id="legends-grid"></div>
+<!-- Academy Preview -->
+<div class="ms" id="ac">
+<div class="ms-head"><h2 class="ms-title">📚 <span data-en="Academy — Featured Courses">学院 — 精选课程</span></h2><a href="academy.html" class="ms-link" data-en="View All →">查看全部 →</a></div>
+<div class="cm-grid" id="courseGrid"></div>
 </div>
-</section>
 
-<!-- SECTION: 学院 -->
-<section class="section" id="sec-academy">
-<div class="container">
-  <div class="section-head">
-    <h2><span class="zh">📚 OPC学院 — 创业者技能成长平台</span><span class="en" style="display:none">📚 OPC Academy — Skill Growth</span></h2>
-    <p><span class="zh">从零到一打造你的独立创业能力。课程 · 认证 · 导师</span><span class="en" style="display:none">Build your OPC skills from scratch. Courses · Certs · Mentors</span></p>
-  </div>
-  <div class="section-stats">
-    <div class="stat-card"><div class="val">24</div><div class="lbl"><span class="zh">精品课程</span><span class="en" style="display:none">Courses</span></div></div>
-    <div class="stat-card"><div class="val">6</div><div class="lbl"><span class="zh">学习路径</span><span class="en" style="display:none">Paths</span></div></div>
-    <div class="stat-card"><div class="val">12</div><div class="lbl"><span class="zh">认证导师</span><span class="en" style="display:none">Mentors</span></div></div>
-    <div class="stat-card"><div class="val">4</div><div class="lbl"><span class="zh">技能认证</span><span class="en" style="display:none">Certs</span></div></div>
-  </div>
-  <div style="text-align:center;padding:40px">
-    <a href="academy.html" class="btn-primary" style="padding:14px 32px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600">
-      <span class="zh">进入学院 →</span><span class="en" style="display:none">Enter Academy →</span>
-    </a>
-  </div>
+<!-- Health Preview -->
+<div class="ms" id="hl">
+<div class="ms-head"><h2 class="ms-title">❤️ <span data-en="Health — Today's Status">健康 — 今日状态</span></h2><a href="health.html" class="ms-link" data-en="Open Dashboard →">打开仪表盘 →</a></div>
+<div class="hm">
+<div class="hm-score">86</div>
+<div class="hm-streak">🔥 12 <span data-en="day streak">天连续打卡</span></div>
+<div class="hm-grid">
+<div class="hmi"><div class="hmi-icon">😊</div><div class="hmi-val">8</div><div class="hmi-lab" data-en="Mood">心情</div></div>
+<div class="hmi"><div class="hmi-icon">😴</div><div class="hmi-val">7.5h</div><div class="hmi-lab" data-en="Sleep">睡眠</div></div>
+<div class="hmi"><div class="hmi-icon">🏃</div><div class="hmi-val">45m</div><div class="hmi-lab" data-en="Exercise">运动</div></div>
+<div class="hmi"><div class="hmi-icon">😰</div><div class="hmi-val">3</div><div class="hmi-lab" data-en="Stress">压力</div></div>
 </div>
-</section>
-
-<!-- SECTION: 健康 -->
-<section class="section" id="sec-health">
-<div class="container">
-  <div class="section-head">
-    <h2><span class="zh">❤️ OPC健康 — 创业者健康管理</span><span class="en" style="display:none">❤️ OPC Health — Entrepreneur Wellness</span></h2>
-    <p><span class="zh">每日签到 · 压力管理 · 运动追踪 · AI健康洞察</span><span class="en" style="display:none">Daily check-in · Stress mgmt · Exercise tracking · AI insights</span></p>
-  </div>
-  <div class="section-stats">
-    <div class="stat-card"><div class="val">📊</div><div class="lbl"><span class="zh">健康仪表盘</span><span class="en" style="display:none">Dashboard</span></div></div>
-    <div class="stat-card"><div class="val">📝</div><div class="lbl"><span class="zh">每日签到</span><span class="en" style="display:none">Check-in</span></div></div>
-    <div class="stat-card"><div class="val">🏃</div><div class="lbl"><span class="zh">运动追踪</span><span class="en" style="display:none">Exercise</span></div></div>
-    <div class="stat-card"><div class="val">💡</div><div class="lbl"><span class="zh">AI洞察</span><span class="en" style="display:none">AI Insights</span></div></div>
-  </div>
-  <div style="text-align:center;padding:40px">
-    <a href="health.html" class="btn-primary" style="padding:14px 32px;border-radius:10px;background:var(--green);color:#fff;text-decoration:none;font-weight:600">
-      <span class="zh">进入健康 →</span><span class="en" style="display:none">Enter Health →</span>
-    </a>
-  </div>
 </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-<div class="container">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <h3>◆ OPC Platform</h3>
-      <p>一站式OPC赋能平台，让每个独立创业者都能成功</p>
-    </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>平台模块</h4>
-        <a href="#" onclick="switchTab('gov')">揭榜挂帅</a>
-        <a href="#" onclick="switchTab('agent')">超级个体</a>
-        <a href="#" onclick="switchTab('legends')">名人堂</a>
-      </div>
-      <div class="footer-col">
-        <h4>项目</h4>
-      </div>
-    </div>
-  </div>
-  <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--t3)">© 2026 OPC Platform · OPC赋能平台 · 连接创造价值</p>
 </div>
-</footer>
+</section><footer><div class="ft-i">
+<p class="ft-t">© 2026 OPC Alliance · Platform · 连接赋能全球独立创业者</p>
+<div class="ft-l"><a href="index.html" data-en="Home">首页</a><a href="government.html" data-en="Marketplace">揭榜挂帅</a><a href="superagent.html" data-en="SuperAgent">超级个体</a></div>
+</div></footer>
 
 <script>
-// === TAB SWITCHING ===
-function switchTab(tab){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('sec-'+tab).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>{
-    if(b.textContent.includes(tab==='gov'?'揭榜':tab==='agent'?'超级':tab==='legends'?'名人':tab==='academy'?'学院':'健康'))b.classList.add('active');
-  });
-  window.scrollTo({top:document.querySelector('.tab-nav').offsetTop-64,behavior:'smooth'});
-}
-
-// === PROJECT FILTERS ===
-document.getElementById('filters').addEventListener('click',e=>{
-  if(!e.target.classList.contains('fb'))return;
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  const f=e.target.dataset.f;
-  document.querySelectorAll('.pc').forEach(c=>{
-    c.style.display=(f==='all'||c.dataset.i===f)?'':'none';
-  });
-});
-
-// === LEGENDS ===
-const LEGENDS=[
-{name:"Steve Jobs",nameZh:"史蒂夫·乔布斯",role:"Apple创始人",roleZh:"苹果公司创始人",emoji:"🍎",quote:"Stay hungry, stay foolish.",philosophy:["极致产品主义","用户体验至上","简约即力量"]},
-{name:"Elon Musk",nameZh:"埃隆·马斯克",role:"Tesla/SpaceX CEO",roleZh:"特斯拉/SpaceX首席执行官",emoji:"🚀",quote:"When something is important enough, you do it even if the odds are not in your favor.",philosophy:["第一性原理","跨领域创新","使命驱动"]},
-{name:"Jeff Bezos",nameZh:"杰夫·贝索斯",role:"Amazon创始人",roleZh:"亚马逊创始人",emoji:"📦",quote:"Your margin is my opportunity.",philosophy:["客户至上","长期主义","Day 1心态"]},
-{name:"Sam Altman",nameZh:"萨姆·奥特曼",role:"OpenAI CEO",roleZh:"OpenAI首席执行官",emoji:"🤖",quote:"The future is going to be weird.",philosophy:["AI民主化","指数思维","大胆愿景"]},
-{name:"张一鸣",nameZh:"张一鸣",role:"ByteDance创始人",roleZh:"字节跳动创始人",emoji:"📱",quote:"Stay hungry, stay young.",philosophy:["算法驱动","全球化视野","人才密度"]},
-{name:"黄仁勋",nameZh:"黄仁勋",role:"NVIDIA CEO",roleZh:"英伟达首席执行官",emoji:"🎮",quote:"The more you buy, the more you save.",philosophy:["加速计算","平台思维","持续创新"]},
-{name:"马云",nameZh:"马云",role:"Alibaba创始人",roleZh:"阿里巴巴创始人",emoji:"🛒",quote:"今天很残酷，明天更残酷，后天很美好。",philosophy:["让天下没有难做的生意","生态系统","客户第一"]},
-{name:"任正非",nameZh:"任正非",role:"华为创始人",roleZh:"华为创始人",emoji:"📱",quote:"华为没有成功，只有成长。",philosophy:["狼性文化","研发投入","危机意识"]},
-{name:"雷军",nameZh:"雷军",role:"小米创始人",roleZh:"小米创始人",emoji:"📲",quote:"站在风口上，猪都能飞起来。",philosophy:["互联网思维","性价比","粉丝经济"]},
-{name:"Peter Thiel",nameZh:"彼得·蒂尔",role:"PayPal创始人",roleZh:"PayPal联合创始人",emoji:"💳",quote:"Competition is for losers.",philosophy:["从0到1","垄断思维","逆向投资"]},
-{name:"Mark Zuckerberg",nameZh:"马克·扎克伯格",role:"Meta CEO",roleZh:"Meta首席执行官",emoji:"👤",quote:"Move fast and break things.",philosophy:["连接世界","快速迭代","长期投资"]},
-{name:"王兴",nameZh:"王兴",role:"美团创始人",roleZh:"美团创始人",emoji:"🛵",quote:"既往不恋，纵情向前。",philosophy:["无边界扩张","科技+零售","极致效率"]},
-{name:"Bill Gates",nameZh:"比尔·盖茨",role:"Microsoft创始人",roleZh:"微软创始人",emoji:"💻",quote:"Your most unhappy customers are your greatest source of learning.",philosophy:["软件即服务","平台生态","慈善回馈"]},
-{name:"Warren Buffett",nameZh:"沃伦·巴菲特",role:"Berkshire Hathaway CEO",roleZh:"伯克希尔·哈撒韦CEO",emoji:"💰",quote:"Be fearful when others are greedy.",philosophy:["价值投资","能力圈","复利效应"]},
-{name:"Andrew Ng",nameZh:"吴恩达",role:"AI Pioneer",roleZh:"AI先驱、Coursera联合创始人",emoji:"🧠",quote:"AI is the new electricity.",philosophy:["AI民主化","教育普惠","实用主义"]},
-{name:"Satya Nadella",nameZh:"萨提亚·纳德拉",role:"Microsoft CEO",roleZh:"微软首席执行官",emoji:"☁️",quote:"Our industry does not respect tradition.",philosophy:["成长心态","云计算转型","同理心领导"]},
-{name:"丁磊",nameZh:"丁磊",role:"网易创始人",roleZh:"网易创始人",emoji:"🎮",quote:"做企业要有品味。",philosophy:["产品匠心","长期主义","有态度"]},
-{name:"张小龙",nameZh:"张小龙",role:"微信之父",roleZh:"微信创始人、腾讯高级副总裁",emoji:"💬",quote:"用完即走。",philosophy:["极简主义","用户价值","克制"]}
+// Featured projects
+const PROJS=[
+{cat:"新能源",ci:"⚡",cb:"rgba(255,138,80,.1)",cc:"#ff8a50",title:"海上风电场智能运维场景",desc:"融合AI技术，实现海上风电机组无人巡检、故障预测维护",budget:"¥200-300万",company:"省国信集团"},
+{cat:"交通",ci:"🚄",cb:"rgba(78,168,222,.1)",cc:"#4ea8de",title:"路网智慧管控场景",desc:"基于AI视频分析与交通流预测技术，实现路网事件自动检测",budget:"¥200-500万",company:"江苏交通控股"},
+{cat:"传媒",ci:"📺",cb:"rgba(167,139,250,.1)",cc:"#a78bfa",title:"智慧赛事分析及产业化应用场景",desc:"AI技术对足球联赛进行智慧赛事分析，推动赛事产业化发展",budget:"¥100-300万",company:"省广电集团"},
+{cat:"安全",ci:"🛡️",cb:"rgba(255,107,107,.1)",cc:"#ff6b6b",title:"施工安全智能监测场景",desc:"无人机、机器狗、安全传感器实现高危作业智能监测预警",budget:"¥200-300万",company:"省国信集团"},
+{cat:"制造",ci:"🏭",cb:"rgba(0,214,143,.1)",cc:"#00d68f",title:"轮胎智能制造AI应用场景",desc:"AI技术应用于工艺参数优化、质量在线检测、预测性维护",budget:"¥100-300万",company:"省苏豪集团"},
+{cat:"金融",ci:"💰",cb:"rgba(240,192,64,.1)",cc:"#f0c040",title:"智慧收费清分与结算场景",desc:"构建结算对账优化系统，有效减少对账差错、提升效率",budget:"¥2400万",company:"江苏交通控股"}
 ];
+document.getElementById('projGrid').innerHTML=PROJS.map((p,i)=>`<div class="pm ai" style="animation-delay:${i*0.06}s"><span class="pm-cat" style="background:${p.cb};color:${p.cc}">${p.ci} ${p.cat}</span><div class="pm-title">${p.title}</div><p class="pm-desc">${p.desc}</p><div class="pm-meta"><span class="pm-budget">${p.budget}</span><span>${p.company}</span></div></div>`).join('');
 
-const lg=document.getElementById('legends-grid');
-LEGENDS.forEach(l=>{
-  const card=document.createElement('div');
-  card.className='legend-card';
-  card.innerHTML=`<div class="emoji">${l.emoji}</div><h3>${l.nameZh}</h3><div class="lrole">${l.roleZh}</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">${l.philosophy.map(p=>'<span class="skill">'+p+'</span>').join('')}</div><div class="quote">"${l.quote}"</div>`;
-  lg.appendChild(card);
-});
+// Agents
+const AGENTS=[
+{ava:"🔬",bg:"rgba(255,107,107,.12)",name:"林博士",role:"AI制药",chats:47,matches:8,acc:"92%"},
+{ava:"🏗️",bg:"rgba(78,168,222,.12)",name:"张工",role:"智能制造",chats:123,matches:15,acc:"88%"},
+{ava:"🌱",bg:"rgba(0,214,143,.12)",name:"李总",role:"智慧农业",chats:56,matches:6,acc:"95%"},
+{ava:"🛡️",bg:"rgba(167,139,250,.12)",name:"王安",role:"安全监测",chats:89,matches:12,acc:"90%"}
+];
+document.getElementById('agentGrid').innerHTML=AGENTS.map((a,i)=>`<div class="am ai" style="animation-delay:${i*0.06}s"><div class="am-head"><div class="am-ava" style="background:${a.bg}">${a.ava}</div><div><div class="am-name">${a.name}的Agent</div><div class="am-role">${a.role}</div></div></div><div class="am-stats"><div class="as"><div class="as-v" style="color:var(--red)">${a.chats}</div><div class="as-l">对话</div></div><div class="as"><div class="as-v" style="color:var(--orange)">${a.matches}</div><div class="as-l">匹配</div></div><div class="as"><div class="as-v" style="color:var(--green)">${a.acc}</div><div class="as-l">准确率</div></div></div></div>`).join('');
 
-// === A2A DEMO ===
-function runA2ADemo(){
-  const log=document.getElementById('a2a-log');
-  log.innerHTML='';
-  const msgs=[
-    {f:'🎯 项目猎手',t:'',m:'扫描到新项目：「智慧电厂全景感知与自主优化场景」，预算200-300万'},
-    {f:'🎯 项目猎手',t:'💡 方案架构师',m:'请评估技术可行性并生成方案'},
-    {f:'💡 方案架构师',t:'',m:'技术评估：推荐IoT+AI方案，预估周期4个月，技术难度中等'},
-    {f:'💡 方案架构师',t:'📊 数据分析师',m:'需要电力行业对标数据'},
-    {f:'📊 数据分析师',t:'',m:'竞品分析完成：市场均价280万，头部方案商3家，建议差异化定位'},
-    {f:'📊 数据分析师',t:'🤝 商务助手',m:'分析报告已就绪'},
-    {f:'🤝 商务助手',t:'',m:'投标方案已生成，已预约与江苏省国信集团对接 ✓'}
-  ];
-  msgs.forEach((m,i)=>{
-    setTimeout(()=>{
-      const d=document.createElement('div');
-      d.className='a2a-msg';
-      d.innerHTML=`<span class="from">${m.f}</span>${m.t?' → <span class="to">'+m.t+'</span>':''}: ${m.m}`;
-      log.appendChild(d);
-      log.scrollTop=log.scrollHeight;
-    },i*800);
-  });
-}
+// Legends
+const LEGS=[
+{ava:"🧑‍💻",name:"Pieter Levels",rev:"$3.5M+",color:"#6366f1"},
+{ava:"🧠",name:"Naval Ravikant",rev:"$1B+",color:"#a78bfa"},
+{ava:"✍️",name:"James Clear",rev:"$10M+",color:"#f59e0b"},
+{ava:"🏗️",name:"Jason Fried",rev:"$30M+",color:"#ef4444"},
+{ava:"🎨",name:"Sahil Lavingia",rev:"$2M+",color:"#ec4899"},
+{ava:"🚀",name:"Marc Lou",rev:"$2M+",color:"#f97316"}
+];
+document.getElementById('legendGrid').innerHTML=LEGS.map((l,i)=>`<div class="lm ai" style="animation-delay:${i*0.05}s"><div class="lm-ava">${l.ava}</div><div class="lm-name">${l.name}</div><div class="lm-rev">${l.rev}</div></div>`).join('');
 
-// Smooth scroll
-// BILINGUAL
+// Courses
+const COURSES=[
+{icon:"💻",title:"从零搭建SaaS产品",teacher:"Pieter Levels",meta:"12h · 初级 · ¥299"},
+{icon:"💰",title:"一人公司财务自由",teacher:"Naval Ravikant",meta:"8h · 中级 · ¥199"},
+{icon:"✍️",title:"内容创作到百万读者",teacher:"James Clear",meta:"10h · 初级 · ¥249"},
+{icon:"🤖",title:"AI产品从0到1",teacher:"Marc Lou",meta:"15h · 中级 · ¥349"}
+];
+document.getElementById('courseGrid').innerHTML=COURSES.map((c,i)=>`<div class="cm ai" style="animation-delay:${i*0.06}s"><div class="cm-icon">${c.icon}</div><div class="cm-title">${c.title}</div><div class="cm-teacher">👨‍🏫 ${c.teacher}</div><div class="cm-meta">${c.meta.split(' · ').map(m=>`<span style="padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--t3)">${m}</span>`).join('')}</div></div>`).join('');
+
 let lang=localStorage.getItem('opc-lang')||'zh';
-function toggleLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);applyLang();}
-function applyLang(){document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');document.documentElement.lang=lang==='zh'?'zh-CN':'en';}
-applyLang();
-
-function scrollTo_(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
 </script>
-</body>
-</html>
+</body></html>
