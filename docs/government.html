@@ -283,7 +283,10 @@
         /* Animations */
         .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
+    
+.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border,rgba(255,255,255,0.1));background:rgba(255,255,255,0.05);color:#999;font-size:12px;cursor:pointer;transition:all .2s;margin-left:8px}
+.lang-btn:hover{border-color:#6366f1;color:#fff}
+</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1370,5 +1373,20 @@
         
         console.log('🏛️ 揭榜挂帅平台已加载 - 共' + projects.length + '个项目');
     </script>
+<script>
+// BILINGUAL SUPPORT
+let lang = localStorage.getItem('opc-lang') || 'zh';
+function toggleLang(){
+  lang = lang==='zh'?'en':'zh';
+  localStorage.setItem('opc-lang', lang);
+  applyLang();
+}
+function applyLang(){
+  document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');
+  document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');
+  document.documentElement.lang = lang==='zh'?'zh-CN':'en';
+}
+applyLang();
+</script>
 </body>
 </html>
