@@ -8,11 +8,13 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.0"
       - key: DATABASE_URL
-        value: "sqlite:///./opc_platform.db"
-      - key: SECONDEME_CLIENT_ID
-        value: "52754d67-3e5e-4f5e-889f-d823147927d7"
-      - key: SECONDEME_CLIENT_SECRET
-        value: "271c76f3753064447a43c5cfd0e7af5f05d842ee6b9db1b293073ec08c61f0c4"
+        fromDatabase:
+          name: opc-db
+          property: connectionString
     autoDeploy: true
     healthCheckPath: /api/health
+
+databases:
+  - name: opc-db
+    databaseName: opc_platform
     plan: free
