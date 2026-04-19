@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OPC Academy | OPC学院 - 创业者技能成长平台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--bg4:#1e1e30;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--pink:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.zh,.en{transition:opacity .2s}
+.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s;margin-left:8px}
+.lang-btn:hover{border-color:var(--accent);color:var(--t1)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--t1);text-decoration:none}
+.nav-logo .dot{color:var(--accent);font-size:20px}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{padding:7px 12px;border-radius:8px;color:var(--t2);font-size:13px;font-weight:500;transition:all .2s;text-decoration:none;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
+
+/* HERO */
+.hero{padding:120px 0 60px;text-align:center;background:linear-gradient(180deg,#0d0d2a 0%,var(--bg) 100%);position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.06) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;margin-bottom:12px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--t2);font-size:16px;max-width:600px;margin:0 auto 32px}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.stat .num{font-size:32px;font-weight:700;color:var(--accent);font-family:'Space Grotesk',monospace}
+.stat .label{font-size:12px;color:var(--t3)}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;overflow-x:auto}
+.tab{padding:14px 24px;font-size:14px;font-weight:600;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--t2)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* COURSE GRID */
+.section-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.section-sub{color:var(--t2);font-size:14px;margin-bottom:24px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s}
+.ccard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,0.08)}
+.ccard-cover{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.ccard-body{padding:20px}
+.ccard-body h3{font-size:16px;margin-bottom:6px}
+.ccard-body .meta{font-size:12px;color:var(--t3);margin-bottom:10px}
+.ccard-body .desc{font-size:13px;color:var(--t2);margin-bottom:12px}
+.ccard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.ctag{padding:3px 10px;border-radius:10px;font-size:11px;background:var(--bg3);color:var(--t2)}
+.ccard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border)}
+.ccard-footer .price{font-weight:700;color:var(--green)}
+.ccard-footer .students{font-size:12px;color:var(--t3)}
+.ccard-footer .btn{padding:6px 16px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.ccard-footer .btn:hover{background:var(--accent2)}
+
+/* LEARNING PATH */
+.path-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.pcard .icon{font-size:36px;margin-bottom:12px}
+.pcard h3{font-size:18px;margin-bottom:6px}
+.pcard .desc{font-size:13px;color:var(--t2);margin-bottom:16px}
+.pcard .steps{list-style:none;counter-reset:step}
+.pcard .steps li{font-size:13px;color:var(--t2);padding:6px 0;counter-increment:step;position:relative;padding-left:28px}
+.pcard .steps li::before{content:counter(step);position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--bg3);color:var(--accent);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pcard .progress{margin-top:16px;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.pcard .progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+
+/* MENTOR */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:24px}
+.mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+.mcard .avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--bg3)}
+.mcard h3{font-size:16px;margin-bottom:2px}
+.mcard .title{font-size:13px;color:var(--gold);margin-bottom:8px}
+.mcard .bio{font-size:12px;color:var(--t2);margin-bottom:12px}
+.mcard .skills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.mcard .skill-tag{padding:3px 10px;border-radius:10px;font-size:11px;background:var(--bg3);color:var(--t2)}
+.mcard .match{margin-top:12px;padding:6px 16px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
+.mcard .match:hover{background:var(--accent);color:#fff}
+
+/* CERT */
+.cert-section{margin-top:40px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:24px}
+.cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:center}
+.cert-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.cert-card h3{font-size:16px;margin-bottom:4px}
+.cert-card .desc{font-size:12px;color:var(--t2)}
+.cert-card .level{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:32px 0;margin-top:60px}
+.footer p{text-align:center;font-size:12px;color:var(--t3)}
+
+@media(max-width:768px){
+  .nav-links .nav-link{padding:7px 8px;font-size:12px}
+  .cgrid,.path-grid,.mgrid,.cert-grid{grid-template-columns:1fr}
+  .hero h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+  <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
+  <div class="nav-links">
+    <a href="platform.html" class="nav-link"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
+    <a href="government.html" class="nav-link"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
+    <a href="superagent.html" class="nav-link"><span class="zh">超级个体</span><span class="en" style="display:none">Super Agent</span></a>
+    <a href="legends.html" class="nav-link"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
+    <a href="academy.html" class="nav-link active"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
+    <a href="health.html" class="nav-link"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+  <h1>
+    <span class="zh">📚 <span class="grad">OPC 学院</span> — 创业者技能成长平台</span>
+    <span class="en" style="display:none">📚 <span class="grad">OPC Academy</span> — Entrepreneur Skill Growth</span>
+  </h1>
+  <p>
+    <span class="zh">从零到一打造你的独立创业能力。课程学习 · 技能认证 · 导师指导 · 学习社区</span>
+    <span class="en" style="display:none">Build your independent entrepreneurship skills from scratch. Courses · Certifications · Mentorship · Community</span>
+  </p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">24</div><div class="label"><span class="zh">精品课程</span><span class="en" style="display:none">Courses</span></div></div>
+    <div class="stat"><div class="num">6</div><div class="label"><span class="zh">学习路径</span><span class="en" style="display:none">Learning Paths</span></div></div>
+    <div class="stat"><div class="num">12</div><div class="label"><span class="zh">认证导师</span><span class="en" style="display:none">Mentors</span></div></div>
+    <div class="stat"><div class="num">4</div><div class="label"><span class="zh">技能认证</span><span class="en" style="display:none">Certifications</span></div></div>
+  </div>
+</div>
+</section>
+
+<div class="container">
+<div class="tabs">
+  <button class="tab active" onclick="showTab('courses')"><span class="zh">📖 课程中心</span><span class="en" style="display:none">📖 Courses</span></button>
+  <button class="tab" onclick="showTab('paths')"><span class="zh">🗺️ 学习路径</span><span class="en" style="display:none">🗺️ Learning Paths</span></button>
+  <button class="tab" onclick="showTab('mentors')"><span class="zh">👨‍🏫 导师匹配</span><span class="en" style="display:none">👨‍🏫 Mentors</span></button>
+  <button class="tab" onclick="showTab('certs')"><span class="zh">🏅 技能认证</span><span class="en" style="display:none">🏅 Certifications</span></button>
+</div>
+
+<!-- COURSES -->
+<div id="tab-courses" class="tab-content">
+<h2 class="section-title"><span class="zh">课程中心</span><span class="en" style="display:none">Course Center</span></h2>
+<p class="section-sub"><span class="zh">涵盖创业核心能力的精品课程，从入门到精通</span><span class="en" style="display:none">Core entrepreneurship courses from beginner to expert</span></p>
+<div class="cgrid">
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🚀</div>
+  <div class="ccard-body">
+    <h3><span class="zh">从0到1：独立创业者启动指南</span><span class="en" style="display:none">From 0 to 1: OPC Startup Guide</span></h3>
+    <div class="meta"><span class="zh">12节课 · 6小时 · 初级</span><span class="en" style="display:none">12 lessons · 6 hrs · Beginner</span></div>
+    <p class="desc"><span class="zh">从想法验证到第一个客户，完整覆盖独立创业的关键步骤</span><span class="en" style="display:none">From idea validation to first customer — complete OPC launch process</span></p>
+    <div class="ccard-tags">
+      <span class="ctag"><span class="zh">创业基础</span><span class="en" style="display:none">Startup Basics</span></span>
+      <span class="ctag"><span class="zh">商业模式</span><span class="en" style="display:none">Business Model</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price"><span class="zh">免费</span><span class="en" style="display:none">Free</span></span>
+      <span class="students">2,847 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#06b6d4,#22c55e)">🤖</div>
+  <div class="ccard-body">
+    <h3><span class="zh">AI Agent驱动的超级个体</span><span class="en" style="display:none">AI Agent-Powered Super Individual</span></h3>
+    <div class="meta"><span class="zh">16节课 · 8小时 · 中级</span><span class="en" style="display:none">16 lessons · 8 hrs · Intermediate</span></div>
+    <p class="desc"><span class="zh">用AI Agent放大你的能力边界，一个人就是一支团队</span><span class="en" style="display:none">Amplify your capabilities with AI agents — one person, one team</span></p>
+    <div class="ccard-tags">
+      <span class="ctag">AI Agent</span>
+      <span class="ctag"><span class="zh">自动化</span><span class="en" style="display:none">Automation</span></span>
+      <span class="ctag"><span class="zh">效率</span><span class="en" style="display:none">Productivity</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price">¥299</span>
+      <span class="students">1,523 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">💰</div>
+  <div class="ccard-body">
+    <h3><span class="zh">独立创业者财务与税务实操</span><span class="en" style="display:none">OPC Finance & Tax Practice</span></h3>
+    <div class="meta"><span class="zh">10节课 · 5小时 · 中级</span><span class="en" style="display:none">10 lessons · 5 hrs · Intermediate</span></div>
+    <p class="desc"><span class="zh">个体工商户/一人公司财税管理，合理节税，现金流管理</span><span class="en" style="display:none">Sole proprietorship finance, tax optimization, cash flow management</span></p>
+    <div class="ccard-tags">
+      <span class="ctag"><span class="zh">财务</span><span class="en" style="display:none">Finance</span></span>
+      <span class="ctag"><span class="zh">税务</span><span class="en" style="display:none">Tax</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price">¥199</span>
+      <span class="students">986 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">🎨</div>
+  <div class="ccard-body">
+    <h3><span class="zh">个人品牌打造与内容营销</span><span class="en" style="display:none">Personal Branding & Content Marketing</span></h3>
+    <div class="meta"><span class="zh">14节课 · 7小时 · 初级</span><span class="en" style="display:none">14 lessons · 7 hrs · Beginner</span></div>
+    <p class="desc"><span class="zh">建立你的个人IP，用内容获客，用信任成交</span><span class="en" style="display:none">Build your personal brand, attract customers with content, close with trust</span></p>
+    <div class="ccard-tags">
+      <span class="ctag"><span class="zh">品牌</span><span class="en" style="display:none">Branding</span></span>
+      <span class="ctag"><span class="zh">营销</span><span class="en" style="display:none">Marketing</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price">¥249</span>
+      <span class="students">2,105 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#22c55e,#06b6d4)">📊</div>
+  <div class="ccard-body">
+    <h3><span class="zh">数据驱动的商业决策</span><span class="en" style="display:none">Data-Driven Business Decisions</span></h3>
+    <div class="meta"><span class="zh">8节课 · 4小时 · 中级</span><span class="en" style="display:none">8 lessons · 4 hrs · Intermediate</span></div>
+    <p class="desc"><span class="zh">用数据代替直觉，做出更聪明的商业决策</span><span class="en" style="display:none">Replace intuition with data — make smarter business decisions</span></p>
+    <div class="ccard-tags">
+      <span class="ctag"><span class="zh">数据分析</span><span class="en" style="display:none">Analytics</span></span>
+      <span class="ctag"><span class="zh">决策</span><span class="en" style="display:none">Decision Making</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price">¥199</span>
+      <span class="students">1,342 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-cover" style="background:linear-gradient(135deg,#a855f7,#6366f1)">⚖️</div>
+  <div class="ccard-body">
+    <h3><span class="zh">独立创业者法律风险防范</span><span class="en" style="display:none">Legal Risk Prevention for OPCs</span></h3>
+    <div class="meta"><span class="zh">10节课 · 5小时 · 所有级别</span><span class="en" style="display:none">10 lessons · 5 hrs · All Levels</span></div>
+    <p class="desc"><span class="zh">合同、知识产权、劳动法——独立创业者必修法律课</span><span class="en" style="display:none">Contracts, IP, labor law — essential legal knowledge for OPCs</span></p>
+    <div class="ccard-tags">
+      <span class="ctag"><span class="zh">法律</span><span class="en" style="display:none">Legal</span></span>
+      <span class="ctag"><span class="zh">合规</span><span class="en" style="display:none">Compliance</span></span>
+    </div>
+    <div class="ccard-footer">
+      <span class="price">¥349</span>
+      <span class="students">756 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- LEARNING PATHS -->
+<div id="tab-paths" class="tab-content" style="display:none">
+<h2 class="section-title"><span class="zh">学习路径</span><span class="en" style="display:none">Learning Paths</span></h2>
+<p class="section-sub"><span class="zh">系统化的学习路径，从零开始打造你的OPC事业</span><span class="en" style="display:none">Systematic paths to build your OPC business from scratch</span></p>
+<div class="path-grid">
+
+<div class="pcard">
+  <div class="icon">🚀</div>
+  <h3><span class="zh">新手起步路径</span><span class="en" style="display:none">Beginner Path</span></h3>
+  <p class="desc"><span class="zh">适合刚开始考虑独立创业的你</span><span class="en" style="display:none">For those just starting to consider OPC</span></p>
+  <ol class="steps">
+    <li><span class="zh">自我评估：你适合做OPC吗？</span><span class="en" style="display:none">Self-assessment: Is OPC right for you?</span></li>
+    <li><span class="zh">市场调研与机会发现</span><span class="en" style="display:none">Market research & opportunity discovery</span></li>
+    <li><span class="zh">最小可行产品(MVP)构建</span><span class="en" style="display:none">Build your MVP</span></li>
+    <li><span class="zh">获取第一批客户</span><span class="en" style="display:none">Get your first customers</span></li>
+  </ol>
+  <div class="progress"><div class="progress-bar" style="width:25%"></div></div>
+</div>
+
+<div class="pcard">
+  <div class="icon">🤖</div>
+  <h3><span class="zh">AI赋能路径</span><span class="en" style="display:none">AI Empowerment Path</span></h3>
+  <p class="desc"><span class="zh">用AI工具放大你的个人能力</span><span class="en" style="display:none">Amplify your abilities with AI tools</span></p>
+  <ol class="steps">
+    <li><span class="zh">AI工具全景概览</span><span class="en" style="display:none">AI tools landscape overview</span></li>
+    <li><span class="zh">Agent工作流搭建</span><span class="en" style="display:none">Agent workflow building</span></li>
+    <li><span class="zh">A2A通信与协作</span><span class="en" style="display:none">A2A communication & collaboration</span></li>
+    <li><span class="zh">打造你的数字分身</span><span class="en" style="display:none">Build your digital twin</span></li>
+  </ol>
+  <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+</div>
+
+<div class="pcard">
+  <div class="icon">💰</div>
+  <h3><span class="zh">商业化路径</span><span class="en" style="display:none">Monetization Path</span></h3>
+  <p class="desc"><span class="zh">从技能到收入的完整转化</span><span class="en" style="display:none">Complete conversion from skill to income</span></p>
+  <ol class="steps">
+    <li><span class="zh">定价策略与价值主张</span><span class="en" style="display:none">Pricing strategy & value proposition</span></li>
+    <li><span class="zh">客户获取与留存</span><span class="en" style="display:none">Customer acquisition & retention</span></li>
+    <li><span class="zh">规模化与自动化</span><span class="en" style="display:none">Scaling & automation</span></li>
+    <li><span class="zh">被动收入构建</span><span class="en" style="display:none">Building passive income</span></li>
+  </ol>
+  <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+</div>
+
+</div>
+</div>
+
+<!-- MENTORS -->
+<div id="tab-mentors" class="tab-content" style="display:none">
+<h2 class="section-title"><span class="zh">导师匹配</span><span class="en" style="display:none">Mentor Matching</span></h2>
+<p class="section-sub"><span class="zh">与经验丰富的OPC前辈建立连接，获得一对一指导</span><span class="en" style="display:none">Connect with experienced OPC mentors for 1-on-1 guidance</span></p>
+<div class="mgrid">
+
+<div class="mcard">
+  <div class="avatar">🎯</div>
+  <h3><span class="zh">张明远</span><span class="en" style="display:none">Zhang Mingyuan</span></h3>
+  <div class="title"><span class="zh">10年独立开发者</span><span class="en" style="display:none">10yr Independent Developer</span></div>
+  <p class="bio"><span class="zh">从大厂离职后独立创业，服务过200+企业客户</span><span class="en" style="display:none">Left big tech, served 200+ enterprise clients independently</span></p>
+  <div class="skills">
+    <span class="skill-tag">SaaS</span>
+    <span class="skill-tag"><span class="zh">技术架构</span><span class="en" style="display:none">Architecture</span></span>
+    <span class="skill-tag"><span class="zh">客户开发</span><span class="en" style="display:none">Sales</span></span>
+  </div>
+  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
+</div>
+
+<div class="mcard">
+  <div class="avatar">💡</div>
+  <h3><span class="zh">李思琪</span><span class="en" style="display:none">Li Siqi</span></h3>
+  <div class="title"><span class="zh">5年自由咨询师</span><span class="en" style="display:none">5yr Freelance Consultant</span></div>
+  <p class="bio"><span class="zh">管理咨询背景，帮助50+人成功转型为OPC</span><span class="en" style="display:none">Management consulting background, helped 50+ become OPCs</span></p>
+  <div class="skills">
+    <span class="skill-tag"><span class="zh">咨询</span><span class="en" style="display:none">Consulting</span></span>
+    <span class="skill-tag"><span class="zh">品牌</span><span class="en" style="display:none">Branding</span></span>
+    <span class="skill-tag"><span class="zh">定价</span><span class="en" style="display:none">Pricing</span></span>
+  </div>
+  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
+</div>
+
+<div class="mcard">
+  <div class="avatar">🚀</div>
+  <h3><span class="zh">王浩然</span><span class="en" style="display:none">Wang Haoran</span></h3>
+  <div class="title"><span class="zh">AI创业者 · 8年经验</span><span class="en" style="display:none">AI Entrepreneur · 8yr</span></div>
+  <p class="bio"><span class="zh">专注AI应用开发，打造过3个百万级产品</span><span class="en" style="display:none">AI application expert, built 3 products with 1M+ revenue</span></p>
+  <div class="skills">
+    <span class="skill-tag">AI</span>
+    <span class="skill-tag"><span class="zh">产品</span><span class="en" style="display:none">Product</span></span>
+    <span class="skill-tag"><span class="zh">增长</span><span class="en" style="display:none">Growth</span></span>
+  </div>
+  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
+</div>
+
+</div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div id="tab-certs" class="tab-content" style="display:none">
+<h2 class="section-title"><span class="zh">技能认证</span><span class="en" style="display:none">Certifications</span></h2>
+<p class="section-sub"><span class="zh">权威认证，证明你的独立创业能力</span><span class="en" style="display:none">Authoritative certifications to prove your OPC capabilities</span></p>
+<div class="cert-grid">
+
+<div class="cert-card">
+  <div class="cert-icon" style="background:#6366f122;color:#6366f1">🏆</div>
+  <div>
+    <h3><span class="zh">OPC创业者认证</span><span class="en" style="display:none">OPC Entrepreneur Certification</span></h3>
+    <p class="desc"><span class="zh">独立创业核心能力全面认证</span><span class="en" style="display:none">Comprehensive OPC core competency certification</span></p>
+    <div class="level"><span class="zh">综合认证 · 4个模块</span><span class="en" style="display:none">Comprehensive · 4 modules</span></div>
+  </div>
+</div>
+
+<div class="cert-card">
+  <div class="cert-icon" style="background:#06b6d422;color:#06b6d4">🤖</div>
+  <div>
+    <h3><span class="zh">AI Agent工程师认证</span><span class="en" style="display:none">AI Agent Engineer Certification</span></h3>
+    <p class="desc"><span class="zh">AI Agent开发与应用能力认证</span><span class="en" style="display:none">AI agent development & application certification</span></p>
+    <div class="level"><span class="zh">技术认证 · 3个模块</span><span class="en" style="display:none">Technical · 3 modules</span></div>
+  </div>
+</div>
+
+<div class="cert-card">
+  <div class="cert-icon" style="background:#22c55e22;color:#22c55e">📊</div>
+  <div>
+    <h3><span class="zh">数据分析师认证</span><span class="en" style="display:none">Data Analyst Certification</span></h3>
+    <p class="desc"><span class="zh">商业数据分析能力认证</span><span class="en" style="display:none">Business data analysis capability certification</span></p>
+    <div class="level"><span class="zh">专项认证 · 2个模块</span><span class="en" style="display:none">Specialized · 2 modules</span></div>
+  </div>
+</div>
+
+<div class="cert-card">
+  <div class="cert-icon" style="background:#f59e0b22;color:#f59e0b">💰</div>
+  <div>
+    <h3><span class="zh">独立咨询师认证</span><span class="en" style="display:none">Independent Consultant Certification</span></h3>
+    <p class="desc"><span class="zh">独立咨询服务能力认证</span><span class="en" style="display:none">Independent consulting service capability certification</span></p>
+    <div class="level"><span class="zh">专业认证 · 3个模块</span><span class="en" style="display:none">Professional · 3 modules</span></div>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<footer class="footer">
+<div class="container">
+  <p><span class="zh">OPC Academy · 让每个独立创业者都能持续成长</span><span class="en" style="display:none">OPC Academy · Empowering every independent entrepreneur to grow</span></p>
+</div>
+</footer>
+
+<script>
+// Tab switching
+function showTab(name){
+  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
+  document.getElementById('tab-'+name).style.display='block';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.closest('.tab').classList.add('active');
+}
+
+// Bilingual
+let lang=localStorage.getItem('opc-lang')||'zh';
+function toggleLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);applyLang();}
+function applyLang(){document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');document.documentElement.lang=lang==='zh'?'zh-CN':'en';}
+applyLang();
+</script>
+</body>
+</html>
