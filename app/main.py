@@ -33,6 +33,7 @@ from app.routes.community import router as community_router
 from app.routes.agents import router as agents_router
 from app.routes.chat import router as chat_router
 from app.routes.secondme import router as secondme_router
+from app.routes.realtime_chat import router as realtime_chat_router
 
 app.include_router(academy_router)
 app.include_router(health_router)
@@ -41,6 +42,7 @@ app.include_router(community_router)
 app.include_router(agents_router)
 app.include_router(chat_router)
 app.include_router(secondme_router)
+app.include_router(realtime_chat_router)
 
 # 健康检查
 @app.get("/api/health")
