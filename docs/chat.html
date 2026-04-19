@@ -211,14 +211,14 @@
     </div>
 </div>
 <script>
-const API=location.origin,WS=(location.protocol==='https:'?'wss:':'ws:')+'//'+location.host,UID=1;
+const API='https://opc-platform.onrender.com',WS='wss://opc-platform.onrender.com',UID=1;
 let roomId=null,ws=null,connected=false,agentMode=false,smRoute=null;
-document.addEventListener('DOMContentLoaded',()=>{loadRooms();connectWS();setupInput();fetch(API+'/api/chat/seed-rooms',{method:'POST'}).then(()=>loadRooms()).catch(console.error)});
+document.addEventListener('DOMContentLoaded',()=>{loadRooms();connectWS();setupInput();fetch(API+'/api/realtime/seed-rooms',{method:'POST'}).then(()=>loadRooms()).catch(console.error)});
 
 function connectWS(){
     const s=document.getElementById('status');
     s.className='status wait';s.innerHTML='<span>●</span> 连接中...';
-    ws=new WebSocket(WS+'/api/chat/ws?user_id='+UID);
+    ws=new WebSocket(WS+'/api/realtime/ws?user_id='+UID);
     ws.onopen=()=>{connected=true;s.className='status on';s.innerHTML='<span>●</span> 已连接';if(roomId)joinRoom(roomId)};
     ws.onmessage=e=>handleMsg(JSON.parse(e.data));
     ws.onclose=()=>{connected=false;s.className='status off';s.innerHTML='<span>●</span> 已断开';setTimeout(connectWS,3000)};
@@ -233,7 +233,7 @@ function handleMsg(d){
 }
 
 async function loadRooms(){
-    const r=await fetch(API+'/api/chat/rooms'),d=await r.json();
+    const r=await fetch(API+'/api/realtime/rooms'),d=await r.json();
     document.getElementById('rooms').innerHTML=d.rooms.map(r=>`
         <div class="room-item ${roomId===r.id?'active':''}" onclick="selectRoom(${r.id},'${esc(r.name)}','${esc(r.description||'')}')">
             <div class="room-name">${r.name}${r.room_type==='agent_hybrid'?'<span class="badge agent">Agent</span>':''}</div>
@@ -249,7 +249,7 @@ async function selectRoom(id,name,desc){
     document.getElementById('roomDesc').textContent=desc||'实时聊天中';
     document.querySelectorAll('.room-item').forEach(e=>{e.classList.remove('active');if(e.textContent.includes(name.replace(/[^\w\u4e00-\u9fa5]/g,'')))e.classList.add('active')});
     const m=document.getElementById('msgs');m.innerHTML='<div class="sys-msg">加载中...</div>';
-    const r=await fetch(API+'/api/chat/rooms/'+id+'/messages'),d=await r.json();
+    const r=await fetch(API+'/api/realtime/rooms/'+id+'/messages'),d=await r.json();
     m.innerHTML=d.messages.length?d.messages.map(m=>renderMsg(m)).join(''):'<div class="sys-msg">还没有消息</div>';
     scrollToBottom();joinRoom(id);
 }
@@ -296,7 +296,7 @@ async function connectSM(){
     const r=document.getElementById('smRoute').value.trim();
     if(!r){alert('请输入路由');return}
     if(!roomId){alert('请先选择聊天室');return}
-    const res=await fetch(API+'/api/chat/rooms/'+roomId+'/invite-agent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secondme_route:r})});
+    const res=await fetch(API+'/api/realtime/rooms/'+roomId+'/invite-agent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secondme_route:r})});
     const d=await res.json();
     if(res.ok){
         smRoute=r;agentMode=true;
@@ -315,7 +315,7 @@ function hideModal(){document.getElementById('modal').classList.remove('active')
 async function createRoom(){
     const n=document.getElementById('newName').value.trim(),de=document.getElementById('newDesc').value.trim(),t=document.getElementById('newType').value;
     if(!n){alert('请输入名称');return}
-    const r=await fetch(API+'/api/chat/rooms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,description:de,room_type:t,user_id:UID})});
+    const r=await fetch(API+'/api/realtime/rooms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,description:de,room_type:t,user_id:UID})});
     const d=await r.json();
     if(r.ok){hideModal();loadRooms();selectRoom(d.id,n,de)}
 }
