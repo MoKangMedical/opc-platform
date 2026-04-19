@@ -85,6 +85,7 @@
             <a href="https://github.com/MoKangMedical/opc-platform" class="nav-link" target="_blank">GitHub</a>
         </div>
     </div>
+<button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
 </nav>
 
     <!-- Hero -->
@@ -525,5 +526,20 @@
 
     <script src="legends-data.js"></script>
     <script src="legends-app.js"></script>
+<script>
+// BILINGUAL SUPPORT
+let lang = localStorage.getItem('opc-lang') || 'zh';
+function toggleLang(){
+  lang = lang==='zh'?'en':'zh';
+  localStorage.setItem('opc-lang', lang);
+  applyLang();
+}
+function applyLang(){
+  document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');
+  document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');
+  document.documentElement.lang = lang==='zh'?'zh-CN':'en';
+}
+applyLang();
+</script>
 </body>
 </html>
