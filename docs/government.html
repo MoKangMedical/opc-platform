@@ -286,26 +286,36 @@
     
 .lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border,rgba(255,255,255,0.1));background:rgba(255,255,255,0.05);color:#999;font-size:12px;cursor:pointer;transition:all .2s;margin-left:8px}
 .lang-btn:hover{border-color:#6366f1;color:#fff}
+
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
+.nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:6px 12px;border-radius:7px;color:#8888a0;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
+.nl:hover{color:#e8e8ed;background:rgba(255,255,255,0.05)}
+.nl.a{color:#e8e8ed;background:rgba(99,102,241,0.1)}
+.lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
+.lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
 </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
-    <div class="nav-inner">
-        <a href="index.html" class="nav-logo">
-            <span class="logo-icon">🏛️</span>
-            <span class="logo-text">OPC <span class="accent">Platform</span></span>
-        </a>
-        <div class="nav-links">
-<a href="platform.html" class="nav-link"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
-<a href="government.html" class="nav-link active"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
-<a href="superagent.html" class="nav-link"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
-<a href="legends.html" class="nav-link"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
-<a href="academy.html" class="nav-link"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
-<a href="health.html" class="nav-link"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
-<button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
-    </div>
-    </div>
+<div class="nav-in">
+  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:#818cf8">Platform</span></span></a>
+  <div class="nav-links">
+    <a href="platform.html" class="nl"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
+    <a href="government.html" class="nl a"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
+    <a href="superagent.html" class="nl"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
+    <a href="legends.html" class="nl"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
+    <a href="academy.html" class="nl"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
+    <a href="health.html" class="nl"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+  </div>
+</div>
 </nav>
 
     <!-- Hero -->
