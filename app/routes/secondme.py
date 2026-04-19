@@ -17,8 +17,8 @@ SECONDBASE = "https://api.mindverse.com/gate/lab"
 SECONDEME_AUTH = "https://app.mindos.com/gate/lab"
 
 # OAuth2 配置 - 从 SecondMe Developer Console 获取
-CLIENT_ID = os.getenv("SECONDEME_CLIENT_ID", "opc_platform")
-CLIENT_SECRET = os.getenv("SECONDEME_CLIENT_SECRET", "")
+CLIENT_ID = os.getenv("SECONDEME_CLIENT_ID", "52754d67-3e5e-4f5e-889f-d823147927d7")
+CLIENT_SECRET = os.getenv("SECONDEME_CLIENT_SECRET", "271c76f3753064447a43c5cfd0e7af5f05d842ee6b9db1b293073ec08c61f0c4")
 REDIRECT_URI = os.getenv("SECONDEME_REDIRECT_URI", "https://opc-platform.onrender.com/api/secondme/callback")
 
 # 应用 token 缓存
