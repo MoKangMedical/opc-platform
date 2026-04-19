@@ -248,8 +248,21 @@ _engine = None
 def get_engine() -> MatchingEngine:
     global _engine
     if _engine is None:
-        data_path = os.path.join(
-            os.path.dirname(__file__), "..", "..", "data", "jiangsu_ai_scenarios.json"
-        )
-        _engine = MatchingEngine(data_path)
+        # 尝试多个可能的数据路径
+        possible_paths = [
+            os.path.join(os.path.dirname(__file__), "..", "..", "data", "jiangsu_ai_scenarios.json"),
+            os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "jiangsu_ai_scenarios.json"),
+            os.path.join(os.getcwd(), "data", "jiangsu_ai_scenarios.json"),
+            "/opt/render/project/src/data/jiangsu_ai_scenarios.json",
+        ]
+        data_path = None
+        for p in possible_paths:
+            if os.path.exists(p):
+                data_path = p
+                break
+        if data_path:
+            _engine = MatchingEngine(data_path)
+        else:
+            _engine = MatchingEngine()
+            print(f"⚠️ Warning: Could not find jiangsu_ai_scenarios.json in {possible_paths}")
     return _engine
