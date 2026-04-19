@@ -3,425 +3,440 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>OPC Academy | OPC学院 - 创业者技能成长平台</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>OPC Academy | OPC学院</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--bg4:#1e1e30;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--pink:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
-body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .zh,.en{transition:opacity .2s}
-.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s;margin-left:8px}
-.lang-btn:hover{border-color:var(--accent);color:var(--t1)}
+.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;cursor:pointer;margin-left:8px}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--t1);text-decoration:none}
-.nav-logo .dot{color:var(--accent);font-size:20px}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nav-link{padding:7px 12px;border-radius:8px;color:var(--t2);font-size:13px;font-weight:500;transition:all .2s;text-decoration:none;white-space:nowrap}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px;color:var(--t1);text-decoration:none}
+.nav-logo .dot{color:var(--accent);font-size:18px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{padding:6px 11px;border-radius:8px;color:var(--t2);font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .2s}
 .nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
 
 /* HERO */
-.hero{padding:120px 0 60px;text-align:center;background:linear-gradient(180deg,#0d0d2a 0%,var(--bg) 100%);position:relative}
-.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.06) 0%,transparent 70%);pointer-events:none}
-.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;margin-bottom:12px}
+.hero{padding:100px 0 40px;text-align:center;background:linear-gradient(180deg,#0d0d2a 0%,var(--bg) 100%)}
+.hero h1{font-size:clamp(24px,4vw,40px);font-weight:800;margin-bottom:10px}
 .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--t2);font-size:16px;max-width:600px;margin:0 auto 32px}
-.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
-.stat .num{font-size:32px;font-weight:700;color:var(--accent);font-family:'Space Grotesk',monospace}
-.stat .label{font-size:12px;color:var(--t3)}
+.hero>p{color:var(--t2);font-size:14px;max-width:500px;margin:0 auto 28px}
+.hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.hs .n{font-size:28px;font-weight:700;color:var(--accent);font-family:'Space Grotesk'}
+.hs .l{font-size:11px;color:var(--t3)}
 
 /* TABS */
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;overflow-x:auto}
-.tab{padding:14px 24px;font-size:14px;font-weight:600;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.tab:hover{color:var(--t2)}
-.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto}
+.tab-btn{padding:12px 20px;font-size:13.5px;font-weight:600;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--t2)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* COURSE GRID */
-.section-title{font-size:24px;font-weight:700;margin-bottom:8px}
-.section-sub{color:var(--t2);font-size:14px;margin-bottom:24px}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s}
-.ccard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,0.08)}
-.ccard-cover{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
-.ccard-body{padding:20px}
-.ccard-body h3{font-size:16px;margin-bottom:6px}
-.ccard-body .meta{font-size:12px;color:var(--t3);margin-bottom:10px}
-.ccard-body .desc{font-size:13px;color:var(--t2);margin-bottom:12px}
-.ccard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.ctag{padding:3px 10px;border-radius:10px;font-size:11px;background:var(--bg3);color:var(--t2)}
-.ccard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border)}
-.ccard-footer .price{font-weight:700;color:var(--green)}
-.ccard-footer .students{font-size:12px;color:var(--t3)}
-.ccard-footer .btn{padding:6px 16px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
-.ccard-footer .btn:hover{background:var(--accent2)}
+.section-head{margin-bottom:20px}
+.section-head h2{font-size:22px;font-weight:700;margin-bottom:4px}
+.section-head p{color:var(--t2);font-size:13px}
+
+/* COURSE CARDS */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;cursor:pointer}
+.ccard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.08)}
+.ccard-cover{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.ccard-body{padding:16px}
+.ccard-body h3{font-size:15px;font-weight:600;margin-bottom:4px;line-height:1.4}
+.ccard-body .meta{font-size:11.5px;color:var(--t3);margin-bottom:8px}
+.ccard-body .desc{font-size:12.5px;color:var(--t2);margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ccard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.ctag{padding:2px 8px;border-radius:8px;font-size:10.5px;background:var(--bg3);color:var(--t2)}
+.ccard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
+.price{font-weight:700;color:var(--green);font-size:15px}
+.students{font-size:11px;color:var(--t3)}
+.enroll-btn{padding:6px 16px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.enroll-btn:hover{background:var(--accent2)}
+.enroll-btn.enrolled{background:var(--bg3);color:var(--green)}
+
+/* FILTER */
+.filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.fbtn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--bg2);color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s}
+.fbtn:hover,.fbtn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* MENTOR CARDS */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s}
+.mcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.mcard .av{width:56px;height:56px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--bg3)}
+.mcard h3{font-size:16px;margin-bottom:2px}
+.mcard .title{font-size:12px;color:var(--gold);margin-bottom:8px}
+.mcard .bio{font-size:12px;color:var(--t2);margin-bottom:12px}
+.mcard .skills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px}
+.stag{padding:3px 9px;border-radius:8px;font-size:10.5px;background:var(--bg3);color:var(--t2)}
+.mcard .rating{font-size:12px;color:var(--gold);margin-bottom:10px}
+.match-btn{padding:7px 20px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
+.match-btn:hover{background:var(--accent);color:#fff}
+
+/* CERT CARDS */
+.certgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.certcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:center;transition:all .3s}
+.certcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.cert-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.certcard h3{font-size:15px;margin-bottom:3px}
+.certcard .cdesc{font-size:12px;color:var(--t2)}
+.certcard .clevel{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
 
 /* LEARNING PATH */
-.path-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.pathgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
-.pcard .icon{font-size:36px;margin-bottom:12px}
-.pcard h3{font-size:18px;margin-bottom:6px}
-.pcard .desc{font-size:13px;color:var(--t2);margin-bottom:16px}
+.pcard .picon{font-size:32px;margin-bottom:12px}
+.pcard h3{font-size:16px;margin-bottom:4px}
+.pcard .pdesc{font-size:12px;color:var(--t2);margin-bottom:16px}
 .pcard .steps{list-style:none;counter-reset:step}
-.pcard .steps li{font-size:13px;color:var(--t2);padding:6px 0;counter-increment:step;position:relative;padding-left:28px}
-.pcard .steps li::before{content:counter(step);position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--bg3);color:var(--accent);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.pcard .progress{margin-top:16px;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
-.pcard .progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+.pcard .steps li{font-size:12.5px;color:var(--t2);padding:5px 0;padding-left:26px;position:relative;counter-increment:step}
+.pcard .steps li::before{content:counter(step);position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--bg3);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pcard .prog{margin-top:14px;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.pcard .prog-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
 
-/* MENTOR */
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:24px}
-.mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
-.mcard .avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--bg3)}
-.mcard h3{font-size:16px;margin-bottom:2px}
-.mcard .title{font-size:13px;color:var(--gold);margin-bottom:8px}
-.mcard .bio{font-size:12px;color:var(--t2);margin-bottom:12px}
-.mcard .skills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.mcard .skill-tag{padding:3px 10px;border-radius:10px;font-size:11px;background:var(--bg3);color:var(--t2)}
-.mcard .match{margin-top:12px;padding:6px 16px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
-.mcard .match:hover{background:var(--accent);color:#fff}
+/* MODAL */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto}
+.modal h2{font-size:20px;margin-bottom:16px}
+.modal .close-btn{float:right;background:none;border:none;color:var(--t2);font-size:20px;cursor:pointer}
+.modal .lesson-list{list-style:none;margin:16px 0}
+.modal .lesson-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:13px}
+.modal .lesson-list .free{color:var(--green);font-size:11px}
+.modal .enroll-action{margin-top:20px;text-align:center}
+.modal .enroll-big{padding:12px 32px;border-radius:10px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer}
+.modal .enroll-big:hover{background:var(--accent2)}
 
-/* CERT */
-.cert-section{margin-top:40px}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:24px}
-.cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:center}
-.cert-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.cert-card h3{font-size:16px;margin-bottom:4px}
-.cert-card .desc{font-size:12px;color:var(--t2)}
-.cert-card .level{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:300;display:none;animation:fadeInUp .3s}
+@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-/* FOOTER */
-.footer{border-top:1px solid var(--border);padding:32px 0;margin-top:60px}
-.footer p{text-align:center;font-size:12px;color:var(--t3)}
-
-@media(max-width:768px){
-  .nav-links .nav-link{padding:7px 8px;font-size:12px}
-  .cgrid,.path-grid,.mgrid,.cert-grid{grid-template-columns:1fr}
-  .hero h1{font-size:24px}
-}
+.tab-content{display:none}.tab-content.active{display:block}
+.footer{border-top:1px solid var(--border);padding:24px 0;margin-top:48px;text-align:center;font-size:11px;color:var(--t3)}
+@media(max-width:768px){.cgrid,.mgrid,.certgrid,.pathgrid{grid-template-columns:1fr}.nav-links .nav-link{padding:6px 8px;font-size:11.5px}}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-<div class="nav-inner">
+<nav class="nav"><div class="nav-inner">
   <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
   <div class="nav-links">
-<a href="platform.html" class="nav-link"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
-<a href="government.html" class="nav-link"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
-<a href="superagent.html" class="nav-link"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
-<a href="legends.html" class="nav-link"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
-<a href="academy.html" class="nav-link active"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
-<a href="health.html" class="nav-link"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
-<button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
-    </div>
-</div>
-</nav>
+    <a href="platform.html" class="nav-link"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
+    <a href="government.html" class="nav-link"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
+    <a href="superagent.html" class="nav-link"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
+    <a href="legends.html" class="nav-link"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
+    <a href="academy.html" class="nav-link active"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
+    <a href="health.html" class="nav-link"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+  </div>
+</div></nav>
 
 <section class="hero">
-<div class="container">
-  <h1>
-    <span class="zh">📚 <span class="grad">OPC 学院</span> — 创业者技能成长平台</span>
-    <span class="en" style="display:none">📚 <span class="grad">OPC Academy</span> — Entrepreneur Skill Growth</span>
-  </h1>
-  <p>
-    <span class="zh">从零到一打造你的独立创业能力。课程学习 · 技能认证 · 导师指导 · 学习社区</span>
-    <span class="en" style="display:none">Build your independent entrepreneurship skills from scratch. Courses · Certifications · Mentorship · Community</span>
-  </p>
-  <div class="hero-stats">
-    <div class="stat"><div class="num">24</div><div class="label"><span class="zh">精品课程</span><span class="en" style="display:none">Courses</span></div></div>
-    <div class="stat"><div class="num">6</div><div class="label"><span class="zh">学习路径</span><span class="en" style="display:none">Learning Paths</span></div></div>
-    <div class="stat"><div class="num">12</div><div class="label"><span class="zh">认证导师</span><span class="en" style="display:none">Mentors</span></div></div>
-    <div class="stat"><div class="num">4</div><div class="label"><span class="zh">技能认证</span><span class="en" style="display:none">Certifications</span></div></div>
-  </div>
+<h1><span class="zh">📚 <span class="grad">OPC 学院</span></span><span class="en" style="display:none">📚 <span class="grad">OPC Academy</span></span></h1>
+<p><span class="zh">从零到一打造你的独立创业能力</span><span class="en" style="display:none">Build your OPC skills from scratch</span></p>
+<div class="hero-stats">
+  <div class="hs"><div class="n" id="statCourses">--</div><div class="l"><span class="zh">精品课程</span><span class="en" style="display:none">Courses</span></div></div>
+  <div class="hs"><div class="n" id="statPaths">6</div><div class="l"><span class="zh">学习路径</span><span class="en" style="display:none">Paths</span></div></div>
+  <div class="hs"><div class="n" id="statMentors">--</div><div class="l"><span class="zh">认证导师</span><span class="en" style="display:none">Mentors</span></div></div>
+  <div class="hs"><div class="n" id="statCerts">--</div><div class="l"><span class="zh">技能认证</span><span class="en" style="display:none">Certs</span></div></div>
 </div>
 </section>
 
 <div class="container">
-<div class="tabs">
-  <button class="tab active" onclick="showTab('courses')"><span class="zh">📖 课程中心</span><span class="en" style="display:none">📖 Courses</span></button>
-  <button class="tab" onclick="showTab('paths')"><span class="zh">🗺️ 学习路径</span><span class="en" style="display:none">🗺️ Learning Paths</span></button>
-  <button class="tab" onclick="showTab('mentors')"><span class="zh">👨‍🏫 导师匹配</span><span class="en" style="display:none">👨‍🏫 Mentors</span></button>
-  <button class="tab" onclick="showTab('certs')"><span class="zh">🏅 技能认证</span><span class="en" style="display:none">🏅 Certifications</span></button>
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('courses',this)"><span class="zh">📖 课程中心</span><span class="en" style="display:none">📖 Courses</span></button>
+  <button class="tab-btn" onclick="showTab('paths',this)"><span class="zh">🗺️ 学习路径</span><span class="en" style="display:none">🗺️ Paths</span></button>
+  <button class="tab-btn" onclick="showTab('mentors',this)"><span class="zh">👨‍🏫 导师匹配</span><span class="en" style="display:none">👨‍🏫 Mentors</span></button>
+  <button class="tab-btn" onclick="showTab('certs',this)"><span class="zh">🏅 技能认证</span><span class="en" style="display:none">🏅 Certs</span></button>
+  <button class="tab-btn" onclick="showTab('my',this)"><span class="zh">📋 我的学习</span><span class="en" style="display:none">📋 My Learning</span></button>
 </div>
 
-<!-- COURSES -->
-<div id="tab-courses" class="tab-content">
-<h2 class="section-title"><span class="zh">课程中心</span><span class="en" style="display:none">Course Center</span></h2>
-<p class="section-sub"><span class="zh">涵盖创业核心能力的精品课程，从入门到精通</span><span class="en" style="display:none">Core entrepreneurship courses from beginner to expert</span></p>
-<div class="cgrid">
+<!-- COURSES TAB -->
+<div class="tab-content active" id="tab-courses">
+<div class="filter-bar" id="catFilter"></div>
+<div class="cgrid" id="courseGrid"><div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t3)">⏳ <span class="zh">加载中...</span><span class="en" style="display:none">Loading...</span></div></div>
+</div>
 
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🚀</div>
-  <div class="ccard-body">
-    <h3><span class="zh">从0到1：独立创业者启动指南</span><span class="en" style="display:none">From 0 to 1: OPC Startup Guide</span></h3>
-    <div class="meta"><span class="zh">12节课 · 6小时 · 初级</span><span class="en" style="display:none">12 lessons · 6 hrs · Beginner</span></div>
-    <p class="desc"><span class="zh">从想法验证到第一个客户，完整覆盖独立创业的关键步骤</span><span class="en" style="display:none">From idea validation to first customer — complete OPC launch process</span></p>
-    <div class="ccard-tags">
-      <span class="ctag"><span class="zh">创业基础</span><span class="en" style="display:none">Startup Basics</span></span>
-      <span class="ctag"><span class="zh">商业模式</span><span class="en" style="display:none">Business Model</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price"><span class="zh">免费</span><span class="en" style="display:none">Free</span></span>
-      <span class="students">2,847 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
+<!-- PATHS TAB -->
+<div class="tab-content" id="tab-paths">
+<div class="pathgrid">
+  <div class="pcard"><div class="picon">🚀</div>
+    <h3><span class="zh">新手起步路径</span><span class="en" style="display:none">Beginner Path</span></h3>
+    <p class="pdesc"><span class="zh">适合刚开始考虑独立创业的你</span><span class="en" style="display:none">For those starting OPC</span></p>
+    <ol class="steps"><li><span class="zh">自我评估：你适合做OPC吗？</span><span class="en" style="display:none">Self-assessment</span></li><li><span class="zh">市场调研与机会发现</span><span class="en" style="display:none">Market research</span></li><li><span class="zh">最小可行产品(MVP)构建</span><span class="en" style="display:none">Build MVP</span></li><li><span class="zh">获取第一批客户</span><span class="en" style="display:none">First customers</span></li></ol>
+    <div class="prog"><div class="prog-bar" style="width:25%"></div></div>
+  </div>
+  <div class="pcard"><div class="picon">🤖</div>
+    <h3><span class="zh">AI赋能路径</span><span class="en" style="display:none">AI Empowerment Path</span></h3>
+    <p class="pdesc"><span class="zh">用AI工具放大你的个人能力</span><span class="en" style="display:none">Amplify abilities with AI</span></p>
+    <ol class="steps"><li><span class="zh">AI工具全景概览</span><span class="en" style="display:none">AI tools overview</span></li><li><span class="zh">Agent工作流搭建</span><span class="en" style="display:none">Agent workflow</span></li><li><span class="zh">A2A通信与协作</span><span class="en" style="display:none">A2A communication</span></li><li><span class="zh">打造你的数字分身</span><span class="en" style="display:none">Digital twin</span></li></ol>
+    <div class="prog"><div class="prog-bar" style="width:60%"></div></div>
+  </div>
+  <div class="pcard"><div class="picon">💰</div>
+    <h3><span class="zh">商业化路径</span><span class="en" style="display:none">Monetization Path</span></h3>
+    <p class="pdesc"><span class="zh">从技能到收入的完整转化</span><span class="en" style="display:none">Skill to income conversion</span></p>
+    <ol class="steps"><li><span class="zh">定价策略与价值主张</span><span class="en" style="display:none">Pricing strategy</span></li><li><span class="zh">客户获取与留存</span><span class="en" style="display:none">Customer acquisition</span></li><li><span class="zh">规模化与自动化</span><span class="en" style="display:none">Scaling & automation</span></li><li><span class="zh">被动收入构建</span><span class="en" style="display:none">Passive income</span></li></ol>
+    <div class="prog"><div class="prog-bar" style="width:40%"></div></div>
   </div>
 </div>
-
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#06b6d4,#22c55e)">🤖</div>
-  <div class="ccard-body">
-    <h3><span class="zh">AI Agent驱动的超级个体</span><span class="en" style="display:none">AI Agent-Powered Super Individual</span></h3>
-    <div class="meta"><span class="zh">16节课 · 8小时 · 中级</span><span class="en" style="display:none">16 lessons · 8 hrs · Intermediate</span></div>
-    <p class="desc"><span class="zh">用AI Agent放大你的能力边界，一个人就是一支团队</span><span class="en" style="display:none">Amplify your capabilities with AI agents — one person, one team</span></p>
-    <div class="ccard-tags">
-      <span class="ctag">AI Agent</span>
-      <span class="ctag"><span class="zh">自动化</span><span class="en" style="display:none">Automation</span></span>
-      <span class="ctag"><span class="zh">效率</span><span class="en" style="display:none">Productivity</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price">¥299</span>
-      <span class="students">1,523 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
-  </div>
 </div>
 
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">💰</div>
-  <div class="ccard-body">
-    <h3><span class="zh">独立创业者财务与税务实操</span><span class="en" style="display:none">OPC Finance & Tax Practice</span></h3>
-    <div class="meta"><span class="zh">10节课 · 5小时 · 中级</span><span class="en" style="display:none">10 lessons · 5 hrs · Intermediate</span></div>
-    <p class="desc"><span class="zh">个体工商户/一人公司财税管理，合理节税，现金流管理</span><span class="en" style="display:none">Sole proprietorship finance, tax optimization, cash flow management</span></p>
-    <div class="ccard-tags">
-      <span class="ctag"><span class="zh">财务</span><span class="en" style="display:none">Finance</span></span>
-      <span class="ctag"><span class="zh">税务</span><span class="en" style="display:none">Tax</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price">¥199</span>
-      <span class="students">986 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
-  </div>
+<!-- MENTORS TAB -->
+<div class="tab-content" id="tab-mentors">
+<p class="section-head p"><span class="zh">与经验丰富的OPC前辈建立连接，获得一对一指导</span><span class="en" style="display:none">Connect with experienced OPC mentors</span></p>
+<div class="mgrid" id="mentorGrid"><div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t3)">⏳</div></div>
 </div>
 
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">🎨</div>
-  <div class="ccard-body">
-    <h3><span class="zh">个人品牌打造与内容营销</span><span class="en" style="display:none">Personal Branding & Content Marketing</span></h3>
-    <div class="meta"><span class="zh">14节课 · 7小时 · 初级</span><span class="en" style="display:none">14 lessons · 7 hrs · Beginner</span></div>
-    <p class="desc"><span class="zh">建立你的个人IP，用内容获客，用信任成交</span><span class="en" style="display:none">Build your personal brand, attract customers with content, close with trust</span></p>
-    <div class="ccard-tags">
-      <span class="ctag"><span class="zh">品牌</span><span class="en" style="display:none">Branding</span></span>
-      <span class="ctag"><span class="zh">营销</span><span class="en" style="display:none">Marketing</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price">¥249</span>
-      <span class="students">2,105 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
-  </div>
+<!-- CERTS TAB -->
+<div class="tab-content" id="tab-certs">
+<div class="certgrid" id="certGrid"><div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t3)">⏳</div></div>
 </div>
 
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#22c55e,#06b6d4)">📊</div>
-  <div class="ccard-body">
-    <h3><span class="zh">数据驱动的商业决策</span><span class="en" style="display:none">Data-Driven Business Decisions</span></h3>
-    <div class="meta"><span class="zh">8节课 · 4小时 · 中级</span><span class="en" style="display:none">8 lessons · 4 hrs · Intermediate</span></div>
-    <p class="desc"><span class="zh">用数据代替直觉，做出更聪明的商业决策</span><span class="en" style="display:none">Replace intuition with data — make smarter business decisions</span></p>
-    <div class="ccard-tags">
-      <span class="ctag"><span class="zh">数据分析</span><span class="en" style="display:none">Analytics</span></span>
-      <span class="ctag"><span class="zh">决策</span><span class="en" style="display:none">Decision Making</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price">¥199</span>
-      <span class="students">1,342 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
-  </div>
-</div>
-
-<div class="ccard">
-  <div class="ccard-cover" style="background:linear-gradient(135deg,#a855f7,#6366f1)">⚖️</div>
-  <div class="ccard-body">
-    <h3><span class="zh">独立创业者法律风险防范</span><span class="en" style="display:none">Legal Risk Prevention for OPCs</span></h3>
-    <div class="meta"><span class="zh">10节课 · 5小时 · 所有级别</span><span class="en" style="display:none">10 lessons · 5 hrs · All Levels</span></div>
-    <p class="desc"><span class="zh">合同、知识产权、劳动法——独立创业者必修法律课</span><span class="en" style="display:none">Contracts, IP, labor law — essential legal knowledge for OPCs</span></p>
-    <div class="ccard-tags">
-      <span class="ctag"><span class="zh">法律</span><span class="en" style="display:none">Legal</span></span>
-      <span class="ctag"><span class="zh">合规</span><span class="en" style="display:none">Compliance</span></span>
-    </div>
-    <div class="ccard-footer">
-      <span class="price">¥349</span>
-      <span class="students">756 <span class="zh">人学习</span><span class="en" style="display:none">learners</span></span>
-    </div>
-  </div>
-</div>
-
+<!-- MY LEARNING TAB -->
+<div class="tab-content" id="tab-my">
+<div class="section-head"><h2><span class="zh">📋 我的学习进度</span><span class="en" style="display:none">📋 My Progress</span></h2></div>
+<div id="myEnrollments"><div style="text-align:center;padding:40px;color:var(--t3)"><span class="zh">你还没有报名任何课程，去课程中心看看吧！</span><span class="en" style="display:none">No enrollments yet. Browse courses!</span></div></div>
 </div>
 </div>
 
-<!-- LEARNING PATHS -->
-<div id="tab-paths" class="tab-content" style="display:none">
-<h2 class="section-title"><span class="zh">学习路径</span><span class="en" style="display:none">Learning Paths</span></h2>
-<p class="section-sub"><span class="zh">系统化的学习路径，从零开始打造你的OPC事业</span><span class="en" style="display:none">Systematic paths to build your OPC business from scratch</span></p>
-<div class="path-grid">
-
-<div class="pcard">
-  <div class="icon">🚀</div>
-  <h3><span class="zh">新手起步路径</span><span class="en" style="display:none">Beginner Path</span></h3>
-  <p class="desc"><span class="zh">适合刚开始考虑独立创业的你</span><span class="en" style="display:none">For those just starting to consider OPC</span></p>
-  <ol class="steps">
-    <li><span class="zh">自我评估：你适合做OPC吗？</span><span class="en" style="display:none">Self-assessment: Is OPC right for you?</span></li>
-    <li><span class="zh">市场调研与机会发现</span><span class="en" style="display:none">Market research & opportunity discovery</span></li>
-    <li><span class="zh">最小可行产品(MVP)构建</span><span class="en" style="display:none">Build your MVP</span></li>
-    <li><span class="zh">获取第一批客户</span><span class="en" style="display:none">Get your first customers</span></li>
-  </ol>
-  <div class="progress"><div class="progress-bar" style="width:25%"></div></div>
-</div>
-
-<div class="pcard">
-  <div class="icon">🤖</div>
-  <h3><span class="zh">AI赋能路径</span><span class="en" style="display:none">AI Empowerment Path</span></h3>
-  <p class="desc"><span class="zh">用AI工具放大你的个人能力</span><span class="en" style="display:none">Amplify your abilities with AI tools</span></p>
-  <ol class="steps">
-    <li><span class="zh">AI工具全景概览</span><span class="en" style="display:none">AI tools landscape overview</span></li>
-    <li><span class="zh">Agent工作流搭建</span><span class="en" style="display:none">Agent workflow building</span></li>
-    <li><span class="zh">A2A通信与协作</span><span class="en" style="display:none">A2A communication & collaboration</span></li>
-    <li><span class="zh">打造你的数字分身</span><span class="en" style="display:none">Build your digital twin</span></li>
-  </ol>
-  <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
-</div>
-
-<div class="pcard">
-  <div class="icon">💰</div>
-  <h3><span class="zh">商业化路径</span><span class="en" style="display:none">Monetization Path</span></h3>
-  <p class="desc"><span class="zh">从技能到收入的完整转化</span><span class="en" style="display:none">Complete conversion from skill to income</span></p>
-  <ol class="steps">
-    <li><span class="zh">定价策略与价值主张</span><span class="en" style="display:none">Pricing strategy & value proposition</span></li>
-    <li><span class="zh">客户获取与留存</span><span class="en" style="display:none">Customer acquisition & retention</span></li>
-    <li><span class="zh">规模化与自动化</span><span class="en" style="display:none">Scaling & automation</span></li>
-    <li><span class="zh">被动收入构建</span><span class="en" style="display:none">Building passive income</span></li>
-  </ol>
-  <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
-</div>
-
+<!-- COURSE DETAIL MODAL -->
+<div class="modal-overlay" id="courseModal">
+<div class="modal">
+  <button class="close-btn" onclick="closeModal()">&times;</button>
+  <div id="modalContent"></div>
 </div>
 </div>
 
-<!-- MENTORS -->
-<div id="tab-mentors" class="tab-content" style="display:none">
-<h2 class="section-title"><span class="zh">导师匹配</span><span class="en" style="display:none">Mentor Matching</span></h2>
-<p class="section-sub"><span class="zh">与经验丰富的OPC前辈建立连接，获得一对一指导</span><span class="en" style="display:none">Connect with experienced OPC mentors for 1-on-1 guidance</span></p>
-<div class="mgrid">
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-<div class="mcard">
-  <div class="avatar">🎯</div>
-  <h3><span class="zh">张明远</span><span class="en" style="display:none">Zhang Mingyuan</span></h3>
-  <div class="title"><span class="zh">10年独立开发者</span><span class="en" style="display:none">10yr Independent Developer</span></div>
-  <p class="bio"><span class="zh">从大厂离职后独立创业，服务过200+企业客户</span><span class="en" style="display:none">Left big tech, served 200+ enterprise clients independently</span></p>
-  <div class="skills">
-    <span class="skill-tag">SaaS</span>
-    <span class="skill-tag"><span class="zh">技术架构</span><span class="en" style="display:none">Architecture</span></span>
-    <span class="skill-tag"><span class="zh">客户开发</span><span class="en" style="display:none">Sales</span></span>
-  </div>
-  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
-</div>
-
-<div class="mcard">
-  <div class="avatar">💡</div>
-  <h3><span class="zh">李思琪</span><span class="en" style="display:none">Li Siqi</span></h3>
-  <div class="title"><span class="zh">5年自由咨询师</span><span class="en" style="display:none">5yr Freelance Consultant</span></div>
-  <p class="bio"><span class="zh">管理咨询背景，帮助50+人成功转型为OPC</span><span class="en" style="display:none">Management consulting background, helped 50+ become OPCs</span></p>
-  <div class="skills">
-    <span class="skill-tag"><span class="zh">咨询</span><span class="en" style="display:none">Consulting</span></span>
-    <span class="skill-tag"><span class="zh">品牌</span><span class="en" style="display:none">Branding</span></span>
-    <span class="skill-tag"><span class="zh">定价</span><span class="en" style="display:none">Pricing</span></span>
-  </div>
-  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
-</div>
-
-<div class="mcard">
-  <div class="avatar">🚀</div>
-  <h3><span class="zh">王浩然</span><span class="en" style="display:none">Wang Haoran</span></h3>
-  <div class="title"><span class="zh">AI创业者 · 8年经验</span><span class="en" style="display:none">AI Entrepreneur · 8yr</span></div>
-  <p class="bio"><span class="zh">专注AI应用开发，打造过3个百万级产品</span><span class="en" style="display:none">AI application expert, built 3 products with 1M+ revenue</span></p>
-  <div class="skills">
-    <span class="skill-tag">AI</span>
-    <span class="skill-tag"><span class="zh">产品</span><span class="en" style="display:none">Product</span></span>
-    <span class="skill-tag"><span class="zh">增长</span><span class="en" style="display:none">Growth</span></span>
-  </div>
-  <button class="match"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
-</div>
-
-</div>
-</div>
-
-<!-- CERTIFICATIONS -->
-<div id="tab-certs" class="tab-content" style="display:none">
-<h2 class="section-title"><span class="zh">技能认证</span><span class="en" style="display:none">Certifications</span></h2>
-<p class="section-sub"><span class="zh">权威认证，证明你的独立创业能力</span><span class="en" style="display:none">Authoritative certifications to prove your OPC capabilities</span></p>
-<div class="cert-grid">
-
-<div class="cert-card">
-  <div class="cert-icon" style="background:#6366f122;color:#6366f1">🏆</div>
-  <div>
-    <h3><span class="zh">OPC创业者认证</span><span class="en" style="display:none">OPC Entrepreneur Certification</span></h3>
-    <p class="desc"><span class="zh">独立创业核心能力全面认证</span><span class="en" style="display:none">Comprehensive OPC core competency certification</span></p>
-    <div class="level"><span class="zh">综合认证 · 4个模块</span><span class="en" style="display:none">Comprehensive · 4 modules</span></div>
-  </div>
-</div>
-
-<div class="cert-card">
-  <div class="cert-icon" style="background:#06b6d422;color:#06b6d4">🤖</div>
-  <div>
-    <h3><span class="zh">AI Agent工程师认证</span><span class="en" style="display:none">AI Agent Engineer Certification</span></h3>
-    <p class="desc"><span class="zh">AI Agent开发与应用能力认证</span><span class="en" style="display:none">AI agent development & application certification</span></p>
-    <div class="level"><span class="zh">技术认证 · 3个模块</span><span class="en" style="display:none">Technical · 3 modules</span></div>
-  </div>
-</div>
-
-<div class="cert-card">
-  <div class="cert-icon" style="background:#22c55e22;color:#22c55e">📊</div>
-  <div>
-    <h3><span class="zh">数据分析师认证</span><span class="en" style="display:none">Data Analyst Certification</span></h3>
-    <p class="desc"><span class="zh">商业数据分析能力认证</span><span class="en" style="display:none">Business data analysis capability certification</span></p>
-    <div class="level"><span class="zh">专项认证 · 2个模块</span><span class="en" style="display:none">Specialized · 2 modules</span></div>
-  </div>
-</div>
-
-<div class="cert-card">
-  <div class="cert-icon" style="background:#f59e0b22;color:#f59e0b">💰</div>
-  <div>
-    <h3><span class="zh">独立咨询师认证</span><span class="en" style="display:none">Independent Consultant Certification</span></h3>
-    <p class="desc"><span class="zh">独立咨询服务能力认证</span><span class="en" style="display:none">Independent consulting service capability certification</span></p>
-    <div class="level"><span class="zh">专业认证 · 3个模块</span><span class="en" style="display:none">Professional · 3 modules</span></div>
-  </div>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<footer class="footer">
-<div class="container">
-  <p><span class="zh">OPC Academy · 让每个独立创业者都能持续成长</span><span class="en" style="display:none">OPC Academy · Empowering every independent entrepreneur to grow</span></p>
-</div>
-</footer>
+<footer class="footer"><p><span class="zh">OPC Academy · 让每个独立创业者都能持续成长</span><span class="en" style="display:none">OPC Academy · Empowering every OPC to grow</span></p></footer>
 
 <script>
-// Tab switching
-function showTab(name){
-  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
-  document.getElementById('tab-'+name).style.display='block';
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  event.target.closest('.tab').classList.add('active');
+const API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+const USER_ID = 1;
+let allCourses = [];
+let enrolledIds = new Set();
+
+// ===== LOAD DATA =====
+async function loadCourses() {
+  try {
+    const resp = await fetch(`${API}/api/academy/courses?limit=50`);
+    const data = await resp.json();
+    allCourses = data.courses || [];
+    document.getElementById('statCourses').textContent = allCourses.length;
+    renderCourses(allCourses);
+    renderFilters();
+  } catch(e) {
+    document.getElementById('courseGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--red)">❌ <span class="zh">加载失败，请刷新重试</span><span class="en" style="display:none">Load failed</span></div>';
+  }
 }
 
-// Bilingual
-let lang=localStorage.getItem('opc-lang')||'zh';
-function toggleLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);applyLang();}
-function applyLang(){document.querySelectorAll('.zh').forEach(el=>el.style.display=lang==='zh'?'':'none');document.querySelectorAll('.en').forEach(el=>el.style.display=lang==='en'?'':'none');document.documentElement.lang=lang==='zh'?'zh-CN':'en';}
+async function loadMentors() {
+  try {
+    const resp = await fetch(`${API}/api/academy/mentors`);
+    const data = await resp.json();
+    document.getElementById('statMentors').textContent = data.mentors.length;
+    renderMentors(data.mentors);
+  } catch(e) { console.log('Mentors error:', e); }
+}
+
+async function loadCerts() {
+  try {
+    const resp = await fetch(`${API}/api/academy/certifications`);
+    const data = await resp.json();
+    document.getElementById('statCerts').textContent = data.certifications.length;
+    renderCerts(data.certifications);
+  } catch(e) { console.log('Certs error:', e); }
+}
+
+async function loadEnrollments() {
+  try {
+    const resp = await fetch(`${API}/api/academy/enrollments?user_id=${USER_ID}`);
+    const data = await resp.json();
+    (data.enrollments || []).forEach(e => enrolledIds.add(e.course_id));
+    renderMyEnrollments(data.enrollments || []);
+  } catch(e) { console.log('Enrollments error:', e); }
+}
+
+// ===== RENDER =====
+function renderCourses(courses) {
+  const grid = document.getElementById('courseGrid');
+  if (!courses.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t3)"><span class="zh">暂无课程</span><span class="en" style="display:none">No courses</span></div>'; return; }
+  grid.innerHTML = courses.map(c => {
+    const enrolled = enrolledIds.has(c.id);
+    const title = lang === 'en' && c.title_en ? c.title_en : c.title;
+    const desc = lang === 'en' && c.description_en ? c.description_en : c.description;
+    const priceText = c.price === 0 ? (lang === 'en' ? 'Free' : '免费') : `¥${c.price}`;
+    return `<div class="ccard" onclick="openCourse(${c.id})">
+      <div class="ccard-cover" style="background:${c.cover_gradient}">${c.cover_emoji}</div>
+      <div class="ccard-body">
+        <h3>${title}</h3>
+        <div class="meta">${c.lesson_count} ${lang === 'en' ? 'lessons' : '节课'} · ${c.duration_hours}h · ${levelText(c.level)}</div>
+        <p class="desc">${desc}</p>
+        <div class="ccard-tags">${(c.tags||[]).map(t => `<span class="ctag">${t}</span>`).join('')}</div>
+        <div class="ccard-footer">
+          <span class="price">${priceText}</span>
+          <span class="students">${c.student_count} ${lang === 'en' ? 'learners' : '人学习'}</span>
+          <button class="enroll-btn ${enrolled ? 'enrolled' : ''}" onclick="event.stopPropagation();${enrolled ? '' : `enrollCourse(${c.id})`}">${enrolled ? '✅ ' + (lang === 'en' ? 'Enrolled' : '已报名') : (lang === 'en' ? 'Enroll' : '报名')}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderFilters() {
+  const cats = [...new Set(allCourses.map(c => c.category))].filter(Boolean);
+  const bar = document.getElementById('catFilter');
+  const allLabel = lang === 'en' ? 'All' : '全部';
+  bar.innerHTML = `<button class="fbtn active" onclick="filterCourse('all',this)">${allLabel}</button>` +
+    cats.map(c => `<button class="fbtn" onclick="filterCourse('${c}',this)">${catLabel(c)}</button>`).join('');
+}
+
+function renderMentors(mentors) {
+  document.getElementById('mentorGrid').innerHTML = mentors.map(m => {
+    const name = lang === 'en' && m.name_en ? m.name_en : m.name;
+    const title = lang === 'en' && m.title_en ? m.title_en : m.title;
+    const bio = lang === 'en' && m.bio_en ? m.bio_en : m.bio;
+    return `<div class="mcard">
+      <div class="av">${m.avatar_emoji}</div>
+      <h3>${name}</h3>
+      <div class="title">${title}</div>
+      <p class="bio">${bio}</p>
+      <div class="skills">${(m.skills||[]).map(s => `<span class="stag">${s}</span>`).join('')}</div>
+      <div class="rating">⭐ ${m.rating} · ${m.total_sessions} ${lang === 'en' ? 'sessions' : '次辅导'}</div>
+      <button class="match-btn" onclick="matchMentor(${m.id},'${name}')"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
+    </div>`;
+  }).join('');
+}
+
+function renderCerts(certs) {
+  document.getElementById('certGrid').innerHTML = certs.map(c => {
+    const name = lang === 'en' && c.name_en ? c.name_en : c.name;
+    const desc = lang === 'en' && c.description_en ? c.description_en : c.description;
+    return `<div class="certcard">
+      <div class="cert-icon" style="background:${c.icon_color}22;color:${c.icon_color}">${c.icon_emoji}</div>
+      <div>
+        <h3>${name}</h3>
+        <p class="cdesc">${desc}</p>
+        <div class="clevel">${c.modules_required} ${lang === 'en' ? 'modules' : '个模块'} · ${catLabel(c.category)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderMyEnrollments(enrollments) {
+  if (!enrollments.length) return;
+  document.getElementById('myEnrollments').innerHTML = enrollments.map(e => `
+    <div class="ccard" style="margin-bottom:12px">
+      <div class="ccard-body">
+        <h3>${e.course_title}</h3>
+        <div style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--t2);margin-bottom:6px">
+            <span><span class="zh">学习进度</span><span class="en" style="display:none">Progress</span></span>
+            <span>${e.progress}%</span>
+          </div>
+          <div class="prog"><div class="prog-bar" style="width:${e.progress}%"></div></div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--t3)"><span class="zh">已完成</span><span class="en" style="display:none">Completed</span> ${(e.completed_lessons||[]).length} <span class="zh">节课</span><span class="en" style="display:none">lessons</span></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== ACTIONS =====
+async function enrollCourse(id) {
+  try {
+    const resp = await fetch(`${API}/api/academy/courses/${id}/enroll?user_id=${USER_ID}`, {method: 'POST'});
+    const data = await resp.json();
+    enrolledIds.add(id);
+    showToast(data.message);
+    loadCourses();
+    loadEnrollments();
+  } catch(e) { showToast('❌ Error', true); }
+}
+
+async function openCourse(id) {
+  try {
+    const resp = await fetch(`${API}/api/academy/courses/${id}`);
+    const c = await resp.json();
+    const enrolled = enrolledIds.has(c.id);
+    const title = lang === 'en' && c.title_en ? c.title_en : c.title;
+    const desc = lang === 'en' && c.description_en ? c.description_en : c.description;
+    document.getElementById('modalContent').innerHTML = `
+      <div style="font-size:40px;margin-bottom:16px">${c.cover_emoji}</div>
+      <h2>${title}</h2>
+      <p style="color:var(--t2);font-size:13px;margin-bottom:16px">${desc}</p>
+      <div style="display:flex;gap:16px;margin-bottom:16px;font-size:13px;color:var(--t3)">
+        <span>👨‍🏫 ${c.instructor_name}</span>
+        <span>⏱ ${c.duration_hours}h</span>
+        <span>📊 ${levelText(c.level)}</span>
+        <span>💰 ${c.price === 0 ? (lang==='en'?'Free':'免费') : '¥'+c.price}</span>
+      </div>
+      <h3 style="font-size:15px;margin-bottom:8px"><span class="zh">课程目录</span><span class="en" style="display:none">Curriculum</span></h3>
+      <ul class="lesson-list">
+        ${(c.lessons||[]).map((l,i) => {
+          const ltitle = lang === 'en' && l.title_en ? l.title_en : l.title;
+          return `<li><span>${i+1}. ${ltitle}</span><span>${l.duration_minutes}min ${l.is_free ? '<span class="free">'+(lang==='en'?'Free':'免费')+'</span>' : ''}</span></li>`;
+        }).join('')}
+      </ul>
+      <div class="enroll-action">
+        ${enrolled ? '<button class="enroll-big" style="background:var(--bg3);color:var(--green)" disabled>✅ '+(lang==='en'?'Already Enrolled':'已报名')+'</button>' :
+        `<button class="enroll-big" onclick="enrollCourse(${c.id});closeModal()">${lang==='en'?'Enroll Now':'立即报名'} · ${c.price === 0 ? (lang==='en'?'Free':'免费') : '¥'+c.price}</button>`}
+      </div>`;
+    document.getElementById('courseModal').classList.add('show');
+  } catch(e) { console.log('Open course error:', e); }
+}
+
+function closeModal() { document.getElementById('courseModal').classList.remove('show'); }
+
+async function matchMentor(id, name) {
+  try {
+    const msg = prompt(lang === 'en' ? `Message to ${name}:` : `给${name}发消息：`, '');
+    if (msg === null) return;
+    const resp = await fetch(`${API}/api/academy/mentors/${id}/match?user_id=${USER_ID}&message=${encodeURIComponent(msg)}`, {method: 'POST'});
+    const data = await resp.json();
+    showToast(data.message);
+  } catch(e) { showToast('❌ Error', true); }
+}
+
+function filterCourse(cat, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCourses(cat === 'all' ? allCourses : allCourses.filter(c => c.category === cat));
+}
+
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ===== HELPERS =====
+function levelText(l) { return {beginner: lang==='en'?'Beginner':'初级', intermediate: lang==='en'?'Intermediate':'中级', advanced: lang==='en'?'Advanced':'高级', all: lang==='en'?'All Levels':'所有级别'}[l] || l; }
+function catLabel(c) { return {startup:lang==='en'?'Startup':'创业',ai:'AI',finance:lang==='en'?'Finance':'财务',marketing:lang==='en'?'Marketing':'营销',legal:lang==='en'?'Legal':'法律',data:lang==='en'?'Data':'数据',comprehensive:lang==='en'?'Comprehensive':'综合',technical:lang==='en'?'Technical':'技术',specialized:lang==='en'?'Specialized':'专项',professional:lang==='en'?'Professional':'专业'}[c]||c; }
+function showToast(msg, err) { const t = document.getElementById('toast'); t.textContent = msg; t.style.background = err ? 'var(--red)' : 'var(--green)'; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
+
+// ===== BILINGUAL =====
+let lang = localStorage.getItem('opc-lang') || 'zh';
+function toggleLang() { lang = lang==='zh'?'en':'zh'; localStorage.setItem('opc-lang', lang); applyLang(); loadCourses(); loadMentors(); loadCerts(); }
+function applyLang() { document.querySelectorAll('.zh').forEach(el => el.style.display = lang==='zh'?'':'none'); document.querySelectorAll('.en').forEach(el => el.style.display = lang==='en'?'':'none'); }
 applyLang();
+
+// ===== INIT =====
+// Seed data first, then load
+fetch(`${API}/api/academy/seed`, {method: 'POST'}).then(() => {
+  loadCourses(); loadMentors(); loadCerts(); loadEnrollments();
+}).catch(() => {
+  loadCourses(); loadMentors(); loadCerts(); loadEnrollments();
+});
+
+document.getElementById('courseModal').addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) closeModal(); });
 </script>
 </body>
 </html>
