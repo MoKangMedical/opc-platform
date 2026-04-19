@@ -145,3 +145,62 @@ def get_bids(project_id: int, db: Session = Depends(get_db)):
         "status": b.status,
         "created_at": b.created_at.isoformat(),
     } for b in bids]}
+
+
+# ========== 初始化数据 ==========
+@router.post("/seed")
+def seed_projects(db: Session = Depends(get_db)):
+    """从JSON文件导入67个项目"""
+    import os
+    import json as json_lib
+    
+    if db.query(Project).count() > 0:
+        return {"message": "Projects already exist", "count": db.query(Project).count()}
+    
+    # 尝试多个路径
+    paths = [
+        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data", "jiangsu_ai_scenarios.json"),
+        os.path.join(os.getcwd(), "data", "jiangsu_ai_scenarios.json"),
+        "/opt/render/project/src/data/jiangsu_ai_scenarios.json",
+        "data/jiangsu_ai_scenarios.json",
+    ]
+    
+    data = None
+    for p in paths:
+        if os.path.exists(p):
+            with open(p) as f:
+                data = json_lib.load(f)
+            break
+    
+    if not data:
+        # 内嵌关键数据作为fallback
+        data = [
+            {"title":"海上风电场智能运维场景","publisher_name":"江苏省国信集团有限公司","contact_person":"叶兴沛","industry":"新能源","technology_field":"['人工智能','物联网','大数据']","budget_min":2000000,"budget_max":3000000,"description":"融合人工智能技术，在海上风电项目建设智能运维系统中对风机状态进行实时评估和远程运维"},
+            {"title":"智慧电厂全景感知与自主优化场景","publisher_name":"江苏省国信集团有限公司","contact_person":"王强","industry":"能源","technology_field":"['人工智能','数字孪生','物联网']","budget_min":2000000,"budget_max":3000000,"description":"部署智能传感、工业互联网平台和自主控制系统，构建AI+数字孪生电厂"},
+            {"title":"路网营运知识工程场景","publisher_name":"江苏交通控股有限公司","contact_person":"王浩淼","industry":"交通","technology_field":"['人工智能','知识图谱','大数据']","budget_min":2000000,"budget_max":2000000,"description":"围绕路网运行复杂高频业务场景，聚焦多模态数据集规范建设"},
+            {"title":"安全生产智能预警场景","publisher_name":"江苏省苏豪控股集团有限公司","contact_person":"邢梦婷","industry":"安全监测","technology_field":"['人工智能','物联网','计算机视觉']","budget_min":5000000,"budget_max":5000000,"description":"融合AI视觉与物联网技术构建立体化安全防控体系"},
+            {"title":"跨境电商选品数据驱动场景","publisher_name":"江苏省苏豪控股集团有限公司","contact_person":"邢梦婷","industry":"跨境电商","technology_field":"['人工智能','大数据']","budget_min":3600000,"budget_max":3600000,"description":"以AI赋能B2B贸易为核心，构建覆盖建站获客-内容生成-智能营销全流程"},
+            {"title":"化工安全与经营智能决策场景","publisher_name":"江苏省苏豪控股集团有限公司","contact_person":"邢梦婷","industry":"化工","technology_field":"['人工智能','大模型','智能感知']","budget_min":470000,"budget_max":470000,"description":"融合AI算力、大模型、智能感知等技术，围绕安全可控目标"},
+            {"title":"轮胎智能制造AI应用场景","publisher_name":"江苏省苏豪控股集团有限公司","contact_person":"邢梦婷","industry":"先进制造","technology_field":"['人工智能']","budget_min":1000000,"budget_max":3000000,"description":"将AI技术应用于轮胎智能制造全流程"},
+            {"title":"机场飞行区安全风险智能监测场景","publisher_name":"东部机场集团有限公司","contact_person":"王苗苗","industry":"航空安全","technology_field":"['人工智能','计算机视觉','传感器融合']","budget_min":6000000,"budget_max":6000000,"description":"结合监控、雷达数据，运用多源传感融合和AI计算机视觉技术"},
+        ]
+    
+    count = 0
+    for p in data:
+        proj = Project(
+            title=p.get("title",""),
+            publisher_name=p.get("publisher_name",""),
+            contact_person=p.get("contact_person",""),
+            contact_phone=p.get("contact_phone",""),
+            industry=p.get("industry",""),
+            technology_field=p.get("technology_field",""),
+            budget_min=p.get("budget_min",0),
+            budget_max=p.get("budget_max",0),
+            description=p.get("description",""),
+            status="open",
+        )
+        db.add(proj)
+        count += 1
+    
+    db.commit()
+    return {"message": f"Seeded {count} projects", "count": count}
