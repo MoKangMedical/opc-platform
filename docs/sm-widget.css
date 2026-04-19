@@ -1,0 +1,16 @@
+/* SecondMe Floating Widget */
+.sm-widget{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.sm-fab{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff6b6b,#ff8a50);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 24px rgba(255,138,80,.35);transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:center}
+.sm-fab:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(255,138,80,.5)}
+.sm-fab.connected{background:linear-gradient(135deg,#00d68f,#10b981);box-shadow:0 4px 24px rgba(0,214,143,.35)}
+.sm-panel{background:#111119;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;width:300px;box-shadow:0 20px 60px rgba(0,0,0,.5);backdrop-filter:blur(20px);display:none;animation:smIn .3s cubic-bezier(.16,1,.3,1)}
+.sm-panel.show{display:block}
+@keyframes smIn{from{opacity:0;transform:translateY(12px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.sm-panel h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.sm-panel p{font-size:13px;color:#9898b0;line-height:1.6;margin-bottom:16px}
+.sm-panel .sm-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:10px;background:linear-gradient(135deg,#ff6b6b,#ff8a50);color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .25s;font-family:inherit}
+.sm-panel .sm-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,138,80,.3)}
+.sm-panel .sm-btn.connected{background:linear-gradient(135deg,#00d68f,#10b981)}
+.sm-panel .sm-feats{display:flex;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+.sm-panel .sm-feat{flex:1;text-align:center;font-size:11px;color:#5a5a72}
+.sm-panel .sm-feat .sf-icon{font-size:1.2rem;margin-bottom:4px}
