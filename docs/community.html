@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC社区 — 独立创业者交流平台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--green:#00d68f;--blue:#4ea8de;--purple:#a78bfa;--orange:#ff8a50;--gold:#f0c040;--red:#ff6b6b;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
+.c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
+.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+.nav-l .d{color:var(--green)}
+.nav-lks{display:flex;align-items:center;gap:32px}
+.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
+.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--green);border-radius:1px}
+.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.hero{min-height:50vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(0,214,143,.06),transparent 70%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(78,168,222,.03),transparent 60%)}
+.hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);background:rgba(0,214,143,.08);border:1px solid rgba(0,214,143,.15);padding:8px 20px;border-radius:100px;margin-bottom:28px;animation:fu .8s var(--e) both}
+.ht{font-family:var(--fd);font-size:clamp(2.5rem,5.5vw,4rem);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-.03em;animation:fu .8s var(--e) .1s both}
+.ht .g{background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hd{font-size:1.15rem;color:var(--t2);max-width:640px;margin:0 auto 48px;line-height:1.7;animation:fu .8s var(--e) .2s both}
+.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;max-width:720px;margin:0 auto 48px;animation:fu .8s var(--e) .3s both}
+.sc{background:var(--bg2);padding:28px 20px;text-align:center;transition:background .3s}
+.sc:hover{background:var(--card2)}
+.sn{font-family:var(--fd);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
+.sn.g{color:var(--green)}.sn.b{color:var(--blue)}.sn.p{color:var(--purple)}.sn.o{color:var(--orange)}
+.sl{font-size:.8rem;color:var(--t3);font-weight:500}
+.sh{margin:80px 0 40px;text-align:center}
+.sh-tag{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.sh-title{font-family:var(--fd);font-size:2rem;font-weight:700;margin-bottom:8px}
+.sh-desc{color:var(--t2);max-width:480px;margin:0 auto}
+/* Community Posts */
+.post-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px}
+.post{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:all .4s var(--e)}
+.post:hover{border-color:var(--border2);transform:translateY(-4px)}
+.post-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.post-ava{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.post-name{font-weight:600;font-size:.95rem}
+.post-time{font-size:.75rem;color:var(--t3)}
+.post-title{font-family:var(--fd);font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.post-desc{font-size:.88rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.post-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.pt{font-size:.72rem;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.04);color:var(--t3);border:1px solid var(--border)}
+.post-stats{display:flex;gap:16px;font-size:.82rem;color:var(--t3)}
+.ps{display:flex;align-items:center;gap:4px}
+/* Members */
+.member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.member{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;transition:all .3s var(--e)}
+.member:hover{border-color:var(--border2);transform:translateY(-2px)}
+.member-ava{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.member-name{font-weight:600;margin-bottom:4px}
+.member-role{font-size:.82rem;color:var(--t2);margin-bottom:8px}
+.member-tags{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.mt{font-size:.68rem;padding:2px 8px;border-radius:4px;background:rgba(0,214,143,.08);color:var(--green)}
+/* Events */
+.event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.event{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:all .4s var(--e)}
+.event:hover{border-color:var(--border2);transform:translateY(-4px)}
+.event-date{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--green);margin-bottom:4px}
+.event-month{font-size:.82rem;color:var(--t3);margin-bottom:12px}
+.event-title{font-family:var(--fd);font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.event-desc{font-size:.88rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.event-meta{display:flex;gap:12px;font-size:.78rem;color:var(--t3)}
+footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-index:1}
+.ft-i{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.ft-t{color:var(--t3);font-size:.82rem}
+.ft-l{display:flex;gap:24px}
+.ft-l a{color:var(--t3);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-l a:hover{color:var(--t1)}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.ai{animation:ci .6s var(--e) both}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.post-grid,.member-grid,.event-grid{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}}
+.mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
+@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-i">
+<a href="index.html" class="nav-l"><span class="d">◆</span> OPC Platform</a>
+<div class="nav-lks" id="nl">
+<a href="platform.html" class="nav-lk">平台</a><a href="government.html" class="nav-lk">揭榜挂帅</a>
+<a href="superagent.html" class="nav-lk">超级个体</a><a href="legends.html" class="nav-lk">名人堂</a>
+<a href="academy.html" class="nav-lk">学院</a><a href="health.html" class="nav-lk">健康</a>
+<a href="community.html" class="nav-lk a">社区</a><a href="policy.html" class="nav-lk">政策</a>
+<a href="chat.html" class="nav-lk">聊天</a>
+<button class="lbtn" onclick="tgl()">🌐 EN/中</button>
+</div><button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
+</div></nav>
+
+<section class="hero"><div class="hero-c">
+<div class="badge"><span style="width:6px;height:6px;border-radius:50%;background:var(--green)"></span> 独立创业者社区</div>
+<h1 class="ht">OPC <span class="g">社区</span></h1>
+<p class="hd">连接全球独立创业者，分享经验、寻找伙伴、共同成长。一个人走得快，一群人走得远。</p>
+<div class="sr">
+<div class="sc"><div class="sn g">2,847</div><div class="sl">社区成员</div></div>
+<div class="sc"><div class="sn b">1,234</div><div class="sl">讨论话题</div></div>
+<div class="sc"><div class="sn p">567</div><div class="sl">项目合作</div></div>
+<div class="sc"><div class="sn o">89</div><div class="sl">线下活动</div></div>
+</div>
+</div></section>
+
+<!-- 热门讨论 -->
+<section><div class="c">
+<div class="sh"><div class="sh-tag">HOT TOPICS</div><h2 class="sh-title">🔥 热门讨论</h2><p class="sh-desc">社区中最活跃的话题</p></div>
+<div class="post-grid" id="postGrid"></div>
+</div></section>
+
+<!-- 活跃成员 -->
+<section><div class="c">
+<div class="sh"><div class="sh-tag">ACTIVE MEMBERS</div><h2 class="sh-title">🌟 活跃成员</h2><p class="sh-desc">社区中最活跃的独立创业者</p></div>
+<div class="member-grid" id="memberGrid"></div>
+</div></section>
+
+<!-- 近期活动 -->
+<section><div class="c">
+<div class="sh"><div class="sh-tag">UPCOMING EVENTS</div><h2 class="sh-title">📅 近期活动</h2><p class="sh-desc">线上线下活动，拓展人脉</p></div>
+<div class="event-grid" id="eventGrid"></div>
+</div></section>
+
+<footer><div class="ft-i">
+<div class="ft-t">© 2026 OPC Community · 一个人的公司，无限可能</div>
+<div class="ft-l"><a href="index.html">首页</a><a href="platform.html">平台</a><a href="legends.html">名人堂</a></div>
+</div></footer>
+
+<script>
+// 社区帖子数据
+const POSTS=[
+{ava:"🧑‍💻",name:"张三",time:"2小时前",title:"我的第一个SaaS产品月入$5000的经验分享",desc:"从零开始，用了3个月时间，终于做到了月入$5000。分享一下我的完整经历和踩过的坑...",tags:["SaaS","经验分享","公开构建"],likes:128,comments:45,shares:23},
+{ava:"✍️",name:"李四",time:"5小时前",title:"如何从0开始写Newsletter并做到1万订阅",desc:"坚持写了6个月，从0到10000订阅者。内容策略、增长技巧、变现方式全解析...",tags:["Newsletter","内容创作","增长"],likes:89,comments:32,shares:18},
+{ava:"🤖",name:"王五",time:"1天前",title:"用AI做了个小工具，意外月入$3000",desc:"本来只是解决自己的问题，没想到很多人也需要。分享一下如何用AI快速构建MVP...",tags:["AI产品","MVP","独立开发"],likes:256,comments:78,shares:45},
+{ava:"📊",name:"赵六",time:"2天前",title:"一人公司如何做财务规划和税务优化",desc:"作为独立创业者，财务管理是最容易被忽视的。分享我的财务规划方法...",tags:["财务管理","一人公司","税务"],likes:67,comments:28,shares:12},
+{ava:"🎨",name:"钱七",time:"3天前",title:"从设计师到年入百万的独立创业者",desc:"离开大厂后，如何用设计技能构建多个收入来源...",tags:["设计","收入多元化","转型"],likes:145,comments:56,shares:34},
+{ava:"🚀",name:"孙八",time:"4天前",title:"Product Hunt首发第一名的经验总结",desc:"如何在Product Hunt上成功发布产品，获得首批1000用户...",tags:["Product Hunt","产品发布","增长黑客"],likes:198,comments:67,shares:41}
+];
+
+// 活跃成员数据
+const MEMBERS=[
+{ava:"🧑‍💻",name:"Pieter Levels",role:"SaaS创业者",tags:["SaaS","远程"]},
+{ava:"✍️",name:"James Clear",role:"内容创作者",tags:["写作","习惯"]},
+{ava:"🤖",name:"Marc Lou",role:"AI产品构建者",tags:["AI","快速发布"]},
+{ava:"📊",name:"Naval Ravikant",role:"投资哲学家",tags:["投资","杠杆"]},
+{ava:"🎨",name:"Sahil Lavingia",role:"极简创始人",tags:["Gumroad","创作"]},
+{ava:"🚀",name:"Tony Dinh",role:"独立开发者",tags:["开发工具","越南"]},
+{ava:"📚",name:"Ali Abdaal",role:"生产力导师",tags:["YouTube","教育"]},
+{ava:"🔧",name:"Jon Yongfook",role:"API工匠",tags:["API","东京"]},
+{ava:"🎵",name:"Derek Sivers",role:"哲学家",tags:["哲学","CD Baby"]},
+{ava:"📖",name:"Tim Ferriss",role:"元学习者",tags:["播客","投资"]},
+{ava:"🎯",name:"Daniel Vassallo",role:"小赌注策略家",tags:["AWS","小赌注"]},
+{ava:"📢",name:"KP",role:"公开构建教练",tags:["Twitter","社区"]}
+];
+
+// 近期活动数据
+const EVENTS=[
+{day:"25",month:"4月 2026",title:"OPC创业者线上交流会",desc:"每月一次的线上交流，分享近期进展和遇到的问题",meta:["📍 线上Zoom","⏰ 晚8:00","👥 限50人"]},
+{day:"28",month:"4月 2026",title:"AI产品快速构建工作坊",desc:"手把手教你用AI工具在3天内构建一个可用产品",meta:["📍 线上直播","⏰ 全天","👥 限100人"]},
+{day:"5",month:"5月 2026",title:"北京OPC创业者线下聚会",desc:"北京地区的独立创业者线下见面， networking和经验分享",meta:["📍 北京朝阳","⏰ 下午2:00","👥 限30人"]},
+{day:"12",month:"5月 2026",title:"SaaS定价策略深度分享",desc:"如何为你的SaaS产品定价，最大化收入和用户增长",meta:["📍 线上直播","⏰ 晚8:00","👥 限80人"]},
+{day:"18",month:"5月 2026",title:"上海OPC创业者线下聚会",desc:"上海地区的独立创业者线下见面，深度交流和资源对接",meta:["📍 上海浦东","⏰ 下午2:00","👥 限30人"]},
+{day:"25",month:"5月 2026",title:"Newsletter变现策略分享会",desc:"如何通过Newsletter构建忠实受众并实现变现",meta:["📍 线上直播","⏰ 晚8:00","👥 限100人"]}
+];
+
+// 渲染帖子
+document.getElementById('postGrid').innerHTML=POSTS.map((p,i)=>`
+<div class="post ai" style="animation-delay:${i*0.08}s">
+<div class="post-head">
+<div class="post-ava" style="background:rgba(0,214,143,.12)">${p.ava}</div>
+<div><div class="post-name">${p.name}</div><div class="post-time">${p.time}</div></div>
+</div>
+<div class="post-title">${p.title}</div>
+<p class="post-desc">${p.desc}</p>
+<div class="post-tags">${p.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
+<div class="post-stats">
+<div class="ps">❤️ ${p.likes}</div>
+<div class="ps">💬 ${p.comments}</div>
+<div class="ps">🔄 ${p.shares}</div>
+</div>
+</div>
+`).join('');
+
+// 渲染成员
+document.getElementById('memberGrid').innerHTML=MEMBERS.map((m,i)=>`
+<div class="member ai" style="animation-delay:${i*0.06}s">
+<div class="member-ava" style="background:rgba(0,214,143,.12)">${m.ava}</div>
+<div class="member-name">${m.name}</div>
+<div class="member-role">${m.role}</div>
+<div class="member-tags">${m.tags.map(t=>`<span class="mt">${t}</span>`).join('')}</div>
+</div>
+`).join('');
+
+// 渲染活动
+document.getElementById('eventGrid').innerHTML=EVENTS.map((e,i)=>`
+<div class="event ai" style="animation-delay:${i*0.08}s">
+<div class="event-date">${e.day}</div>
+<div class="event-month">${e.month}</div>
+<div class="event-title">${e.title}</div>
+<p class="event-desc">${e.desc}</p>
+<div class="event-meta">${e.meta.map(m=>`<span>${m}</span>`).join('')}</div>
+</div>
+`).join('');
+
+// i18n
+let lang=localStorage.getItem('opc-lang')||'zh';
+function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+</script>
+</body></html>
