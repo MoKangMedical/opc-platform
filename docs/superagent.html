@@ -158,7 +158,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <div class="sm-icon">🧠</div>
 <h2 class="sm-title" data-en="Connect Your SecondMe Digital Twin">连接 SecondMe 数字分身</h2>
 <p class="sm-desc" data-en="Let your Agent have your personality, memory, and way of thinking">让你的 Agent 拥有你的个性、记忆和思维方式</p>
-<button class="sm-btn" onclick="window.open('https://app.mindos.com','_blank')">🧠 <span data-en="Connect SecondMe Now">一键连接 SecondMe 数字分身</span></button>
+<button class="sm-btn" onclick="connectSecondMe()">🧠 一键连接 SecondMe 数字分身</button>
 <div class="sm-features">
 <div class="sf"><div class="sf-icon">🧠</div><div class="sf-title" data-en="Personalized AI">个性化AI分身</div><div class="sf-desc" data-en="Trained on your memory and personality">基于你的记忆和个性训练</div></div>
 <div class="sf"><div class="sf-icon">🤝</div><div class="sf-title" data-en="Agent Collaboration">Agent间协作</div><div class="sf-desc" data-en="Your twin talks to other Agents">你的分身与其他Agent对话</div></div>
@@ -232,5 +232,54 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <script>
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+
+// SecondMe OAuth连接
+async function connectSecondMe() {
+    try {
+        // 检查是否已有token
+        const existingToken = localStorage.getItem('secondme_token');
+        if (existingToken) {
+            const user = JSON.parse(localStorage.getItem('secondme_user') || '{}');
+            alert(`您已连接SecondMe！\n\n用户: ${user.nickname || '未知'}\n\n如需重新连接，请先断开连接。`);
+            return;
+        }
+        
+        // 获取授权URL
+        const API = 'https://opc-platform.onrender.com';
+        const response = await fetch(`${API}/api/secondme/authorize`);
+        const data = await response.json();
+        
+        if (data.auth_url) {
+            // 跳转到SecondMe授权页面
+            window.location.href = data.auth_url;
+        } else {
+            alert('获取授权链接失败，请稍后重试');
+        }
+    } catch (error) {
+        console.error('SecondMe连接错误:', error);
+        alert('连接SecondMe时出错，请检查网络连接');
+    }
+}
+
+// 检查SecondMe连接状态
+function checkSecondMeStatus() {
+    const token = localStorage.getItem('secondme_token');
+    const user = localStorage.getItem('secondme_user');
+    
+    if (token && user) {
+        const userData = JSON.parse(user);
+        // 更新UI显示已连接状态
+        const smBtn = document.querySelector('.sm-btn');
+        if (smBtn) {
+            smBtn.innerHTML = `✅ 已连接: ${userData.nickname || 'SecondMe用户'}`;
+            smBtn.style.background = 'linear-gradient(135deg, #00d68f, #4ea8de)';
+        }
+        return true;
+    }
+    return false;
+}
+
+// 页面加载时检查状态
+document.addEventListener('DOMContentLoaded', checkSecondMeStatus);
 </script>
 </body></html>
