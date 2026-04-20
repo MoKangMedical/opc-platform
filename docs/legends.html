@@ -23,7 +23,7 @@
         "url": "https://mokangmedical.github.io/opc-platform/legends.html"
     }
     
-// ===== OPC Platform 增强功能 =====
+// ===== OPC 平台 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
@@ -59,10 +59,10 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 <span>OPC <span class="accent">Legends</span></span>
             </a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">首页</a>
                 <a href="#legends" class="nav-link">Legends</a>
-                <a href="#philosophy" class="nav-link">Philosophy</a>
-                <a href="#playbook" class="nav-link">Playbook</a>
+                <a href="#philosophy" class="nav-link">商业哲学</a>
+                <a href="#playbook" class="nav-link">行动手册</a>
                 <a href="https://github.com/MoKangMedical/opc-legends" class="nav-github" target="_blank">
                     <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -78,32 +78,32 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
         <div class="hero-content">
             <div class="hero-badge">ONE PERSON COMPANY • HALL OF FAME</div>
             <h1 class="hero-title">
-                <span class="line">The Legends Who</span>
+                <span class="line">传奇人物 Who</span>
                 <span class="line gradient-text">Built Empires Alone</span>
             </h1>
             <p class="hero-subtitle">
-                Deep dives into the business thinking, strategies, and playbooks of the world's most successful solopreneurs. No VC. No co-founders. Just one person changing the game.
+                深入剖析全球最成功独立创业者的商业思维、战略和行动手册。没有风投，没有合伙人，一个人改变世界。
             </p>
             <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-value" data-count="18">0</span>
-                    <span class="stat-label">Legends Profiled</span>
+                    <span class="stat-label">已收录传奇</span>
                 </div>
                 <div class="stat">
                     <span class="stat-value">$<span data-count="2">0</span>B+</span>
-                    <span class="stat-label">Combined Revenue</span>
+                    <span class="stat-label">总营收</span>
                 </div>
                 <div class="stat">
                     <span class="stat-value" data-count="7">0</span>
-                    <span class="stat-label">Business Models</span>
+                    <span class="stat-label">商业模式</span>
                 </div>
                 <div class="stat">
                     <span class="stat-value" data-count="50">0</span>
-                    <span class="stat-label">Key Insights</span>
+                    <span class="stat-label">核心洞察</span>
                 </div>
             </div>
             <a href="#legends" class="hero-cta">
-                Explore the Legends
+                探索传奇人物
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
@@ -114,17 +114,17 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
     <section class="filter-section" id="legends">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">PROFILES</span>
-                <h2 class="section-title">The Legends</h2>
-                <p class="section-desc">Each built a world-class business as a one-person company. Click to explore their thinking.</p>
+                <span class="section-tag">人物档案</span>
+                <h2 class="section-title">传奇人物</h2>
+                <p class="section-desc">每个人都以一人之力建立了世界级企业。点击探索他们的思维。</p>
             </div>
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search legends by name, role, or expertise...">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索传奇人物（姓名、角色、专业领域）...">
                 <button id="clearSearch" class="clear-search" style="display: none;">×</button>
             </div>
             <div class="filter-bar">
                 <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="saas">SaaS</button>
+                <button class="filter-btn" data-filter="saas">SaaS订阅</button>
                 <button class="filter-btn" data-filter="content">Content</button>
                 <button class="filter-btn" data-filter="finance">Finance</button>
                 <button class="filter-btn" data-filter="creator">Creator</button>
@@ -146,14 +146,14 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
     <section class="philosophy-section" id="philosophy">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">MINDSET</span>
-                <h2 class="section-title">Business Philosophy DNA</h2>
-                <p class="section-desc">The shared mental models across all OPC legends.</p>
+                <span class="section-tag">商业哲学</span>
+                <h2 class="section-title">商业哲学DNA</h2>
+                <p class="section-desc">所有OPC传奇人物共有的心智模型。</p>
             </div>
             <div class="philosophy-grid">
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">⚡</div>
-                    <h3>Leverage Over Labor</h3>
+                    <h3>杠杆胜过劳动</h3>
                     <p>"Give me a lever long enough and I can move the world." — Every legend uses code, content, or capital as leverage instead of hiring people.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">Pieter Levels</span>
@@ -162,7 +162,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 </div>
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">🎯</div>
-                    <h3>Revenue First, Scale Later</h3>
+                    <h3>先盈利，后扩张</h3>
                     <p>Profitability from day one. No burning cash for growth. Every dollar earned validates the product before expanding.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">Sahil Lavingia</span>
@@ -171,7 +171,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 </div>
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">🔄</div>
-                    <h3>Build in Public</h3>
+                    <h3>公开构建</h3>
                     <p>Transparency as marketing. Sharing revenue numbers, mistakes, and learnings builds trust and audience simultaneously.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">Pieter Levels</span>
@@ -180,7 +180,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 </div>
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">🏗️</div>
-                    <h3>Own Your Distribution</h3>
+                    <h3>掌握分发渠道</h3>
                     <p>Never rely on a single platform. Build email lists, personal brands, and direct audience relationships that no algorithm can take away.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">James Clear</span>
@@ -189,7 +189,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 </div>
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">🧩</div>
-                    <h3>Simplicity as Strategy</h3>
+                    <h3>极简即战略</h3>
                     <p>The best OPC products are dead simple. Complexity requires teams. Simplicity scales infinitely with zero marginal cost.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">Craigslist</span>
@@ -198,7 +198,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 </div>
                 <div class="philosophy-card fade-in">
                     <div class="phi-icon">♾️</div>
-                    <h3>Compound Everything</h3>
+                    <h3>复利一切</h3>
                     <p>Content compounds. Audience compounds. Code compounds. Every small action should create lasting value that grows over time.</p>
                     <div class="phi-examples">
                         <span class="phi-tag">James Clear</span>
@@ -212,22 +212,22 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
     <section class="cases-section" id="cases">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">DEEP DIVES</span>
-                <h2 class="section-title">Case Studies</h2>
-                <p class="section-desc">Detailed breakdowns of how OPC legends built and scaled their businesses.</p>
+                <span class="section-tag">深度案例</span>
+                <h2 class="section-title">案例研究</h2>
+                <p class="section-desc">详细拆解OPC传奇如何建立和扩展业务。</p>
             </div>
             <div class="cases-list">
                 <div class="case-card fade-in" data-case="1">
                     <div class="case-number">01</div>
                     <div class="case-body">
                         <div class="case-meta">
-                            <span class="case-category">SaaS + Portfolio</span>
+                            <span class="case-category">SaaS订阅 + Portfolio</span>
                             <span class="case-revenue">$3.5M+ ARR</span>
                         </div>
-                        <h3 class="case-title">Pieter Levels — The Serial Shipper</h3>
-                        <p class="case-desc">How one developer built 70+ products, with 4 becoming million-dollar businesses, all while traveling the world.</p>
+                        <h3 class="case-title">Pieter Levels — 连续发布者</h3>
+                        <p class="case-desc">一个开发者如何在环游世界的同时打造70+产品，其中4个成为百万级业务。</p>
                         <div class="case-tags">
-                            <span>Build in Public</span>
+                            <span>公开构建</span>
                             <span>Ship Fast</span>
                             <span>Multiple Revenue</span>
                         </div>
@@ -238,11 +238,11 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                     <div class="case-number">02</div>
                     <div class="case-body">
                         <div class="case-meta">
-                            <span class="case-category">Finance + Philosophy</span>
+                            <span class="case-category">Finance + 商业哲学</span>
                             <span class="case-revenue">$1B+ Net Worth</span>
                         </div>
                         <h3 class="case-title">Naval Ravikant — The Leverage Philosopher</h3>
-                        <p class="case-desc">AngelList co-founder who codified the wealth creation framework. His Almanack became the most-shared business text of the decade.</p>
+                        <p class="case-desc">AngelList联合创始人，将财富创造框架编成体系。他的年鉴成为十年内最被分享的商业文本。</p>
                         <div class="case-tags">
                             <span>Leverage</span>
                             <span>Specific Knowledge</span>
@@ -258,8 +258,8 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                             <span class="case-category">Creator Economy</span>
                             <span class="case-revenue">$10M+ Revenue</span>
                         </div>
-                        <h3 class="case-title">James Clear — The Habit Machine</h3>
-                        <p class="case-desc">Turned a blog about habits into Atomic Habits — 15M+ copies sold, $10M+/year from a single book.</p>
+                        <h3 class="case-title">James Clear — 习惯机器</h3>
+                        <p class="case-desc">将一个关于习惯的博客变成《原子习惯》——1500万+册销量，单本书年入1000万+美元。</p>
                         <div class="case-tags">
                             <span>Content Compounding</span>
                             <span>Book Empire</span>
@@ -275,56 +275,56 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
     <section class="playbook-section" id="playbook">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">ACTIONABLE</span>
-                <h2 class="section-title">The OPC Playbook</h2>
-                <p class="section-desc">Distilled wisdom from 18 legends. The framework for building your own one-person company.</p>
+                <span class="section-tag">行动指南</span>
+                <h2 class="section-title">OPC行动手册</h2>
+                <p class="section-desc">提炼自18位传奇的智慧。建立你自己一人公司的框架。</p>
             </div>
             <div class="playbook-timeline">
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 1</div>
                     <div class="timeline-content">
-                        <h3>Find Your Specific Knowledge</h3>
-                        <p>What comes naturally to you but is hard for others? Naval calls it "specific knowledge" — the thing you'd do for free.</p>
+                        <h3>找到你的特殊知识</h3>
+                        <p>什么是你自然而然擅长但别人觉得困难的？Naval称之为"特殊知识"——你愿意免费做的事。</p>
                         <div class="timeline-quote">"Specific knowledge is found by pursuing your genuine curiosity and passion rather than whatever is hot right now." — Naval Ravikant</div>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 2</div>
                     <div class="timeline-content">
-                        <h3>Build Leverage</h3>
-                        <p>Code, content, or capital. Write code that works while you sleep. Create content that compounds. Invest capital that grows.</p>
+                        <h3>构建杠杆</h3>
+                        <p>代码、内容或资本。编写在你睡觉时也能运行的代码。创造具有复利效应的内容。投资能增长的资本。</p>
                         <div class="timeline-quote">"Forget rich vs poor, white collar vs blue collar. It's now leveraged vs unleveraged." — Naval Ravikant</div>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 3</div>
                     <div class="timeline-content">
-                        <h3>Ship Ugly, Ship Fast</h3>
-                        <p>Pieter ships a new product every week. Marc Lou launched 20+ products in 2 years. Perfectionism is the enemy of OPC.</p>
+                        <h3>快速发布，不求完美</h3>
+                        <p>Pieter每周发布一个新产品。Marc Lou在2年内发布了20+产品。完美主义是OPC的敌人。</p>
                         <div class="timeline-quote">"If you're not embarrassed by the first version of your product, you've launched too late." — Reid Hoffman</div>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 4</div>
                     <div class="timeline-content">
-                        <h3>Own Your Audience</h3>
-                        <p>Build an email list. Grow on Twitter/X. Create a blog. The audience IS the product. Everything else is a monetization layer.</p>
+                        <h3>拥有你的受众</h3>
+                        <p>建立邮件列表。在Twitter/X上增长。创建博客。受众本身就是产品。其他一切都是变现层。</p>
                         <div class="timeline-quote">"The best marketing is a great product + honest storytelling." — Jack Butcher</div>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 5</div>
                     <div class="timeline-content">
-                        <h3>Monetize Without Scaling Headcount</h3>
-                        <p>SaaS subscriptions, digital products, courses, books, licensing. Every model that works for OPC has marginal cost approaching zero.</p>
+                        <h3>不增加人手的变现</h3>
+                        <p>SaaS订阅订阅、数字产品、课程、书籍、授权。适合OPC的每个模型边际成本都趋近于零。</p>
                         <div class="timeline-quote">"Charge for the outcome, not your time." — Daniel Vassallo</div>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-phase">Phase 6</div>
                     <div class="timeline-content">
-                        <h3>Stay Small, Stay Sovereign</h3>
-                        <p>The goal isn't to build a big company. It's to build a great life. The legends optimize for freedom, not empire.</p>
+                        <h3>保持小而自主</h3>
+                        <p>目标不是建立大公司，而是建立美好的生活。传奇们优化的是自由，而不是帝国。</p>
                         <div class="timeline-quote">"Success is when you can stop doing what you dislike." — Derek Sivers</div>
                     </div>
                 </div>
@@ -335,50 +335,50 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
     <section class="models-section" id="models">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">MODELS</span>
-                <h2 class="section-title">7 Proven OPC Revenue Models</h2>
+                <span class="section-tag">商业模式</span>
+                <h2 class="section-title">7种经过验证的OPC收入模式</h2>
             </div>
             <div class="models-grid">
                 <div class="model-card fade-in">
                     <div class="model-icon">💻</div>
-                    <h3>SaaS</h3>
-                    <p>Recurring revenue from software</p>
+                    <h3>SaaS订阅</h3>
+                    <p>软件订阅收入</p>
                     <div class="model-range">$1K - $500K MRR</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">📝</div>
-                    <h3>Content + Books</h3>
-                    <p>Writing that compounds</p>
+                    <h3>内容+书籍</h3>
+                    <p>具有复利效应的写作</p>
                     <div class="model-range">$100K - $10M/year</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">🎓</div>
-                    <h3>Courses & Community</h3>
-                    <p>Teach what you know</p>
+                    <h3>课程与社区</h3>
+                    <p>传授你所知</p>
                     <div class="model-range">$50K - $2M/year</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">📊</div>
-                    <h3>Data & APIs</h3>
-                    <p>Sell structured data</p>
+                    <h3>数据与API</h3>
+                    <p>销售结构化数据</p>
                     <div class="model-range">$10K - $200K MRR</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">🎨</div>
-                    <h3>Digital Products</h3>
-                    <p>Templates, assets, tools</p>
+                    <h3>数字产品</h3>
+                    <p>模板、素材、工具</p>
                     <div class="model-range">$5K - $100K/month</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">🔗</div>
-                    <h3>Marketplace</h3>
-                    <p>Connect supply and demand</p>
+                    <h3>交易平台</h3>
+                    <p>连接供需</p>
                     <div class="model-range">$10K - $1M/month</div>
                 </div>
                 <div class="model-card fade-in">
                     <div class="model-icon">💰</div>
-                    <h3>Investing + Advisory</h3>
-                    <p>Angel investing, advisory shares</p>
+                    <h3>投资+顾问</h3>
+                    <p>天使投资、顾问股份</p>
                     <div class="model-range">$100K - $50M+</div>
                 </div>
             </div>
@@ -393,28 +393,28 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                         <div class="logo-mark">O</div>
                         <span>OPC Legends</span>
                     </div>
-                    <p class="footer-desc">One Person. Infinite Possibilities.</p>
+                    <p class="footer-desc">一个人，无限可能。</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Explore</h4>
+                    <h4>探索</h4>
                     <ul class="footer-links">
-                        <li><a href="#legends">All Legends</a></li>
-                        <li><a href="#philosophy">Philosophy</a></li>
-                        <li><a href="#cases">Case Studies</a></li>
-                        <li><a href="#playbook">Playbook</a></li>
+                        <li><a href="#legends">所有传奇</a></li>
+                        <li><a href="#philosophy">商业哲学</a></li>
+                        <li><a href="#cases">案例研究</a></li>
+                        <li><a href="#playbook">行动手册</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Platform</h4>
+                    <h4>平台</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="platform.html">Marketplace</a></li>
-                        <li><a href="government.html">Government</a></li>
-                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="platform.html">交易平台</a></li>
+                        <li><a href="government.html">揭榜挂帅</a></li>
+                        <li><a href="academy.html">学院</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>连接</h4>
                     <ul class="footer-links">
                         <li><a href="https://github.com/MoKangMedical/opc-legends" target="_blank">GitHub</a></li>
                         <li><a href="superagent.html">Super Agent</a></li>
@@ -424,15 +424,15 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
             <div class="footer-bottom">
                 <p class="footer-copy">© 2026 OPC Legends. Built with ❤️ by the OPC community.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
+                    <a href="javascript:void(0)" onclick="showLegendChat(this)">Privacy</a>
+                    <a href="javascript:void(0)" onclick="showLegendChat(this)">Terms</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="legends-data.js">
-// ===== OPC Platform 增强功能 =====
+// ===== OPC 平台 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
@@ -457,7 +457,7 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
 
 </script>
     <script src="legends-app.js">
-// ===== OPC Platform 增强功能 =====
+// ===== OPC 平台 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
