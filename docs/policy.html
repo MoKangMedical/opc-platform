@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC创业政策 — 独立创业者政策支持</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--gold:#f0c040;--orange:#ff8a50;--green:#00d68f;--blue:#4ea8de;--purple:#a78bfa;--red:#ff6b6b;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
+.c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
+.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+.nav-l .d{color:var(--gold)}
+.nav-lks{display:flex;align-items:center;gap:32px}
+.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
+.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gold);border-radius:1px}
+.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.hero{min-height:50vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(240,192,64,.06),transparent 70%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(255,138,80,.03),transparent 60%)}
+.hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.15);padding:8px 20px;border-radius:100px;margin-bottom:28px;animation:fu .8s var(--e) both}
+.ht{font-family:var(--fd);font-size:clamp(2.5rem,5.5vw,4rem);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-.03em;animation:fu .8s var(--e) .1s both}
+.ht .g{background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hd{font-size:1.15rem;color:var(--t2);max-width:640px;margin:0 auto 48px;line-height:1.7;animation:fu .8s var(--e) .2s both}
+.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;max-width:720px;margin:0 auto 48px;animation:fu .8s var(--e) .3s both}
+.sc{background:var(--bg2);padding:28px 20px;text-align:center;transition:background .3s}
+.sc:hover{background:var(--card2)}
+.sn{font-family:var(--fd);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
+.sn.g{color:var(--gold)}.sn.o{color:var(--orange)}.sn.p{color:var(--purple)}.sn.b{color:var(--blue)}
+.sl{font-size:.8rem;color:var(--t3);font-weight:500}
+/* Filter */
+.filter{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.fb{background:var(--card);border:1px solid var(--border);color:var(--t2);padding:8px 18px;border-radius:100px;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .25s var(--e);font-family:var(--fb)}
+.fb:hover{border-color:var(--border2);color:var(--t1)}
+.fb.a{background:var(--gold);border-color:var(--gold);color:#000;font-weight:600}
+/* Policy Cards */
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .4s var(--e);position:relative;overflow:hidden}
+.pc:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,0,0,.3)}
+.pc-badge{position:absolute;top:16px;right:16px;font-size:.68rem;padding:4px 10px;border-radius:6px;font-weight:600}
+.pc-badge.hot{background:rgba(255,107,107,.15);color:var(--red)}
+.pc-badge.new{background:rgba(0,214,143,.15);color:var(--green)}
+.pc-badge.expire{background:rgba(240,192,64,.15);color:var(--gold)}
+.pc-icon{font-size:2.5rem;margin-bottom:16px}
+.pc-title{font-family:var(--fd);font-size:1.2rem;font-weight:600;margin-bottom:8px}
+.pc-org{font-size:.82rem;color:var(--t3);margin-bottom:12px}
+.pc-desc{font-size:.88rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.pc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.pt{font-size:.72rem;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.04);color:var(--t3);border:1px solid var(--border)}
+.pc-amount{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.pc-deadline{font-size:.82rem;color:var(--t3);margin-bottom:16px}
+.pc-actions{display:flex;gap:10px}
+.btn{flex:1;background:linear-gradient(135deg,var(--gold),var(--orange));border:none;color:#000;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s var(--e);font-family:var(--fb);text-align:center}
+.btn:hover{box-shadow:0 4px 16px rgba(240,192,64,.3);transform:translateY(-1px)}
+.btn-o{flex:1;background:transparent;border:1px solid var(--border);color:var(--t2);padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--fb);text-align:center}
+.btn-o:hover{border-color:var(--border2);color:var(--t1)}
+/* Summary */
+.summary{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px;margin-top:48px}
+.summary-title{font-family:var(--fd);font-size:1.3rem;font-weight:600;margin-bottom:20px}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.sg{padding:16px;background:var(--bg2);border-radius:12px;text-align:center}
+.sg-v{font-family:var(--fd);font-size:1.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.sg-l{font-size:.82rem;color:var(--t3)}
+footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-index:1}
+.ft-i{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.ft-t{color:var(--t3);font-size:.82rem}
+.ft-l{display:flex;gap:24px}
+.ft-l a{color:var(--t3);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-l a:hover{color:var(--t1)}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.ai{animation:ci .6s var(--e) both}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}}
+.mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
+@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-i">
+<a href="index.html" class="nav-l"><span class="d">◆</span> OPC Platform</a>
+<div class="nav-lks" id="nl">
+<a href="platform.html" class="nav-lk">平台</a><a href="government.html" class="nav-lk">揭榜挂帅</a>
+<a href="superagent.html" class="nav-lk">超级个体</a><a href="legends.html" class="nav-lk">名人堂</a>
+<a href="academy.html" class="nav-lk">学院</a><a href="health.html" class="nav-lk">健康</a>
+<a href="community.html" class="nav-lk">社区</a><a href="policy.html" class="nav-lk a">政策</a>
+<a href="chat.html" class="nav-lk">聊天</a>
+<button class="lbtn" onclick="tgl()">🌐 EN/中</button>
+</div><button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
+</div></nav>
+
+<section class="hero"><div class="hero-c">
+<div class="badge"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold)"></span> 创业政策支持</div>
+<h1 class="ht">OPC <span class="g">创业政策汇总</span></h1>
+<p class="hd">全面梳理国家和地方支持独立创业、个体工商户、小微企业的优惠政策，助你轻松创业。</p>
+<div class="sr">
+<div class="sc"><div class="sn g">126</div><div class="sl">政策总数</div></div>
+<div class="sc"><div class="sn o">¥50亿+</div><div class="sl">补贴总额</div></div>
+<div class="sc"><div class="sn p">28</div><div class="sl">覆盖省市</div></div>
+<div class="sc"><div class="sn b">12</div><div class="sl">政策类别</div></div>
+</div>
+</div></section>
+
+<section><div class="c">
+<!-- Filter -->
+<div class="filter" id="filterBar"></div>
+
+<!-- Policy Grid -->
+<div class="pg" id="policyGrid"></div>
+
+<!-- Summary -->
+<div class="summary">
+<div class="summary-title">📊 政策数据总览</div>
+<div class="summary-grid">
+<div class="sg"><div class="sg-v">126</div><div class="sg-l">已收录政策</div></div>
+<div class="sg"><div class="sg-v">¥50亿+</div><div class="sg-l">补贴总额</div></div>
+<div class="sg"><div class="sg-v">28</div><div class="sg-l">覆盖省市</div></div>
+<div class="sg"><div class="sg-v">89%</div><div class="sg-l">申请成功率</div></div>
+<div class="sg"><div class="sg-v">15天</div><div class="sg-l">平均审批周期</div></div>
+<div class="sg"><div class="sg-v">4.8</div><div class="sg-l">用户满意度</div></div>
+</div>
+</div>
+</div></section>
+
+<footer><div class="ft-i">
+<div class="ft-t">© 2026 OPC Policy · 一个人的公司，无限可能</div>
+<div class="ft-l"><a href="index.html">首页</a><a href="platform.html">平台</a><a href="community.html">社区</a></div>
+</div></footer>
+
+<script>
+// 政策数据
+const POLICIES=[
+{icon:"💰",title:"创业担保贷款",org:"人力资源和社会保障部",desc:"个人最高可申请50万元创业担保贷款，财政贴息50%，期限3年。适用于高校毕业生、返乡农民工、退役军人等群体。",tags:["贷款","贴息","个人创业"],amount:"最高50万",deadline:"长期有效",badge:"hot",cat:"金融支持"},
+{icon:"🏢",title:"小微企业税收优惠",org:"国家税务总局",desc:"年应纳税所得额不超过100万元的部分，减按25%计入应纳税所得额，按20%税率缴纳企业所得税。",tags:["税收","减免","小微企业"],amount:"减免80%",deadline:"2027年12月31日",badge:"hot",cat:"税收优惠"},
+{icon:"📋",title:"个体工商户登记便利化",org:"国家市场监督管理总局",desc:"推行\"一网通办\"，个体工商户设立登记1个工作日内办结，取消名称预先核准。",tags:["登记","简化","一网通办"],amount:"免费",deadline:"长期有效",badge:"new",cat:"行政便利"},
+{icon:"🎓",title:"大学生创业补贴",org:"教育部",desc:"高校毕业生自主创业可申请一次性创业补贴，标准为5000-10000元，部分地区上浮至2万元。",tags:["大学生","补贴","毕业"],amount:"5000-20000元",deadline:"长期有效",badge:"hot",cat:"创业补贴"},
+{icon:"🏠",title:"创业场地租金补贴",org:"各地人社局",desc:"入驻创业孵化基地的创业者，可申请场地租金补贴，补贴比例50%-100%，期限1-3年。",tags:["场地","租金","孵化基地"],amount:"补贴50%-100%",deadline:"各地不同",badge:"",cat:"场地支持"},
+{icon:"📱",title:"灵活就业人员社保补贴",org:"人力资源和社会保障部",desc:"灵活就业人员参加社会保险，可申请社保补贴，补贴标准为实际缴费的2/3，期限3年。",tags:["社保","补贴","灵活就业"],amount:"补贴2/3",deadline:"长期有效",badge:"new",cat:"社保支持"},
+{icon:"🚀",title:"高新技术企业认定",org:"科技部",desc:"通过高新技术企业认定，享受15%企业所得税优惠税率，研发费用加计扣除100%。",tags:["高新","税收","研发"],amount:"税率15%",deadline:"长期有效",badge:"",cat:"税收优惠"},
+{icon:"💡",title:"创业培训补贴",org:"各地人社局",desc:"参加创业培训可申请培训补贴，每人每年可享受一次，补贴标准1000-2000元。",tags:["培训","补贴","技能"],amount:"1000-2000元",deadline:"长期有效",badge:"",cat:"培训支持"},
+{icon:"🌐",title:"跨境电商扶持政策",org:"商务部",desc:"跨境电商综试区企业享受所得税核定征收，增值税、消费税免征不退政策。",tags:["跨境电商","税收","出口"],amount:"免征不退",deadline:"长期有效",badge:"new",cat:"外贸支持"},
+{icon:"🔧",title:"知识产权保护补贴",org:"国家知识产权局",desc:"专利申请费用补贴，发明专利每件补贴5000元，实用新型补贴1000元，外观设计补贴500元。",tags:["专利","补贴","知识产权"],amount:"500-5000元",deadline:"长期有效",badge:"",cat:"知识产权"},
+{icon:"📊",title:"政府采购支持中小企业",org:"财政部",desc:"政府采购预留30%以上份额专门面向中小企业，其中预留给小微企业的比例不低于60%。",tags:["政府采购","中小企业","预留份额"],amount:"30%+预留",deadline:"长期有效",badge:"",cat:"市场支持"},
+{icon:"🎯",title:"创业带动就业补贴",org:"各地人社局",desc:"创业者吸纳就业可申请带动就业补贴，每吸纳1人补贴2000-5000元，最高补贴10万元。",tags:["就业","补贴","带动"],amount:"2000-5000元/人",deadline:"各地不同",badge:"hot",cat:"创业补贴"}
+];
+
+const CATEGORIES=["全部","金融支持","税收优惠","创业补贴","场地支持","社保支持","培训支持","行政便利","外贸支持","知识产权","市场支持"];
+let currentCat="全部";
+
+function renderFilters(){
+const bar=document.getElementById('filterBar');
+bar.innerHTML=CATEGORIES.map(c=>`<button class="fb ${c===currentCat?'a':''}" onclick="filterBy('${c}')">${c}</button>`).join('');
+}
+
+function renderPolicies(){
+const grid=document.getElementById('policyGrid');
+const filtered=currentCat==='全部'?POLICIES:POLICIES.filter(p=>p.cat===currentCat);
+grid.innerHTML=filtered.map((p,i)=>`
+<div class="pc ai" style="animation-delay:${i*0.06}s">
+${p.badge?`<div class="pc-badge ${p.badge}">${p.badge==='hot'?'🔥热门':p.badge==='new'?'🆕最新':'⏰即将截止'}</div>`:''}
+<div class="pc-icon">${p.icon}</div>
+<div class="pc-title">${p.title}</div>
+<div class="pc-org">📌 ${p.org}</div>
+<p class="pc-desc">${p.desc}</p>
+<div class="pc-tags">${p.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
+<div class="pc-amount">${p.amount}</div>
+<div class="pc-deadline">⏰ 截止时间: ${p.deadline}</div>
+<div class="pc-actions">
+<button class="btn" onclick="applyPolicy('${p.title}')">立即申请</button>
+<button class="btn-o" onclick="showDetail('${p.title}')">查看详情</button>
+</div>
+</div>
+`).join('');
+}
+
+function filterBy(c){currentCat=c;renderFilters();renderPolicies();}
+
+function applyPolicy(title){
+alert(`感谢申请「${title}」！\n\n我们将为您提供专业的政策申请指导。\n\n请添加顾问微信：OPC-Policy`);
+}
+
+function showDetail(title){
+const policy=POLICIES.find(p=>p.title===title);
+if(!policy)return;
+const modal=document.createElement('div');
+modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px';
+modal.innerHTML=`
+<div style="background:var(--card);border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+<h2 style="font-size:1.3rem">${policy.icon} ${policy.title}</h2>
+<button onclick="this.parentElement.parentElement.parentElement.remove()" style="background:none;border:none;color:var(--t2);font-size:1.5rem;cursor:pointer">×</button>
+</div>
+<div style="margin-bottom:16px;font-size:.9rem;color:var(--t2)">📌 ${policy.org}</div>
+<div style="margin-bottom:20px;line-height:1.7">${policy.desc}</div>
+<div style="margin-bottom:16px">
+<div style="font-size:.82rem;font-weight:600;margin-bottom:8px">💰 补贴金额</div>
+<div style="font-size:1.2rem;font-weight:700;color:var(--gold)">${policy.amount}</div>
+</div>
+<div style="margin-bottom:16px">
+<div style="font-size:.82rem;font-weight:600;margin-bottom:8px">⏰ 截止时间</div>
+<div>${policy.deadline}</div>
+</div>
+<div style="margin-bottom:16px">
+<div style="font-size:.82rem;font-weight:600;margin-bottom:8px">🏷️ 政策标签</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">${policy.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
+</div>
+<button class="btn" onclick="applyPolicy('${policy.title}')" style="width:100%;padding:14px">立即申请 - ${policy.title}</button>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+renderFilters();
+renderPolicies();
+
+// i18n
+let lang=localStorage.getItem('opc-lang')||'zh';
+function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+</script>
+</body></html>
