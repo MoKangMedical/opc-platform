@@ -1,0 +1,661 @@
+/*
+ * OPC Platform - 用户体验优化补丁
+ * 修复所有发现的视觉和交互问题
+ */
+
+/* ============================================
+   1. 首页 Hero 区域优化
+   ============================================ */
+
+/* 减少顶部空白，让内容更紧凑 */
+.hero {
+  min-height: 100vh;
+  padding: 80px 28px 60px; /* 原来是 96px 28px 48px */
+}
+
+/* 优化标题区域间距 */
+.hero-c {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 72px); /* 稍微缩小 */
+  margin-bottom: 20px;
+  letter-spacing: -2.5px;
+}
+
+.hero-sub {
+  font-size: 18px; /* 稍微缩小 */
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+/* 优化徽章样式 */
+.hero-bdg {
+  margin-bottom: 24px;
+  padding: 8px 20px 8px 10px;
+}
+
+/* ============================================
+   2. 核心数据区优化
+   ============================================ */
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 8px; /* 添加间距 */
+}
+
+.hs {
+  padding: 0 24px; /* 调整内边距 */
+  border-right: 1px solid var(--bdr);
+  text-align: center;
+  min-width: 100px; /* 确保最小宽度 */
+}
+
+.hs:first-child {
+  padding-left: 0;
+}
+
+.hs:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.hs .n {
+  font-size: clamp(24px, 3.5vw, 36px); /* 缩小字体 */
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--t1);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2; /* 添加行高 */
+}
+
+.hs .l {
+  font-size: 11px;
+  color: var(--t2);
+  text-transform: uppercase;
+  letter-spacing: 2px; /* 增加字间距 */
+  font-weight: 600;
+  margin-top: 8px; /* 增加顶部间距 */
+}
+
+/* ============================================
+   3. 按钮优化
+   ============================================ */
+
+.hero-cta {
+  display: flex;
+  gap: 16px; /* 增加按钮间距 */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-p {
+  padding: 16px 32px;
+  font-size: 15px;
+}
+
+.btn-s {
+  padding: 16px 32px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.03); /* 添加轻微背景 */
+  border: 1px solid var(--bdr2);
+}
+
+.btn-s:hover {
+  background: rgba(124,92,252,0.08); /* 增强悬停效果 */
+  border-color: var(--a);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   4. 信任条优化
+   ============================================ */
+
+.trust {
+  padding: 48px 28px; /* 增加内边距 */
+  border-top: 1px solid var(--bdr);
+  border-bottom: 1px solid var(--bdr);
+  background: rgba(255,255,255,0.01); /* 添加轻微背景 */
+}
+
+.trust-i {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 48px; /* 增加间距 */
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.trust-item {
+  display: flex;
+  align-items: baseline; /* 改为基线对齐 */
+  gap: 12px;
+  color: var(--t3);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .3px;
+}
+
+.trust-item .tv {
+  font-size: 28px; /* 稍微缩小 */
+  font-weight: 800;
+  color: var(--t2);
+  font-family: 'Inter';
+  line-height: 1;
+}
+
+/* ============================================
+   5. 模块卡片优化
+   ============================================ */
+
+.mg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* 增加间距 */
+}
+
+.mc {
+  padding: 28px; /* 调整内边距 */
+  border-radius: 16px;
+}
+
+.mc .ic {
+  width: 44px; /* 稍微缩小图标 */
+  height: 44px;
+  margin-bottom: 16px;
+}
+
+.mc h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.mc .ds {
+  font-size: 14px;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.mc .ft {
+  margin-bottom: 16px;
+}
+
+.mc .ft li {
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+/* ============================================
+   6. 路线图优化
+   ============================================ */
+
+.rg {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.rc {
+  padding: 24px;
+  border-radius: 14px;
+}
+
+.rc .ph {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.rc h4 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.rc .its {
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+/* ============================================
+   7. 页脚优化
+   ============================================ */
+
+.ft {
+  border-top: 1px solid var(--bdr);
+  padding: 48px 28px 32px;
+}
+
+.ft-i {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ft-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 32px; /* 减少间距 */
+}
+
+.ft-cols {
+  display: flex;
+  gap: 40px; /* 减少列间距 */
+}
+
+.ft-col h4 {
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.ft-col a {
+  font-size: 13px;
+  padding: 3px 0; /* 减少内边距 */
+}
+
+/* ============================================
+   8. 导航栏优化
+   ============================================ */
+
+.nav {
+  height: 56px;
+}
+
+.nav-i {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* 减少链接间距 */
+}
+
+.nl {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ============================================
+   9. 登录/注册页面优化
+   ============================================ */
+
+.auth {
+  padding: 80px 28px 48px; /* 减少顶部 padding */
+}
+
+.auth-card {
+  padding: 40px 36px; /* 调整内边距 */
+  border-radius: 20px;
+}
+
+.auth-h {
+  margin-bottom: 32px;
+}
+
+.auth-h h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.auth-h p {
+  font-size: 14px;
+}
+
+/* 表单样式优化 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t2);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg3);
+  border: 1px solid var(--bdr);
+  border-radius: 10px;
+  color: var(--t1);
+  font-size: 15px;
+  transition: all .25s var(--ease);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--a);
+  box-shadow: 0 0 0 3px var(--gw);
+}
+
+.form-input::placeholder {
+  color: var(--t3);
+}
+
+/* ============================================
+   10. 个人资料页面优化
+   ============================================ */
+
+.profile {
+  padding: 80px 28px 48px;
+}
+
+.profile-i {
+  max-width: 800px;
+}
+
+.profile-header {
+  padding: 28px;
+  margin-bottom: 32px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  font-size: 28px;
+}
+
+.profile-info h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.badges {
+  gap: 6px;
+}
+
+.badge {
+  padding: 4px 10px;
+  font-size: 10px;
+}
+
+/* 标签页优化 */
+.tabs {
+  margin-bottom: 20px;
+  padding: 4px;
+}
+
+.tab {
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.form-card {
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.form-card h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   11. 移动端优化增强
+   ============================================ */
+
+@media (max-width: 900px) {
+  .mg {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .rg {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  
+  .hs {
+    padding: 0 16px;
+    min-width: 80px;
+  }
+  
+  .hs .n {
+    font-size: 22px;
+  }
+  
+  .trust-i {
+    gap: 32px;
+  }
+  
+  .trust-item .tv {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 72px 20px 40px;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+  }
+  
+  .hero-sub {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .hs {
+    padding: 0 12px;
+    border-right: none;
+    flex: 1 1 40%;
+    min-width: 120px;
+  }
+  
+  .hs .n {
+    font-size: 24px;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-p, .btn-s {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .trust-i {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .trust-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .mg, .rg {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .mc, .rc {
+    padding: 24px;
+  }
+  
+  .ft-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .ft-cols {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .auth-card {
+    padding: 32px 24px;
+  }
+  
+  .auth-h h1 {
+    font-size: 24px;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-info .badges {
+    justify-content: center;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .tab {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================
+   12. 动画和过渡优化
+   ============================================ */
+
+/* 减少动画以提升性能 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 滚动动画优化 */
+.up {
+  opacity: 0;
+  transform: translateY(24px); /* 减少位移 */
+  transition: all .6s var(--ease);
+}
+
+.up.v {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   13. 可访问性优化
+   ============================================ */
+
+/* 焦点状态 */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--a);
+  outline-offset: 2px;
+}
+
+/* 跳过链接 */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--a);
+  color: white;
+  padding: 8px 16px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --t1: #ffffff;
+    --t2: #cccccc;
+    --t3: #999999;
+    --bdr: rgba(255,255,255,0.2);
+    --bdr2: rgba(255,255,255,0.3);
+  }
+}
+
+/* ============================================
+   14. 打印样式
+   ============================================ */
+
+@media print {
+  .nav,
+  .mobile-nav,
+  .hero-cta,
+  .btn {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .hero {
+    min-height: auto;
+    padding: 20px;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ============================================
+   15. 性能优化
+   ============================================ */
+
+/* 使用 will-change 优化动画元素 */
+.hero-glow,
+.mc:hover,
+.rc:hover,
+.btn:hover {
+  will-change: transform, opacity;
+}
+
+/* 优化图片加载 */
+img {
+  loading: lazy;
+  decoding: async;
+}
+
+/* ============================================
+   16. 暗色模式微调
+   ============================================ */
+
+/* 确保暗色模式下文字清晰可读 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --t1: #f0f0f5;
+    --t2: #a0a0b8;
+    --t3: #666680;
+  }
+}

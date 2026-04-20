@@ -179,6 +179,432 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     justify-content:center
   }
 }
+
+/* ============================================
+   UX优化 - 2026-04-20
+   ============================================ */
+
+/* 首页Hero区域优化 */
+.hero {
+  min-height: 100vh;
+  padding: 80px 28px 60px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 72px);
+  margin-bottom: 20px;
+  letter-spacing: -2.5px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.hero-bdg {
+  margin-bottom: 24px;
+  padding: 8px 20px 8px 10px;
+}
+
+/* 核心数据区优化 */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 8px;
+}
+
+.hs {
+  padding: 0 24px;
+  border-right: 1px solid var(--bdr);
+  text-align: center;
+  min-width: 100px;
+}
+
+.hs:first-child {
+  padding-left: 0;
+}
+
+.hs:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.hs .n {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--t1);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.hs .l {
+  font-size: 11px;
+  color: var(--t2);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* 按钮优化 */
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-p {
+  padding: 16px 32px;
+  font-size: 15px;
+}
+
+.btn-s {
+  padding: 16px 32px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--bdr2);
+}
+
+.btn-s:hover {
+  background: rgba(124,92,252,0.08);
+  border-color: var(--a);
+  transform: translateY(-2px);
+}
+
+/* 信任条优化 */
+.trust {
+  padding: 48px 28px;
+  background: rgba(255,255,255,0.01);
+}
+
+.trust-i {
+  gap: 48px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.trust-item .tv {
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* 模块卡片优化 */
+.mg {
+  gap: 20px;
+}
+
+.mc {
+  padding: 28px;
+}
+
+.mc .ic {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+}
+
+.mc h3 {
+  font-size: 18px;
+}
+
+.mc .ds {
+  font-size: 14px;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.mc .ft {
+  margin-bottom: 16px;
+}
+
+.mc .ft li {
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+/* 路线图优化 */
+.rg {
+  gap: 16px;
+}
+
+.rc {
+  padding: 24px;
+}
+
+.rc .ph {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.rc h4 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.rc .its {
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+/* 页脚优化 */
+.ft {
+  padding: 48px 28px 32px;
+}
+
+.ft-top {
+  gap: 32px;
+}
+
+.ft-cols {
+  gap: 40px;
+}
+
+.ft-col h4 {
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.ft-col a {
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+/* 导航栏优化 */
+.nav-links {
+  gap: 4px;
+}
+
+.nl {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* 登录/注册页面优化 */
+.auth {
+  padding: 80px 28px 48px;
+}
+
+.auth-card {
+  padding: 40px 36px;
+}
+
+.auth-h {
+  margin-bottom: 32px;
+}
+
+.auth-h h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.auth-h p {
+  font-size: 14px;
+}
+
+/* 表单样式优化 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t2);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg3);
+  border: 1px solid var(--bdr);
+  border-radius: 10px;
+  color: var(--t1);
+  font-size: 15px;
+  transition: all .25s var(--ease);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--a);
+  box-shadow: 0 0 0 3px var(--gw);
+}
+
+.form-input::placeholder {
+  color: var(--t3);
+}
+
+/* 移动端优化增强 */
+@media (max-width: 900px) {
+  .mg {
+    gap: 16px;
+  }
+  
+  .rg {
+    gap: 14px;
+  }
+  
+  .hs {
+    padding: 0 16px;
+    min-width: 80px;
+  }
+  
+  .hs .n {
+    font-size: 22px;
+  }
+  
+  .trust-i {
+    gap: 32px;
+  }
+  
+  .trust-item .tv {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 72px 20px 40px;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+  }
+  
+  .hero-sub {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .hs {
+    padding: 0 12px;
+    border-right: none;
+    flex: 1 1 40%;
+    min-width: 120px;
+  }
+  
+  .hs .n {
+    font-size: 24px;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-p, .btn-s {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .trust-i {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .trust-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .mg, .rg {
+    gap: 14px;
+  }
+  
+  .mc, .rc {
+    padding: 24px;
+  }
+  
+  .ft-top {
+    gap: 24px;
+  }
+  
+  .ft-cols {
+    gap: 24px;
+  }
+  
+  .auth-card {
+    padding: 32px 24px;
+  }
+  
+  .auth-h h1 {
+    font-size: 24px;
+  }
+}
+
+/* 动画和过渡优化 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all .6s var(--ease);
+}
+
+.up.v {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 可访问性优化 */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--a);
+  outline-offset: 2px;
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --t1: #ffffff;
+    --t2: #cccccc;
+    --t3: #999999;
+    --bdr: rgba(255,255,255,0.2);
+    --bdr2: rgba(255,255,255,0.3);
+  }
+}
+
+/* 性能优化 */
+.hero-glow,
+.mc:hover,
+.rc:hover,
+.btn:hover {
+  will-change: transform, opacity;
+}
+
+img {
+  loading: lazy;
+  decoding: async;
+}
+
 </style>
 </head>
 <body>
