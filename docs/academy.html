@@ -139,39 +139,45 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 <div class="sc"><div class="sn r">4</div><div class="sl" data-en="Certifications">技能认证</div></div>
 </div>
 <div class="tabs" id="tabs">
-<button class="tab a" onclick="stab(0)">📖 <span data-en="Courses">课程中心</span></button>
-<button class="tab" onclick="stab(1)">🗺️ <span data-en="Learning Paths">学习路径</span></button>
-<button class="tab" onclick="stab(2)">👨‍🏫 <span data-en="Mentors">导师匹配</span></button>
-<button class="tab" onclick="stab(3)">🏅 <span data-en="Certifications">技能认证</span></button>
-<button class="tab" onclick="stab(4)">📋 <span data-en="My Learning">我的学习</span></button>
+<button class="tab a" onclick="stab(0)">📖 课程中心</button>
+<button class="tab" onclick="stab(1)">📅 本周课表</button>
+<button class="tab" onclick="stab(2)">🗺️ 学习路径</button>
+<button class="tab" onclick="stab(3)">👨‍🏫 导师匹配</button>
+<button class="tab" onclick="stab(4)">🏅 技能认证</button>
+<button class="tab" onclick="stab(5)">📋 我的学习</button>
 </div>
 </div></section>
 
 <section class="c" style="padding-bottom:80px">
 <!-- Tab 0: Courses -->
 <div class="tpc a" id="tp0"><div class="cg" id="courseGrid"></div></div>
-<!-- Tab 1: Paths -->
+<!-- Tab 1: Schedule -->
 <div class="tpc" id="tp1">
-<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px" data-en="Your Roadmap to OPC Success">你的OPC成功路线图</h2><p style="color:var(--t2)" data-en="Follow a structured path from beginner to expert">跟随结构化路径从新手到专家</p></div>
+<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px">📅 本周课表</h2><p style="color:var(--t2)">所有课程的上课时间安排</p></div>
+<div id="scheduleArea"></div>
+</div>
+<!-- Tab 2: Paths -->
+<div class="tpc" id="tp2">
+<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px">你的OPC成功路线图</h2><p style="color:var(--t2)">跟随结构化路径从新手到专家</p></div>
 <div id="pathArea"></div>
 </div>
-<!-- Tab 2: Mentors -->
-<div class="tpc" id="tp2">
-<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px" data-en="Find Your Mentor">找到你的导师</h2><p style="color:var(--t2)" data-en="Connect with successful OPC entrepreneurs for 1-on-1 guidance">与成功的OPC创业者进行1对1指导</p></div>
+<!-- Tab 3: Mentors -->
+<div class="tpc" id="tp3">
+<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px">找到你的导师</h2><p style="color:var(--t2)">与成功的OPC创业者进行1对1指导</p></div>
 <div class="mg" id="mentorGrid"></div>
 </div>
-<!-- Tab 3: Certs -->
-<div class="tpc" id="tp3">
-<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px" data-en="Skill Certifications">技能认证</h2><p style="color:var(--t2)" data-en="Prove your expertise with OPC certifications">用OPC认证证明你的专业能力</p></div>
+<!-- Tab 4: Certs -->
+<div class="tpc" id="tp4">
+<div style="text-align:center;margin-bottom:48px"><h2 style="font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:8px">技能认证</h2><p style="color:var(--t2)">用OPC认证证明你的专业能力</p></div>
 <div class="cert-g" id="certGrid"></div>
 </div>
-<!-- Tab 4: My Learning -->
-<div class="tpc" id="tp4">
+<!-- Tab 5: My Learning -->
+<div class="tpc" id="tp5">
 <div style="text-align:center;padding:80px 20px">
 <div style="font-size:4rem;margin-bottom:16px">📊</div>
-<h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:600;margin-bottom:8px" data-en="Your Learning Dashboard">你的学习仪表盘</h3>
-<p style="color:var(--t2);max-width:480px;margin:0 auto 32px" data-en="Enroll in courses to start tracking your progress. Your personalized dashboard will show completion rates, time spent, and skill growth.">报名课程开始追踪进度。你的个性化仪表盘将显示完成率、学习时间和技能增长。</p>
-<button class="btn" onclick="stab(0)" data-en="Browse Courses">浏览课程</button>
+<h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:600;margin-bottom:8px">你的学习仪表盘</h3>
+<p style="color:var(--t2);max-width:480px;margin:0 auto 32px">报名课程开始追踪进度。你的个性化仪表盘将显示完成率、学习时间和技能增长。</p>
+<button class="btn" onclick="stab(0)">浏览课程</button>
 </div>
 </div>
 </section>
@@ -183,12 +189,24 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 
 <script>
 const COURSES=[
-{title:"从零搭建SaaS产品",en:"Build a SaaS from Zero",teacher:"Pieter Levels",hours:12,level:"beginner",stars:4.9,price:299,color:"#6366f1",icon:"💻",desc:"从想法到上线，完整SaaS产品开发流程",descEn:"From idea to launch: complete SaaS product development"},
-{title:"一人公司财务自由",en:"Financial Freedom as OPC",teacher:"Naval Ravikant",hours:8,level:"inter",stars:4.8,price:199,color:"#a78bfa",icon:"💰",desc:"杠杆思维、财富创造框架与被动收入",descEn:"Leverage thinking, wealth creation framework & passive income"},
-{title:"内容创作到百万读者",en:"Content Creation to 1M Readers",teacher:"James Clear",hours:10,level:"beginner",stars:4.9,price:249,color:"#f59e0b",icon:"✍️",desc:"习惯养成写作法，从博客到畅销书",descEn:"Habit-forming writing: from blog to bestseller"},
-{title:"AI产品从0到1",en:"AI Product 0 to 1",teacher:"Marc Lou",hours:15,level:"inter",stars:4.7,price:349,color:"#ef4444",icon:"🤖",desc:"AI驱动产品开发、快速验证与规模化",descEn:"AI-driven product development, rapid validation & scaling"},
-{title:"独立开发者技术栈",en:"Indie Developer Tech Stack",teacher:"Jon Yongfook",hours:20,level:"adv",stars:4.8,price:399,color:"#10b981",icon:"⚡",desc:"全栈开发、部署运维、监控报警一站式",descEn:"Full-stack development, deployment & monitoring"},
-{title:"打造个人品牌",en:"Build Your Personal Brand",teacher:"Ali Abdaal",hours:6,level:"beginner",stars:4.6,price:149,color:"#ec4899",icon:"🌟",desc:"YouTube/Newsletter/Twitter个人品牌建设",descEn:"YouTube/Newsletter/Twitter personal brand building"}
+{title:"从零搭建SaaS产品",en:"Build a SaaS from Zero",teacher:"Pieter Levels",hours:12,level:"beginner",stars:4.9,price:299,color:"#6366f1",icon:"💻",desc:"从想法到上线，完整SaaS产品开发流程",descEn:"From idea to launch: complete SaaS product development",
+outline:["第1周：发现痛点——如何找到值得解决的问题","第2周：验证需求——MVP设计与用户访谈","第3周：技术选型——最简技术栈（Vanilla JS + SQLite）","第4周：快速开发——7天构建核心功能","第5周：上线发布——Product Hunt策略与公开构建","第6周：增长获客——SEO、内容营销、社群运营"],
+schedule:["每周一、三、五 晚8:00-9:30","共6周，12课时","直播+录播回放","作业点评+1v1答疑"]},
+{title:"一人公司财务自由",en:"Financial Freedom as OPC",teacher:"Naval Ravikant",hours:8,level:"inter",stars:4.8,price:199,color:"#a78bfa",icon:"💰",desc:"杠杆思维、财富创造框架与被动收入",descEn:"Leverage thinking, wealth creation framework & passive income",
+outline:["第1周：财富vs金钱——重新定义财务自由","第2周：杠杆理论——代码、内容、资本三杠杆","第3周：独特知识——找到你的不可替代性","第4周：被动收入——SaaS、投资、版税收入模型"],
+schedule:["每周二、四 晚8:00-9:30","共4周，8课时","案例分析+实操演练","个人财务规划指导"]},
+{title:"内容创作到百万读者",en:"Content Creation to 1M Readers",teacher:"James Clear",hours:10,level:"beginner",stars:4.9,price:249,color:"#f59e0b",icon:"✍️",desc:"习惯养成写作法，从博客到畅销书",descEn:"Habit-forming writing: from blog to bestseller",
+outline:["第1周：找到写作定位——细分领域选择","第2周：建立写作习惯——每日500字系统","第3周：内容框架——爆款文章结构","第4周：Newsletter运营——从0到1万订阅","第5周：SEO优化——搜索引擎获取流量"],
+schedule:["每周一、三 晚8:00-9:30","共5周，10课时","写作作业+互评","Newsletter搭建实操"]},
+{title:"AI产品从0到1",en:"AI Product 0 to 1",teacher:"Marc Lou",hours:15,level:"inter",stars:4.7,price:349,color:"#ef4444",icon:"🤖",desc:"AI驱动产品开发、快速验证与规模化",descEn:"AI-driven product development, rapid validation & scaling",
+outline:["第1周：AI产品思维——识别AI能解决的问题","第2周：Prompt Engineering——与LLM高效协作","第3周：API集成——OpenAI/Claude/本地模型","第4周：快速原型——3天做出可用demo","第5周：用户测试——收集反馈快速迭代","第6周：商业化——定价策略与增长黑客","第7周：规模化——成本优化与性能调优","第8周：案例复盘——Marc的20个产品经验"],
+schedule:["每周二、四、六 晚8:00-9:30","共8周，15课时（含1节加课）","AI工具实操+代码演示","产品发布实战演练"]},
+{title:"独立开发者技术栈",en:"Indie Developer Tech Stack",teacher:"Jon Yongfook",hours:20,level:"adv",stars:4.8,price:399,color:"#10b981",icon:"⚡",desc:"全栈开发、部署运维、监控报警一站式",descEn:"Full-stack development, deployment & monitoring",
+outline:["第1-2周：前端精要——HTML/CSS/JS核心","第3-4周：后端架构——Node.js/Python API设计","第5-6周：数据库——PostgreSQL/Redis/SQLite","第7-8周：部署上线——Docker/云服务/CI/CD","第9-10周：监控运维——日志/报警/性能优化"],
+schedule:["每周一、三、五 晚8:00-10:00","共10周，20课时","代码实战+项目部署","服务器配置指导"]},
+{title:"打造个人品牌",en:"Build Your Personal Brand",teacher:"Ali Abdaal",hours:6,level:"beginner",stars:4.6,price:149,color:"#ec4899",icon:"🌟",desc:"YouTube/Newsletter/Twitter个人品牌建设",descEn:"YouTube/Newsletter/Twitter personal brand building",
+outline:["第1周：品牌定位——找到你的独特价值主张","第2周：内容策略——多平台内容规划","第3周：YouTube起步——从0到1000订阅"],
+schedule:["每周六 下午2:00-4:00","共3周，6课时","视频拍摄+剪辑指导","账号诊断+优化建议"]}
 ];
 
 const MENTORS=[
@@ -235,24 +253,79 @@ const cg=document.getElementById('courseGrid');
 cg.innerHTML=COURSES.map((c,i)=>{
 const lv=c.level==='beginner'?'beginner':c.level==='inter'?'inter':'adv';
 const lt=c.level==='beginner'?'初级':c.level==='inter'?'中级':'高级';
-const ltEn=c.level==='beginner'?'Beginner':c.level==='inter'?'Intermediate':'Advanced';
 return `<div class="cc ai" style="animation-delay:${i*0.08}s">
 <div class="cc-img"><div class="grad" style="background:linear-gradient(135deg,${c.color}22,${c.color}11)">${c.icon}</div></div>
 <div class="cc-body">
 <div class="cc-title">${c.title}</div>
-<div class="cc-teacher">👨‍🏫 ${c.teacher} · ${c.hours} <span data-en="hours">课时</span></div>
+<div class="cc-teacher">👨‍🏫 ${c.teacher} · ${c.hours} 课时</div>
 <div class="cc-meta">
-<span class="cm ${lv}" data-en="${ltEn}">${lt}</span>
+<span class="cm ${lv}">${lt}</span>
 <span class="cm">${c.hours}h</span>
 </div>
 <div class="cc-stars">${'★'.repeat(Math.floor(c.stars))}${'☆'.repeat(5-Math.floor(c.stars))} ${c.stars}</div>
 <p style="font-size:.85rem;color:var(--t2);margin-bottom:16px">${c.desc}</p>
+
+<div style="margin-bottom:16px">
+<div style="font-size:.82rem;font-weight:600;color:var(--t1);margin-bottom:8px">📚 课程大纲</div>
+${c.outline.map(o=>`<div style="font-size:.78rem;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--border)">${o}</div>`).join('')}
+</div>
+
+<div style="margin-bottom:16px">
+<div style="font-size:.82rem;font-weight:600;color:var(--t1);margin-bottom:8px">📅 上课安排</div>
+${c.schedule.map(s=>`<div style="font-size:.78rem;color:var(--t2);padding:2px 0">• ${s}</div>`).join('')}
+</div>
+
 <div class="cc-price">
 <span class="cp">¥${c.price}</span>
-<button class="btn" data-en="Enroll Now">立即报名</button>
+<button class="btn" onclick="enroll('${c.title}')">立即报名</button>
 </div>
 </div></div>`;
 }).join('');
+
+// Render schedule
+const sa=document.getElementById('scheduleArea');
+const days=['周一','周二','周三','周四','周五','周六','周日'];
+const timeSlots=['14:00-16:00','19:00-20:30','20:00-21:30'];
+sa.innerHTML=`
+<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;min-width:600px">
+<thead>
+<tr style="border-bottom:1px solid var(--border)">
+<th style="padding:12px;text-align:left;color:var(--t2);font-size:.82rem">时间</th>
+${days.map(d=>`<th style="padding:12px;text-align:center;color:var(--t1);font-size:.88rem">${d}</th>`).join('')}
+</tr>
+</thead>
+<tbody>
+${timeSlots.map(time=>`
+<tr style="border-bottom:1px solid var(--border)">
+<td style="padding:12px;color:var(--t2);font-size:.82rem;white-space:nowrap">${time}</td>
+${days.map((d,di)=>{
+const coursesAtTime=[];
+COURSES.forEach(c=>{
+c.schedule.forEach(s=>{
+if(s.includes(d)){
+coursesAtTime.push({title:c.title,color:c.color,icon:c.icon});
+}
+});
+});
+return `<td style="padding:8px;text-align:center">
+${coursesAtTime.length>0?coursesAtTime.map(c=>`<div style="background:${c.color}22;border:1px solid ${c.color}44;border-radius:8px;padding:6px;margin:2px;font-size:.72rem;cursor:pointer" onclick="showCourseDetail(${COURSES.findIndex(x=>x.title===c.title)})">${c.icon} ${c.title.substring(0,6)}...</div>`).join(''):'<div style="color:var(--t3);font-size:.72rem">-</div>'}
+</td>`;
+}).join('')}
+</tr>
+`).join('')}
+</tbody>
+</table>
+</div>
+
+<div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+${COURSES.map(c=>`<div style="background:${c.color}11;border:1px solid ${c.color}33;border-radius:12px;padding:12px;cursor:pointer" onclick="showCourseDetail(${COURSES.indexOf(c)})">
+<div style="font-size:1.2rem;margin-bottom:4px">${c.icon}</div>
+<div style="font-size:.88rem;font-weight:600">${c.title}</div>
+<div style="font-size:.72rem;color:var(--t2)">${c.teacher} · ${c.hours}课时</div>
+</div>`).join('')}
+</div>
+`;
 
 // Render paths
 const pa=document.getElementById('pathArea');
@@ -311,6 +384,42 @@ document.querySelectorAll('[data-en]').forEach(el=>{
 if(!el.dataset.zh)el.dataset.zh=el.textContent;
 el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;
 });
+}
+
+// 报名功能
+function enroll(courseName) {
+    alert(`感谢报名「${courseName}」！\n\n我们将通过微信联系您完成报名流程。\n\n请添加客服微信：OPC-Academy`);
+}
+
+// 查看课程详情
+function showCourseDetail(courseIndex) {
+    const course = COURSES[courseIndex];
+    const outlineHtml = course.outline.map(o => `<div style="padding:8px 0;border-bottom:1px solid var(--border)">${o}</div>`).join('');
+    const scheduleHtml = course.schedule.map(s => `<div style="padding:4px 0">• ${s}</div>`).join('');
+    
+    const modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px';
+    modal.innerHTML = `
+        <div style="background:var(--card);border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+                <h2 style="font-size:1.3rem">${course.icon} ${course.title}</h2>
+                <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background:none;border:none;color:var(--t2);font-size:1.5rem;cursor:pointer">×</button>
+            </div>
+            <div style="margin-bottom:20px">
+                <div style="font-size:.9rem;color:var(--t2)">👨‍🏫 ${course.teacher} · ${course.hours}课时 · ¥${course.price}</div>
+            </div>
+            <div style="margin-bottom:24px">
+                <h3 style="font-size:1rem;margin-bottom:12px">📚 课程大纲</h3>
+                ${outlineHtml}
+            </div>
+            <div style="margin-bottom:24px">
+                <h3 style="font-size:1rem;margin-bottom:12px">📅 上课安排</h3>
+                ${scheduleHtml}
+            </div>
+            <button class="btn" onclick="enroll('${course.title}')" style="width:100%;padding:14px">立即报名 - ¥${course.price}</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
 }
 </script>
 </body></html>
