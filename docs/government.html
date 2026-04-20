@@ -376,15 +376,22 @@
 </head>
 <body>
     <!-- Navigation -->
-        <nav>
-        <a href="index.html" class="logo">◆ OPC Platform</a>
-        <div class="nav-links">
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
+            <div class="nav-links" id="navLinks">
+                <a href="platform.html" class="nav-link" data-en="Platform">平台</a>
+                <a href="government.html" class="nav-link active" data-en="Marketplace">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link" data-en="Super Agent">超级个体</a>
+                <a href="legends.html" class="nav-link" data-en="Hall of Fame">名人堂</a>
+                <a href="academy.html" class="nav-link" data-en="Academy">学院</a>
+                <a href="health.html" class="nav-link" data-en="Health">健康</a>
+                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+        </div>
+    
             <a href="service.html">创业助手</a>
-            <a href="platform.html">平台</a>
-            <a href="government.html">揭榜挂帅</a>
-            <a href="superagent.html">超级个体</a>
-            <a href="legends.html">名人堂</a>
-            <a href="academy.html">学院</a>
             <a href="policy.html">政策</a>
             <a href="community.html">社区</a>
             <a href="chat.html">聊天</a>
