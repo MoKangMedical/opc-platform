@@ -4,220 +4,379 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPC Platform | 一站式赋能平台</title>
+<meta name="description" content="OPC一站式赋能平台。揭榜挂帅、超级个体、名人堂、学院、健康、社区、政策全覆盖。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--accent:#a78bfa;--accent2:#6366f1;--red:#ff6b6b;--orange:#ff8a50;--green:#00d68f;--blue:#4ea8de;--gold:#f0c040;--purple:#a78bfa;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
-.c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
-.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-.nav-l .d{color:var(--accent)}
-.nav-lks{display:flex;align-items:center;gap:32px}
-.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
-.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
-.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
-.hero{min-height:55vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(167,139,250,.06),transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(99,102,241,.04),transparent 50%)}
-.hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15);padding:8px 20px;border-radius:100px;margin-bottom:28px;animation:fu .8s var(--e) both}
-.ht{font-family:var(--fd);font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.08;margin-bottom:20px;letter-spacing:-.03em;animation:fu .8s var(--e) .1s both}
-.ht .g{background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hd{font-size:1.1rem;color:var(--t2);max-width:600px;margin:0 auto 40px;line-height:1.7;animation:fu .8s var(--e) .2s both}
-.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;max-width:720px;margin:0 auto 40px;animation:fu .8s var(--e) .3s both}
-.sc{background:var(--bg2);padding:24px 16px;text-align:center;transition:background .3s}
-.sc:hover{background:var(--card2)}
-.sn{font-family:var(--fd);font-size:2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
-.sn.r{color:var(--red)}.sn.g{color:var(--gold)}.sn.b{color:var(--blue)}.sn.gr{color:var(--green)}
-.sl{font-size:.78rem;color:var(--t3);font-weight:500}
-.modules{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:800px;margin:0 auto;animation:fu .8s var(--e) .4s both}
-.mod{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:12px 16px;border-radius:12px;text-decoration:none;color:var(--t2);font-size:.88rem;font-weight:500;transition:all .3s var(--e)}
-.mod:hover{border-color:var(--border2);color:var(--t1);transform:translateY(-2px)}
-.mod.a{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.06)}
-/* Module Sections */
-.ms{padding:60px 0;border-top:1px solid var(--border)}
-.ms-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.ms-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
-.ms-link{color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:500;transition:opacity .2s}
-.ms-link:hover{opacity:.7}
-/* Project mini cards */
-.pm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-.pm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
-.pm:hover{border-color:var(--border2);transform:translateY(-2px)}
-.pm-cat{font-size:.72rem;padding:3px 8px;border-radius:4px;margin-bottom:10px;display:inline-block}
-.pm-title{font-family:var(--fd);font-size:1rem;font-weight:600;margin-bottom:6px}
-.pm-desc{font-size:.82rem;color:var(--t2);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pm-meta{display:flex;gap:12px;font-size:.78rem;color:var(--t3)}
-.pm-budget{color:var(--gold);font-weight:600}
-/* Agent mini cards */
-.am-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.am{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
-.am:hover{border-color:var(--border2);transform:translateY(-2px)}
-.am-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.am-ava{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-.am-name{font-family:var(--fd);font-size:.95rem;font-weight:600}
-.am-role{font-size:.78rem;color:var(--t2)}
-.am-stats{display:flex;gap:16px}
-.as{text-align:center}.as-v{font-family:var(--fd);font-size:1rem;font-weight:700}.as-l{font-size:.68rem;color:var(--t3)}
-/* Legend mini */
-.lm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.lm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;transition:all .3s var(--e)}
-.lm:hover{border-color:var(--border2);transform:translateY(-2px)}
-.lm-ava{font-size:2rem;margin-bottom:8px}
-.lm-name{font-family:var(--fd);font-size:.9rem;font-weight:600;margin-bottom:2px}
-.lm-rev{font-size:.78rem;color:var(--gold);font-weight:600}
-/* Course mini */
-.cm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.cm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:all .3s var(--e)}
-.cm:hover{border-color:var(--border2);transform:translateY(-2px)}
-.cm-icon{font-size:1.5rem;margin-bottom:8px}
-.cm-title{font-family:var(--fd);font-size:.95rem;font-weight:600;margin-bottom:4px}
-.cm-teacher{font-size:.8rem;color:var(--t2);margin-bottom:8px}
-.cm-meta{display:flex;gap:8px;font-size:.72rem}
-/* Health mini */
-.hm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;text-align:center;max-width:480px;margin:0 auto}
-.hm-score{font-family:var(--fd);font-size:3rem;font-weight:700;color:var(--green);margin-bottom:4px}
-.hm-streak{font-size:1rem;color:var(--gold);margin-bottom:16px}
-.hm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.hmi{text-align:center}
-.hmi-icon{font-size:1.3rem}
-.hmi-val{font-family:var(--fd);font-size:1rem;font-weight:600}
-.hmi-lab{font-size:.7rem;color:var(--t3)}
-footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-index:1}
-.ft-i{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
-.ft-t{color:var(--t3);font-size:.82rem}.ft-l{display:flex;gap:24px}
-.ft-l a{color:var(--t3);text-decoration:none;font-size:.82rem;transition:color .2s}
-.ft-l a:hover{color:var(--t1)}
-@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.ai{animation:ci .6s var(--e) both}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
-@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.modules{grid-template-columns:repeat(3,1fr)}.pm-grid,.am-grid,.lm-grid,.cm-grid{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}.hm-grid{grid-template-columns:repeat(2,1fr)}}
-.mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
-@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}.modules{grid-template-columns:repeat(2,1fr)}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
+  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
+  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;--or:#ff8a50;--r:#ff6b6b;
+  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.nav-i{max-width:1200px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:6px 12px;border-radius:7px;color:var(--t2);font-size:12.5px;font-weight:500;transition:all .2s}
+.nl:hover{color:var(--t1);background:rgba(255,255,255,0.03)}
+.nl.a{color:var(--a);background:rgba(124,92,252,0.08)}
+
+/* HERO */
+.hero{padding:100px 28px 60px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(124,92,252,0.08),transparent 70%)}
+.hero-c{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hero-bdg{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.12);font-size:12px;color:var(--a2);margin-bottom:24px}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,var(--a2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--t2);font-size:15px;max-width:600px;margin:0 auto 32px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border-radius:14px;overflow:hidden;max-width:600px;margin:0 auto 48px}
+.stat{background:var(--bg2);padding:20px 12px;text-align:center}
+.stat-n{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--a2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:11px;color:var(--t3);margin-top:4px}
+
+/* TAB NAV */
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.tab{padding:10px 20px;border-radius:10px;background:var(--bg3);border:1px solid var(--bdr);color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:6px}
+.tab:hover{border-color:var(--bdr2);color:var(--t1)}
+.tab.a{background:linear-gradient(135deg,rgba(124,92,252,0.15),rgba(34,211,238,0.08));border-color:var(--a);color:var(--t1)}
+
+/* SECTIONS */
+.sec{padding:40px 28px 60px;max-width:1200px;margin:0 auto}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.sec-title{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
+.sec-link{color:var(--a);font-size:13px;font-weight:500}
+
+/* PROJECT CARDS */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.p-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:22px;transition:all .3s var(--ease)}
+.p-card:hover{border-color:var(--bdr2);transform:translateY(-3px)}
+.p-cat{font-size:11px;padding:3px 10px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.p-title{font-size:15px;font-weight:600;margin-bottom:8px}
+.p-desc{font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.p-meta{display:flex;gap:16px;font-size:12px;color:var(--t3)}
+.p-budget{color:var(--gd);font-weight:600}
+
+/* AGENT CARDS */
+.a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.a-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:20px;transition:all .3s var(--ease)}
+.a-card:hover{border-color:var(--bdr2);transform:translateY(-3px)}
+.a-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.a-ava{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.a-name{font-size:14px;font-weight:600}
+.a-role{font-size:12px;color:var(--t2)}
+.a-stats{display:flex;gap:20px;margin-top:12px}
+.as{text-align:center}
+.as-v{font-size:16px;font-weight:700}
+.as-l{font-size:10px;color:var(--t3)}
+
+/* LEGEND CARDS */
+.l-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.l-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:20px;text-align:center;transition:all .3s var(--ease)}
+.l-card:hover{border-color:var(--bdr2);transform:translateY(-3px)}
+.l-ava{font-size:2.2rem;margin-bottom:8px}
+.l-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.l-rev{font-size:12px;color:var(--gd);font-weight:600}
+
+/* COURSE CARDS */
+.c-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.c-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:20px;transition:all .3s var(--ease)}
+.c-card:hover{border-color:var(--bdr2);transform:translateY(-3px)}
+.c-icon{font-size:2rem;margin-bottom:10px}
+.c-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.c-teacher{font-size:12px;color:var(--t2);margin-bottom:10px}
+.c-meta{display:flex;gap:8px;font-size:11px}
+.c-tag{padding:3px 8px;border-radius:4px;background:rgba(124,92,252,0.08);color:var(--a2)}
+.c-price{color:var(--a);font-weight:700}
+
+/* HEALTH WIDGET */
+.h-widget{background:var(--bg3);border:1px solid var(--bdr);border-radius:16px;padding:28px;max-width:500px;margin:0 auto;text-align:center}
+.h-score{font-size:48px;font-weight:800;color:var(--g);margin-bottom:4px}
+.h-streak{font-size:14px;color:var(--gd);margin-bottom:20px}
+.h-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hi{text-align:center}
+.hi-icon{font-size:1.4rem;margin-bottom:4px}
+.hi-val{font-size:16px;font-weight:700}
+.hi-lab{font-size:10px;color:var(--t3)}
+
+/* COMMUNITY PREVIEW */
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.co-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:20px;transition:all .3s var(--ease)}
+.co-card:hover{border-color:var(--bdr2)}
+.co-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.co-ava{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.co-name{font-size:13px;font-weight:600}
+.co-time{font-size:11px;color:var(--t3)}
+.co-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.co-desc{font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:10px}
+.co-stats{display:flex;gap:12px;font-size:11px;color:var(--t3)}
+
+/* POLICY PREVIEW */
+.po-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.po-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:14px;padding:20px;transition:all .3s var(--ease)}
+.po-card:hover{border-color:var(--bdr2)}
+.po-icon{font-size:2rem;margin-bottom:10px}
+.po-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.po-org{font-size:11px;color:var(--t3);margin-bottom:8px}
+.po-amount{font-size:18px;font-weight:700;color:var(--gd);margin-bottom:8px}
+.po-tags{display:flex;gap:4px;flex-wrap:wrap}
+.po-tag{font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--t3)}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,rgba(124,92,252,0.1),rgba(34,211,238,0.06));border:1px solid rgba(124,92,252,0.12);border-radius:16px;padding:48px 32px;text-align:center;margin-top:40px}
+.cta h2{font-size:28px;font-weight:800;margin-bottom:12px}
+.cta p{color:var(--t2);margin-bottom:24px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-p{padding:12px 28px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--c));color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,0.3)}
+.btn-s{padding:12px 28px;border-radius:10px;background:transparent;border:1px solid var(--bdr2);color:var(--t2);font-size:14px;font-weight:500;cursor:pointer;transition:all .3s}
+.btn-s:hover{border-color:var(--a);color:var(--t1)}
+
+footer{border-top:1px solid var(--bdr);padding:40px 28px;text-align:center}
+footer p{font-size:12px;color:var(--t3)}
+
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .tabs{flex-direction:column;align-items:center}
+  .p-grid,.a-grid,.l-grid,.c-grid,.co-grid,.po-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
 </style>
-</head><body>
+</head>
+<body>
+
 <nav class="nav"><div class="nav-i">
-<a href="index.html" class="nav-l"><span class="d">◆</span> OPC Platform</a>
-<div class="nav-lks" id="nl">
-<a href="platform.html" class="nav-lk a">平台</a><a href="government.html" class="nav-lk">揭榜挂帅</a>
-<a href="superagent.html" class="nav-lk">超级个体</a><a href="legends.html" class="nav-lk">名人堂</a>
-<a href="academy.html" class="nav-lk">学院</a><a href="health.html" class="nav-lk">健康</a>
-    <a href="chat.html" class="nl">💬 聊天</a>
-<a href="community.html" class="nav-lk">社区</a><a href="policy.html" class="nav-lk">政策</a>
-<button class="lbtn" onclick="tgl()">🌐 EN/中</button>
-</div><button class="mmb" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
+<a href="index.html" class="nav-logo"><span class="mk">◆</span> OPC Platform</a>
+<div class="nav-links">
+<a href="service.html" class="nl">创业助手</a>
+<a href="platform.html" class="nl a">平台</a>
+<a href="government.html" class="nl">揭榜挂帅</a>
+<a href="superagent.html" class="nl">超级个体</a>
+<a href="legends.html" class="nl">名人堂</a>
+<a href="academy.html" class="nl">学院</a>
+<a href="policy.html" class="nl">政策</a>
+<a href="community.html" class="nl">社区</a>
+</div>
 </div></nav>
 
-<section class="hero"><div class="hero-c">
-<div class="badge" data-en="ONE-STOP PLATFORM">一站式 OPC 赋能平台</div>
-<h1 class="ht"><span class="g" data-en="One-Stop OPC Empowerment Platform">一站式 OPC 赋能平台</span></h1>
-<p class="hd" data-en="Connect, showcase, and empower independent entrepreneurs worldwide. 67 AI projects · A2A SuperAgent · Legends wisdom · Academy · Health.">连接、展示、赋能全球独立创业者。揭榜挂帅67个AI项目 · A2A超级个体 · 名人堂智慧</p>
-<div class="sr">
-<div class="sc"><div class="sn r">67</div><div class="sl" data-en="AI Projects">AI场景项目</div></div>
-<div class="sc"><div class="sn g">2.5亿+</div><div class="sl" data-en="Total Budget">项目总预算</div></div>
-<div class="sc"><div class="sn b">21</div><div class="sl" data-en="Enterprises">省属企业</div></div>
-<div class="sc"><div class="sn gr">18</div><div class="sl" data-en="Legends">传奇人物</div></div>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-c">
+<div class="hero-bdg">🚀 一站式赋能 · 全功能平台</div>
+<h1>OPC <span>一站式赋能平台</span></h1>
+<p>连接、展示、赋能全球独立创业者。揭榜挂帅67个AI项目 · A2A超级个体 · 名人堂智慧 · 政策一站获取</p>
+<div class="stats">
+<div class="stat"><div class="stat-n">67</div><div class="stat-l">AI场景项目</div></div>
+<div class="stat"><div class="stat-n">2.5亿</div><div class="stat-l">项目总预算</div></div>
+<div class="stat"><div class="stat-n">21</div><div class="stat-l">省属企业</div></div>
+<div class="stat"><div class="stat-n">18</div><div class="stat-l">传奇人物</div></div>
 </div>
-<div class="modules">
-<a href="government.html" class="mod">🏛️ <span data-en="Marketplace">揭榜挂帅</span></a>
-<a href="superagent.html" class="mod">🤖 <span data-en="SuperAgent">超级个体</span></a>
-<a href="legends.html" class="mod">👑 <span data-en="Legends">名人堂</span></a>
-<a href="academy.html" class="mod">📚 <span data-en="Academy">学院</span></a>
-<a href="health.html" class="mod">❤️ <span data-en="Health">健康</span></a>
 </div>
-</div></section><section class="c">
-<!-- Marketplace Preview -->
-<div class="ms" id="gov">
-<div class="ms-head"><h2 class="ms-title">🏛️ <span data-en="Challenge Marketplace — AI Scenarios">揭榜挂帅 — AI场景需求</span></h2><a href="government.html" class="ms-link" data-en="View All 67 →">查看全部 67 个 →</a></div>
-<div class="pm-grid" id="projGrid"></div>
+</section>
+
+<!-- TAB NAV -->
+<div class="tabs">
+<a href="#projects" class="tab a">🏛️ 揭榜挂帅</a>
+<a href="#agents" class="tab">🤖 超级个体</a>
+<a href="#legends" class="tab">👑 名人堂</a>
+<a href="#courses" class="tab">📚 学院</a>
+<a href="#health" class="tab">❤️ 健康</a>
+<a href="#community" class="tab">💬 社区</a>
+<a href="#policy" class="tab">📋 政策</a>
 </div>
 
-<!-- SuperAgent Preview -->
-<div class="ms" id="sa">
-<div class="ms-head"><h2 class="ms-title">🤖 <span data-en="SuperAgent Network">超级个体网络</span></h2><a href="superagent.html" class="ms-link" data-en="View All →">查看全部 →</a></div>
-<div class="am-grid" id="agentGrid"></div>
+<!-- PROJECTS SECTION -->
+<section class="sec" id="projects">
+<div class="sec-head">
+<div class="sec-title">🏛️ 揭榜挂帅 — AI场景需求</div>
+<a href="government.html" class="sec-link">查看全部 67 个 →</a>
+</div>
+<div class="p-grid">
+<div class="p-card">
+<div class="p-cat" style="background:rgba(52,211,153,0.1);color:var(--g)">⚡ 新能源</div>
+<div class="p-title">海上风电场智能运维场景</div>
+<p class="p-desc">融合AI技术，实现海上风电机组无人巡检、故障预测维护</p>
+<div class="p-meta"><span class="p-budget">¥200-300万</span><span>省国信集团</span></div>
+</div>
+<div class="p-card">
+<div class="p-cat" style="background:rgba(96,165,250,0.1);color:#60a5fa">🚄 交通</div>
+<div class="p-title">路网智慧管控场景</div>
+<p class="p-desc">基于AI视频分析与交通流预测技术，实现路网事件自动检测</p>
+<div class="p-meta"><span class="p-budget">¥200-500万</span><span>江苏交通控股</span></div>
+</div>
+<div class="p-card">
+<div class="p-cat" style="background:rgba(244,114,182,0.1);color:var(--pk)">🛡️ 安全</div>
+<div class="p-title">施工安全智能监测场景</div>
+<p class="p-desc">无人机、机器狗、安全传感器实现高危作业智能监测预警</p>
+<div class="p-meta"><span class="p-budget">¥200-300万</span><span>省国信集团</span></div>
+</div>
+<div class="p-card">
+<div class="p-cat" style="background:rgba(251,191,36,0.1);color:var(--gd)">💰 金融</div>
+<div class="p-title">智慧收费清分与结算场景</div>
+<p class="p-desc">构建结算对账优化系统，有效减少对账差错、提升效率</p>
+<div class="p-meta"><span class="p-budget">¥2400万</span><span>江苏交通控股</span></div>
+</div>
+</div>
+</section>
+
+<!-- AGENTS SECTION -->
+<section class="sec" id="agents">
+<div class="sec-head">
+<div class="sec-title">🤖 超级个体网络</div>
+<a href="superagent.html" class="sec-link">查看全部 →</a>
+</div>
+<div class="a-grid">
+<div class="a-card">
+<div class="a-head">
+<div class="a-ava" style="background:rgba(255,107,107,0.12)">🔬</div>
+<div><div class="a-name">林博士的Agent</div><div class="a-role">AI制药 · 罕见病研究</div></div>
+</div>
+<div class="a-stats">
+<div class="as"><div class="as-v" style="color:var(--r)">47</div><div class="as-l">对话</div></div>
+<div class="as"><div class="as-v" style="color:var(--or)">8</div><div class="as-l">匹配</div></div>
+<div class="as"><div class="as-v" style="color:var(--g)">92%</div><div class="as-l">准确率</div></div>
+</div>
+</div>
+<div class="a-card">
+<div class="a-head">
+<div class="a-ava" style="background:rgba(96,165,250,0.12)">🏗️</div>
+<div><div class="a-name">张工的Agent</div><div class="a-role">智能制造 · 工业AI</div></div>
+</div>
+<div class="a-stats">
+<div class="as"><div class="as-v" style="color:var(--r)">123</div><div class="as-l">对话</div></div>
+<div class="as"><div class="as-v" style="color:var(--or)">15</div><div class="as-l">匹配</div></div>
+<div class="as"><div class="as-v" style="color:var(--g)">88%</div><div class="as-l">准确率</div></div>
+</div>
+</div>
+<div class="a-card">
+<div class="a-head">
+<div class="a-ava" style="background:rgba(52,211,153,0.12)">🌱</div>
+<div><div class="a-name">李总的Agent</div><div class="a-role">智慧农业 · 无人机</div></div>
+</div>
+<div class="a-stats">
+<div class="as"><div class="as-v" style="color:var(--r)">56</div><div class="as-l">对话</div></div>
+<div class="as"><div class="as-v" style="color:var(--or)">6</div><div class="as-l">匹配</div></div>
+<div class="as"><div class="as-v" style="color:var(--g)">95%</div><div class="as-l">准确率</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LEGENDS SECTION -->
+<section class="sec" id="legends">
+<div class="sec-head">
+<div class="sec-title">👑 名人堂</div>
+<a href="legends.html" class="sec-link">查看全部 18 位 →</a>
+</div>
+<div class="l-grid">
+<div class="l-card"><div class="l-ava">🧑‍💻</div><div class="l-name">Pieter Levels</div><div class="l-rev">$3.5M+</div></div>
+<div class="l-card"><div class="l-ava">🧠</div><div class="l-name">Naval Ravikant</div><div class="l-rev">$1B+</div></div>
+<div class="l-card"><div class="l-ava">✍️</div><div class="l-name">James Clear</div><div class="l-rev">$10M+</div></div>
+<div class="l-card"><div class="l-ava">🏗️</div><div class="l-name">Jason Fried</div><div class="l-rev">$30M+</div></div>
+<div class="l-card"><div class="l-ava">🎨</div><div class="l-name">Sahil Lavingia</div><div class="l-rev">$2M+</div></div>
+<div class="l-card"><div class="l-ava">🚀</div><div class="l-name">Marc Lou</div><div class="l-rev">$2M+</div></div>
+</div>
+</section>
+
+<!-- COURSES SECTION -->
+<section class="sec" id="courses">
+<div class="sec-head">
+<div class="sec-title">📚 学院 — 精选课程</div>
+<a href="academy.html" class="sec-link">查看全部 →</a>
+</div>
+<div class="c-grid">
+<div class="c-card"><div class="c-icon">💻</div><div class="c-title">从零搭建SaaS产品</div><div class="c-teacher">👨‍🏫 Pieter Levels · 12h</div><div class="c-meta"><span class="c-tag">初级</span><span class="c-price">¥299</span></div></div>
+<div class="c-card"><div class="c-icon">💰</div><div class="c-title">一人公司财务自由</div><div class="c-teacher">👨‍🏫 Naval Ravikant · 8h</div><div class="c-meta"><span class="c-tag">中级</span><span class="c-price">¥199</span></div></div>
+<div class="c-card"><div class="c-icon">✍️</div><div class="c-title">内容创作到百万读者</div><div class="c-teacher">👨‍🏫 James Clear · 10h</div><div class="c-meta"><span class="c-tag">初级</span><span class="c-price">¥249</span></div></div>
+<div class="c-card"><div class="c-icon">🤖</div><div class="c-title">AI产品从0到1</div><div class="c-teacher">👨‍🏫 Marc Lou · 15h</div><div class="c-meta"><span class="c-tag">中级</span><span class="c-price">¥349</span></div></div>
+</div>
+</section>
+
+<!-- HEALTH SECTION -->
+<section class="sec" id="health">
+<div class="sec-head">
+<div class="sec-title">❤️ 健康 — 今日状态</div>
+<a href="health.html" class="sec-link">打开仪表盘 →</a>
+</div>
+<div class="h-widget">
+<div class="h-score">86</div>
+<div class="h-streak">🔥 12 天连续打卡</div>
+<div class="h-grid">
+<div class="hi"><div class="hi-icon">😊</div><div class="hi-val">8</div><div class="hi-lab">心情</div></div>
+<div class="hi"><div class="hi-icon">😴</div><div class="hi-val">7.5h</div><div class="hi-lab">睡眠</div></div>
+<div class="hi"><div class="hi-icon">🏃</div><div class="hi-val">45m</div><div class="hi-lab">运动</div></div>
+<div class="hi"><div class="hi-icon">😰</div><div class="hi-val">3</div><div class="hi-lab">压力</div></div>
+</div>
+</div>
+</section>
+
+<!-- COMMUNITY SECTION -->
+<section class="sec" id="community">
+<div class="sec-head">
+<div class="sec-title">💬 社区 — 热门讨论</div>
+<a href="community.html" class="sec-link">进入社区 →</a>
+</div>
+<div class="co-grid">
+<div class="co-card">
+<div class="co-head"><div class="co-ava" style="background:rgba(124,92,252,0.12)">🧑‍💻</div><div><div class="co-name">张三</div><div class="co-time">2小时前</div></div></div>
+<div class="co-title">我的第一个SaaS产品月入$5000的经验分享</div>
+<p class="co-desc">从零开始，用了3个月时间，终于做到了月入$5000...</p>
+<div class="co-stats"><span>❤️ 128</span><span>💬 45</span><span>🔄 23</span></div>
+</div>
+<div class="co-card">
+<div class="co-head"><div class="co-ava" style="background:rgba(34,211,238,0.12)">🤖</div><div><div class="co-name">王五</div><div class="co-time">1天前</div></div></div>
+<div class="co-title">用AI做了个小工具，意外月入$3000</div>
+<p class="co-desc">本来只是解决自己的问题，没想到很多人也需要...</p>
+<div class="co-stats"><span>❤️ 256</span><span>💬 78</span><span>🔄 45</span></div>
+</div>
+</div>
+</section>
+
+<!-- POLICY SECTION -->
+<section class="sec" id="policy">
+<div class="sec-head">
+<div class="sec-title">📋 政策 — 创业优惠</div>
+<a href="policy.html" class="sec-link">查看全部 →</a>
+</div>
+<div class="po-grid">
+<div class="po-card"><div class="po-icon">💰</div><div class="po-title">创业担保贷款</div><div class="po-org">人力资源和社会保障部</div><div class="po-amount">最高50万</div><div class="po-tags"><span class="po-tag">贷款</span><span class="po-tag">贴息</span></div></div>
+<div class="po-card"><div class="po-icon">🏢</div><div class="po-title">小微企业税收优惠</div><div class="po-org">国家税务总局</div><div class="po-amount">实际税负5%</div><div class="po-tags"><span class="po-tag">税收</span><span class="po-tag">减免</span></div></div>
+<div class="po-card"><div class="po-icon">🎓</div><div class="po-title">大学生创业补贴</div><div class="po-org">教育部</div><div class="po-amount">5000-20000元</div><div class="po-tags"><span class="po-tag">补贴</span><span class="po-tag">大学生</span></div></div>
+</div>
+</section>
+
+<!-- CTA -->
+<div style="max-width:1200px;margin:0 auto;padding:0 28px 60px">
+<div class="cta">
+<h2>开始你的 OPC 之旅</h2>
+<p>与全球独立创业者一起学习、连接、合作、成长</p>
+<div class="cta-btns">
+<a href="service.html" class="btn-p">🚀 免费开始</a>
+<a href="community.html" class="btn-s">加入社区</a>
+</div>
+</div>
 </div>
 
-<!-- Legends Preview -->
-<div class="ms" id="lg">
-<div class="ms-head"><h2 class="ms-title">👑 <span data-en="Hall of Fame">名人堂</span></h2><a href="legends.html" class="ms-link" data-en="View All 18 →">查看全部 18 位 →</a></div>
-<div class="lm-grid" id="legendGrid"></div>
-</div>
-
-<!-- Academy Preview -->
-<div class="ms" id="ac">
-<div class="ms-head"><h2 class="ms-title">📚 <span data-en="Academy — Featured Courses">学院 — 精选课程</span></h2><a href="academy.html" class="ms-link" data-en="View All →">查看全部 →</a></div>
-<div class="cm-grid" id="courseGrid"></div>
-</div>
-
-<!-- Health Preview -->
-<div class="ms" id="hl">
-<div class="ms-head"><h2 class="ms-title">❤️ <span data-en="Health — Today's Status">健康 — 今日状态</span></h2><a href="health.html" class="ms-link" data-en="Open Dashboard →">打开仪表盘 →</a></div>
-<div class="hm">
-<div class="hm-score">86</div>
-<div class="hm-streak">🔥 12 <span data-en="day streak">天连续打卡</span></div>
-<div class="hm-grid">
-<div class="hmi"><div class="hmi-icon">😊</div><div class="hmi-val">8</div><div class="hmi-lab" data-en="Mood">心情</div></div>
-<div class="hmi"><div class="hmi-icon">😴</div><div class="hmi-val">7.5h</div><div class="hmi-lab" data-en="Sleep">睡眠</div></div>
-<div class="hmi"><div class="hmi-icon">🏃</div><div class="hmi-val">45m</div><div class="hmi-lab" data-en="Exercise">运动</div></div>
-<div class="hmi"><div class="hmi-icon">😰</div><div class="hmi-val">3</div><div class="hmi-lab" data-en="Stress">压力</div></div>
-</div>
-</div>
-</div>
-</section><footer><div class="ft-i">
-<p class="ft-t">© 2026 OPC Alliance · Platform · 连接赋能全球独立创业者</p>
-<div class="ft-l"><a href="index.html" data-en="Home">首页</a><a href="government.html" data-en="Marketplace">揭榜挂帅</a><a href="superagent.html" data-en="SuperAgent">超级个体</a></div>
-</div></footer>
+<footer>
+<p>© 2026 OPC Platform · 一个人的公司，无限可能</p>
+</footer>
 
 <script>
-// Featured projects
-const PROJS=[
-{cat:"新能源",ci:"⚡",cb:"rgba(255,138,80,.1)",cc:"#ff8a50",title:"海上风电场智能运维场景",desc:"融合AI技术，实现海上风电机组无人巡检、故障预测维护",budget:"¥200-300万",company:"省国信集团"},
-{cat:"交通",ci:"🚄",cb:"rgba(78,168,222,.1)",cc:"#4ea8de",title:"路网智慧管控场景",desc:"基于AI视频分析与交通流预测技术，实现路网事件自动检测",budget:"¥200-500万",company:"江苏交通控股"},
-{cat:"传媒",ci:"📺",cb:"rgba(167,139,250,.1)",cc:"#a78bfa",title:"智慧赛事分析及产业化应用场景",desc:"AI技术对足球联赛进行智慧赛事分析，推动赛事产业化发展",budget:"¥100-300万",company:"省广电集团"},
-{cat:"安全",ci:"🛡️",cb:"rgba(255,107,107,.1)",cc:"#ff6b6b",title:"施工安全智能监测场景",desc:"无人机、机器狗、安全传感器实现高危作业智能监测预警",budget:"¥200-300万",company:"省国信集团"},
-{cat:"制造",ci:"🏭",cb:"rgba(0,214,143,.1)",cc:"#00d68f",title:"轮胎智能制造AI应用场景",desc:"AI技术应用于工艺参数优化、质量在线检测、预测性维护",budget:"¥100-300万",company:"省苏豪集团"},
-{cat:"金融",ci:"💰",cb:"rgba(240,192,64,.1)",cc:"#f0c040",title:"智慧收费清分与结算场景",desc:"构建结算对账优化系统，有效减少对账差错、提升效率",budget:"¥2400万",company:"江苏交通控股"}
-];
-document.getElementById('projGrid').innerHTML=PROJS.map((p,i)=>`<div class="pm ai" style="animation-delay:${i*0.06}s"><span class="pm-cat" style="background:${p.cb};color:${p.cc}">${p.ci} ${p.cat}</span><div class="pm-title">${p.title}</div><p class="pm-desc">${p.desc}</p><div class="pm-meta"><span class="pm-budget">${p.budget}</span><span>${p.company}</span></div></div>`).join('');
-
-// Agents
-const AGENTS=[
-{ava:"🔬",bg:"rgba(255,107,107,.12)",name:"林博士",role:"AI制药",chats:47,matches:8,acc:"92%"},
-{ava:"🏗️",bg:"rgba(78,168,222,.12)",name:"张工",role:"智能制造",chats:123,matches:15,acc:"88%"},
-{ava:"🌱",bg:"rgba(0,214,143,.12)",name:"李总",role:"智慧农业",chats:56,matches:6,acc:"95%"},
-{ava:"🛡️",bg:"rgba(167,139,250,.12)",name:"王安",role:"安全监测",chats:89,matches:12,acc:"90%"}
-];
-document.getElementById('agentGrid').innerHTML=AGENTS.map((a,i)=>`<div class="am ai" style="animation-delay:${i*0.06}s"><div class="am-head"><div class="am-ava" style="background:${a.bg}">${a.ava}</div><div><div class="am-name">${a.name}的Agent</div><div class="am-role">${a.role}</div></div></div><div class="am-stats"><div class="as"><div class="as-v" style="color:var(--red)">${a.chats}</div><div class="as-l">对话</div></div><div class="as"><div class="as-v" style="color:var(--orange)">${a.matches}</div><div class="as-l">匹配</div></div><div class="as"><div class="as-v" style="color:var(--green)">${a.acc}</div><div class="as-l">准确率</div></div></div></div>`).join('');
-
-// Legends
-const LEGS=[
-{ava:"🧑‍💻",name:"Pieter Levels",rev:"$3.5M+",color:"#6366f1"},
-{ava:"🧠",name:"Naval Ravikant",rev:"$1B+",color:"#a78bfa"},
-{ava:"✍️",name:"James Clear",rev:"$10M+",color:"#f59e0b"},
-{ava:"🏗️",name:"Jason Fried",rev:"$30M+",color:"#ef4444"},
-{ava:"🎨",name:"Sahil Lavingia",rev:"$2M+",color:"#ec4899"},
-{ava:"🚀",name:"Marc Lou",rev:"$2M+",color:"#f97316"}
-];
-document.getElementById('legendGrid').innerHTML=LEGS.map((l,i)=>`<div class="lm ai" style="animation-delay:${i*0.05}s"><div class="lm-ava">${l.ava}</div><div class="lm-name">${l.name}</div><div class="lm-rev">${l.rev}</div></div>`).join('');
-
-// Courses
-const COURSES=[
-{icon:"💻",title:"从零搭建SaaS产品",teacher:"Pieter Levels",meta:"12h · 初级 · ¥299"},
-{icon:"💰",title:"一人公司财务自由",teacher:"Naval Ravikant",meta:"8h · 中级 · ¥199"},
-{icon:"✍️",title:"内容创作到百万读者",teacher:"James Clear",meta:"10h · 初级 · ¥249"},
-{icon:"🤖",title:"AI产品从0到1",teacher:"Marc Lou",meta:"15h · 中级 · ¥349"}
-];
-document.getElementById('courseGrid').innerHTML=COURSES.map((c,i)=>`<div class="cm ai" style="animation-delay:${i*0.06}s"><div class="cm-icon">${c.icon}</div><div class="cm-title">${c.title}</div><div class="cm-teacher">👨‍🏫 ${c.teacher}</div><div class="cm-meta">${c.meta.split(' · ').map(m=>`<span style="padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--t3)">${m}</span>`).join('')}</div></div>`).join('');
-
-let lang=localStorage.getItem('opc-lang')||'zh';
-function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+// Smooth scroll for tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('a'));
+    this.classList.add('a');
+  });
+});
 </script>
-<script src="mobile.js"></script>
 </body></html>
