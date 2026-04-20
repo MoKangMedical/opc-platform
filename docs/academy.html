@@ -238,6 +238,30 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 <footer class="footer"><p><span class="zh">OPC Academy · 让每个独立创业者都能持续成长</span><span class="en" style="display:none">OPC Academy · Empowering every OPC to grow</span></p></footer>
 
 <script>
+
+const FALLBACK_COURSES=[
+{id:1,title:"从零搭建SaaS产品",title_en:"Build SaaS from Scratch",description:"手把手教你从想法到上线，覆盖产品设计、技术选型、增长获客全流程",lesson_count:24,duration_hours:12,level:"beginner",price:299,cover_gradient:"linear-gradient(135deg,#667eea,#764ba2)",cover_emoji:"💻",tags:["SaaS","产品","增长"],student_count:1234,rating:4.8,instructor:"Pieter Levels"},
+{id:2,title:"一人公司财务自由",title_en:"Financial Freedom for OPC",description:"独立创业者的财务规划、税务优化、投资策略",lesson_count:16,duration_hours:8,level:"intermediate",price:199,cover_gradient:"linear-gradient(135deg,#f093fb,#f5576c)",cover_emoji:"💰",tags:["财务","投资","税务"],student_count:892,rating:4.7,instructor:"Naval Ravikant"},
+{id:3,title:"内容创作到百万读者",title_en:"Content to Million Readers",description:"从第一个读者到百万订阅，构建个人品牌和内容体系",lesson_count:20,duration_hours:10,level:"beginner",price:249,cover_gradient:"linear-gradient(135deg,#4facfe,#00f2fe)",cover_emoji:"✍️",tags:["写作","Newsletter","SEO"],student_count:2156,rating:4.9,instructor:"James Clear"},
+{id:4,title:"AI产品从0到1",title_en:"AI Product 0 to 1",description:"AI产品开发全栈指南，从Prompt Engineering到Agent开发",lesson_count:30,duration_hours:15,level:"intermediate",price:349,cover_gradient:"linear-gradient(135deg,#43e97b,#38f9d7)",cover_emoji:"🤖",tags:["AI","Agent","LLM"],student_count:1567,rating:4.8,instructor:"Marc Lou"},
+{id:5,title:"独立开发者技术栈",title_en:"Indie Dev Tech Stack",description:"全栈开发、部署运维、监控报警",lesson_count:18,duration_hours:9,level:"advanced",price:0,cover_gradient:"linear-gradient(135deg,#fa709a,#fee140)",cover_emoji:"🔧",tags:["开发","DevOps","全栈"],student_count:3421,rating:4.6,instructor:"Tony Dinh"},
+{id:6,title:"数字游民实战指南",title_en:"Digital Nomad Guide",description:"远程工作、全球旅行、低成本生活",lesson_count:12,duration_hours:6,level:"beginner",price:149,cover_gradient:"linear-gradient(135deg,#a18cd1,#fbc2eb)",cover_emoji:"🌍",tags:["远程","旅行","生活"],student_count:756,rating:4.5,instructor:"Pieter Levels"}
+];
+const FALLBACK_MENTORS=[
+{id:1,name:"Pieter Levels",title:"SaaS连续创业者",avatar:"🧑‍💻",expertise:["SaaS","远程","公开构建"],rating:4.9,student_count:5000},
+{id:2,name:"Naval Ravikant",title:"投资哲学家",avatar:"🧠",expertise:["投资","杠杆","哲学"],rating:4.8,student_count:3200},
+{id:3,name:"James Clear",title:"习惯养成大师",avatar:"✍️",expertise:["写作","习惯","Newsletter"],rating:4.9,student_count:4500},
+{id:4,name:"Marc Lou",title:"AI产品构建者",avatar:"🤖",expertise:["AI","快速发布"],rating:4.7,student_count:2800},
+{id:5,name:"Tony Dinh",title:"独立开发者",avatar:"🚀",expertise:["开发工具","全栈"],rating:4.6,student_count:1900},
+{id:6,name:"Daniel Vassallo",title:"小赌注策略家",avatar:"🎯",expertise:["AWS","投资组合"],rating:4.5,student_count:1500}
+];
+const FALLBACK_CERTS=[
+{id:1,name:"OPC创业者认证",icon:"🏅",level:"初级",courses_required:3},
+{id:2,name:"AI产品专家认证",icon:"🤖",level:"中级",courses_required:2},
+{id:3,name:"独立开发者认证",icon:"💻",level:"高级",courses_required:4},
+{id:4,name:"内容创作大师认证",icon:"✍️",level:"中级",courses_required:2}
+];
+
 const API = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 const USER_ID = 1;
 let allCourses = [];
@@ -253,7 +277,11 @@ async function loadCourses() {
     renderCourses(allCourses);
     renderFilters();
   } catch(e) {
-    document.getElementById('courseGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--red)">❌ <span class="zh">加载失败，请刷新重试</span><span class="en" style="display:none">Load failed</span></div>';
+    console.log('API unavailable, using fallback');
+    allCourses = FALLBACK_COURSES;
+    document.getElementById('statCourses').textContent = allCourses.length;
+    renderCourses(allCourses);
+    renderFilters();
   }
 }
 
@@ -263,7 +291,7 @@ async function loadMentors() {
     const data = await resp.json();
     document.getElementById('statMentors').textContent = data.mentors.length;
     renderMentors(data.mentors);
-  } catch(e) { console.log('Mentors error:', e); }
+  } catch(e) { document.getElementById('statMentors').textContent = FALLBACK_MENTORS.length; renderMentors(FALLBACK_MENTORS); }
 }
 
 async function loadCerts() {
@@ -272,7 +300,7 @@ async function loadCerts() {
     const data = await resp.json();
     document.getElementById('statCerts').textContent = data.certifications.length;
     renderCerts(data.certifications);
-  } catch(e) { console.log('Certs error:', e); }
+  } catch(e) { document.getElementById('statCerts').textContent = FALLBACK_CERTS.length; renderCerts(FALLBACK_CERTS); }
 }
 
 async function loadEnrollments() {
@@ -281,7 +309,7 @@ async function loadEnrollments() {
     const data = await resp.json();
     (data.enrollments || []).forEach(e => enrolledIds.add(e.course_id));
     renderMyEnrollments(data.enrollments || []);
-  } catch(e) { console.log('Enrollments error:', e); }
+  } catch(e) { console.log('Enrollments unavailable'); }
 }
 
 // ===== RENDER =====
