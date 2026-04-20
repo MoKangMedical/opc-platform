@@ -421,5 +421,195 @@ renderAgents();
 // i18n
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
+
+// 发帖功能
+function openPostModal() {
+    const modal = document.createElement('div');
+    modal.id = 'postModal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+    
+    modal.innerHTML = `
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">✏️ 发布帖子</h2>
+                <button onclick="closePostModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <form id="postForm" onsubmit="submitPost(event)">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">标题 *</label>
+                    <input type="text" id="postTitle" required placeholder="输入帖子标题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">内容 *</label>
+                    <textarea id="postContent" required rows="6" placeholder="分享你的想法、经验或问题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">标签（可多选）</label>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                            <input type="checkbox" name="postTags" value="创业经验" style="accent-color: var(--green);">
+                            <span>创业经验</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                            <input type="checkbox" name="postTags" value="技术分享" style="accent-color: var(--green);">
+                            <span>技术分享</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                            <input type="checkbox" name="postTags" value="项目合作" style="accent-color: var(--green);">
+                            <span>项目合作</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                            <input type="checkbox" name="postTags" value="问题求助" style="accent-color: var(--green);">
+                            <span>问题求助</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                            <input type="checkbox" name="postTags" value="资源分享" style="accent-color: var(--green);">
+                            <span>资源分享</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="postAnonymous" style="accent-color: var(--green);">
+                        <span>匿名发布</span>
+                    </label>
+                </div>
+                
+                <div style="display: flex; gap: 12px;">
+                    <button type="button" onclick="closePostModal()" style="flex: 1; padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--t1); font-weight: 500; cursor: pointer;">取消</button>
+                    <button type="submit" style="flex: 1; padding: 14px; border-radius: 10px; border: none; background: var(--green); color: #fff; font-weight: 600; cursor: pointer;">发布帖子</button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+function closePostModal() {
+    const modal = document.getElementById('postModal');
+    if (modal) modal.remove();
+}
+
+function submitPost(event) {
+    event.preventDefault();
+    const title = document.getElementById('postTitle').value;
+    const content = document.getElementById('postContent').value;
+    const tags = Array.from(document.querySelectorAll('input[name="postTags"]:checked')).map(cb => cb.value);
+    const anonymous = document.getElementById('postAnonymous').checked;
+    
+    if (!title.trim() || !content.trim()) {
+        alert('请填写标题和内容！');
+        return;
+    }
+    
+    alert('帖子发布成功！');
+    closePostModal();
+}
+
+// 评论功能
+function openCommentModal(postId) {
+    const modal = document.createElement('div');
+    modal.id = 'commentModal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+    
+    modal.innerHTML = `
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">💬 评论</h2>
+                <button onclick="closeCommentModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <!-- 评论列表 -->
+            <div style="margin-bottom: 24px;">
+                <h3 style="font-weight: 600; margin-bottom: 16px;">评论区</h3>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 1rem;">🧑‍💻</div>
+                            <div>
+                                <div style="font-weight: 600;">张明</div>
+                                <div style="font-size: 0.8rem; color: var(--t3);">10分钟前</div>
+                            </div>
+                        </div>
+                        <div style="color: var(--t2); margin-left: 48px;">写得很好！我也遇到过类似的问题，最终是通过调整心态解决的。</div>
+                    </div>
+                    
+                    <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--pink)); display: flex; align-items: center; justify-content: center; font-size: 1rem;">✍️</div>
+                            <div>
+                                <div style="font-weight: 600;">李薇</div>
+                                <div style="font-size: 0.8rem; color: var(--t3);">1小时前</div>
+                            </div>
+                        </div>
+                        <div style="color: var(--t2); margin-left: 48px;">感谢分享！请问可以详细说说具体是怎么做的吗？</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 发表评论 -->
+            <div style="background: var(--bg2); border-radius: 16px; padding: 20px;">
+                <h3 style="font-weight: 600; margin-bottom: 12px;">发表评论</h3>
+                <textarea id="commentContent" rows="3" placeholder="写下你的评论..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem; resize: vertical; margin-bottom: 12px;"></textarea>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                        <input type="checkbox" id="commentAnonymous" style="accent-color: var(--green);">
+                        <span style="font-size: 0.85rem;">匿名评论</span>
+                    </label>
+                    <button onclick="submitComment(${postId})" style="background: var(--green); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">发表评论</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+function closeCommentModal() {
+    const modal = document.getElementById('commentModal');
+    if (modal) modal.remove();
+}
+
+function submitComment(postId) {
+    const content = document.getElementById('commentContent').value;
+    const anonymous = document.getElementById('commentAnonymous').checked;
+    
+    if (!content.trim()) {
+        alert('请输入评论内容！');
+        return;
+    }
+    
+    alert('评论发表成功！');
+    closeCommentModal();
+}
+
+// ===== OPC Platform 增强功能 =====
+function showNotification(msg,type='success'){
+const n=document.createElement('div');
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
+}
+function toggleFavorite(id,type){
+const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
+const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
+localStorage.setItem(k,JSON.stringify(f));
+}
+function shareContent(title,url){
+if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
+}
+function showModal(c){
+const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+document.body.appendChild(m);
+}
+function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
+function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null');}
+function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
+
 </script>
 </body></html>
