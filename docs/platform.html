@@ -219,4 +219,5 @@ document.getElementById('courseGrid').innerHTML=COURSES.map((c,i)=>`<div class="
 let lang=localStorage.getItem('opc-lang')||'zh';
 function tgl(){lang=lang==='zh'?'en':'zh';localStorage.setItem('opc-lang',lang);document.querySelectorAll('[data-en]').forEach(el=>{if(!el.dataset.zh)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});}
 </script>
+<script src="mobile.js"></script>
 </body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>注册 - OPC Platform</title>
+<meta name="description" content="注册OPC平台，开始你的创业之旅">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
+  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
+  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;
+  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
+  --gw:rgba(124,92,252,0.1);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--t1);line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100vh;
+  display:flex;flex-direction:column;
+}
+::selection{background:var(--a);color:#fff}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
+  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
+  border-bottom:1px solid var(--bdr)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;
+  background:linear-gradient(135deg,var(--a),var(--c));
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;color:#fff}
+
+/* AUTH */
+.auth{flex:1;display:flex;align-items:center;justify-content:center;padding:96px 28px 48px;position:relative;overflow:hidden}
+.auth::before{content:'';position:absolute;top:-25%;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,var(--gw) 0%,transparent 65%);
+  pointer-events:none}
+
+.auth-card{position:relative;z-index:1;width:100%;max-width:440px;
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;
+  padding:48px 40px;box-shadow:0 20px 60px rgba(0,0,0,0.35)}
+
+.auth-h{text-align:center;margin-bottom:36px}
+.auth-h h1{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
+.auth-h p{color:var(--t2);font-size:14px}
+
+/* FORM */
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:12.5px;font-weight:600;color:var(--t2);
+  margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px}
+.form-input{width:100%;padding:14px 16px;background:var(--bg3);
+  border:1px solid var(--bdr);border-radius:10px;
+  color:var(--t1);font-size:15px;font-family:inherit;
+  transition:all .25s var(--ease);outline:none}
+.form-input:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--gw)}
+.form-input::placeholder{color:var(--t3)}
+
+.form-row{display:flex;gap:12px}
+.form-row .form-group{flex:1}
+
+.form-hint{font-size:12px;color:var(--t3);margin-top:6px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:16px;border-radius:12px;font-size:15px;font-weight:600;
+  cursor:pointer;transition:all .35s var(--ease);border:none;
+  letter-spacing:.15px;font-family:inherit}
+
+.btn-p{background:linear-gradient(135deg,var(--a),#6d4cf7);color:#fff;
+  box-shadow:0 0 32px var(--gw),inset 0 1px 0 rgba(255,255,255,0.1)}
+.btn-p:hover{transform:translateY(-2px);
+  box-shadow:0 0 48px var(--gw),0 12px 40px rgba(0,0,0,0.4),
+  inset 0 1px 0 rgba(255,255,255,0.15)}
+.btn-p:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+
+.btn-s{background:var(--bg3);border:1px solid var(--bdr2);color:var(--t1)}
+.btn-s:hover{border-color:var(--a);background:rgba(124,92,252,0.04)}
+
+.auth-footer{text-align:center;margin-top:24px;font-size:13.5px;color:var(--t2)}
+.auth-footer a{color:var(--a2);font-weight:600}
+.auth-footer a:hover{text-decoration:underline}
+
+.auth-divider{display:flex;align-items:center;gap:16px;margin:24px 0;color:var(--t3);font-size:12px}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--bdr)}
+
+/* CHECKBOX */
+.checkbox{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;cursor:pointer}
+.checkbox input{display:none}
+.checkbox .check{width:20px;height:20px;border-radius:6px;border:1px solid var(--bdr2);
+  background:var(--bg3);display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;margin-top:2px}
+.checkbox input:checked+.check{background:var(--a);border-color:var(--a)}
+.checkbox .check::after{content:'✓';font-size:11px;color:#fff;opacity:0;transition:opacity .2s}
+.checkbox input:checked+.check::after{opacity:1}
+.checkbox span{font-size:13px;color:var(--t2);line-height:1.5}
+.checkbox a{color:var(--a2)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  padding:14px 24px;border-radius:12px;font-size:14px;font-weight:500;
+  z-index:1000;opacity:0;transition:all .3s var(--ease)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:var(--g)}
+.toast.error{background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pk)}
+
+/* FOOTER */
+.ft{border-top:1px solid var(--bdr);padding:32px 28px;text-align:center}
+.ft-bot{font-size:11.5px;color:var(--t3);letter-spacing:.3px}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .auth-card{padding:36px 24px}
+  .form-row{flex-direction:column;gap:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-i">
+  <a href="index.html" class="nav-logo">
+    <div class="mk">◆</div>
+    <span>OPC <span style="color:var(--a2)">Platform</span></span>
+  </a>
+  <div style="display:flex;gap:8px">
+    <a href="login.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px">登录</a>
+  </div>
+</div></nav>
+
+<section class="auth">
+  <div class="auth-card">
+    <div class="auth-h">
+      <h1>创建账户</h1>
+      <p>加入OPC平台，开始你的创业之旅</p>
+    </div>
+    
+    <form id="registerForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">用户名</label>
+          <input type="text" class="form-input" id="username" placeholder="输入用户名" required>
+          <div class="form-hint">用于登录，3-20个字符</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">显示名称</label>
+          <input type="text" class="form-input" id="displayName" placeholder="你的名字">
+          <div class="form-hint">其他人看到的名字</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">邮箱</label>
+        <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" id="password" placeholder="至少8个字符" required>
+        <div class="form-hint">建议使用字母、数字和符号的组合</div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">确认密码</label>
+        <input type="password" class="form-input" id="confirmPassword" placeholder="再次输入密码" required>
+      </div>
+      
+      <label class="checkbox">
+        <input type="checkbox" id="agreeTerms" required>
+        <div class="check"></div>
+        <span>我已阅读并同意 <a href="#">服务条款</a> 和 <a href="#">隐私政策</a></span>
+      </label>
+      
+      <button type="submit" class="btn btn-p" id="submitBtn">
+        <span>创建账户</span>
+      </button>
+    </form>
+    
+    <div class="auth-footer">
+      已有账户？<a href="login.html">立即登录</a>
+    </div>
+    
+    <div class="auth-divider">或</div>
+    
+    <button class="btn btn-s" onclick="window.location.href='index.html'">
+      返回首页
+    </button>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="ft-bot">© 2026 OPC Platform · 一个人的公司，无限可能</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+
+// 显示提示
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = `toast ${type} show`;
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// 检查是否已登录
+function checkAuth() {
+  const token = localStorage.getItem('opc_token');
+  if (token) {
+    window.location.href = 'platform.html';
+  }
+}
+
+// 注册
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const displayName = document.getElementById('displayName').value;
+  const agreeTerms = document.getElementById('agreeTerms').checked;
+  
+  // 验证
+  if (username.length < 3 || username.length > 20) {
+    showToast('用户名需要3-20个字符', 'error');
+    return;
+  }
+  
+  if (password.length < 8) {
+    showToast('密码至少需要8个字符', 'error');
+    return;
+  }
+  
+  if (password !== confirmPassword) {
+    showToast('两次输入的密码不一致', 'error');
+    return;
+  }
+  
+  if (!agreeTerms) {
+    showToast('请同意服务条款和隐私政策', 'error');
+    return;
+  }
+  
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span>注册中...</span>';
+  
+  try {
+    const response = await fetch(`${API_BASE}/api/auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        display_name: displayName || username
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.detail || '注册失败');
+    }
+    
+    // 保存token和用户信息
+    localStorage.setItem('opc_token', data.access_token);
+    localStorage.setItem('opc_user', JSON.stringify(data.user));
+    
+    showToast('注册成功！正在跳转...', 'success');
+    
+    setTimeout(() => {
+      window.location.href = 'platform.html';
+    }, 1000);
+    
+  } catch (error) {
+    showToast(error.message, 'error');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span>创建账户</span>';
+  }
+});
+
+// 初始化
+checkAuth();
+</script>
+<script src="mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>个人资料 - OPC Platform</title>
+<meta name="description" content="管理你的OPC平台个人资料">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
+  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
+  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;
+  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
+  --gw:rgba(124,92,252,0.1);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--t1);line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100vh;
+}
+::selection{background:var(--a);color:#fff}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
+  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
+  border-bottom:1px solid var(--bdr)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;
+  background:linear-gradient(135deg,var(--a),var(--c));
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;color:#fff}
+
+/* PROFILE */
+.profile{padding:96px 28px 48px}
+.profile-i{max-width:800px;margin:0 auto}
+
+.profile-header{display:flex;align-items:center;gap:24px;margin-bottom:40px;
+  padding:32px;background:var(--bg2);border:1px solid var(--bdr);border-radius:20px}
+.profile-avatar{width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--a),var(--c));
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;font-weight:700;color:#fff;flex-shrink:0}
+.profile-info h1{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
+.profile-info p{color:var(--t2);font-size:14px;margin-bottom:12px}
+.profile-info .badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:.5px}
+.badge-role{background:rgba(124,92,252,0.1);color:var(--a2);border:1px solid rgba(124,92,252,0.2)}
+.badge-skill{background:rgba(34,211,238,0.1);color:var(--c);border:1px solid rgba(34,211,238,0.2)}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:24px;background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:4px}
+.tab{flex:1;padding:12px;border-radius:8px;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s var(--ease);text-align:center;color:var(--t2)}
+.tab:hover{color:var(--t1);background:rgba(255,255,255,0.03)}
+.tab.active{background:var(--a);color:#fff}
+
+/* FORM */
+.form-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;padding:32px;margin-bottom:24px}
+.form-card h2{font-size:20px;font-weight:700;margin-bottom:24px;letter-spacing:-.3px}
+
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:12.5px;font-weight:600;color:var(--t2);
+  margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px}
+.form-input{width:100%;padding:14px 16px;background:var(--bg3);
+  border:1px solid var(--bdr);border-radius:10px;
+  color:var(--t1);font-size:15px;font-family:inherit;
+  transition:all .25s var(--ease);outline:none}
+.form-input:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--gw)}
+.form-input::placeholder{color:var(--t3)}
+
+.form-row{display:flex;gap:16px}
+.form-row .form-group{flex:1}
+
+textarea.form-input{min-height:100px;resize:vertical}
+
+/* SKILLS */
+.skills-input{display:flex;flex-wrap:wrap;gap:8px;padding:12px;
+  background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;min-height:50px}
+.skills-input input{flex:1;min-width:100px;border:none;background:transparent;
+  color:var(--t1);font-size:14px;outline:none}
+.skill-tag{display:flex;align-items:center;gap:6px;padding:6px 12px;
+  background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2);
+  border-radius:6px;font-size:12px;color:var(--a2)}
+.skill-tag button{background:none;border:none;color:var(--t3);cursor:pointer;font-size:14px}
+.skill-tag button:hover{color:var(--pk)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:12px;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .35s var(--ease);border:none;
+  letter-spacing:.15px;font-family:inherit}
+
+.btn-p{background:linear-gradient(135deg,var(--a),#6d4cf7);color:#fff;
+  box-shadow:0 0 32px var(--gw),inset 0 1px 0 rgba(255,255,255,0.1)}
+.btn-p:hover{transform:translateY(-2px);
+  box-shadow:0 0 48px var(--gw),0 12px 40px rgba(0,0,0,0.4),
+  inset 0 1px 0 rgba(255,255,255,0.15)}
+.btn-p:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+
+.btn-s{background:var(--bg3);border:1px solid var(--bdr2);color:var(--t1)}
+.btn-s:hover{border-color:var(--a);background:rgba(124,92,252,0.04)}
+
+.btn-d{background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pk)}
+.btn-d:hover{background:rgba(244,114,182,0.2)}
+
+.btn-group{display:flex;gap:12px;margin-top:24px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  padding:14px 24px;border-radius:12px;font-size:14px;font-weight:500;
+  z-index:1000;opacity:0;transition:all .3s var(--ease)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:var(--g)}
+.toast.error{background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pk)}
+
+/* FOOTER */
+.ft{border-top:1px solid var(--bdr);padding:32px 28px;text-align:center}
+.ft-bot{font-size:11.5px;color:var(--t3);letter-spacing:.3px}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .profile-header{flex-direction:column;text-align:center}
+  .profile-info .badges{justify-content:center}
+  .form-row{flex-direction:column;gap:0}
+  .tabs{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-i">
+  <a href="index.html" class="nav-logo">
+    <div class="mk">◆</div>
+    <span>OPC <span style="color:var(--a2)">Platform</span></span>
+  </a>
+  <div id="authNav" style="display:flex;gap:8px">
+    <a href="login.html" class="btn btn-s" style="padding:6px 16px;font-size:12px">登录</a>
+  </div>
+</div></nav>
+
+<section class="profile">
+  <div class="profile-i">
+    <div class="profile-header" id="profileHeader">
+      <div class="profile-avatar" id="profileAvatar">?</div>
+      <div class="profile-info">
+        <h1 id="profileName">加载中...</h1>
+        <p id="profileBio">-</p>
+        <div class="badges" id="profileBadges"></div>
+      </div>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('profile')">个人资料</div>
+      <div class="tab" onclick="switchTab('security')">安全设置</div>
+      <div class="tab" onclick="switchTab('skills')">技能标签</div>
+    </div>
+    
+    <div id="tabContent">
+      <div class="form-card" id="profileTab">
+        <h2>个人资料</h2>
+        <form id="profileForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">显示名称</label>
+              <input type="text" class="form-input" id="displayName" placeholder="你的名字">
+            </div>
+            <div class="form-group">
+              <label class="form-label">用户名</label>
+              <input type="text" class="form-input" id="username" disabled>
+              <div style="font-size:11px;color:var(--t3);margin-top:6px">用户名不可修改</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">邮箱</label>
+            <input type="email" class="form-input" id="email" disabled>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">个人简介</label>
+            <textarea class="form-input" id="bio" placeholder="介绍一下你自己..."></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">所在地</label>
+              <input type="text" class="form-input" id="location" placeholder="城市，国家">
+            </div>
+            <div class="form-group">
+              <label class="form-label">个人网站</label>
+              <input type="url" class="form-input" id="website" placeholder="https://">
+            </div>
+          </div>
+          
+          <div class="btn-group">
+            <button type="submit" class="btn btn-p" id="saveProfileBtn">保存修改</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="form-card" id="securityTab" style="display:none">
+        <h2>安全设置</h2>
+        <form id="passwordForm">
+          <div class="form-group">
+            <label class="form-label">当前密码</label>
+            <input type="password" class="form-input" id="oldPassword" placeholder="输入当前密码" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">新密码</label>
+              <input type="password" class="form-input" id="newPassword" placeholder="至少8个字符" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">确认新密码</label>
+              <input type="password" class="form-input" id="confirmNewPassword" placeholder="再次输入新密码" required>
+            </div>
+          </div>
+          
+          <div class="btn-group">
+            <button type="submit" class="btn btn-p" id="changePasswordBtn">修改密码</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="form-card" id="skillsTab" style="display:none">
+        <h2>技能标签</h2>
+        <p style="color:var(--t2);font-size:14px;margin-bottom:20px">添加你的专业技能，帮助项目方更好地了解你</p>
+        
+        <div class="form-group">
+          <label class="form-label">技能</label>
+          <div class="skills-input" id="skillsInput">
+            <input type="text" id="skillInput" placeholder="输入技能名称，按Enter添加">
+          </div>
+        </div>
+        
+        <div class="btn-group">
+          <button type="button" class="btn btn-p" id="saveSkillsBtn">保存技能</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="ft-bot">© 2026 OPC Platform · 一个人的公司，无限可能</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+
+// 显示提示
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = `toast ${type} show`;
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// 检查登录状态
+function checkAuth() {
+  const token = localStorage.getItem('opc_token');
+  if (!token) {
+    window.location.href = 'login.html';
+    return false;
+  }
+  return true;
+}
+
+// 获取当前用户信息
+async function loadUserProfile() {
+  const token = localStorage.getItem('opc_token');
+  
+  try {
+    const response = await fetch(`${API_BASE}/api/auth/me`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('获取用户信息失败');
+    }
+    
+    const user = await response.json();
+    localStorage.setItem('opc_user', JSON.stringify(user));
+    
+    // 更新页面显示
+    document.getElementById('profileAvatar').textContent = (user.display_name || user.username || 'U').charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent = user.display_name || user.username;
+    document.getElementById('profileBio').textContent = user.bio || '这个人很懒，什么都没留下';
+    
+    // 更新表单
+    document.getElementById('displayName').value = user.display_name || '';
+    document.getElementById('username').value = user.username || '';
+    document.getElementById('email').value = user.email || '';
+    document.getElementById('bio').value = user.bio || '';
+    document.getElementById('location').value = user.location || '';
+    document.getElementById('website').value = user.website || '';
+    
+    // 更新技能
+    renderSkills(user.skills || []);
+    
+    // 更新徽章
+    const badges = document.getElementById('profileBadges');
+    badges.innerHTML = `<span class="badge badge-role">${user.role || 'user'}</span>`;
+    if (user.skills && user.skills.length > 0) {
+      user.skills.slice(0, 3).forEach(skill => {
+        badges.innerHTML += `<span class="badge badge-skill">${skill}</span>`;
+      });
+      if (user.skills.length > 3) {
+        badges.innerHTML += `<span class="badge badge-skill">+${user.skills.length - 3}</span>`;
+      }
+    }
+    
+  } catch (error) {
+    console.error('Load profile error:', error);
+    showToast(error.message, 'error');
+  }
+}
+
+// 渲染技能标签
+function renderSkills(skills) {
+  const skillsInput = document.getElementById('skillsInput');
+  const input = document.getElementById('skillInput');
+  
+  // 清除旧的标签
+  skillsInput.querySelectorAll('.skill-tag').forEach(tag => tag.remove());
+  
+  // 添加新标签
+  skills.forEach((skill, index) => {
+    const tag = document.createElement('div');
+    tag.className = 'skill-tag';
+    tag.innerHTML = `
+      <span>${skill}</span>
+      <button type="button" onclick="removeSkill(${index})">×</button>
+    `;
+    skillsInput.insertBefore(tag, input);
+  });
+}
+
+// 添加技能
+function addSkill(skill) {
+  const token = localStorage.getItem('opc_token');
+  const userStr = localStorage.getItem('opc_user');
+  if (!userStr) return;
+  
+  const user = JSON.parse(userStr);
+  const skills = user.skills || [];
+  
+  if (skill && !skills.includes(skill)) {
+    skills.push(skill);
+    user.skills = skills;
+    localStorage.setItem('opc_user', JSON.stringify(user));
+    renderSkills(skills);
+  }
+}
+
+// 移除技能
+function removeSkill(index) {
+  const token = localStorage.getItem('opc_token');
+  const userStr = localStorage.getItem('opc_user');
+  if (!userStr) return;
+  
+  const user = JSON.parse(userStr);
+  const skills = user.skills || [];
+  
+  skills.splice(index, 1);
+  user.skills = skills;
+  localStorage.setItem('opc_user', JSON.stringify(user));
+  renderSkills(skills);
+}
+
+// 切换标签页
+function switchTab(tabName) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelector(`.tab:nth-child(${
+    tabName === 'profile' ? 1 : tabName === 'security' ? 2 : 3
+  })`).classList.add('active');
+  
+  document.getElementById('profileTab').style.display = tabName === 'profile' ? 'block' : 'none';
+  document.getElementById('securityTab').style.display = tabName === 'security' ? 'block' : 'none';
+  document.getElementById('skillsTab').style.display = tabName === 'skills' ? 'block' : 'none';
+}
+
+// 更新导航栏
+function updateAuthNav() {
+  const authNav = document.getElementById('authNav');
+  const token = localStorage.getItem('opc_token');
+  const userStr = localStorage.getItem('opc_user');
+  
+  if (token && userStr) {
+    try {
+      const user = JSON.parse(userStr);
+      authNav.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--bdr)">
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff">
+            ${(user.display_name || user.username || 'U').charAt(0).toUpperCase()}
+          </div>
+          <div style="font-size:13px;font-weight:500;color:var(--t1)">${user.display_name || user.username}</div>
+        </div>
+        <button onclick="logout()" style="padding:6px 12px;background:transparent;border:1px solid var(--bdr2);border-radius:6px;color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s">
+          退出
+        </button>
+      `;
+    } catch (e) {
+      console.error('Failed to parse user data:', e);
+    }
+  }
+}
+
+function logout() {
+  localStorage.removeItem('opc_token');
+  localStorage.removeItem('opc_user');
+  window.location.href = 'index.html';
+}
+
+// 事件监听
+document.addEventListener('DOMContentLoaded', () => {
+  if (!checkAuth()) return;
+  
+  loadUserProfile();
+  updateAuthNav();
+  
+  // 技能输入
+  document.getElementById('skillInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const skill = e.target.value.trim();
+      if (skill) {
+        addSkill(skill);
+        e.target.value = '';
+      }
+    }
+  });
+  
+  // 保存技能
+  document.getElementById('saveSkillsBtn').addEventListener('click', async () => {
+    const token = localStorage.getItem('opc_token');
+    const userStr = localStorage.getItem('opc_user');
+    if (!userStr) return;
+    
+    const user = JSON.parse(userStr);
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/auth/me`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          skills: user.skills
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('保存失败');
+      }
+      
+      showToast('技能保存成功', 'success');
+    } catch (error) {
+      showToast(error.message, 'error');
+    }
+  });
+  
+  // 个人资料表单
+  document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('opc_token');
+    const saveBtn = document.getElementById('saveProfileBtn');
+    saveBtn.disabled = true;
+    saveBtn.textContent = '保存中...';
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/auth/me`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          display_name: document.getElementById('displayName').value,
+          bio: document.getElementById('bio').value,
+          location: document.getElementById('location').value,
+          website: document.getElementById('website').value
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('保存失败');
+      }
+      
+      const user = await response.json();
+      localStorage.setItem('opc_user', JSON.stringify(user));
+      
+      showToast('资料保存成功', 'success');
+      loadUserProfile();
+    } catch (error) {
+      showToast(error.message, 'error');
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = '保存修改';
+    }
+  });
+  
+  // 修改密码表单
+  document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const oldPassword = document.getElementById('oldPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+    
+    if (newPassword !== confirmNewPassword) {
+      showToast('两次输入的新密码不一致', 'error');
+      return;
+    }
+    
+    if (newPassword.length < 8) {
+      showToast('新密码至少需要8个字符', 'error');
+      return;
+    }
+    
+    const token = localStorage.getItem('opc_token');
+    const changeBtn = document.getElementById('changePasswordBtn');
+    changeBtn.disabled = true;
+    changeBtn.textContent = '修改中...';
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/auth/change-password?old_password=${encodeURIComponent(oldPassword)}&new_password=${encodeURIComponent(newPassword)}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.detail || '修改失败');
+      }
+      
+      showToast('密码修改成功', 'success');
+      document.getElementById('passwordForm').reset();
+    } catch (error) {
+      showToast(error.message, 'error');
+    } finally {
+      changeBtn.disabled = false;
+      changeBtn.textContent = '修改密码';
+    }
+  });
+});
+</script>
+<script src="mobile.js"></script>
+</body>
+</html>

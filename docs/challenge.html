@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>揭榜挂帅 - OPC Platform</title>
+<meta name="description" content="OPC揭榜挂帅 - 解决技术难题，赢取丰厚奖励。连接全球创新力量，攻克AI、科技、商业领域的关键挑战。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="challenge.css">
+<style>
+/* 复用主页的导航和其他基础样式 */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
+  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
+  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;
+  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
+  --gw:rgba(124,92,252,0.1);--gw2:rgba(34,211,238,0.06);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--a);color:#fff}a{color:inherit;text-decoration:none}
+
+/* NAV - 统一样式 */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--bdr);transition:all .4s}
+.nav.on{background:rgba(6,6,10,0.93);box-shadow:0 2px 40px rgba(0,0,0,0.5)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;letter-spacing:0;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--gw)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:8px 14px;border-radius:8px;color:var(--t2);font-size:14px;font-weight:400;transition:all .2s var(--ease);position:relative;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;letter-spacing:0}
+.nl:hover{color:var(--t1);background:rgba(255,255,255,0.035)}
+.nl.active{color:var(--t1);background:rgba(255,255,255,0.05)}
+.lg{padding:6px 14px;border-radius:8px;border:1px solid var(--bdr2);background:transparent;color:var(--t2);font-size:14px;font-weight:400;cursor:pointer;transition:all .25s;margin-left:8px;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;letter-spacing:0}
+.lg:hover{border-color:var(--bdr2);color:var(--t1);background:rgba(255,255,255,0.03)}
+
+/* 粒子背景 */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:4px;height:4px;background:var(--a);border-radius:50%;opacity:.3;animation:float 20s linear infinite}
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:.3}
+  90%{opacity:.3}
+  100%{transform:translateY(-100vh) rotate(720deg);opacity:0}
+}
+
+/* 滚动显示动画 */
+.fade-in{opacity:0;transform:translateY(30px);transition:all .6s var(--ease)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="nav" id="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">
+      <span class="mk">O</span>
+      <span>OPC Platform</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nl">首页</a>
+      <a href="legends.html" class="nl">名人堂</a>
+      <a href="challenge.html" class="nl active">揭榜挂帅</a>
+      <a href="community.html" class="nl">社区</a>
+      <a href="platform.html" class="nl">平台</a>
+      <button class="lg">登录</button>
+    </div>
+  </div>
+</nav>
+
+<!-- 主内容区 -->
+<div class="challenge-page">
+  <!-- 头部区域 -->
+  <section class="challenge-hero">
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      <span>实时更新</span>
+    </div>
+    
+    <h1>揭榜挂帅</h1>
+    <p class="subtitle">连接全球创新力量，攻克AI、科技、商业领域的关键挑战。<br>解决技术难题，赢取丰厚奖励。</p>
+    
+    <!-- 统计数据 -->
+    <div class="stats-grid">
+      <div class="stat-card fade-in">
+        <div class="number" data-target="67">0</div>
+        <div class="label">进行中项目</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="number" data-target="2580">0</div>
+        <div class="label">累计申报</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="number" data-target="156">0</div>
+        <div class="label">万元奖金池</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="number" data-target="89">0</div>
+        <div class="label">成功揭榜</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 筛选区域 -->
+  <section class="filter-section fade-in">
+    <div class="filter-bar">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">全部项目</button>
+        <button class="filter-tab" data-filter="ai">人工智能</button>
+        <button class="filter-tab" data-filter="tech">技术攻关</button>
+        <button class="filter-tab" data-filter="business">商业创新</button>
+        <button class="filter-tab" data-filter="research">科研难题</button>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" placeholder="搜索项目名称、关键词..." id="searchInput">
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目列表 -->
+  <section class="projects-section">
+    <div class="projects-grid" id="projectsGrid">
+      <!-- 项目卡片将通过JS动态加载 -->
+    </div>
+  </section>
+</div>
+
+<!-- 加载动画 -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<script>
+// 项目数据
+const projectsData = [
+  {
+    id: 'proj-001',
+    title: '基于大模型的智能客服系统研发',
+    description: '需要开发一套基于GPT大模型的智能客服系统，支持多轮对话、情感分析、意图识别，能够处理复杂的客户咨询场景。',
+    category: 'ai',
+    reward: 500000,
+    deadline: '2026-05-30',
+    applicants: 23,
+    status: 'active',
+    badge: 'hot',
+    tags: ['NLP', '大模型', '对话系统'],
+    publisher: '某知名电商平台'
+  },
+  {
+    id: 'proj-002',
+    title: '新能源汽车电池健康度预测算法',
+    description: '开发基于机器学习的电池健康度(SOH)预测算法，准确预测电池剩余寿命，误差控制在3%以内。',
+    category: 'ai',
+    reward: 300000,
+    deadline: '2026-06-15',
+    applicants: 15,
+    status: 'active',
+    badge: 'new',
+    tags: ['机器学习', '新能源', '预测算法'],
+    publisher: '某新能源车企'
+  },
+  {
+    id: 'proj-003',
+    title: '跨境电商多语言智能翻译系统',
+    description: '构建支持20+语言的电商商品描述智能翻译系统，保持专业术语准确性和营销文案吸引力。',
+    category: 'tech',
+    reward: 450000,
+    deadline: '2026-05-20',
+    applicants: 31,
+    status: 'active',
+    badge: 'hot',
+    tags: ['机器翻译', 'NLP', '跨境电商'],
+    publisher: '某跨境平台'
+  },
+  {
+    id: 'proj-004',
+    title: '工业视觉缺陷检测系统优化',
+    description: '优化现有工业视觉检测系统，提升微小缺陷识别率至99.5%以上，降低误检率至0.1%以下。',
+    category: 'tech',
+    reward: 380000,
+    deadline: '2026-06-30',
+    applicants: 12,
+    status: 'active',
+    badge: 'active',
+    tags: ['计算机视觉', '工业检测', '深度学习'],
+    publisher: '某制造企业'
+  },
+  {
+    id: 'proj-005',
+    title: '中小企业数字化转型解决方案',
+    description: '为中小企业提供低成本、高效率的数字化转型SaaS方案，包含ERP、CRM、财务等核心模块。',
+    category: 'business',
+    reward: 250000,
+    deadline: '2026-05-25',
+    applicants: 28,
+    status: 'active',
+    badge: 'active',
+    tags: ['SaaS', '数字化转型', '企业服务'],
+    publisher: '某科技园区'
+  },
+  {
+    id: 'proj-006',
+    title: '医疗影像AI辅助诊断系统',
+    description: '开发CT/MRI影像AI辅助诊断系统，支持肺结节、脑卒中等多种疾病的早期筛查和诊断建议。',
+    category: 'ai',
+    reward: 600000,
+    deadline: '2026-07-15',
+    applicants: 19,
+    status: 'active',
+    badge: 'new',
+    tags: ['医疗AI', '影像识别', '辅助诊断'],
+    publisher: '某三甲医院'
+  },
+  {
+    id: 'proj-007',
+    title: '区块链供应链金融平台',
+    description: '基于区块链技术构建供应链金融平台，实现应收账款确权、流转、融资全流程可信管理。',
+    category: 'tech',
+    reward: 420000,
+    deadline: '2026-06-10',
+    applicants: 16,
+    status: 'active',
+    badge: 'active',
+    tags: ['区块链', '供应链', '金融科技'],
+    publisher: '某银行'
+  },
+  {
+    id: 'proj-008',
+    title: '新消费品牌私域运营策略',
+    description: '为新消费品牌制定私域流量运营策略，包含社群运营、会员体系、复购提升等完整方案。',
+    category: 'business',
+    reward: 180000,
+    deadline: '2026-05-15',
+    applicants: 35,
+    status: 'active',
+    badge: 'hot',
+    tags: ['私域运营', '品牌营销', '用户增长'],
+    publisher: '某新消费品牌'
+  }
+];
+
+// DOM元素
+const projectsGrid = document.getElementById('projectsGrid');
+const filterTabs = document.querySelectorAll('.filter-tab');
+const searchInput = document.getElementById('searchInput');
+const loadingOverlay = document.getElementById('loadingOverlay');
+
+// 当前筛选状态
+let currentFilter = 'all';
+let searchKeyword = '';
+
+// 渲染项目卡片
+function renderProjects(projects) {
+  if (projects.length === 0) {
+    projectsGrid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <div class="empty-text">暂无匹配项目</div>
+        <div class="empty-desc">请尝试调整筛选条件或搜索关键词</div>
+      </div>
+    `;
+    return;
+  }
+
+  projectsGrid.innerHTML = projects.map((project, index) => `
+    <div class="project-card fade-in" style="animation-delay: ${index * 0.1}s" data-id="${project.id}">
+      <div class="card-header">
+        <span class="card-badge badge-${project.badge}">
+          ${project.badge === 'hot' ? '🔥 热门' : project.badge === 'new' ? '✨ 新发布' : '🟢 进行中'}
+        </span>
+        <div class="card-reward">¥${formatNumber(project.reward)}</div>
+      </div>
+      
+      <div class="card-body">
+        <h3 class="card-title">${project.title}</h3>
+        <p class="card-desc">${project.description}</p>
+        
+        <div class="card-tags">
+          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+        
+        <div class="card-meta">
+          <div class="meta-item">
+            <div class="value">${project.applicants}</div>
+            <div class="label">申报数</div>
+          </div>
+          <div class="meta-item">
+            <div class="value">${getDaysLeft(project.deadline)}</div>
+            <div class="label">剩余天数</div>
+          </div>
+          <div class="meta-item">
+            <div class="value">${getCategoryName(project.category)}</div>
+            <div class="label">项目类型</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <button class="btn btn-detail" onclick="goToDetail('${project.id}')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          查看详情
+        </button>
+        <button class="btn btn-apply" onclick="goToApply('${project.id}')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+          立即申报
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  // 触发动画
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 100);
+    });
+  }, 100);
+}
+
+// 格式化数字
+function formatNumber(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// 计算剩余天数
+function getDaysLeft(deadline) {
+  const now = new Date();
+  const end = new Date(deadline);
+  const diff = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+  return diff > 0 ? diff : 0;
+}
+
+// 获取分类名称
+function getCategoryName(category) {
+  const names = {
+    ai: '人工智能',
+    tech: '技术攻关',
+    business: '商业创新',
+    research: '科研难题'
+  };
+  return names[category] || category;
+}
+
+// 筛选项目
+function filterProjects() {
+  let filtered = projectsData;
+
+  // 分类筛选
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(p => p.category === currentFilter);
+  }
+
+  // 关键词搜索
+  if (searchKeyword) {
+    const keyword = searchKeyword.toLowerCase();
+    filtered = filtered.filter(p => 
+      p.title.toLowerCase().includes(keyword) ||
+      p.description.toLowerCase().includes(keyword) ||
+      p.tags.some(t => t.toLowerCase().includes(keyword))
+    );
+  }
+
+  renderProjects(filtered);
+}
+
+// 跳转到详情页
+function goToDetail(id) {
+  showLoading();
+  setTimeout(() => {
+    window.location.href = `challenge-detail.html?id=${id}`;
+  }, 300);
+}
+
+// 跳转到申报页
+function goToApply(id) {
+  showLoading();
+  setTimeout(() => {
+    window.location.href = `challenge-apply.html?id=${id}`;
+  }, 300);
+}
+
+// 显示加载动画
+function showLoading() {
+  loadingOverlay.classList.add('show');
+}
+
+// 隐藏加载动画
+function hideLoading() {
+  loadingOverlay.classList.remove('show');
+}
+
+// 创建粒子背景
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 20 + 's';
+    particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+    container.appendChild(particle);
+  }
+}
+
+// 数字递增动画
+function animateNumbers() {
+  document.querySelectorAll('.stat-card .number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        el.textContent = formatNumber(target);
+        clearInterval(timer);
+      } else {
+        el.textContent = formatNumber(Math.floor(current));
+      }
+    }, 16);
+  });
+}
+
+// 导航栏滚动效果
+function handleNavScroll() {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 50) {
+    nav.classList.add('on');
+  } else {
+    nav.classList.remove('on');
+  }
+}
+
+// 滚动显示动画
+function handleScrollAnimation() {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+// 事件监听
+filterTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    filterTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentFilter = tab.dataset.filter;
+    filterProjects();
+  });
+});
+
+searchInput.addEventListener('input', (e) => {
+  searchKeyword = e.target.value;
+  filterProjects();
+});
+
+window.addEventListener('scroll', () => {
+  handleNavScroll();
+  handleScrollAnimation();
+});
+
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  renderProjects(projectsData);
+  setTimeout(animateNumbers, 500);
+  handleScrollAnimation();
+});
+</script>
+</body>
+</html>

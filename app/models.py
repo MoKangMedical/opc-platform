@@ -310,3 +310,135 @@ class Message(Base):
     
     sender = relationship("User", foreign_keys=[sender_id], back_populates="messages_sent")
     receiver = relationship("User", foreign_keys=[receiver_id], back_populates="messages_received")
+
+
+# ========== 订单和支付系统 ==========
+class Order(Base):
+    __tablename__ = "orders"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    order_no = Column(String(50), unique=True, nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    project_id = Column(Integer, ForeignKey("projects.id"), nullable=True)
+    bid_id = Column(Integer, ForeignKey("project_bids.id"), nullable=True)
+    
+    # 订单信息
+    title = Column(String(300), nullable=False)
+    description = Column(Text)
+    amount = Column(Float, nullable=False)
+    currency = Column(String(10), default="CNY")
+    
+    # 订单状态
+    status = Column(String(20), default="pending")  # pending, paid, processing, completed, cancelled, refunded
+    payment_status = Column(String(20), default="unpaid")  # unpaid, paid, refunded
+    
+    # 支付信息
+    payment_method = Column(String(50))  # alipay, wechat, bank_transfer
+    payment_id = Column(String(100))  # 第三方支付平台ID
+    paid_at = Column(DateTime, nullable=True)
+    
+    # 时间信息
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    expires_at = Column(DateTime, nullable=True)
+    
+    # 关系
+    user = relationship("User", backref="orders")
+    project = relationship("Project", backref="orders")
+    bid = relationship("ProjectBid", backref="order")
+    payments = relationship("Payment", back_populates="order")
+
+
+class Payment(Base):
+    __tablename__ = "payments"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
+    payment_no = Column(String(50), unique=True, nullable=False, index=True)
+    
+    # 支付信息
+    amount = Column(Float, nullable=False)
+    currency = Column(String(10), default="CNY")
+    payment_method = Column(String(50))  # alipay, wechat, bank_transfer
+    
+    # 第三方支付信息
+    third_party_id = Column(String(100))  # 第三方支付平台交易ID
+    third_party_status = Column(String(50))  # 第三方支付平台状态
+    third_party_response = Column(JSON, default=dict)  # 第三方支付平台响应
+    
+    # 支付状态
+    status = Column(String(20), default="pending")  # pending, success, failed, refunded
+    
+    # 时间信息
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    paid_at = Column(DateTime, nullable=True)
+    refunded_at = Column(DateTime, nullable=True)
+    
+    # 关系
+    order = relationship("Order", back_populates="payments")
+
+
+class Refund(Base):
+    __tablename__ = "refunds"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
+    payment_id = Column(Integer, ForeignKey("payments.id"), nullable=True)
+    refund_no = Column(String(50), unique=True, nullable=False, index=True)
+    
+    # 退款信息
+    amount = Column(Float, nullable=False)
+    reason = Column(Text)
+    
+    # 第三方退款信息
+    third_party_id = Column(String(100))  # 第三方退款ID
+    third_party_status = Column(String(50))
+    third_party_response = Column(JSON, default=dict)
+    
+    # 退款状态
+    status = Column(String(20), default="pending")  # pending, processing, success, failed
+    
+    # 时间信息
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    processed_at = Column(DateTime, nullable=True)
+    
+    # 关系
+    order = relationship("Order", backref="refunds")
+    payment = relationship("Payment", backref="refunds")
+
+
+class Invoice(Base):
+    __tablename__ = "invoices"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
+    invoice_no = Column(String(50), unique=True, nullable=False, index=True)
+    
+    # 发票信息
+    title = Column(String(200), nullable=False)
+    tax_no = Column(String(50))  # 税号
+    amount = Column(Float, nullable=False)
+    tax_amount = Column(Float, default=0)
+    total_amount = Column(Float, nullable=False)
+    
+    # 发票类型
+    type = Column(String(20))  # personal, company
+    category = Column(String(20))  # electronic, paper
+    
+    # 发票状态
+    status = Column(String(20), default="pending")  # pending, issued, sent, cancelled
+    
+    # 开票信息
+    company_name = Column(String(200))
+    company_address = Column(String(500))
+    company_phone = Column(String(50))
+    bank_name = Column(String(200))
+    bank_account = Column(String(50))
+    
+    # 时间信息
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    issued_at = Column(DateTime, nullable=True)
+    sent_at = Column(DateTime, nullable=True)
+    
+    # 关系
+    order = relationship("Order", backref="invoices")

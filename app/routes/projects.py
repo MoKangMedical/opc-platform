@@ -7,6 +7,7 @@ from sqlalchemy import or_, desc, func
 from typing import Optional
 from app.database import get_db
 from app.models import Project, ProjectBid, User
+from app.routes.auth import get_current_user
 
 router = APIRouter(prefix="/api/projects", tags=["Projects"])
 
@@ -110,11 +111,11 @@ def industry_stats(db: Session = Depends(get_db)):
 @router.post("/{project_id}/bid")
 def submit_bid(
     project_id: int,
-    user_id: int = 1,
     proposal: str = "",
     budget_quote: float = 0,
     timeline_days: int = 30,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
     project = db.query(Project).filter(Project.id == project_id).first()
     if not project:
@@ -122,7 +123,7 @@ def submit_bid(
     
     bid = ProjectBid(
         project_id=project_id,
-        user_id=user_id,
+        user_id=current_user.id,
         proposal=proposal,
         budget_quote=budget_quote,
         timeline_days=timeline_days,

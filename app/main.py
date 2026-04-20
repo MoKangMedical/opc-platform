@@ -34,6 +34,10 @@ from app.routes.agents import router as agents_router
 from app.routes.chat import router as chat_router
 from app.routes.secondme import router as secondme_router
 from app.routes.realtime_chat import router as realtime_chat_router
+from app.routes.auth import router as auth_router
+from app.routes.users import router as users_router
+from app.routes.matching import router as matching_router
+from app.routes.payment import router as payment_router
 
 app.include_router(academy_router)
 app.include_router(health_router)
@@ -43,6 +47,10 @@ app.include_router(agents_router)
 app.include_router(chat_router)
 app.include_router(secondme_router)
 app.include_router(realtime_chat_router)
+app.include_router(auth_router)
+app.include_router(users_router)
+app.include_router(matching_router)
+app.include_router(payment_router)
 
 # 健康检查
 @app.get("/api/health")
