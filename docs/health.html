@@ -166,13 +166,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
   </div>
 </div>
-
-            <a href="service.html">创业助手</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
-        </div>
-    </nav>
+</nav>
 
 <section class="hero">
 <h1><span class="zh">❤️ <span class="g">OPC 健康</span></span><span class="en" style="display:none">❤️ <span class="g">OPC Health</span></span></h1>
@@ -294,6 +288,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 <footer class="footer"><p><span class="zh">OPC Health · 像Keep一样管理你的健康</span><span class="en" style="display:none">OPC Health · Keep-style health management</span></p></footer>
 
 <script>
+
+const FALLBACK_DASHBOARD={score:86,streak:12,mood:8,energy:7,stress:3,sleep_hours:7.5,water_ml:2000,steps:8500,work_hours:8,weight_kg:70,weekly:{avg_mood:7.5,avg_sleep:7.2,avg_steps:8000,avg_water:2000}};
+const FALLBACK_CHALLENGES=[{id:1,title:"30天早起挑战",description:"每天6:00前起床",icon:"🌅",progress:12,total:30},{id:2,title:"万步挑战",description:"每天走10000步",icon:"🚶",progress:18,total:30},{id:3,title:"阅读挑战",description:"每天阅读30分钟",icon:"📚",progress:25,total:30},{id:4,title:"冥想挑战",description:"每天冥想10分钟",icon:"🧘",progress:8,total:30}];
+const FALLBACK_LEADERBOARD=[{rank:1,name:"张三",score:95,streak:30},{rank:2,name:"李四",score:92,streak:25},{rank:3,name:"王五",score:90,streak:22},{rank:4,name:"赵六",score:88,streak:20},{rank:5,name:"我",score:86,streak:12}];
+const FALLBACK_ACHIEVEMENTS=[{id:1,name:"初次打卡",icon:"🎯",description:"完成第一次健康打卡",unlocked:true},{id:2,name:"连续7天",icon:"🔥",description:"连续打卡7天",unlocked:true},{id:3,name:"万步达人",icon:"🚶",description:"单日步数超过10000",unlocked:true},{id:4,name:"早起鸟儿",icon:"🌅",unlocked:false,progress:3},{id:5,name:"水王",icon:"💧",unlocked:true},{id:6,name:"运动达人",icon:"🏃",unlocked:false,progress:5}];
+
 const API=window.location.hostname==='localhost'?'http://localhost:8000':'';
 const UID=1;
 let selectedAct='running';
