@@ -679,3 +679,6 @@ function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null'
 function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
 
 ;
+</script>
+</body>
+</html>
