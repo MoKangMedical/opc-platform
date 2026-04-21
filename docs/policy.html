@@ -14,14 +14,15 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
 .c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
-.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
+.nav-l{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;color:#a0a0b8;margin-right:auto}
 .nav-l .d{color:var(--gold)}
-.nav-lks{display:flex;align-items:center;gap:32px}
-.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
-.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gold);border-radius:1px}
-.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.nav-lks{display:flex;align-items:center;gap:4px}
+.nav-lk{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nav-lk:hover{color:#9090a8}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gold);border-radius:1px}
+.lbtn{padding:4px 10px;border:none;background:transparent;color:#505068;font-size:11px;cursor:pointer;transition:color .2s;margin-left:8px}
 .hero{min-height:50vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(240,192,64,.06),transparent 70%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(255,138,80,.03),transparent 60%)}
 .hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
@@ -78,24 +79,25 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 @keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .ai{animation:ci .6s var(--e) both}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
-@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}}
+
+@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:1fr}.nav-lks{display:flex;align-items:center;gap:4px}.nav-lk{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}.ht{font-size:2rem}.c{padding:0 16px}}
 .mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
-@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
-</style>
+@media(max-width:640px){.nav-lks{display:flex;align-items:center;gap:4px}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">◆ OPC Platform</a>
+        <a href="index.html" class="logo"> OPC Platform</a>
         <div class="nav-links">
-            <a href="service.html">创业助手</a>
-            <a href="platform.html">平台</a>
-            <a href="government.html">揭榜挂帅</a>
-            <a href="superagent.html">超级个体</a>
-            <a href="legends.html">名人堂</a>
-            <a href="academy.html">学院</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
+            <a href="service.html"></a>
+            <a href="platform.html"></a>
+            <a href="government.html"></a>
+            <a href="superagent.html"></a>
+            <a href="legends.html"></a>
+            <a href="academy.html"></a>
+            <a href="policy.html"></a>
+            <a href="community.html"></a>
+            <a href="chat.html"></a>
         </div>
     </nav>
 
@@ -120,6 +122,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 
 <!-- Summary -->
 <div class="summary">
+
 <div class="summary-title">📊 政策数据总览</div>
 <div class="summary-grid">
 <div class="sg"><div class="sg-v">40+</div><div class="sg-l">已收录政策</div></div>
@@ -134,20 +137,27 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 
 <footer><div class="ft-i">
 <div class="ft-t">© 2026 OPC Policy · 一个人的公司，无限可能</div>
-<div class="ft-l"><a href="index.html">首页</a><a href="platform.html">平台</a><a href="community.html">社区</a></div>
+<div class="ft-l"><a href="index.html"></a><a href="platform.html"></a><a href="community.html"></a></div>
 </div></footer>
 
 <script>
 // 政策数据 - 完整版
 const POLICIES=[
-// ========== 金融支持类 ==========
+// === 金融支持类 ===
 {icon:"💰",title:"创业担保贷款",org:"人力资源和社会保障部",desc:"个人最高可申请50万元创业担保贷款，财政贴息50%，期限3年。适用于高校毕业生、返乡农民工、退役军人等群体。小微企业最高可贷300万。",tags:["贷款","贴息","个人创业","小微企业"],amount:"个人最高50万，企业最高300万",deadline:"长期有效",badge:"hot",cat:"金融支持"},
 {icon:"🏦",title:"小微企业信贷支持",org:"银保监会",desc:"各商业银行设立小微企业专营支行，单户授信1000万元以下小微企业贷款利率优惠，鼓励无还本续贷。",tags:["信贷","利率优惠","无还本续贷"],amount:"利率优惠10%-30%",deadline:"长期有效",badge:"",cat:"金融支持"},
 {icon:"💎",title:"创业投资引导基金",org:"国家发改委",desc:"国家设立创业投资引导基金，参股投资初创期小微企业，参股比例不超过25%，不参与日常管理。",tags:["股权投资","引导基金","初创企业"],amount:"参股25%以内",deadline:"长期有效",badge:"",cat:"金融支持"},
+=== 税收优惠类 ===
+{icon:"🏢",title:"小微企业税收优惠",org:"国家税务总局",desc:"年应纳税所得额不超过100万元的部分，减按25%计入应纳税所得额，按20%税率缴纳企业所得税。实际税负仅为5%。",tags:["税收","减免","小微企业","所得税"],amount:"实际税负5%",deadline:"2027年12月31日",badge:"hot",cat:"税收优惠"},
+{icon:"",title:"增值税小规模纳税人优惠",org:"国家税务总局",desc:"月销售额10万元以下小规模纳税人免征增值税。适用3%征收率的应税销售收入，减按1%征收。",tags:["增值税","免征","小规模纳税人"],amount:"月销10万以下免征",deadline:"2027年12月31日",badge:"hot",cat:"税收优惠"},
+{icon:"",title:"高新技术企业认定",org:"科技部",desc:"通过高新技术企业认定，享受15%企业所得税优惠税率，研发费用加计扣除100%。技术转让所得500万以内免征所得税。",tags:["高新","税收","研发","加计扣除"],amount:"税率15%+研发加计100%",deadline:"长期有效",badge:"",cat:"税收优惠"},
+{icon:"",title:"技术先进型服务企业",org:"科技部",desc:"经认定的技术先进型服务企业，减按15%税率征收企业所得税，发生的职工教育经费支出不超过工资薪金总额8%的部分准予扣除。",tags:["技术企业","税收优惠","教育经费"],amount:"税率15%",deadline:"长期有效",badge:"",cat:"税收优惠"},
+{icon:"",title:"科技型中小企业研发加计",org:"科技部",desc:"科技型中小企业开展研发活动中实际发生的研发费用，未形成无形资产计入当期损益的，在按规定据实扣除的基础上，再按照实际发生额的100%在税前加计扣除。",tags:["研发","加计扣除","科技型中小企业"],amount:"加计扣除100%",deadline:"长期有效",badge:"",cat:"税收优惠"},
+
 {icon:"🌟",title:"普惠金融发展专项资金",org:"财政部",desc:"对符合条件的小微企业创业担保贷款，给予2%的贴息支持，贴息期限最长2年。",tags:["贴息","普惠金融","小微企业"],amount:"贴息2%",deadline:"2026年12月31日",badge:"",cat:"金融支持"},
 {icon:"🎯",title:"首贷户培育计划",org:"人民银行",desc:"针对从未获得银行贷款的小微企业，提供首贷补贴和担保费减免，降低首次融资门槛。",tags:["首贷","补贴","担保费减免"],amount:"担保费减免50%",deadline:"长期有效",badge:"new",cat:"金融支持"},
 
-// ========== 税收优惠类 ==========
+// === 税收优惠类 ===
 {icon:"🏢",title:"小微企业税收优惠",org:"国家税务总局",desc:"年应纳税所得额不超过100万元的部分，减按25%计入应纳税所得额，按20%税率缴纳企业所得税。实际税负仅为5%。",tags:["税收","减免","小微企业","所得税"],amount:"实际税负5%",deadline:"2027年12月31日",badge:"hot",cat:"税收优惠"},
 {icon:"📊",title:"增值税小规模纳税人优惠",org:"国家税务总局",desc:"月销售额10万元以下小规模纳税人免征增值税。适用3%征收率的应税销售收入，减按1%征收。",tags:["增值税","免征","小规模纳税人"],amount:"月销10万以下免征",deadline:"2027年12月31日",badge:"hot",cat:"税收优惠"},
 {icon:"🚀",title:"高新技术企业认定",org:"科技部",desc:"通过高新技术企业认定，享受15%企业所得税优惠税率，研发费用加计扣除100%。技术转让所得500万以内免征所得税。",tags:["高新","税收","研发","加计扣除"],amount:"税率15%+研发加计100%",deadline:"长期有效",badge:"",cat:"税收优惠"},
@@ -157,57 +167,81 @@ const POLICIES=[
 {icon:"🏠",title:"重点群体创业税收扣减",org:"国家税务总局",desc:"建档立卡贫困人口、持《就业创业证》人员从事个体经营的，3年内按每户每年14400元为限额依次扣减增值税、城建税、教育费附加、个税。",tags:["重点群体","税收扣减","个体经营"],amount:"每年14400元",deadline:"2027年12月31日",badge:"",cat:"税收优惠"},
 {icon:"🔧",title:"软件企业税收优惠",org:"国家税务总局",desc:"国家鼓励的软件企业，自获利年度起，第一年至第二年免征企业所得税，第三年至第五年减半征收。",tags:["软件企业","免征","减半"],amount:"2免3减半",deadline:"长期有效",badge:"",cat:"税收优惠"},
 
-// ========== 创业补贴类 ==========
+// === 创业补贴类 ===
+
 {icon:"🎓",title:"大学生创业补贴",org:"教育部",desc:"高校毕业生自主创业可申请一次性创业补贴，标准为5000-10000元，部分地区上浮至2万元。毕业5年内均可申请。",tags:["大学生","补贴","毕业","一次性"],amount:"5000-20000元",deadline:"长期有效",badge:"hot",cat:"创业补贴"},
 {icon:"🎖️",title:"退役军人创业补贴",org:"退役军人事务部",desc:"退役军人自主创业可申请一次性创业补贴，标准为5000-20000元。享受创业担保贷款贴息政策，额度上浮20%。",tags:["退役军人","补贴","贷款额度上浮"],amount:"5000-20000元+贷款上浮20%",deadline:"长期有效",badge:"",cat:"创业补贴"},
 {icon:"🌾",title:"返乡创业补贴",org:"农业农村部",desc:"返乡农民工创业可申请一次性创业补贴5000-10000元。对返乡创业园区给予最高50万元的一次性奖补。",tags:["返乡","农民工","创业园区"],amount:"5000-10000元+园区奖补50万",deadline:"长期有效",badge:"",cat:"创业补贴"},
 {icon:"👩",title:"妇女创业小额担保贷款",desc:"城镇登记失业妇女、农村妇女创业可申请最高10万元小额担保贷款，财政全额贴息，期限2年。",org:"全国妇联",tags:["妇女","小额担保","全额贴息"],amount:"最高10万，全额贴息",deadline:"长期有效",badge:"",cat:"创业补贴"},
 {icon:"🏠",title:"创业场地租金补贴",org:"各地人社局",desc:"入驻创业孵化基地的创业者，可申请场地租金补贴，补贴比例50%-100%，期限1-3年。部分地区对高校毕业生给予100%补贴。",tags:["场地","租金","孵化基地","高校毕业生"],amount:"补贴50%-100%",deadline:"各地不同",badge:"",cat:"场地支持"},
+=== 行政便利类 ===
+{icon:"",title:"个体工商户登记便利化",org:"国家市场监督管理总局",desc:"推行\"一网通办\"，个体工商户设立登记1个工作日内办结，取消名称预先核准。支持网上申请、网上核准、网上发照。",tags:["登记","简化","一网通办","1天办结"],amount:"免费",deadline:"长期有效",badge:"new",cat:"行政便利"},
+{icon:"📄",title:"多证合一改革",org:"国务院",desc:"将营业执照、税务登记证、社保登记证等多证合一，一次申请、一窗受理、一照一码，大幅简化创业手续。",tags:["多证合一","简化","一窗受理"],amount:"免费",deadline:"长期有效",badge:"",cat:"行政便利"},
+{icon:"",title:"电子营业执照",org:"国家市场监督管理总局",desc:"全面推广电子营业执照，与纸质营业执照具有同等法律效力。支持手机端领取、亮照、验证。",tags:["电子执照","手机端","法律效力"],amount:"免费",deadline:"长期有效",badge:"",cat:"行政便利"},
+
 {icon:"🎯",title:"创业带动就业补贴",org:"各地人社局",desc:"创业者吸纳就业可申请带动就业补贴，每吸纳1人补贴2000-5000元，最高补贴10万元。需签订1年以上劳动合同。",tags:["就业","补贴","带动","劳动合同"],amount:"2000-5000元/人，最高10万",deadline:"各地不同",badge:"hot",cat:"创业补贴"},
 {icon:"📱",title:"灵活就业人员社保补贴",org:"人力资源和社会保障部",desc:"灵活就业人员参加社会保险，可申请社保补贴，补贴标准为实际缴费的2/3，期限3年。离校2年内未就业高校毕业生适用。",tags:["社保","补贴","灵活就业","高校毕业生"],amount:"补贴2/3",deadline:"长期有效",badge:"new",cat:"社保支持"},
 
-// ========== 行政便利类 ==========
+// === 行政便利类 ===
 {icon:"📋",title:"个体工商户登记便利化",org:"国家市场监督管理总局",desc:"推行\"一网通办\"，个体工商户设立登记1个工作日内办结，取消名称预先核准。支持网上申请、网上核准、网上发照。",tags:["登记","简化","一网通办","1天办结"],amount:"免费",deadline:"长期有效",badge:"new",cat:"行政便利"},
 {icon:"📄",title:"多证合一改革",org:"国务院",desc:"将营业执照、税务登记证、社保登记证等多证合一，一次申请、一窗受理、一照一码，大幅简化创业手续。",tags:["多证合一","简化","一窗受理"],amount:"免费",deadline:"长期有效",badge:"",cat:"行政便利"},
 {icon:"🌐",title:"电子营业执照",org:"国家市场监督管理总局",desc:"全面推广电子营业执照，与纸质营业执照具有同等法律效力。支持手机端领取、亮照、验证。",tags:["电子执照","手机端","法律效力"],amount:"免费",deadline:"长期有效",badge:"",cat:"行政便利"},
 {icon:"⏱️",title:"企业开办时间压缩",org:"国务院",desc:"将企业开办时间压缩至4个工作日内，部分地区实现\"当场办结\"。包括营业执照、公章刻制、发票申领、社保登记等。",tags:["开办时间","4天","当场办结"],amount:"免费",deadline:"长期有效",badge:"",cat:"行政便利"},
 
-// ========== 场地支持类 ==========
+// === 场地支持类 ===
 {icon:"🏗️",title:"创业孵化基地",org:"各地人社局",desc:"全国建设创业孵化基地超过1万家，为创业者提供免费或低价场地、创业指导、政策咨询等服务。入驻可享受租金减免。",tags:["孵化基地","免费场地","创业指导"],amount:"租金减免50%-100%",deadline:"长期有效",badge:"",cat:"场地支持"},
 {icon:"🏠",title:"众创空间支持政策",org:"科技部",desc:"对备案的众创空间，给予最高50万元的财政奖补。众创空间内的初创企业可享受房租减免、水电补贴等。",tags:["众创空间","财政奖补","房租减免"],amount:"最高50万奖补",deadline:"长期有效",badge:"",cat:"场地支持"},
 {icon:"🌆",title:"创业园区税收返还",org:"各地政府",desc:"入驻创业园区的企业可享受地方留成税收返还，返还比例50%-80%，期限3-5年。部分地区对重点产业返还比例更高。",tags:["税收返还","园区","地方留成"],amount:"返还50%-80%",deadline:"各地不同",badge:"",cat:"场地支持"},
 
-// ========== 社保支持类 ==========
+// === 社保支持类 ===
+=== 培训支持类 ===
+{icon:"",title:"创业培训补贴",org:"各地人社局",desc:"参加创业培训可申请培训补贴，每人每年可享受一次，补贴标准1000-2000元。包括SYB、IYB等国际创业培训课程。",tags:["培训","补贴","SYB","IYB"],amount:"1000-2000元",deadline:"长期有效",badge:"",cat:"培训支持"},
+{icon:"",title:"职业技能培训补贴",org:"人力资源和社会保障部",desc:"参加职业技能培训并取得职业资格证书的，可申请培训补贴，补贴标准500-3000元。紧缺工种补贴标准上浮30%。",tags:["技能培训","资格证书","紧缺工种"],amount:"500-3000元",deadline:"长期有效",badge:"",cat:"培训支持"},
+{icon:"💻",title:"数字经济人才培训",org:"工信部",desc:"针对人工智能、大数据、云计算等数字技术领域，开展免费或补贴培训，培养数字经济创业人才。",tags:["数字经济","AI","大数据","免费培训"],amount:"免费或补贴",deadline:"长期有效",badge:"new",cat:"培训支持"},
+
+// === 外贸支持类 ===
+{icon:"",title:"跨境电商综试区政策",org:"商务部",desc:"跨境电商综试区企业享受所得税核定征收，增值税、消费税免征不退政策。出口退税提速至3个工作日内。",tags:["跨境电商","免征不退","出口退税"],amount:"免征不退+退税3天",deadline:"长期有效",badge:"new",cat:"外贸支持"},
+{icon:"🚢",title:"中小外贸企业信保支持",org:"商务部",desc:"对中小微外贸企业出口信用保险保费给予最高80%的补贴，单个企业最高补贴50万元。",tags:["信保","保费补贴","出口"],amount:"补贴80%，最高50万",deadline:"长期有效",badge:"",cat:"外贸支持"},
+{icon:"",title:"外贸综合服务企业",org:"商务部",desc:"外贸综合服务企业可代办报关、报检、退税、融资等业务，降低中小企业外贸门槛。享受出口退税便利化政策。",tags:["外贸综合服务","代办","退税便利"],amount:"服务费优惠",deadline:"长期有效",badge:"",cat:"外贸支持"},
+
 {icon:"🏥",title:"灵活就业人员医保",org:"国家医保局",desc:"灵活就业人员可参加职工医保或城乡居民医保，缴费比例低于单位职工。部分地区对创业者给予医保补贴。",tags:["医保","灵活就业","缴费优惠"],amount:"缴费优惠30%-50%",deadline:"长期有效",badge:"",cat:"社保支持"},
 {icon:"👴",title:"灵活就业人员养老",org:"人力资源和社会保障部",desc:"灵活就业人员可在当地社保经办机构参加企业职工基本养老保险，缴费基数可在60%-300%之间自主选择。",tags:["养老保险","灵活就业","自主选择"],amount:"缴费基数60%-300%",deadline:"长期有效",badge:"",cat:"社保支持"},
 {icon:"💼",title:"失业保险稳岗返还",org:"人力资源和社会保障部",desc:"不裁员或少裁员的企业，可申请失业保险稳岗返还。大型企业返还30%，中小微企业返还60%。",tags:["稳岗返还","失业保险","不裁员"],amount:"返还30%-60%",deadline:"长期有效",badge:"",cat:"社保支持"},
 
-// ========== 培训支持类 ==========
+// === 培训支持类 ===
 {icon:"📚",title:"创业培训补贴",org:"各地人社局",desc:"参加创业培训可申请培训补贴，每人每年可享受一次，补贴标准1000-2000元。包括SYB、IYB等国际创业培训课程。",tags:["培训","补贴","SYB","IYB"],amount:"1000-2000元",deadline:"长期有效",badge:"",cat:"培训支持"},
 {icon:"🎓",title:"职业技能培训补贴",org:"人力资源和社会保障部",desc:"参加职业技能培训并取得职业资格证书的，可申请培训补贴，补贴标准500-3000元。紧缺工种补贴标准上浮30%。",tags:["技能培训","资格证书","紧缺工种"],amount:"500-3000元",deadline:"长期有效",badge:"",cat:"培训支持"},
 {icon:"💻",title:"数字经济人才培训",org:"工信部",desc:"针对人工智能、大数据、云计算等数字技术领域，开展免费或补贴培训，培养数字经济创业人才。",tags:["数字经济","AI","大数据","免费培训"],amount:"免费或补贴",deadline:"长期有效",badge:"new",cat:"培训支持"},
 
-// ========== 外贸支持类 ==========
+// === 外贸支持类 ===
 {icon:"🌐",title:"跨境电商综试区政策",org:"商务部",desc:"跨境电商综试区企业享受所得税核定征收，增值税、消费税免征不退政策。出口退税提速至3个工作日内。",tags:["跨境电商","免征不退","出口退税"],amount:"免征不退+退税3天",deadline:"长期有效",badge:"new",cat:"外贸支持"},
 {icon:"🚢",title:"中小外贸企业信保支持",org:"商务部",desc:"对中小微外贸企业出口信用保险保费给予最高80%的补贴，单个企业最高补贴50万元。",tags:["信保","保费补贴","出口"],amount:"补贴80%，最高50万",deadline:"长期有效",badge:"",cat:"外贸支持"},
 {icon:"📦",title:"外贸综合服务企业",org:"商务部",desc:"外贸综合服务企业可代办报关、报检、退税、融资等业务，降低中小企业外贸门槛。享受出口退税便利化政策。",tags:["外贸综合服务","代办","退税便利"],amount:"服务费优惠",deadline:"长期有效",badge:"",cat:"外贸支持"},
 
-// ========== 知识产权类 ==========
+// === 知识产权类 ===
 {icon:"🔧",title:"知识产权保护补贴",org:"国家知识产权局",desc:"专利申请费用补贴，发明专利每件补贴5000元，实用新型补贴1000元，外观设计补贴500元。部分地区补贴标准更高。",tags:["专利","补贴","知识产权"],amount:"500-5000元/件",deadline:"长期有效",badge:"",cat:"知识产权"},
 {icon:"⚖️",title:"知识产权维权援助",org:"国家知识产权局",desc:"设立知识产权维权援助中心，为小微企业提供免费法律咨询、侵权判定、维权指导等服务。",tags:["维权援助","免费咨询","侵权判定"],amount:"免费",deadline:"长期有效",badge:"",cat:"知识产权"},
 {icon:"🏛️",title:"专利优先审查",org:"国家知识产权局",desc:"涉及节能环保、新一代信息技术、生物医药等国家重点发展产业的专利申请，可请求优先审查，审查周期压缩至1年内。",tags:["优先审查","国家重点产业","审查提速"],amount:"审查周期1年内",deadline:"长期有效",badge:"",cat:"知识产权"},
 
-// ========== 市场支持类 ==========
+// === 市场支持类 ===
+=== 创新支持类 ===
+{icon:"🔬",title:"科技型中小企业评价",org:"科技部",desc:"通过科技型中小企业评价，享受研发费用加计扣除100%政策。入库企业可获得创新券、科技贷款等支持。",tags:["科技型中小企业","评价","创新券"],amount:"加计扣除100%+创新券",deadline:"长期有效",badge:"",cat:"创新支持"},
+{icon:"",title:"专精特新企业培育",org:"工信部",desc:"对认定的专精特新\"小巨人\"企业，给予最高100万元奖励。享受政府采购优先、融资担保等政策支持。",tags:["专精特新","小巨人","奖励"],amount:"最高100万",deadline:"长期有效",badge:"hot",cat:"创新支持"},
+{icon:"",title:"科技创新券",org:"各地科技局",desc:"小微企业和创业团队可申领科技创新券，用于购买检验检测、技术转让、知识产权等科技服务，补贴比例50%-80%。",tags:["创新券","检验检测","技术转让"],amount:"补贴50%-80%",deadline:"各地不同",badge:"",cat:"创新支持"},
+
+// === 融资担保类 ===
+{icon:"",title:"政府性融资担保",org:"财政部",desc:"政府性融资担保机构为小微企业提供融资担保服务，担保费率不超过1%，取消反担保要求。",tags:["融资担保","费率1%","无反担保"],amount:"担保费≤1%",deadline:"长期有效",badge:"",cat:"融资担保"},
+
 {icon:"📊",title:"政府采购支持中小企业",org:"财政部",desc:"政府采购预留30%以上份额专门面向中小企业，其中预留给小微企业的比例不低于60%。价格扣除优惠6%-10%。",tags:["政府采购","预留份额","价格优惠"],amount:"预留30%+价格优惠6%-10%",deadline:"长期有效",badge:"",cat:"市场支持"},
 {icon:"🏪",title:"中小企业产品推荐目录",org:"工信部",desc:"编制《中小企业优质产品推荐目录》，帮助中小企业产品进入政府采购、大型企业供应链。",tags:["产品推荐","政府采购","供应链"],amount:"免费推广",deadline:"长期有效",badge:"",cat:"市场支持"},
 {icon:"🤝",title:"大中小企业融通发展",org:"工信部",desc:"推动大企业向中小企业开放供应链、创新链、资金链，支持中小企业\"卡位入链\"，融入大企业生态。",tags:["融通发展","供应链","生态融入"],amount:"资源对接",deadline:"长期有效",badge:"",cat:"市场支持"},
 
-// ========== 创新支持类 ==========
+// === 创新支持类 ===
 {icon:"🔬",title:"科技型中小企业评价",org:"科技部",desc:"通过科技型中小企业评价，享受研发费用加计扣除100%政策。入库企业可获得创新券、科技贷款等支持。",tags:["科技型中小企业","评价","创新券"],amount:"加计扣除100%+创新券",deadline:"长期有效",badge:"",cat:"创新支持"},
 {icon:"💡",title:"专精特新企业培育",org:"工信部",desc:"对认定的专精特新\"小巨人\"企业，给予最高100万元奖励。享受政府采购优先、融资担保等政策支持。",tags:["专精特新","小巨人","奖励"],amount:"最高100万",deadline:"长期有效",badge:"hot",cat:"创新支持"},
 {icon:"🧪",title:"科技创新券",org:"各地科技局",desc:"小微企业和创业团队可申领科技创新券，用于购买检验检测、技术转让、知识产权等科技服务，补贴比例50%-80%。",tags:["创新券","检验检测","技术转让"],amount:"补贴50%-80%",deadline:"各地不同",badge:"",cat:"创新支持"},
 
-// ========== 融资担保类 ==========
+// === 融资担保类 ===
 {icon:"🛡️",title:"政府性融资担保",org:"财政部",desc:"政府性融资担保机构为小微企业提供融资担保服务，担保费率不超过1%，取消反担保要求。",tags:["融资担保","费率1%","无反担保"],amount:"担保费≤1%",deadline:"长期有效",badge:"",cat:"融资担保"},
 {icon:"📈",title:"应收账款质押融资",org:"人民银行",desc:"中小企业以应收账款为质押向银行申请贷款，人民银行提供再贷款支持，利率优惠。",tags:["应收账款","质押","再贷款"],amount:"利率优惠",deadline:"长期有效",badge:"",cat:"融资担保"},
 {icon:"🏦",title:"知识产权质押融资",org:"国家知识产权局",desc:"企业以专利权、商标权、著作权等知识产权向银行质押贷款，政府给予贴息支持，贴息比例50%。",tags:["知识产权","质押","贴息"],amount:"贴息50%",deadline:"长期有效",badge:"",cat:"融资担保"}
@@ -226,6 +260,7 @@ const grid=document.getElementById('policyGrid');
 const filtered=currentCat==='全部'?POLICIES:POLICIES.filter(p=>p.cat===currentCat);
 grid.innerHTML=filtered.map((p,i)=>`
 <div class="pc ai" style="animation-delay:${i*0.06}s">
+
 ${p.badge?`<div class="pc-badge ${p.badge}">${p.badge==='hot'?'🔥热门':p.badge==='new'?'🆕最新':'⏰即将截止'}</div>`:''}
 <div class="pc-icon">${p.icon}</div>
 <div class="pc-title">${p.title}</div>
@@ -233,10 +268,11 @@ ${p.badge?`<div class="pc-badge ${p.badge}">${p.badge==='hot'?'🔥热门':p.bad
 <p class="pc-desc">${p.desc}</p>
 <div class="pc-tags">${p.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
 <div class="pc-amount">${p.amount}</div>
+
 <div class="pc-deadline">⏰ 截止时间: ${p.deadline}</div>
 <div class="pc-actions">
-<button class="btn" onclick="applyPolicy('${p.title}')">立即申请</button>
-<button class="btn-o" onclick="showDetail('${p.title}')">查看详情</button>
+<button class="btn" onclick="applyPolicy('${p.title}')"></button>
+<button class="btn-o" onclick="showDetail('${p.title}')"></button>
 </div>
 </div>
 `).join('');
@@ -266,6 +302,7 @@ modal.innerHTML=`
 <div style="font-size:1.2rem;font-weight:700;color:var(--gold)">${policy.amount}</div>
 </div>
 <div style="margin-bottom:16px">
+
 <div style="font-size:.82rem;font-weight:600;margin-bottom:8px">⏰ 截止时间</div>
 <div>${policy.deadline}</div>
 </div>
@@ -273,7 +310,7 @@ modal.innerHTML=`
 <div style="font-size:.82rem;font-weight:600;margin-bottom:8px">🏷️ 政策标签</div>
 <div style="display:flex;gap:6px;flex-wrap:wrap">${policy.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
 </div>
-<button class="btn" onclick="applyPolicy('${policy.title}')" style="width:100%;padding:14px">立即申请 - ${policy.title}</button>
+<button class="btn" onclick="applyPolicy('${policy.title}')" style="width:100%;padding:14px"> - ${policy.title}</button>
 </div>
 `;
 document.body.appendChild(modal);
@@ -295,8 +332,9 @@ function openApplicationFlow(policyTitle) {
     modal.innerHTML = `
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+
                 <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">📋 申请流程 - ${policyTitle}</h2>
-                <button onclick="closeApplicationModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closeApplicationModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
             <!-- 流程步骤 -->
@@ -368,7 +406,7 @@ function openApplicationFlow(policyTitle) {
                         <label style="display: block; margin-bottom: 8px; font-weight: 500;">申请理由 *</label>
                         <textarea required rows="3" style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
                     </div>
-                    <button type="submit" style="width: 100%; background: var(--gold); border: none; color: #000; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交申请</button>
+                    <button type="submit" style="width: 100%; background: var(--gold); border: none; color: #000; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;"></button>
                 </form>
             </div>
             
@@ -402,12 +440,14 @@ function openProgressTracker() {
     modal.innerHTML = `
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+
                 <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">📊 申请进度追踪</h2>
-                <button onclick="closeProgressModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closeProgressModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
             <!-- 申请记录 -->
             <div style="margin-bottom: 24px;">
+
                 <h3 style="font-weight: 600; margin-bottom: 16px;">📋 我的申请记录</h3>
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
@@ -468,7 +508,7 @@ function openProgressTracker() {
                 <h3 style="font-weight: 600; margin-bottom: 16px;">🔍 查询申请进度</h3>
                 <div style="display: flex; gap: 12px;">
                     <input type="text" placeholder="输入申请编号或手机号..." style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem;">
-                    <button style="background: var(--gold); border: none; color: #000; padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer;">查询</button>
+                    <button style="background: var(--gold); border: none; color: #000; padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer;"></button>
                 </div>
             </div>
         </div>
@@ -481,6 +521,7 @@ function closeProgressModal() {
     const modal = document.getElementById('progressModal');
     if (modal) modal.remove();
 }
+
 
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
