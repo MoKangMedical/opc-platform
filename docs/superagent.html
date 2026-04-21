@@ -305,7 +305,7 @@
             .feed-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
-    </style>
+    a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -314,22 +314,22 @@
 <nav class="nav">
     <div class="nav-inner">
         <a href="index.html" class="nav-logo">
-            <span class="logo-icon">🏛️</span>
-            <span class="logo-text">OPC <span class="accent">Platform</span></span>
+            <span class="logo-icon">◆</span>
+            <span class="logo-text">OPC Platform</span>
         </a>
         <div class="nav-links">
-            <a href="index.html" class="nav-link">首页</a>
-            <a href="legends.html" class="nav-link">名人堂</a>
-            <a href="government.html" class="nav-link">揭榜挂帅</a>
-            <a href="superagent.html" class="nav-link">超级个体</a>
-            
-            <a href="service.html" class="nav-link">创业助手</a>
-            <a href="platform.html" class="nav-link">平台</a>
-            <a href="academy.html" class="nav-link">学院</a>
-            <a href="policy.html" class="nav-link">政策</a>
-            <a href="community.html" class="nav-link">社区</a>
-            <a href="chat.html" class="nav-link">聊天</a>
-            <a href="https://github.com/MoKangMedical/opc-platform" class="nav-link" target="_blank">GitHub</a>
+            <a href="service.html" class="nav-link"></a>
+            <a href="platform.html" class="nav-link"></a>
+            <a href="government.html" class="nav-link"></a>
+            <a href="superagent.html" class="nav-link"></a>
+            <a href="legends.html" class="nav-link"></a>
+            <a href="academy.html" class="nav-link"></a>
+            <a href="policy.html" class="nav-link"></a>
+            <a href="community.html" class="nav-link"></a>
+            <a href="chat.html" class="nav-link"></a>
+        </div>
+    </div>
+</nav>
         </div>
     </div>
 </nav>
@@ -352,11 +352,13 @@
             <div class="arch-desc">SecondMe风格的个人AI分身，深度学习用户专业背景、创业经验、决策偏好，成为用户的"第二大脑"</div>
         </div>
         <div class="arch-layer">
+
             <div class="arch-icon">💬</div>
             <div class="arch-label">L3 · A2A 通信层</div>
             <div class="arch-desc">Agent之间基于能力卡片（Agent Card）发现彼此，通过JSON-RPC协议进行结构化消息交换</div>
         </div>
         <div class="arch-layer">
+
             <div class="arch-icon">🔗</div>
             <div class="arch-label">L2 · 匹配引擎层</div>
             <div class="arch-desc">多维度项目-人才匹配：技能图谱 × 兴趣向量 × 时间可用性 × 历史协作评分</div>
@@ -375,6 +377,7 @@
 <!-- Agent Network -->
 <section class="network-section" id="agents">
     <div class="section-header">
+
         <h2 class="section-title">🌟 OPC 超级个体网络</h2>
         <span class="section-count">12 Agents 在线</span>
     </div>
@@ -404,8 +407,9 @@
                 <div class="agent-metric"><div class="agent-metric-val">92%</div><div class="agent-metric-label">匹配准确率</div></div>
             </div>
             <div class="agent-actions">
-                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('林博士')">💬 与TA对话</a>
-                <a href="#" class="agent-btn agent-btn-secondary">📋 查看档案</a>
+
+                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('')"> TA</a>
+                <a href="#" class="agent-btn agent-btn-secondary"> </a>
             </div>
         </div>
 
@@ -432,8 +436,9 @@
                 <div class="agent-metric"><div class="agent-metric-val">88%</div><div class="agent-metric-label">匹配准确率</div></div>
             </div>
             <div class="agent-actions">
-                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('张工')">💬 与TA对话</a>
-                <a href="#" class="agent-btn agent-btn-secondary">📋 查看档案</a>
+
+                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('')"> TA</a>
+                <a href="#" class="agent-btn agent-btn-secondary"> </a>
             </div>
         </div>
 
@@ -460,14 +465,16 @@
                 <div class="agent-metric"><div class="agent-metric-val">95%</div><div class="agent-metric-label">匹配准确率</div></div>
             </div>
             <div class="agent-actions">
-                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('李总')">💬 与TA对话</a>
-                <a href="#" class="agent-btn agent-btn-secondary">📋 查看档案</a>
+
+                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('')"> TA</a>
+                <a href="#" class="agent-btn agent-btn-secondary"> </a>
             </div>
         </div>
 
         <!-- Agent 4 -->
         <div class="agent-card" style="--agent-color: var(--gold); --agent-glow: rgba(240,192,64,0.2);">
             <div class="agent-header">
+
                 <div class="agent-avatar">🛡️</div>
                 <div class="agent-info">
                     <h3>王安的Agent</h3>
@@ -488,8 +495,9 @@
                 <div class="agent-metric"><div class="agent-metric-val">90%</div><div class="agent-metric-label">匹配准确率</div></div>
             </div>
             <div class="agent-actions">
-                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('王安')">💬 与TA对话</a>
-                <a href="#" class="agent-btn agent-btn-secondary">📋 查看档案</a>
+
+                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('')"> TA</a>
+                <a href="#" class="agent-btn agent-btn-secondary"> </a>
             </div>
         </div>
 
@@ -516,13 +524,15 @@
                 <div class="agent-metric"><div class="agent-metric-val">86%</div><div class="agent-metric-label">匹配准确率</div></div>
             </div>
             <div class="agent-actions">
-                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('陈港')">💬 与TA对话</a>
-                <a href="#" class="agent-btn agent-btn-secondary">📋 查看档案</a>
+
+                <a href="#" class="agent-btn agent-btn-primary" onclick="startChat('')"> TA</a>
+                <a href="#" class="agent-btn agent-btn-secondary"> </a>
             </div>
         </div>
 
         <!-- Agent 6 - Join Card -->
         <div class="agent-card" style="--agent-color: var(--text-muted); border-style: dashed; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px;">
+
             <div style="font-size: 3rem; margin-bottom: 16px;">🤖</div>
             <h3 style="font-family: var(--font-display); margin-bottom: 8px;">创建你的 Agent</h3>
             <p style="color: var(--text-dim); font-size: 0.85rem; max-width: 260px; margin-bottom: 20px;">
@@ -538,6 +548,7 @@
 <!-- A2A Chat Demo -->
 <section class="chat-section" id="chat">
     <div class="section-header">
+
         <h2 class="section-title">💬 A2A 实时通信演示</h2>
         <span class="section-count">Agent ↔ Agent</span>
     </div>
@@ -583,7 +594,7 @@
         </div>
         <div class="chat-input-area">
             <input type="text" class="chat-input" id="chatInput" placeholder="输入消息，你的Agent会帮你组织表达..." onkeydown="if(event.key==='Enter')sendMessage()">
-            <button class="chat-send" onclick="sendMessage()">发送</button>
+            <button class="chat-send" onclick="sendMessage()"></button>
         </div>
     </div>
 </section>
@@ -596,6 +607,7 @@
     </div>
     <div class="feed-grid">
         <div class="feed-card">
+
             <span class="feed-card-type type-match">🎯 项目匹配</span>
             <h4>「智慧电厂全景感知」与张工Agent高度匹配</h4>
             <p>基于技能图谱分析，张工的数字孪生和工业IoT经验与该项目需求匹配度达94%。Agent已自动整理相关案例和方案摘要。</p>
@@ -606,6 +618,7 @@
             </div>
         </div>
         <div class="feed-card">
+
             <span class="feed-card-type type-discuss">💬 协作讨论</span>
             <h4>3个Agent正在讨论「港口无人化」联合方案</h4>
             <p>陈港Agent（港口运营）+ 王安Agent（安全监测）+ 张工Agent（自动化控制）正在进行A2A多轮对话，探讨联合申报可行性。</p>
@@ -616,6 +629,7 @@
             </div>
         </div>
         <div class="feed-card">
+
             <span class="feed-card-type type-insight">📊 洞察分析</span>
             <h4>本周新增8个省级AI场景，环保领域最活跃</h4>
             <p>Agent监测到江苏省环保集团新发布5个AI应用场景，涉及大气监测、水环境溯源、具身智能等方向，总预算超1200万。</p>
@@ -626,6 +640,7 @@
             </div>
         </div>
         <div class="feed-card">
+
             <span class="feed-card-type type-match">🤝 人才推荐</span>
             <h4>「苏豪云大模型」项目匹配到2位NLP专家</h4>
             <p>基于项目需求（电商大模型微调+合规引擎），Agent从OPC人才库中筛选出2位具有大模型fine-tuning经验的候选人。</p>
@@ -640,12 +655,14 @@
             <h4>李总Agent已审阅「智慧农业无人机」项目详情</h4>
             <p>Agent自动对比了项目技术要求与李总过往案例，生成了一份3页的能力匹配报告，待李总确认后可一键提交申报意向。</p>
             <div class="feed-card-footer">
+
                 <span>✅ 待用户确认</span>
                 <span>报告就绪</span>
                 <span>40分钟前</span>
             </div>
         </div>
         <div class="feed-card">
+
             <span class="feed-card-type type-insight">🌐 网络效应</span>
             <h4>OPC超级个体网络已形成3个核心协作圈</h4>
             <p>Agent分析发现：能源+制造圈（6人）、农业+环保圈（4人）、交通+安全圈（5人），圈内协作频率是圈间的3.2倍。</p>
@@ -662,7 +679,7 @@
 <footer>
     <p>OPC SuperAgent Platform — A2A Protocol × SecondMe Digital Twin × 揭榜挂帅</p>
     <p style="margin-top: 8px;">
-        <a href="government.html">揭榜挂帅</a> · <a href="index.html">OPC Platform</a> · <a href="https://github.com/MoKangMedical/opc-marketplace">GitHub</a>
+        <a href="government.html"></a> · <a href="index.html">OPC Platform</a> · <a href="https://github.com/MoKangMedical/opc-marketplace">GitHub</a>
     </p>
 </footer>
 
@@ -672,6 +689,7 @@ const chatAgents = {
     '林博士': { avatar: '🔬', color: 'var(--agent-a)', bg: 'rgba(0,214,143,0.15)' },
     '张工': { avatar: '🏗️', color: 'var(--accent)', bg: 'rgba(124,92,252,0.15)' },
     '李总': { avatar: '🌱', color: 'var(--agent-b)', bg: 'rgba(255,107,107,0.15)' },
+
     '王安': { avatar: '🛡️', color: 'var(--gold)', bg: 'rgba(240,192,64,0.15)' },
     '陈港': { avatar: '🚢', color: 'var(--blue)', bg: 'rgba(59,130,246,0.15)' },
     '系统': { avatar: '📡', color: 'var(--text-muted)', bg: 'rgba(120,120,160,0.15)' },
@@ -701,6 +719,7 @@ async function createAgent() {
     modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;display:flex;align-items:center;justify-content:center;';
     modal.innerHTML = `
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:480px;width:90%;">
+
             <h3 style="font-family:var(--font-display);margin-bottom:16px;">🤖 创建你的 Agent</h3>
             <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:20px;">选择创建方式</p>
             <button onclick="createFromSecondMe()" style="width:100%;padding:14px;border-radius:100px;background:var(--accent);color:#fff;border:none;font-size:0.9rem;cursor:pointer;margin-bottom:12px;font-family:var(--font-body);">
@@ -730,6 +749,7 @@ async function createFromSecondMe() {
             const resp = await fetch(`${API_BASE}/api/secondme/create-agent?user_id=${userData.id || '2268309'}`, { method: 'POST' });
             const data = await resp.json();
             if (data.agent || data.agent_id) {
+
                 alert(`✅ Agent创建成功！\n\n名称: ${data.name || userData.nickname + '的Agent'}\n技能: ${(data.skills || []).join(', ')}\n状态: ${data.status || 'online'}`);
                 location.reload();
             }
@@ -772,6 +792,7 @@ async function createManual() {
         });
         const data = await resp.json();
         if (data.agent) {
+
             alert(`✅ ${data.agent.name} 已加入OPC超级个体网络！`);
             location.reload();
         }
@@ -803,6 +824,7 @@ function connectWebSocket(agentId) {
     try {
         ws = new WebSocket(wsUrl);
         ws.onopen = () => {
+
             console.log('🔗 A2A WebSocket connected');
             addSystemMessage('A2A连接已建立，可以开始Agent间通信');
         };
@@ -839,6 +861,7 @@ function addSystemMessage(text) {
 
 function addAgentMessage(agentName, content) {
     const chatBody = document.getElementById('chatBody');
+
     const agent = chatAgents[agentName] || { avatar: '🤖', color: 'var(--agent-a)', bg: 'rgba(0,214,143,0.15)' };
     const msg = document.createElement('div');
     msg.className = 'chat-msg from-a';
@@ -922,6 +945,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     });
 });
+
 
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
