@@ -1,136 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPC Legends — One Person Company Hall of Fame</title>
-    <meta name="description" content="The greatest one-person companies in history. Business thinking, case studies, and playbooks from solopreneurs who built empires alone.">
-    <meta property="og:title" content="OPC Legends — One Person Company Hall of Fame">
-    <meta property="og:description" content="Business thinking & case studies from the world's most successful solopreneurs.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mokangmedical.github.io/opc-platform/legends.html">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="名人堂 — 18位全球顶级独立创业者，深度解析他们的商业思维和成功策略">
+    <title>名人堂 — 全球顶级独立创业者</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e94560'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Arial' font-size='60' font-weight='bold' fill='white'>O</text></svg>">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="legends-styles.css">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "OPC Legends",
-        "description": "The greatest one-person companies in history",
-        "url": "https://mokangmedical.github.io/opc-platform/legends.html"
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-// ===== OPC Platform 增强功能 =====
-function showNotification(msg,type='success'){
-const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
-n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
-}
-function toggleFavorite(id,type){
-const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
-localStorage.setItem(k,JSON.stringify(f));
-}
-function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
-}
-function showModal(c){
-const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
-document.body.appendChild(m);
-}
-function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
-function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null');}
-function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
-
-</script>
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/design-system.css">
+    
+    <!-- Additional Styles -->
+    <style>
+        .hero-legends {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .legend-card {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            transition: var(--transition-all);
+        }
+        
+        .legend-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--color-gray-300);
+        }
+        
+        .legend-header {
+            position: relative;
+            padding: var(--space-8);
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-gray-50), var(--color-gray-100));
+        }
+        
+        .legend-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-4);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .legend-name {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .legend-role {
+            font-size: var(--text-sm);
+            color: var(--color-gray-600);
+            margin-bottom: var(--space-4);
+        }
+        
+        .legend-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            margin-bottom: var(--space-4);
+        }
+        
+        .legend-stat {
+            text-align: center;
+        }
+        
+        .legend-stat-value {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: var(--font-bold);
+            color: var(--color-accent);
+        }
+        
+        .legend-stat-label {
+            font-size: var(--text-xs);
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .legend-body {
+            padding: var(--space-6);
+        }
+        
+        .legend-bio {
+            font-size: var(--text-sm);
+            color: var(--color-gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-6);
+        }
+        
+        .legend-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+        }
+        
+        .legend-tag {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+        }
+        
+        .legend-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-bottom: var(--space-8);
+        }
+        
+        .filter-btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--color-gray-600);
+            background: white;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .filter-btn:hover {
+            background: var(--color-gray-50);
+            border-color: var(--color-gray-400);
+        }
+        
+        .filter-btn.active {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+        
+        .philosophy-card {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin-bottom: var(--space-6);
+            transition: var(--transition-all);
+        }
+        
+        .philosophy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-gray-300);
+        }
+        
+        .philosophy-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: var(--space-6);
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-xl);
+        }
+        
+        .philosophy-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .philosophy-text {
+            font-size: var(--text-base);
+            color: var(--color-gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        
+        .philosophy-examples {
+            display: flex;
+            flex-wrap: shared;
+            gap: var(--space-2);
+        }
+        
+        .philosophy-example {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+        }
+        
+        .case-card {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin-bottom: var(--space-6);
+            transition: var(--transition-all);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-gray-300);
+        }
+        
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .case-number {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--color-gray-200);
+        }
+        
+        .case-meta {
+            display: flex;
+            gap: var(--space-4);
+            font-size: var(--text-sm);
+        }
+        
+        .case-category {
+            color: var(--color-accent);
+            font-weight: var(--font-semibold);
+        }
+        
+        .case-revenue {
+            color: var(--color-success);
+            font-weight: var(--font-semibold);
+        }
+        
+        .case-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .case-desc {
+            font-size: var(--text-base);
+            color: var(--color-gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+        }
+        
+        .case-tag {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-    <div class="bg-grid"></div>
-
+    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">
-                <div class="logo-mark">O</div>
-                <span>OPC <span class="accent">Legends</span></span>
+                <div class="nav-logo-icon">O</div>
+                <span>OPC Platform</span>
             </a>
+            
             <div class="nav-links">
                 <a href="service.html" class="nav-link">创业助手</a>
                 <a href="platform.html" class="nav-link">平台</a>
                 <a href="government.html" class="nav-link">揭榜挂帅</a>
                 <a href="superagent.html" class="nav-link">超级个体</a>
+                <a href="legends.html" class="nav-link active">名人堂</a>
                 <a href="academy.html" class="nav-link">学院</a>
                 <a href="policy.html" class="nav-link">政策</a>
                 <a href="community.html" class="nav-link">社区</a>
                 <a href="chat.html" class="nav-link">聊天</a>
-                <a href="index.html" class="nav-link">首页</a>
-                <a href="#legends" class="nav-link">传奇人物</a>
-                <a href="#philosophy" class="nav-link">商业哲学</a>
-                <a href="#playbook" class="nav-link">行动手册</a>
-                <a href="https://github.com/MoKangMedical/opc-legends" class="nav-github" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    GitHub
-                </a>
             </div>
-            <button class="lang-toggle" id="langToggle">中文</button>
+            
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost btn-sm">登录</a>
+                <a href="register.html" class="btn btn-primary btn-sm">免费注册</a>
+                <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="nav-mobile hidden" id="mobileMenu">
+            <div class="container">
+                <div class="flex flex-col gap-4 p-6">
+                    <a href="service.html" class="nav-link">创业助手</a>
+                    <a href="platform.html" class="nav-link">平台</a>
+                    <a href="government.html" class="nav-link">揭榜挂帅</a>
+                    <a href="superagent.html" class="nav-link">超级个体</a>
+                    <a href="legends.html" class="nav-link active">名人堂</a>
+                    <a href="academy.html" class="nav-link">学院</a>
+                    <a href="policy.html" class="nav-link">政策</a>
+                    <a href="community.html" class="nav-link">社区</a>
+                    <a href="chat.html" class="nav-link">聊天</a>
+                    <div class="flex gap-4 mt-4">
+                        <a href="login.html" class="btn btn-ghost btn-sm">登录</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">免费注册</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">一个人的公司 • 名人堂</div>
-            <h1 class="hero-title">
-                <span class="line">The Legends Who</span>
-                <span class="line gradient-text">Built Empires Alone</span>
-            </h1>
-            <p class="hero-subtitle">
-                Deep dives into the business thinking, strategies, and playbooks of the world's most successful solopreneurs. No VC. No co-founders. Just one person changing the game.
-            </p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-value" data-count="18">0</span>
-                    <span class="stat-label">已收录传奇</span>
+    <!-- Hero Section -->
+    <section class="hero hero-legends">
+        <div class="container">
+            <div class="hero-content">
+                <div class="flex items-center justify-center gap-2 mb-6">
+                    <span class="px-3 py-1 bg-white/10 rounded-full text-sm text-white/80">
+                        MINDSET • 商业哲学
+                    </span>
                 </div>
-                <div class="stat">
-                    <span class="stat-value">$<span data-count="2">0</span>B+</span>
-                    <span class="stat-label">总营收</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" data-count="7">0</span>
-                    <span class="stat-label">商业模式</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" data-count="50">0</span>
-                    <span class="stat-label">核心洞察</span>
+                <h1 class="hero-title animate-fade-in">
+                    The Legends<br>
+                    <span class="logo-gradient">Who Built Empires Alone</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in" style="animation-delay: 0.2s;">
+                    Deep dives into the business thinking, strategies, and playbooks of the world's most successful solopreneurs. No VC. No co-founders. Just one person changing the game.
+                </p>
+                
+                <!-- Stats -->
+                <div class="stats animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="stat stat-card">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">传奇人物</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">$10B+</div>
+                        <div class="stat-label">总净资产</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">100+</div>
+                        <div class="stat-label">成功产品</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">员工数</div>
+                    </div>
                 </div>
             </div>
-            <a href="#legends" class="hero-cta">
-                探索传奇人物
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M5 12l7 7 7-7"/>
-                </svg>
-            </a>
         </div>
     </section>
 
-    <section class="filter-section" id="legends">
+    <!-- Legends Section -->
+    <section class="section" id="legends">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">人物档案</span>
-                <h2 class="section-title">The Legends</h2>
-                <p class="section-desc">Each built a world-class business as a one-person company. Click to explore their thinking.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">The Legends</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">Each built a world-class business as a one-person company. Click to explore their thinking.</p>
             </div>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search legends by name, role, or expertise...">
-                <button id="clearSearch" class="clear-search" style="display: none;">×</button>
-            </div>
-            <div class="filter-bar">
+            
+            <!-- Filter Bar -->
+            <div class="filter-bar justify-center">
                 <button class="filter-btn active" data-filter="all">全部</button>
                 <button class="filter-btn" data-filter="saas">SaaS</button>
                 <button class="filter-btn" data-filter="content">内容</button>
@@ -140,354 +409,487 @@ function validateForm(fid){const f=document.getElementById(fid);if(!f)return fal
                 <button class="filter-btn" data-filter="education">教育</button>
                 <button class="filter-btn" data-filter="media">媒体</button>
             </div>
-            <div class="legends-grid" id="legendsGrid"></div>
+            
+            <!-- Legends Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="legendsGrid">
+                <!-- Legend 1: Pieter Levels -->
+                <div class="legend-card animate-fade-in">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                            PL
+                        </div>
+                        <h3 class="legend-name">Pieter Levels</h3>
+                        <p class="legend-role">Serial Shipper • Nomad Founder</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$3.5M+</div>
+                                <div class="legend-stat-label">年收入</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">70+</div>
+                                <div class="legend-stat-label">产品</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">Dutch developer who built 70+ products as a one-person company. Revenue, Nomad List, Remote OK, and Photo AI generate $3.5M+/year. The godfather of the build-in-public movement.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">SaaS</span>
+                            <span class="legend-tag">数字游民</span>
+                            <span class="legend-tag">公开构建</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legend 2: Naval Ravikant -->
+                <div class="legend-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #0984e3, #74b9ff);">
+                            NR
+                        </div>
+                        <h3 class="legend-name">Naval Ravikant</h3>
+                        <p class="legend-role">AngelList Founder • Philosopher</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$1B+</div>
+                                <div class="legend-stat-label">净资产</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">AngelList</div>
+                                <div class="legend-stat-label">创立公司</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">AngelList co-founder who codified the wealth creation framework. His Almanack became the most-shared business text of the decade.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">金融</span>
+                            <span class="legend-tag">哲学</span>
+                            <span class="legend-tag">投资</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legend 3: James Clear -->
+                <div class="legend-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #00b894, #55efc4);">
+                            JC
+                        </div>
+                        <h3 class="legend-name">James Clear</h3>
+                        <p class="legend-role">The Habit Machine</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$10M+</div>
+                                <div class="legend-stat-label">年收入</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">15M+</div>
+                                <div class="legend-stat-label">书销量</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">Turned a blog about habits into Atomic Habits — 15M+ copies sold, $10M+/year from a single book.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">内容</span>
+                            <span class="legend-tag">书籍</span>
+                            <span class="legend-tag">习惯</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legend 4: Sahil Lavingia -->
+                <div class="legend-card animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">
+                            SL
+                        </div>
+                        <h3 class="legend-name">Sahil Lavingia</h3>
+                        <p class="legend-role">Gumroad Founder</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$2M+</div>
+                                <div class="legend-stat-label">年收入</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">Gumroad</div>
+                                <div class="legend-stat-label">创立公司</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">Founded Gumroad, a platform for creators to sell products directly. Built a $2M+/year business with a small team.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">SaaS</span>
+                            <span class="legend-tag">创作者经济</span>
+                            <span class="legend-tag">平台</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legend 5: Marc Lou -->
+                <div class="legend-card animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #e17055, #d63031);">
+                            ML
+                        </div>
+                        <h3 class="legend-name">Marc Lou</h3>
+                        <p class="legend-role">Serial Shipper</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$2M+</div>
+                                <div class="legend-stat-label">年收入</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">20+</div>
+                                <div class="legend-stat-label">产品</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">Launched 20+ products in 2 years. Known for rapid prototyping and shipping products quickly.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">SaaS</span>
+                            <span class="legend-tag">快速开发</span>
+                            <span class="legend-tag">公开构建</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legend 6: Derek Sivers -->
+                <div class="legend-card animate-fade-in" style="animation-delay: 0.5s;">
+                    <div class="legend-header">
+                        <div class="legend-avatar" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">
+                            DS
+                        </div>
+                        <h3 class="legend-name">Derek Sivers</h3>
+                        <p class="legend-role">CD Baby Founder</p>
+                        <div class="legend-stats">
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">$22M</div>
+                                <div class="legend-stat-label">出售价格</div>
+                            </div>
+                            <div class="legend-stat">
+                                <div class="legend-stat-value">CD Baby</div>
+                                <div class="legend-stat-label">创立公司</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend-body">
+                        <p class="legend-bio">Founded CD Baby, sold it for $22M, and gave it all to charity. Now writes books and gives talks about business and life.</p>
+                        <div class="legend-tags">
+                            <span class="legend-tag">音乐</span>
+                            <span class="legend-tag">书籍</span>
+                            <span class="legend-tag">哲学</span>
+                        </div>
+                        <div class="legend-actions">
+                            <a href="#" class="btn btn-secondary btn-sm flex-1">查看详情</a>
+                            <a href="#" class="btn btn-primary btn-sm flex-1">学习他的策略</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modal">
-            <button class="modal-close" id="modalClose">×</button>
-            <div class="modal-content" id="modalContent"></div>
-        </div>
-    </div>
-
-    <section class="philosophy-section" id="philosophy">
+    <!-- Philosophy Section -->
+    <section class="section bg-gray" id="philosophy">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">MINDSET</span>
-                <h2 class="section-title">Business Philosophy DNA</h2>
-                <p class="section-desc">The shared mental models across all OPC legends.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Business Philosophy DNA</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">The shared mental models across all OPC legends.</p>
             </div>
-            <div class="philosophy-grid">
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">⚡</div>
-                    <h3>Leverage Over Labor</h3>
-                    <p>"Give me a lever long enough and I can move the world." — Every legend uses code, content, or capital as leverage instead of hiring people.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">Pieter Levels</span>
-                        <span class="phi-tag">Marc Lou</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="philosophy-card animate-fade-in">
+                    <div class="philosophy-icon">🎯</div>
+                    <h3 class="philosophy-title">Leverage Over Labor</h3>
+                    <p class="philosophy-text">"Give me a lever long enough and I can move the world." — Every legend uses code, content, or capital as leverage instead of hiring people.</p>
+                    <div class="philosophy-examples">
+                        <span class="philosophy-example">Pieter Levels</span>
+                        <span class="philosophy-example">Marc Lou</span>
                     </div>
                 </div>
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">🎯</div>
-                    <h3>Revenue First, Scale Later</h3>
-                    <p>Profitability from day one. No burning cash for growth. Every dollar earned validates the product before expanding.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">Sahil Lavingia</span>
-                        <span class="phi-tag">Daniel Vassallo</span>
+                
+                <div class="philosophy-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="philosophy-icon">💰</div>
+                    <h3 class="philosophy-title">Revenue First, Scale Later</h3>
+                    <p class="philosophy-text">Profitability from day one. No burning cash for growth. Every dollar earned validates the product before expanding.</p>
+                    <div class="philosophy-examples">
+                        <span class="philosophy-example">Sahil Lavingia</span>
+                        <span class="philosophy-example">Daniel Vassallo</span>
                     </div>
                 </div>
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">🔄</div>
-                    <h3>Build in Public</h3>
-                    <p>Transparency as marketing. Sharing revenue numbers, mistakes, and learnings builds trust and audience simultaneously.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">Pieter Levels</span>
-                        <span class="phi-tag">Jack Butcher</span>
+                
+                <div class="philosophy-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="philosophy-icon">📢</div>
+                    <h3 class="philosophy-title">Build in Public</h3>
+                    <p class="philosophy-text">Transparency as marketing. Sharing revenue numbers, mistakes, and learnings builds trust and audience simultaneously.</p>
+                    <div class="philosophy-examples">
+                        <span class="philosophy-example">Pieter Levels</span>
+                        <span class="philosophy-example">Jack Butcher</span>
                     </div>
                 </div>
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">🏗️</div>
-                    <h3>Own Your Distribution</h3>
-                    <p>Never rely on a single platform. Build email lists, personal brands, and direct audience relationships that no algorithm can take away.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">James Clear</span>
-                        <span class="phi-tag">Naval Ravikant</span>
-                    </div>
-                </div>
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">🧩</div>
-                    <h3>Simplicity as Strategy</h3>
-                    <p>The best OPC products are dead simple. Complexity requires teams. Simplicity scales infinitely with zero marginal cost.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">Craigslist</span>
-                        <span class="phi-tag">Plausible</span>
-                    </div>
-                </div>
-                <div class="philosophy-card fade-in">
-                    <div class="phi-icon">♾️</div>
-                    <h3>Compound Everything</h3>
-                    <p>Content compounds. Audience compounds. Code compounds. Every small action should create lasting value that grows over time.</p>
-                    <div class="phi-examples">
-                        <span class="phi-tag">James Clear</span>
-                        <span class="phi-tag">Derek Sivers</span>
+                
+                <div class="philosophy-card animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="philosophy-icon">🎯</div>
+                    <h3 class="philosophy-title">Own Your Distribution</h3>
+                    <p class="philosophy-text">Never rely on a single platform. Build email lists, personal brands, and direct audience relationships that no algorithm can take away.</p>
+                    <div class="philosophy-examples">
+                        <span class="philosophy-example">James Clear</span>
+                        <span class="philosophy-example">Naval Ravikant</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cases-section" id="cases">
+    <!-- Case Studies Section -->
+    <section class="section" id="cases">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">深度案例</span>
-                <h2 class="section-title">Case Studies</h2>
-                <p class="section-desc">Detailed breakdowns of how OPC legends built and scaled their businesses.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Case Studies</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">Detailed breakdowns of how OPC legends built and scaled their businesses.</p>
             </div>
-            <div class="cases-list">
-                <div class="case-card fade-in" data-case="1">
-                    <div class="case-number">01</div>
-                    <div class="case-body">
+            
+            <div class="grid grid-cols-1 gap-8">
+                <div class="case-card animate-fade-in">
+                    <div class="case-header">
+                        <div class="case-number">01</div>
                         <div class="case-meta">
                             <span class="case-category">SaaS + Portfolio</span>
                             <span class="case-revenue">$3.5M+ ARR</span>
                         </div>
-                        <h3 class="case-title">Pieter Levels — 连续发布者</h3>
-                        <p class="case-desc">How one developer built 70+ products, with 4 becoming million-dollar businesses, all while traveling the world.</p>
-                        <div class="case-tags">
-                            <span>Build in Public</span>
-                            <span>Ship Fast</span>
-                            <span>Multiple Revenue</span>
-                        </div>
                     </div>
-                    <div class="case-arrow">→</div>
+                    <h3 class="case-title">Pieter Levels — 连续发布者</h3>
+                    <p class="case-desc">How one developer built 70+ products, with 4 becoming million-dollar businesses, all while traveling the world.</p>
+                    <div class="case-tags">
+                        <span class="case-tag">Build in Public</span>
+                        <span class="case-tag">Ship Fast</span>
+                        <span class="case-tag">Multiple Revenue</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">查看完整案例 →</a>
                 </div>
-                <div class="case-card fade-in" data-case="2">
-                    <div class="case-number">02</div>
-                    <div class="case-body">
+                
+                <div class="case-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="case-header">
+                        <div class="case-number">02</div>
                         <div class="case-meta">
                             <span class="case-category">Finance + Philosophy</span>
                             <span class="case-revenue">$1B+ Net Worth</span>
                         </div>
-                        <h3 class="case-title">Naval Ravikant — 杠杆哲学家</h3>
-                        <p class="case-desc">AngelList co-founder who codified the wealth creation framework. His Almanack became the most-shared business text of the decade.</p>
-                        <div class="case-tags">
-                            <span>Leverage</span>
-                            <span>Specific Knowledge</span>
-                            <span>Long-term Games</span>
-                        </div>
                     </div>
-                    <div class="case-arrow">→</div>
+                    <h3 class="case-title">Naval Ravikant — 财富创造框架</h3>
+                    <p class="case-desc">AngelList co-founder who codified the wealth creation framework. His Almanack became the most-shared business text of the decade.</p>
+                    <div class="case-tags">
+                        <span class="case-tag">Leverage</span>
+                        <span class="case-tag">Specific Knowledge</span>
+                        <span class="case-tag">Long-term Games</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">查看完整案例 →</a>
                 </div>
-                <div class="case-card fade-in" data-case="3">
-                    <div class="case-number">03</div>
-                    <div class="case-body">
+                
+                <div class="case-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="case-header">
+                        <div class="case-number">03</div>
                         <div class="case-meta">
                             <span class="case-category">Creator Economy</span>
                             <span class="case-revenue">$10M+ Revenue</span>
                         </div>
-                        <h3 class="case-title">James Clear — The Habit Machine</h3>
-                        <p class="case-desc">Turned a blog about habits into Atomic Habits — 15M+ copies sold, $10M+/year from a single book.</p>
-                        <div class="case-tags">
-                            <span>Content Compounding</span>
-                            <span>Book Empire</span>
-                            <span>Email List</span>
-                        </div>
                     </div>
-                    <div class="case-arrow">→</div>
+                    <h3 class="case-title">James Clear — 习惯机器</h3>
+                    <p class="case-desc">Turned a blog about habits into Atomic Habits — 15M+ copies sold, $10M+/year from a single book.</p>
+                    <div class="case-tags">
+                        <span class="case-tag">Content Compounding</span>
+                        <span class="case-tag">Book Empire</span>
+                        <span class="case-tag">Email List</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">查看完整案例 →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="playbook-section" id="playbook">
+    <!-- CTA Section -->
+    <section class="cta cta-gradient">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">行动指南</span>
-                <h2 class="section-title">The OPC Playbook</h2>
-                <p class="section-desc">Distilled wisdom from 18 legends. The framework for building your own one-person company.</p>
-            </div>
-            <div class="playbook-timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 1</div>
-                    <div class="timeline-content">
-                        <h3>Find Your Specific Knowledge</h3>
-                        <p>What comes naturally to you but is hard for others? Naval calls it "specific knowledge" — the thing you'd do for free.</p>
-                        <div class="timeline-quote">"Specific knowledge is found by pursuing your genuine curiosity and passion rather than whatever is hot right now." — Naval Ravikant</div>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 2</div>
-                    <div class="timeline-content">
-                        <h3>Build Leverage</h3>
-                        <p>Code, content, or capital. Write code that works while you sleep. Create content that compounds. Invest capital that grows.</p>
-                        <div class="timeline-quote">"Forget rich vs poor, white collar vs blue collar. It's now leveraged vs unleveraged." — Naval Ravikant</div>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 3</div>
-                    <div class="timeline-content">
-                        <h3>Ship Ugly, Ship Fast</h3>
-                        <p>Pieter ships a new product every week. Marc Lou launched 20+ products in 2 years. Perfectionism is the enemy of OPC.</p>
-                        <div class="timeline-quote">"If you're not embarrassed by the first version of your product, you've launched too late." — Reid Hoffman</div>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 4</div>
-                    <div class="timeline-content">
-                        <h3>Own Your Audience</h3>
-                        <p>Build an email list. Grow on Twitter/X. Create a blog. The audience IS the product. Everything else is a monetization layer.</p>
-                        <div class="timeline-quote">"The best marketing is a great product + honest storytelling." — Jack Butcher</div>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 5</div>
-                    <div class="timeline-content">
-                        <h3>Monetize Without Scaling Headcount</h3>
-                        <p>SaaS subscriptions, digital products, courses, books, licensing. Every model that works for OPC has marginal cost approaching zero.</p>
-                        <div class="timeline-quote">"Charge for the outcome, not your time." — Daniel Vassallo</div>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-phase">Phase 6</div>
-                    <div class="timeline-content">
-                        <h3>Stay Small, Stay Sovereign</h3>
-                        <p>The goal isn't to build a big company. It's to build a great life. The legends optimize for freedom, not empire.</p>
-                        <div class="timeline-quote">"Success is when you can stop doing what you dislike." — Derek Sivers</div>
-                    </div>
+            <div class="cta-content">
+                <h2 class="cta-title">学习他们的成功策略</h2>
+                <p class="cta-text">加入OPC Platform，获取18位传奇人物的商业智慧和成功经验</p>
+                <div class="cta-actions">
+                    <a href="register.html" class="btn btn-secondary btn-lg">
+                        免费注册
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                    <a href="academy.html" class="btn btn-ghost btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">
+                        查看学院课程
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="models-section" id="models">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">商业模式</span>
-                <h2 class="section-title">7 Proven OPC Revenue Models</h2>
-            </div>
-            <div class="models-grid">
-                <div class="model-card fade-in">
-                    <div class="model-icon">💻</div>
-                    <h3>SaaS</h3>
-                    <p>Recurring revenue from software</p>
-                    <div class="model-range">$1K - $500K MRR</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">📝</div>
-                    <h3>Content + Books</h3>
-                    <p>Writing that compounds</p>
-                    <div class="model-range">$100K - $10M/year</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">🎓</div>
-                    <h3>Courses & Community</h3>
-                    <p>Teach what you know</p>
-                    <div class="model-range">$50K - $2M/year</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">📊</div>
-                    <h3>Data & APIs</h3>
-                    <p>Sell structured data</p>
-                    <div class="model-range">$10K - $200K MRR</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">🎨</div>
-                    <h3>Digital Products</h3>
-                    <p>Templates, assets, tools</p>
-                    <div class="model-range">$5K - $100K/month</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">🔗</div>
-                    <h3>Marketplace</h3>
-                    <p>Connect supply and demand</p>
-                    <div class="model-range">$10K - $1M/month</div>
-                </div>
-                <div class="model-card fade-in">
-                    <div class="model-icon">💰</div>
-                    <h3>Investing + Advisory</h3>
-                    <p>Angel investing, advisory shares</p>
-                    <div class="model-range">$100K - $50M+</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <div class="logo-mark">O</div>
-                        <span>OPC Legends</span>
-                    </div>
-                    <p class="footer-desc">One Person. Infinite Possibilities.</p>
+                    <a href="index.html" class="footer-logo">
+                        <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold">
+                            O
+                        </div>
+                        OPC Platform
+                    </a>
+                    <p class="footer-desc">全球领先的独立创业者赋能平台，连接、展示、赋能全球独立创业者。</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Explore</h4>
+                
+                <div>
+                    <h4 class="footer-title">平台</h4>
                     <ul class="footer-links">
-                        <li><a href="#legends">All Legends</a></li>
-                        <li><a href="#philosophy">Philosophy</a></li>
-                        <li><a href="#cases">Case Studies</a></li>
-                        <li><a href="#playbook">Playbook</a></li>
+                        <li><a href="service.html">创业助手</a></li>
+                        <li><a href="platform.html">一站式平台</a></li>
+                        <li><a href="government.html">揭榜挂帅</a></li>
+                        <li><a href="superagent.html">超级个体</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Platform</h4>
+                
+                <div>
+                    <h4 class="footer-title">资源</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="platform.html">Marketplace</a></li>
-                        <li><a href="government.html">Government</a></li>
-                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="legends.html">名人堂</a></li>
+                        <li><a href="academy.html">学院课程</a></li>
+                        <li><a href="policy.html">创业政策</a></li>
+                        <li><a href="community.html">社区交流</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Connect</h4>
+                
+                <div>
+                    <h4 class="footer-title">支持</h4>
                     <ul class="footer-links">
-                        <li><a href="https://github.com/MoKangMedical/opc-legends" target="_blank">GitHub</a></li>
-                        <li><a href="superagent.html">Super Agent</a></li>
+                        <li><a href="chat.html">在线客服</a></li>
+                        <li><a href="health.html">健康中心</a></li>
+                        <li><a href="city-policies.html">城市政策</a></li>
+                        <li><a href="opc-competitions.html">创业大赛</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p class="footer-copy">© 2026 OPC Legends. Built with ❤️ by the OPC community.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
+                <p class="footer-copyright">© 2026 OPC Platform. All rights reserved. 一个人的公司，无限可能。</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="legends-data.js">
-// ===== OPC Platform 增强功能 =====
-function showNotification(msg,type='success'){
-const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
-n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
-}
-function toggleFavorite(id,type){
-const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
-localStorage.setItem(k,JSON.stringify(f));
-}
-function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
-}
-function showModal(c){
-const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
-document.body.appendChild(m);
-}
-function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
-function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null');}
-function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
-
-</script>
-    <script src="legends-app.js">
-// ===== OPC Platform 增强功能 =====
-function showNotification(msg,type='success'){
-const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
-n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
-}
-function toggleFavorite(id,type){
-const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
-localStorage.setItem(k,JSON.stringify(f));
-}
-function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
-}
-function showModal(c){
-const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
-document.body.appendChild(m);
-}
-function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
-function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null');}
-function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
-
-</script>
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Filter logic would go here
+                const filter = this.dataset.filter;
+                console.log('Filter:', filter);
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animate-fade-in class
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
