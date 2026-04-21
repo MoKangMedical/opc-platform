@@ -59,6 +59,7 @@
         /* ===== Navigation ===== */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+
             background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
             border-bottom: 1px solid var(--border);
             transition: background 0.3s;
@@ -372,29 +373,28 @@
             .mobile-menu-btn { display: block; }
             .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(6,6,10,0.98); padding: 20px 32px; gap: 16px; border-bottom: 1px solid var(--border); }
         }
-    </style>
+    a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
+            <a href="index.html" class="nav-logo"><span class="dot"></span> OPC Platform</a>
             <div class="nav-links" id="navLinks">
-                <a href="platform.html" class="nav-link" data-en="Platform">平台</a>
-                <a href="government.html" class="nav-link active" data-en="Marketplace">揭榜挂帅</a>
-                <a href="superagent.html" class="nav-link" data-en="Super Agent">超级个体</a>
-                <a href="legends.html" class="nav-link" data-en="Hall of Fame">名人堂</a>
-                <a href="academy.html" class="nav-link" data-en="Academy">学院</a>
-                <a href="health.html" class="nav-link" data-en="Health">健康</a>
-                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+                <a href="service.html" class="nav-link"></a>
+                <a href="platform.html" class="nav-link"></a>
+                <a href="government.html" class="nav-link active"></a>
+                <a href="superagent.html" class="nav-link"></a>
+                <a href="legends.html" class="nav-link"></a>
+                <a href="academy.html" class="nav-link"></a>
+                <a href="policy.html" class="nav-link"></a>
+                <a href="community.html" class="nav-link"></a>
+                <a href="chat.html" class="nav-link"></a>
+                <button class="lang-btn" onclick="toggleLang()"> EN/</button>
             </div>
-            <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+            <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')"></button>
         </div>
-    
-            <a href="service.html">创业助手</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
+    </nav>
         </div>
     </nav>
 
@@ -473,9 +473,9 @@
         <div class="footer-inner">
             <p class="footer-text">© 2026 OPC Alliance · 揭榜挂帅 · 江苏省属企业AI场景对接</p>
             <div class="footer-links">
-                <a href="index.html" data-en="Home">首页</a>
-                <a href="platform.html" data-en="Platform">平台</a>
-                <a href="superagent.html" data-en="Super Agent">超级个体</a>
+                <a href="index.html" data-en="Home"></a>
+                <a href="platform.html" data-en="Platform"></a>
+                <a href="superagent.html" data-en="Super Agent"></a>
             </div>
         </div>
     </footer>
@@ -517,6 +517,7 @@
 
     // Categories
     const CATEGORIES = ['全部',...new Set(PROJECTS.map(p=>p.category))];
+
     const CAT_ICONS = {'全部':'📋','新能源':'⚡','能源':'🔥','储能':'🔋','交通':'🚄','安全监测':'🛡️','传媒':'📺','航空安全':'✈️','纺织服装':'👗','跨境电商':'🌐','先进制造':'🏭','供应链':'📦','化工':'🧪','综合管理':'📊','保险':'🛡️','医疗健康':'🏥','物流仓储':'📦'};
 
     let currentFilter = '全部';
@@ -573,6 +574,7 @@
                 <div class="card-header">
                     <span class="card-company">🏢 ${p.company.replace(/(有限公司|集团)/g,'')}</span>
                     ${p.featured ? '<span class="card-badge badge-featured">精选</span>' : ''}
+
                     ${p.hot ? '<span class="card-badge badge-hot">🔥 热门</span>' : ''}
                 </div>
                 <h3 class="card-title">${p.title}</h3>
@@ -584,8 +586,8 @@
                 </div>
                 <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
                 <div class="card-actions">
-                    <button class="btn-detail" onclick="showDetail(${p.id})">查看详情</button>
-                    <button class="btn-apply">立即申报 →</button>
+                    <button class="btn-detail" onclick="showDetail(${p.id})"></button>
+                    <button class="btn-apply"> →</button>
                 </div>
             </div>`;
         }).join('');
@@ -600,6 +602,7 @@
     function showDetail(id) {
         const p = PROJECTS.find(x => x.id === id);
         if (!p) return;
+
         alert(`📋 ${p.title}\n\n🏢 ${p.company}\n💰 预算: ${p.budget}\n📅 截止: ${p.deadline}\n👤 联系人: ${p.contact}\n🔧 技术: ${p.tags.join(', ')}\n\n${p.desc}`);
     }
 
@@ -635,6 +638,7 @@
     // ===== Init =====
     renderFilters();
     renderProjects();
+
     
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
