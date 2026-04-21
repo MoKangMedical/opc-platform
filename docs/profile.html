@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>个人资料 - OPC Platform</title>
-<meta name="description" content="管理你的OPC平台个人资料">
+<title> - OPC Platform</title>
+<meta name="description" content="OPC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -135,7 +135,7 @@ a{text-decoration:none;color:inherit}</style>
 
 <nav class="nav"><div class="nav-i">
   <a href="index.html" class="nav-logo">
-    <div class="mk">◆</div>
+    <div class="mk"></div>
     <span>OPC <span style="color:var(--a2)">Platform</span></span>
   </a>
   <div id="authNav" style="display:flex;gap:8px">
@@ -148,51 +148,51 @@ a{text-decoration:none;color:inherit}</style>
     <div class="profile-header" id="profileHeader">
       <div class="profile-avatar" id="profileAvatar">?</div>
       <div class="profile-info">
-        <h1 id="profileName">加载中...</h1>
+        <h1 id="profileName">...</h1>
         <p id="profileBio">-</p>
         <div class="badges" id="profileBadges"></div>
       </div>
     </div>
     
     <div class="tabs">
-      <div class="tab active" onclick="switchTab('profile')">个人资料</div>
-      <div class="tab" onclick="switchTab('security')">安全设置</div>
-      <div class="tab" onclick="switchTab('skills')">技能标签</div>
+      <div class="tab active" onclick="switchTab('profile')"></div>
+      <div class="tab" onclick="switchTab('security')"></div>
+      <div class="tab" onclick="switchTab('skills')"></div>
     </div>
     
     <div id="tabContent">
       <div class="form-card" id="profileTab">
-        <h2>个人资料</h2>
+        <h2></h2>
         <form id="profileForm">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">显示名称</label>
-              <input type="text" class="form-input" id="displayName" placeholder="你的名字">
+              <label class="form-label"></label>
+              <input type="text" class="form-input" id="displayName" placeholder="">
             </div>
             <div class="form-group">
-              <label class="form-label">用户名</label>
+              <label class="form-label"></label>
               <input type="text" class="form-input" id="username" disabled>
-              <div style="font-size:11px;color:var(--t3);margin-top:6px">用户名不可修改</div>
+              <div style="font-size:11px;color:var(--t3);margin-top:6px"></div>
             </div>
           </div>
           
           <div class="form-group">
-            <label class="form-label">邮箱</label>
+            <label class="form-label"></label>
             <input type="email" class="form-input" id="email" disabled>
           </div>
           
           <div class="form-group">
-            <label class="form-label">个人简介</label>
-            <textarea class="form-input" id="bio" placeholder="介绍一下你自己..."></textarea>
+            <label class="form-label"></label>
+            <textarea class="form-input" id="bio" placeholder="..."></textarea>
           </div>
           
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">所在地</label>
-              <input type="text" class="form-input" id="location" placeholder="城市，国家">
+              <label class="form-label"></label>
+              <input type="text" class="form-input" id="location" placeholder="">
             </div>
             <div class="form-group">
-              <label class="form-label">个人网站</label>
+              <label class="form-label"></label>
               <input type="url" class="form-input" id="website" placeholder="https://">
             </div>
           </div>
@@ -204,21 +204,21 @@ a{text-decoration:none;color:inherit}</style>
       </div>
       
       <div class="form-card" id="securityTab" style="display:none">
-        <h2>安全设置</h2>
+        <h2></h2>
         <form id="passwordForm">
           <div class="form-group">
-            <label class="form-label">当前密码</label>
-            <input type="password" class="form-input" id="oldPassword" placeholder="输入当前密码" required>
+            <label class="form-label"></label>
+            <input type="password" class="form-input" id="oldPassword" placeholder="" required>
           </div>
           
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">新密码</label>
-              <input type="password" class="form-input" id="newPassword" placeholder="至少8个字符" required>
+              <label class="form-label"></label>
+              <input type="password" class="form-input" id="newPassword" placeholder="8" required>
             </div>
             <div class="form-group">
-              <label class="form-label">确认新密码</label>
-              <input type="password" class="form-input" id="confirmNewPassword" placeholder="再次输入新密码" required>
+              <label class="form-label"></label>
+              <input type="password" class="form-input" id="confirmNewPassword" placeholder="" required>
             </div>
           </div>
           
@@ -229,13 +229,13 @@ a{text-decoration:none;color:inherit}</style>
       </div>
       
       <div class="form-card" id="skillsTab" style="display:none">
-        <h2>技能标签</h2>
-        <p style="color:var(--t2);font-size:14px;margin-bottom:20px">添加你的专业技能，帮助项目方更好地了解你</p>
+        <h2></h2>
+        <p style="color:var(--t2);font-size:14px;margin-bottom:20px"></p>
         
         <div class="form-group">
-          <label class="form-label">技能</label>
+          <label class="form-label"></label>
           <div class="skills-input" id="skillsInput">
-            <input type="text" id="skillInput" placeholder="输入技能名称，按Enter添加">
+            <input type="text" id="skillInput" placeholder="Enter">
           </div>
         </div>
         
@@ -248,7 +248,7 @@ a{text-decoration:none;color:inherit}</style>
 </section>
 
 <footer class="ft">
-  <div class="ft-bot">© 2026 OPC Platform · 一个人的公司，无限可能</div>
+  <div class="ft-bot">© 2026 OPC Platform · </div>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -256,7 +256,7 @@ a{text-decoration:none;color:inherit}</style>
 <script>
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
-// 显示提示
+// 
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   toast.textContent = message;
@@ -264,7 +264,7 @@ function showToast(message, type = 'success') {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// 检查登录状态
+// 
 function checkAuth() {
   const token = localStorage.getItem('opc_token');
   if (!token) {
@@ -274,7 +274,7 @@ function checkAuth() {
   return true;
 }
 
-// 获取当前用户信息
+// 
 async function loadUserProfile() {
   const token = localStorage.getItem('opc_token');
   
@@ -286,18 +286,18 @@ async function loadUserProfile() {
     });
     
     if (!response.ok) {
-      throw new Error('获取用户信息失败');
+      throw new Error('');
     }
     
     const user = await response.json();
     localStorage.setItem('opc_user', JSON.stringify(user));
     
-    // 更新页面显示
+    // 
     document.getElementById('profileAvatar').textContent = (user.display_name || user.username || 'U').charAt(0).toUpperCase();
     document.getElementById('profileName').textContent = user.display_name || user.username;
-    document.getElementById('profileBio').textContent = user.bio || '这个人很懒，什么都没留下';
+    document.getElementById('profileBio').textContent = user.bio || '';
     
-    // 更新表单
+    // 
     document.getElementById('displayName').value = user.display_name || '';
     document.getElementById('username').value = user.username || '';
     document.getElementById('email').value = user.email || '';
@@ -305,10 +305,10 @@ async function loadUserProfile() {
     document.getElementById('location').value = user.location || '';
     document.getElementById('website').value = user.website || '';
     
-    // 更新技能
+    // 
     renderSkills(user.skills || []);
     
-    // 更新徽章
+    // 
     const badges = document.getElementById('profileBadges');
     badges.innerHTML = `<span class="badge badge-role">${user.role || 'user'}</span>`;
     if (user.skills && user.skills.length > 0) {
@@ -326,15 +326,15 @@ async function loadUserProfile() {
   }
 }
 
-// 渲染技能标签
+// 
 function renderSkills(skills) {
   const skillsInput = document.getElementById('skillsInput');
   const input = document.getElementById('skillInput');
   
-  // 清除旧的标签
+  // 
   skillsInput.querySelectorAll('.skill-tag').forEach(tag => tag.remove());
   
-  // 添加新标签
+  // 
   skills.forEach((skill, index) => {
     const tag = document.createElement('div');
     tag.className = 'skill-tag';
@@ -346,7 +346,7 @@ function renderSkills(skills) {
   });
 }
 
-// 添加技能
+// 
 function addSkill(skill) {
   const token = localStorage.getItem('opc_token');
   const userStr = localStorage.getItem('opc_user');
@@ -363,7 +363,7 @@ function addSkill(skill) {
   }
 }
 
-// 移除技能
+// 
 function removeSkill(index) {
   const token = localStorage.getItem('opc_token');
   const userStr = localStorage.getItem('opc_user');
@@ -378,7 +378,7 @@ function removeSkill(index) {
   renderSkills(skills);
 }
 
-// 切换标签页
+// 
 function switchTab(tabName) {
   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
   document.querySelector(`.tab:nth-child(${
@@ -390,7 +390,7 @@ function switchTab(tabName) {
   document.getElementById('skillsTab').style.display = tabName === 'skills' ? 'block' : 'none';
 }
 
-// 更新导航栏
+// 
 function updateAuthNav() {
   const authNav = document.getElementById('authNav');
   const token = localStorage.getItem('opc_token');
@@ -407,7 +407,7 @@ function updateAuthNav() {
           <div style="font-size:13px;font-weight:500;color:var(--t1)">${user.display_name || user.username}</div>
         </div>
         <button onclick="logout()" style="padding:6px 12px;background:transparent;border:1px solid var(--bdr2);border-radius:6px;color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s">
-          退出
+          
         </button>
       `;
     } catch (e) {
@@ -422,14 +422,14 @@ function logout() {
   window.location.href = 'index.html';
 }
 
-// 事件监听
+// 
 document.addEventListener('DOMContentLoaded', () => {
   if (!checkAuth()) return;
   
   loadUserProfile();
   updateAuthNav();
   
-  // 技能输入
+  // 
   document.getElementById('skillInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // 保存技能
+  // 
   document.getElementById('saveSkillsBtn').addEventListener('click', async () => {
     const token = localStorage.getItem('opc_token');
     const userStr = localStorage.getItem('opc_user');
@@ -462,23 +462,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       if (!response.ok) {
-        throw new Error('保存失败');
+        throw new Error('');
       }
       
-      showToast('技能保存成功', 'success');
+      showToast('', 'success');
     } catch (error) {
       showToast(error.message, 'error');
     }
   });
   
-  // 个人资料表单
+  // 
   document.getElementById('profileForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const token = localStorage.getItem('opc_token');
     const saveBtn = document.getElementById('saveProfileBtn');
     saveBtn.disabled = true;
-    saveBtn.textContent = '保存中...';
+    saveBtn.textContent = '...';
     
     try {
       const response = await fetch(`${API_BASE}/api/auth/me`, {
@@ -496,23 +496,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       if (!response.ok) {
-        throw new Error('保存失败');
+        throw new Error('');
       }
       
       const user = await response.json();
       localStorage.setItem('opc_user', JSON.stringify(user));
       
-      showToast('资料保存成功', 'success');
+      showToast('', 'success');
       loadUserProfile();
     } catch (error) {
       showToast(error.message, 'error');
     } finally {
       saveBtn.disabled = false;
-      saveBtn.textContent = '保存修改';
+      saveBtn.textContent = '';
     }
   });
   
-  // 修改密码表单
+  // 
   document.getElementById('passwordForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -521,19 +521,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmNewPassword = document.getElementById('confirmNewPassword').value;
     
     if (newPassword !== confirmNewPassword) {
-      showToast('两次输入的新密码不一致', 'error');
+      showToast('', 'error');
       return;
     }
     
     if (newPassword.length < 8) {
-      showToast('新密码至少需要8个字符', 'error');
+      showToast('8', 'error');
       return;
     }
     
     const token = localStorage.getItem('opc_token');
     const changeBtn = document.getElementById('changePasswordBtn');
     changeBtn.disabled = true;
-    changeBtn.textContent = '修改中...';
+    changeBtn.textContent = '...';
     
     try {
       const response = await fetch(`${API_BASE}/api/auth/change-password?old_password=${encodeURIComponent(oldPassword)}&new_password=${encodeURIComponent(newPassword)}`, {
@@ -545,16 +545,16 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.detail || '修改失败');
+        throw new Error(data.detail || '');
       }
       
-      showToast('密码修改成功', 'success');
+      showToast('', 'success');
       document.getElementById('passwordForm').reset();
     } catch (error) {
       showToast(error.message, 'error');
     } finally {
       changeBtn.disabled = false;
-      changeBtn.textContent = '修改密码';
+      changeBtn.textContent = '';
     }
   });
 });
