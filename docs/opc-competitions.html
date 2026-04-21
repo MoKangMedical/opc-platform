@@ -1,476 +1,535 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPC大赛 — 创业竞赛平台</title>
-    <meta name="description" content="OPC创业大赛、AI应用创新大赛、金融创新大赛等，为创业者提供展示舞台和资源对接">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #06060a;
-            --bg-elevated: #0d0d14;
-            --bg-card: #111119;
-            --bg-card-hover: #16161f;
-            --bg-surface: rgba(255,255,255,0.02);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(255,255,255,0.12);
-            --text: #e8e8f0;
-            --text-secondary: #9898b0;
-            --text-muted: #5a5a72;
-            --accent: #e74c3c;
-            --accent-light: #ff6b6b;
-            --accent-warm: #ff8a50;
-            --green: #00d68f;
-            --blue: #4ea8de;
-            --purple: #a78bfa;
-            --gold: #f0c040;
-            --font-display: 'Space Grotesk', -apple-system, sans-serif;
-            --font-body: 'Inter', -apple-system, sans-serif;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --radius-lg: 24px;
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
-            --duration: 0.5s;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ===== Navigation ===== */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
-            border-bottom: 1px solid var(--border);
-            transition: background 0.3s;
-        }
-        .nav-inner {
-            max-width: 1280px; margin: 0 auto; padding: 0 32px;
-            height: 64px; display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-logo {
-            display: flex; align-items: center; gap: 10px; text-decoration: none;
-            color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
-            letter-spacing: -0.02em;
-        }
-        .nav-logo .dot { color: var(--accent); }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-link {
-            text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
-            font-weight: 500; transition: color 0.2s; position: relative;
-        }
-        .nav-link:hover { color: var(--text); }
-        .nav-link.active { color: var(--text); }
-        .nav-link.active::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-            height: 2px; background: var(--accent); border-radius: 1px;
-        }
-        .lang-btn {
-            background: var(--bg-surface); border: 1px solid var(--border);
-            color: var(--text-secondary); padding: 6px 14px; border-radius: 8px;
-            font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
-        }
-        .lang-btn:hover { border-color: var(--border-hover); color: var(--text); }
-
-        /* ===== Hero ===== */
-        .hero {
-            min-height: 50vh; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; padding: 140px 24px 80px;
-        }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(231,76,60,0.08) 0%, transparent 60%);
-        }
-        .hero-content {
-            text-align: center; position: relative; z-index: 1;
-            max-width: 800px;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.15);
-            padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
-            font-size: 0.85rem; color: var(--accent-light); font-weight: 500;
-        }
-        .pulse {
-            width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-        .hero-title {
-            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700; line-height: 1.15; margin-bottom: 24px;
-            letter-spacing: -0.03em;
-        }
-        .gradient {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero-desc {
-            font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;
-            margin: 0 auto 48px; line-height: 1.8;
-        }
-
-        /* ===== Stats Row ===== */
-        .stats-row {
-            display: flex; justify-content: center; gap: 48px; margin-bottom: 48px;
-        }
-        .stat-cell { text-align: center; }
-        .stat-number {
-            font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        .stat-number.red { color: var(--accent); }
-        .stat-number.gold { color: var(--gold); }
-        .stat-number.blue { color: var(--blue); }
-        .stat-number.green { color: var(--green); }
-        .stat-label {
-            font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;
-            font-weight: 500;
-        }
-
-        /* ===== Filter ===== */
-        .filter-section {
-            padding: 0 0 40px;
-        }
-        .filter-bar {
-            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
-            margin-bottom: 24px;
-        }
-        .filter-btn {
-            background: var(--bg-surface); border: 1px solid var(--border);
-            color: var(--text-secondary); padding: 10px 20px; border-radius: 10px;
-            font-size: 0.85rem; font-weight: 500; cursor: pointer;
-            transition: all 0.2s; font-family: var(--font-body);
-        }
-        .filter-btn:hover {
-            border-color: var(--border-hover); color: var(--text);
-            background: rgba(255,255,255,0.04);
-        }
-        .filter-btn.active {
-            background: rgba(231,76,60,0.1); border-color: rgba(231,76,60,0.3);
-            color: var(--accent-light);
-        }
-
-        /* ===== Project Grid ===== */
-        .projects-section { padding: 0 0 80px; }
-        .section-header {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 32px;
-        }
-        .section-title {
-            font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        .section-count {
-            font-size: 0.85rem; color: var(--text-muted);
-            background: var(--bg-surface); padding: 6px 14px; border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 20px;
-        }
-
-        /* ===== Project Card ===== */
-        .project-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 28px; position: relative;
-            transition: all 0.4s var(--ease); overflow: hidden;
-        }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .project-card:hover {
-            border-color: var(--border-hover); transform: translateY(-4px);
-            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
-        }
-        .project-card:hover::before { opacity: 1; }
-
-        .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-        .card-company {
-            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .card-badge {
-            font-size: 0.68rem; padding: 3px 10px; border-radius: 6px;
-            font-weight: 600; letter-spacing: 0.5px;
-        }
-        .badge-featured {
-            background: rgba(231,76,60,0.12); color: var(--accent-light); border: 1px solid rgba(231,76,60,0.2);
-        }
-        .badge-hot {
-            background: rgba(240,192,64,0.12); color: var(--gold); border: 1px solid rgba(240,192,64,0.2);
-        }
-
-        .card-title {
-            font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;
-            line-height: 1.4; margin-bottom: 12px; letter-spacing: -0.01em;
-            color: var(--text);
-        }
-        .card-desc {
-            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65;
-            margin-bottom: 20px;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-        }
-
-        .card-meta {
-            display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .meta-item {
-            display: flex; align-items: center; gap: 6px;
-            font-size: 0.8rem; color: var(--text-muted);
-        }
-        .meta-item .label { color: var(--text-muted); }
-        .meta-item .value { color: var(--text-secondary); font-weight: 500; }
-        .meta-item .value.budget { color: var(--gold); font-weight: 600; }
-        .meta-item .value.deadline { color: var(--accent-light); }
-
-        .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
-        .tag {
-            font-size: 0.72rem; padding: 4px 10px; border-radius: 6px;
-            background: rgba(255,255,255,0.04); color: var(--text-muted);
-            border: 1px solid var(--border); font-weight: 500;
-        }
-
-        .card-actions { display: flex; gap: 10px; }
-        .btn-detail {
-            flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
-            color: var(--text-secondary); padding: 10px 16px; border-radius: 10px;
-            font-size: 0.82rem; font-weight: 500; cursor: pointer;
-            transition: all 0.2s; text-align: center; text-decoration: none;
-            font-family: var(--font-body);
-        }
-        .btn-detail:hover { background: rgba(255,255,255,0.04); color: var(--text); }
-        .btn-apply {
-            flex: 1; background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-            border: none; color: white; padding: 10px 16px; border-radius: 10px;
-            font-size: 0.82rem; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; text-align: center; text-decoration: none;
-            font-family: var(--font-body);
-        }
-        .btn-apply:hover { opacity: 0.9; transform: translateY(-1px); }
-
-        /* ===== Footer ===== */
-        .footer {
-            border-top: 1px solid var(--border); padding: 48px 0;
-            background: var(--bg-elevated);
-        }
-        .footer-inner {
-            max-width: 1280px; margin: 0 auto; padding: 0 32px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .footer-text { font-size: 0.85rem; color: var(--text-muted); }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a {
-            font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover { color: var(--text); }
-
-        /* ===== Animations ===== */
-        .animate-in {
-            opacity: 0; transform: translateY(20px);
-            animation: fadeUp 0.6s var(--ease) forwards;
-        }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== Responsive ===== */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding: 120px 20px 60px; }
-            .stats-row { gap: 24px; flex-wrap: wrap; }
-            .stat-number { font-size: 2rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC创业大赛 — OPC创业者联盟</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #06060a;
+    --bg2: #0d0d14;
+    --bg3: #111119;
+    --bg-card: #111119;
+    --bg-card-hover: #16161f;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.12);
+    --t1: #e8e8f0;
+    --t2: #9898b0;
+    --t3: #5a5a72;
+    --green: #00d68f;
+    --blue: #4ea8de;
+    --purple: #a78bfa;
+    --orange: #ff8a50;
+    --gold: #f0c040;
+    --pink: #fd79a8;
+    --fd: 'Space Grotesk', -apple-system, sans-serif;
+    --fb: 'Inter', -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--fb); background: var(--bg); color: var(--t1); line-height: 1.6; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(6,6,10,.92); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--fd); font-weight: 700; font-size: 1.1rem; color: var(--t1); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo .dot { color: var(--green); }
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-link { color: var(--t3); text-decoration: none; font-size: .82rem; font-weight: 500; padding: 6px 12px; border-radius: 6px; transition: all .2s; }
+.nav-link:hover { color: var(--t1); background: rgba(255,255,255,.04); }
+.nav-link.active { color: var(--green); background: rgba(0,214,143,.08); }
+.lang-btn { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--t2); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: .78rem; }
+.hero { padding: 100px 24px 50px; text-align: center; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 20%, rgba(240,192,64,.06), transparent 70%); }
+.hero h1 { font-family: var(--fd); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 12px; }
+.hero h1 span { background: linear-gradient(135deg, var(--gold), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--t2); max-width: 600px; margin: 0 auto; font-size: .95rem; }
+.stats-bar { display: flex; justify-content: center; gap: 40px; padding: 30px 24px; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-num { font-family: var(--fd); font-size: 2rem; font-weight: 700; color: var(--gold); }
+.stat-label { font-size: .78rem; color: var(--t3); margin-top: 4px; }
+.filter-bar { display: flex; justify-content: center; gap: 8px; padding: 0 24px 40px; flex-wrap: wrap; }
+.filter-btn { padding: 8px 20px; border-radius: 100px; background: rgba(255,255,255,.04); border: 1px solid var(--border); color: var(--t2); font-size: .82rem; cursor: pointer; transition: all .2s; font-family: var(--fb); }
+.filter-btn:hover { background: rgba(255,255,255,.08); color: var(--t1); }
+.filter-btn.active { background: rgba(240,192,64,.1); border-color: rgba(240,192,64,.2); color: var(--gold); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px 60px; }
+.competitions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(560px, 1fr)); gap: 20px; }
+.comp-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all .3s cubic-bezier(.16,1,.3,1); }
+.comp-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+.comp-header { padding: 28px 28px 0; display: flex; justify-content: space-between; align-items: flex-start; }
+.comp-badge { display: inline-block; font-size: .72rem; padding: 4px 12px; border-radius: 100px; font-weight: 600; }
+.badge-national { background: rgba(240,192,64,.12); color: var(--gold); }
+.badge-ai { background: rgba(167,139,250,.12); color: var(--purple); }
+.badge-fintech { background: rgba(78,168,222,.12); color: var(--blue); }
+.badge-ecommerce { background: rgba(0,214,143,.12); color: var(--green); }
+.comp-prize { font-family: var(--fd); font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+.comp-body { padding: 20px 28px; }
+.comp-title { font-family: var(--fd); font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; }
+.comp-desc { font-size: .85rem; color: var(--t2); line-height: 1.7; margin-bottom: 20px; }
+.comp-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.ct { font-size: .7rem; padding: 3px 10px; border-radius: 4px; background: rgba(255,255,255,.04); color: var(--t3); }
+.comp-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); }
+.info-item { text-align: center; }
+.info-label { font-size: .72rem; color: var(--t3); margin-bottom: 4px; }
+.info-value { font-family: var(--fd); font-weight: 600; font-size: .88rem; }
+.comp-footer { padding: 0 28px 24px; display: flex; gap: 12px; }
+.comp-btn { flex: 1; padding: 12px; border-radius: 10px; text-align: center; text-decoration: none; font-weight: 600; font-size: .88rem; transition: all .2s; }
+.btn-primary { background: linear-gradient(135deg, var(--gold), var(--orange)); color: #000; }
+.btn-primary:hover { opacity: .9; }
+.btn-secondary { background: rgba(255,255,255,.04); border: 1px solid var(--border); color: var(--t2); }
+.btn-secondary:hover { background: rgba(255,255,255,.08); color: var(--t1); }
+footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; }
+footer p { color: var(--t3); font-size: .82rem; }
+@media(max-width:768px) { .nav-links { display: none; } .competitions-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 1.6rem; } .comp-info { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
+        <div class="nav-links">
+            <a href="platform.html" class="nav-link">平台</a>
+            <a href="government.html" class="nav-link">揭榜挂帅</a>
+            <a href="superagent.html" class="nav-link">超级个体</a>
+            <a href="legends.html" class="nav-link">名人堂</a>
+            <a href="academy.html" class="nav-link">学院</a>
+            <a href="health.html" class="nav-link">健康</a>
+            <a href="city-policies.html" class="nav-link">城市政策</a>
+            <a href="opc-competitions.html" class="nav-link active">OPC大赛</a>
+            <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+        </div>
+    </div>
+</nav>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-logo">
-                <span>◆ OPC Platform</span>
-            </a>
-            <div class="nav-links">
-                <a href="service.html" class="nav-link">创业助手</a>
-                <a href="platform.html" class="nav-link">平台</a>
-                <a href="government.html" class="nav-link">揭榜挂帅</a>
-                <a href="superagent.html" class="nav-link">超级个体</a>
-                <a href="legends.html" class="nav-link">名人堂</a>
-                <a href="academy.html" class="nav-link">学院</a>
-                <a href="health.html" class="nav-link">健康</a>
-                <a href="policy.html" class="nav-link">政策</a>
-                <a href="community.html" class="nav-link">社区</a>
-                <a href="chat.html" class="nav-link">聊天</a>
-                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+<section class="hero">
+    <h1>OPC<span>创业大赛</span></h1>
+    <p>以赛促创、以赛引才、以赛融资，汇聚全球创新力量</p>
+</section>
+
+<div class="stats-bar">
+    <div class="stat"><div class="stat-num">¥2500万+</div><div class="stat-label">总奖金池</div></div>
+    <div class="stat"><div class="stat-num">15项</div><div class="stat-label">年度赛事</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">合作机构</div></div>
+    <div class="stat"><div class="stat-num">2000+</div><div class="stat-label">参赛项目</div></div>
+</div>
+
+<div class="container">
+    <div class="competitions-grid">
+        <!-- 大赛1 -->
+        <div class="comp-card" data-type="national">
+            <div class="comp-header">
+                <span class="comp-badge badge-national">🏆 全国大赛</span>
+                <div class="comp-prize">最高¥500万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">2026全国OPC创业大赛</h3>
+                <p class="comp-desc">面向全国的顶级创业赛事，聚焦硬科技与数字经济领域。获奖项目将获得OPC联盟最高500万元投资意向、优先入驻OPC加速器、对接50+投资机构。</p>
+                <div class="comp-tags"><span class="ct">硬科技</span><span class="ct">数字经济</span><span class="ct">生命健康</span><span class="ct">投资对接</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-06-30</div></div>
+                    <div class="info-item"><div class="info-label">总决赛</div><div class="info-value">2026-09</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">1000+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('2026全国OPC创业大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
             </div>
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="pulse"></span>
-                <span>OPC大赛 · 创业竞赛平台</span>
+        <!-- 大赛2 -->
+        <div class="comp-card" data-type="ai">
+            <div class="comp-header">
+                <span class="comp-badge badge-ai">🤖 AI创新</span>
+                <div class="comp-prize">最高¥100万</div>
             </div>
-            <h1 class="hero-title">
-                <span>OPC创业大赛</span><br>
-                <span class="gradient">展示你的创业梦想</span>
-            </h1>
-            <p class="hero-desc">
-                参加OPC创业大赛、AI应用创新大赛、金融创新大赛等，获得投资、资源对接和全国推广机会。
-            </p>
-            <div class="stats-row">
-                <div class="stat-cell">
-                    <div class="stat-number red">4</div>
-                    <div class="stat-label">大赛项目</div>
-                </div>
-                <div class="stat-cell">
-                    <div class="stat-number gold">¥1000万+</div>
-                    <div class="stat-label">总奖金池</div>
-                </div>
-                <div class="stat-cell">
-                    <div class="stat-number blue">全国</div>
-                    <div class="stat-label">覆盖范围</div>
-                </div>
-                <div class="stat-cell">
-                    <div class="stat-number green">长期</div>
-                    <div class="stat-label">有效期限</div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+AI应用创新大赛</h3>
+                <p class="comp-desc">聚焦AI技术在垂直行业的落地应用，征集大模型、Agent、RAG、多模态等方向的创新方案。获奖团队获最高100万元奖金及算力支持。</p>
+                <div class="comp-tags"><span class="ct">大模型</span><span class="ct">AI Agent</span><span class="ct">RAG</span><span class="ct">多模态</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-07-15</div></div>
+                    <div class="info-item"><div class="info-label">路演日期</div><div class="info-value">2026-08</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">500+项目</div></div>
                 </div>
             </div>
-            <a href="#competitions" class="hero-cta">
-                <span>浏览大赛</span>
-                <span>↓</span>
-            </a>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+AI应用创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛3 -->
+        <div class="comp-card" data-type="fintech">
+            <div class="comp-header">
+                <span class="comp-badge badge-fintech">💰 金融创新</span>
+                <div class="comp-prize">最高¥200万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+认股权创新大赛</h3>
+                <p class="comp-desc">全国首创"认股权+创业"模式的专项赛事，征集以认股权为核心融资工具的创新项目。获奖项目获最高200万元奖金及银行授信对接。</p>
+                <div class="comp-tags"><span class="ct">认股权</span><span class="ct">科技金融</span><span class="ct">股权融资</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-08-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-10</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">300+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+认股权创新大赛')">立即报名</a>
+                <a href="https://mp.weixin.qq.com/s/eeQtYAjrhshCKd7zq8jyog" target="_blank" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛4 -->
+        <div class="comp-card" data-type="ecommerce">
+            <div class="comp-header">
+                <span class="comp-badge badge-ecommerce">🌐 跨境电商</span>
+                <div class="comp-prize">最高¥300万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+跨境电商大赛</h3>
+                <p class="comp-desc">面向跨境电商领域的创新创业赛事，征集DTC品牌、SaaS工具、供应链创新等方向项目。获奖项目获最高300万元投资及平台资源对接。</p>
+                <div class="comp-tags"><span class="ct">DTC品牌</span><span class="ct">SaaS</span><span class="ct">供应链</span><span class="ct">出海</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-09-15</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-11</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">200+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+跨境电商大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛5 -->
+        <div class="comp-card" data-type="health">
+            <div class="comp-header">
+                <span class="comp-badge" style="background:rgba(0,214,143,.12);color:#00d68f">🏥 医疗健康</span>
+                <div class="comp-prize">最高¥150万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+医疗AI创新大赛</h3>
+                <p class="comp-desc">聚焦AI在医疗诊断、药物研发、健康管理等领域的应用，征集AI辅助诊断、医疗影像、药物重定位等方向的创新项目。</p>
+                <div class="comp-tags"><span class="ct">AI诊断</span><span class="ct">医疗影像</span><span class="ct">药物研发</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-07-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-09</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">300+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+医疗AI创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛6 -->
+        <div class="comp-card" data-type="ai">
+            <div class="comp-header">
+                <span class="comp-badge badge-ai">🤖 Agent赛道</span>
+                <div class="comp-prize">最高¥80万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+AI Agent开发大赛</h3>
+                <p class="comp-desc">征集基于大模型的AI Agent应用，涵盖客服Agent、数据分析Agent、自动化工作流Agent等方向，推动AI Agent技术在企业中的落地应用。</p>
+                <div class="comp-tags"><span class="ct">AI Agent</span><span class="ct">自动化</span><span class="ct">工作流</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-08-15</div></div>
+                    <div class="info-item"><div class="info-label">路演日期</div><div class="info-value">2026-09</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">400+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+AI Agent开发大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛7 -->
+        <div class="comp-card" data-type="national">
+            <div class="comp-header">
+                <span class="comp-badge badge-national">🎓 教育科技</span>
+                <div class="comp-prize">最高¥100万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+教育科技创新大赛</h3>
+                <p class="comp-desc">征集AI+教育方向的创新项目，包括智能教学助手、自适应学习系统、AI考试评估、教育数据分析等方向。</p>
+                <div class="comp-tags"><span class="ct">智能教学</span><span class="ct">自适应学习</span><span class="ct">教育数据</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-08-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-10</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">200+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+教育科技创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛8 -->
+        <div class="comp-card" data-type="ecommerce">
+            <div class="comp-header">
+                <span class="comp-badge badge-ecommerce">🏭 工业互联网</span>
+                <div class="comp-prize">最高¥200万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+工业互联网创新大赛</h3>
+                <p class="comp-desc">征集工业互联网、智能制造、数字孪生等方向的创新解决方案，推动制造业数字化转型升级。</p>
+                <div class="comp-tags"><span class="ct">工业互联网</span><span class="ct">数字孪生</span><span class="ct">智能制造</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-09-30</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-11</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">250+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+工业互联网创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛9 -->
+        <div class="comp-card" data-type="fintech">
+            <div class="comp-header">
+                <span class="comp-badge badge-fintech">🔐 数据安全</span>
+                <div class="comp-prize">最高¥120万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+数据安全创新大赛</h3>
+                <p class="comp-desc">征集数据安全、隐私计算、可信数据空间等方向的创新技术方案，保障数据安全流通与合规应用。</p>
+                <div class="comp-tags"><span class="ct">隐私计算</span><span class="ct">数据安全</span><span class="ct">合规</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-08-15</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-10</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">150+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+数据安全创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛10 -->
+        <div class="comp-card" data-type="health">
+            <div class="comp-header">
+                <span class="comp-badge" style="background:rgba(253,121,168,.12);color:#fd79a8">🧬 生物科技</span>
+                <div class="comp-prize">最高¥250万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+生物科技创业大赛</h3>
+                <p class="comp-desc">征集生物医药、基因编辑、合成生物学、生物信息学等方向的创新创业项目，推动生物科技成果转化。</p>
+                <div class="comp-tags"><span class="ct">生物医药</span><span class="ct">基因编辑</span><span class="ct">合成生物</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-09-30</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-12</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">150+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+生物科技创业大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛11 -->
+        <div class="comp-card" data-type="ai">
+            <div class="comp-header">
+                <span class="comp-badge badge-ai">🎨 AIGC创意</span>
+                <div class="comp-prize">最高¥80万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+AIGC创意大赛</h3>
+                <p class="comp-desc">征集AI生成内容方向的创新应用，包括AI写作、AI绘画、AI视频生成、AI音乐创作等，推动AIGC技术商业化。</p>
+                <div class="comp-tags"><span class="ct">AIGC</span><span class="ct">AI绘画</span><span class="ct">AI视频</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-07-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-09</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">500+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+AIGC创意大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛12 -->
+        <div class="comp-card" data-type="national">
+            <div class="comp-header">
+                <span class="comp-badge badge-national">🌾 农业科技</span>
+                <div class="comp-prize">最高¥100万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+农业科技创业大赛</h3>
+                <p class="comp-desc">征集智慧农业、精准农业、农业物联网、农产品溯源等方向的创新项目，推动农业数字化转型。</p>
+                <div class="comp-tags"><span class="ct">智慧农业</span><span class="ct">精准农业</span><span class="ct">农业物联网</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-09-15</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-11</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">100+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+农业科技创业大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛13 -->
+        <div class="comp-card" data-type="ecommerce">
+            <div class="comp-header">
+                <span class="comp-badge badge-ecommerce">🌍 绿色低碳</span>
+                <div class="comp-prize">最高¥150万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+绿色低碳创新大赛</h3>
+                <p class="comp-desc">征集碳中和、新能源、节能环保、循环经济等方向的创新技术方案，助力实现双碳目标。</p>
+                <div class="comp-tags"><span class="ct">碳中和</span><span class="ct">新能源</span><span class="ct">循环经济</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-09-30</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-12</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">200+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+绿色低碳创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛14 -->
+        <div class="comp-card" data-type="fintech">
+            <div class="comp-header">
+                <span class="comp-badge badge-fintech">🏗️ 智慧城市</span>
+                <div class="comp-prize">最高¥180万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+智慧城市创新大赛</h3>
+                <p class="comp-desc">征集智慧城市、智慧交通、智慧社区、城市大脑等方向的创新解决方案，提升城市治理现代化水平。</p>
+                <div class="comp-tags"><span class="ct">智慧城市</span><span class="ct">智慧交通</span><span class="ct">城市大脑</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-08-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-10</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">200+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+智慧城市创新大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+
+        <!-- 大赛15 -->
+        <div class="comp-card" data-type="national">
+            <div class="comp-header">
+                <span class="comp-badge badge-national">🚀 超级个体</span>
+                <div class="comp-prize">最高¥50万</div>
+            </div>
+            <div class="comp-body">
+                <h3 class="comp-title">OPC+超级个体创业大赛</h3>
+                <p class="comp-desc">面向个人创业者和小型团队，征集一人公司、独立开发者、个人品牌等方向的创业项目，支持超级个体模式。</p>
+                <div class="comp-tags"><span class="ct">一人公司</span><span class="ct">独立开发</span><span class="ct">个人品牌</span></div>
+                <div class="comp-info">
+                    <div class="info-item"><div class="info-label">报名截止</div><div class="info-value">2026-10-31</div></div>
+                    <div class="info-item"><div class="info-label">决赛日期</div><div class="info-value">2026-12</div></div>
+                    <div class="info-item"><div class="info-label">参赛规模</div><div class="info-value">300+项目</div></div>
+                </div>
+            </div>
+            <div class="comp-footer">
+                <a href="#" class="comp-btn btn-primary" onclick="showApplyForm('OPC+超级个体创业大赛')">立即报名</a>
+                <a href="#" class="comp-btn btn-secondary">赛事详情</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用方法 -->
+    <section style="padding: 60px 0; border-top: 1px solid var(--border); margin-top: 40px;">
+        <h2 style="font-family: var(--fd); font-size: 1.4rem; text-align: center; margin-bottom: 12px;">使用方法</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">1️⃣</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">浏览大赛</div>
+                <div style="font-size: .82rem; color: var(--t2);">访问OPC大赛列表页面</div>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">2️⃣</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">选择大赛</div>
+                <div style="font-size: .82rem; color: var(--t2);">点击感兴趣的大赛</div>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">3️⃣</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">一键报名</div>
+                <div style="font-size: .82rem; color: var(--t2);">点击"立即报名"按钮</div>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">4️⃣</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">填写信息</div>
+                <div style="font-size: .82rem; color: var(--t2);">填写报名表单</div>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">5️⃣</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">提交成功</div>
+                <div style="font-size: .82rem; color: var(--t2);">等待审核结果</div>
+            </div>
         </div>
     </section>
 
-    <!-- Filter -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-bar" id="filterBar">
-                <!-- Generated by JS -->
+    <!-- 特色亮点 -->
+    <section style="padding: 60px 0; border-top: 1px solid var(--border);">
+        <h2 style="font-family: var(--fd); font-size: 1.4rem; text-align: center; margin-bottom: 30px;">🎯 特色亮点</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">🏆 15个OPC大赛</div>
+                <div style="font-size: .82rem; color: var(--t2);">覆盖创业、AI、医疗、教育、金融等各个领域</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">⚡ 一键报名</div>
+                <div style="font-size: .82rem; color: var(--t2);">所有大赛都可以通过同一个页面报名</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">🧠 智能识别</div>
+                <div style="font-size: .82rem; color: var(--t2);">自动识别用户要报名的大赛</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">📋 完整流程</div>
+                <div style="font-size: .82rem; color: var(--t2);">从浏览到报名，一站式服务</div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">📱 移动友好</div>
+                <div style="font-size: .82rem; color: var(--t2);">支持手机端操作</div>
             </div>
         </div>
     </section>
 
-    <!-- Projects -->
-    <section class="projects-section" id="competitions">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">全部大赛</h2>
-                <span class="section-count" id="projectCount"></span>
-            </div>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Generated by JS -->
-            </div>
+    <!-- 报名弹窗 -->
+    <div id="applyModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); justify-content:center; align-items:center;">
+        <div style="background:#111119; border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:32px; max-width:480px; width:90%;">
+            <h3 style="font-family:var(--fd); font-size:1.2rem; margin-bottom:20px;">报名: <span id="modalCompName"></span></h3>
+            <form id="applyForm" onsubmit="submitApply(event)">
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:.82rem; color:var(--t2); margin-bottom:4px;">姓名 *</label>
+                    <input type="text" required style="width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:#e8e8f0; font-size:.88rem;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:.82rem; color:var(--t2); margin-bottom:4px;">手机号 *</label>
+                    <input type="tel" required style="width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:#e8e8f0; font-size:.88rem;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:.82rem; color:var(--t2); margin-bottom:4px;">项目名称 *</label>
+                    <input type="text" required style="width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:#e8e8f0; font-size:.88rem;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; font-size:.82rem; color:var(--t2); margin-bottom:4px;">项目简介</label>
+                    <textarea rows="3" style="width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:#e8e8f0; font-size:.88rem; resize:vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:12px;">
+                    <button type="submit" style="flex:1; padding:12px; border-radius:10px; border:none; background:linear-gradient(135deg,#f0c040,#ff8a50); color:#000; font-weight:600; cursor:pointer;">提交报名</button>
+                    <button type="button" onclick="hideApplyForm()" style="padding:12px 20px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:transparent; color:var(--t2); cursor:pointer;">取消</button>
+                </div>
+            </form>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <p class="footer-text">© 2026 OPC Platform · OPC创业大赛</p>
-            <div class="footer-links">
-                <a href="index.html">首页</a>
-                <a href="policy.html">政策汇总</a>
-                <a href="government.html">揭榜挂帅</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-    // ===== Competition Data =====
-    const COMPETITIONS = [
-        {id:1,title:"2026全国OPC创业大赛",company:"OPC联盟",category:"创业大赛",desc:"面向全国OPC创业者的创业大赛，获奖项目可获得最高500万元投资和全国推广支持。",budget:"最高500万元",deadline:"2026年8月31日",tags:["创业大赛","投资","全国推广"],contact:"OPC大赛组委会",link:"https://opcplatform.cn/competition.html",hot:true},
-        {id:2,title:"OPC+AI应用创新大赛",company:"江苏省人工智能学会",category:"AI大赛",desc:"聚焦AI技术在创业场景中的应用，获奖项目可获得技术指导和产业对接。",budget:"最高100万元",deadline:"2026年7月15日",tags:["AI大赛","技术指导","产业对接"],contact:"江苏省人工智能学会",link:"https://opcplatform.cn/competition.html"},
-        {id:3,title:"OPC+认股权创新大赛",company:"江苏股权交易中心",category:"金融创新大赛",desc:"探索'OPC+认股权'创新模式，推动金融创新服务实体经济。",budget:"最高200万元",deadline:"2026年9月30日",tags:["金融创新","认股权","实体经济"],contact:"江苏股权交易中心",link:"https://opcplatform.cn/competition.html"},
-        {id:4,title:"OPC+跨境电商大赛",company:"江苏省商务厅",category:"电商大赛",desc:"推动跨境电商发展，帮助OPC创业者开拓海外市场。",budget:"最高300万元",deadline:"2026年10月31日",tags:["跨境电商","海外市场","创业支持"],contact:"江苏省商务厅",link:"https://opcplatform.cn/competition.html",hot:true}
-    ];
-
-    // Categories
-    const CATEGORIES = ['全部', ...new Set(COMPETITIONS.map(p => p.category))];
-    const CAT_ICONS = {
-        '全部': '📋', '创业大赛': '🏆', 'AI大赛': '🤖',
-        '金融创新大赛': '💰', '电商大赛': '🌐'
-    };
-
-    let currentFilter = '全部';
-
-    // ===== Render Filter Bar =====
-    function renderFilters() {
-        const bar = document.getElementById('filterBar');
-        bar.innerHTML = CATEGORIES.map(cat => {
-            const count = cat === '全部' ? COMPETITIONS.length : COMPETITIONS.filter(p => p.category === cat).length;
-            const icon = CAT_ICONS[cat] || '📌';
-            return `<button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterBy('${cat}')">${icon} ${cat} (${count})</button>`;
-        }).join('');
-    }
-
-    // ===== Render Projects =====
-    function renderProjects() {
-        const grid = document.getElementById('projectsGrid');
-        const countEl = document.getElementById('projectCount');
-
-        let filtered = COMPETITIONS;
-        if (currentFilter !== '全部') filtered = filtered.filter(p => p.category === currentFilter);
-
-        countEl.textContent = `${filtered.length} 个大赛`;
-
-        grid.innerHTML = filtered.map((p, i) => {
-            return `
-            <div class="project-card animate-in" style="animation-delay: ${i * 0.05}s">
-                <div class="card-header">
-                    <span class="card-company">🏢 ${p.company}</span>
-                    ${p.hot ? '<span class="card-badge badge-hot">🔥 热门</span>' : ''}
-                </div>
-                <h3 class="card-title">${p.title}</h3>
-                <p class="card-desc">${p.desc}</p>
-                <div class="card-meta">
-                    <div class="meta-item"><span class="label">💰</span> <span class="value budget">${p.budget}</span></div>
-                    <div class="meta-item"><span class="label">📅</span> <span class="value deadline">${p.deadline}</span></div>
-                    <div class="meta-item"><span class="label">👤</span> <span class="value">${p.contact}</span></div>
-                </div>
-                <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-                <div class="card-actions">
-                    <a href="${p.link}" target="_blank" class="btn-detail">查看详情</a>
-                    <a href="${p.link}" target="_blank" class="btn-apply">立即报名 →</a>
-                </div>
-            </div>`;
-        }).join('');
-    }
-
-    function filterBy(cat) {
-        currentFilter = cat;
-        renderFilters();
-        renderProjects();
-    }
-
-    // Initialize
-    renderFilters();
-    renderProjects();
-    </script>
-</body>
-</html>
+    </div>
