@@ -23,16 +23,16 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
 ::selection{background:var(--a);color:#fff}a{color:inherit;text-decoration:none}
 
 /* NAV - 统一样式 */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--bdr);transition:all .4s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
 .nav.on{background:rgba(6,6,10,0.93);box-shadow:0 2px 40px rgba(0,0,0,0.5)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;letter-spacing:0;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--gw)}
-.nav-links{display:flex;align-items:center;gap:2px}
-.nl{padding:8px 14px;border-radius:8px;color:var(--t2);font-size:14px;font-weight:400;transition:all .2s var(--ease);position:relative;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;letter-spacing:0}
-.nl:hover{color:var(--t1);background:rgba(255,255,255,0.035)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nl{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nl:hover{color:#9090a8}
 .nl.active{color:var(--t1);background:rgba(255,255,255,0.05)}
-.lg{padding:6px 14px;border-radius:8px;border:1px solid var(--bdr2);background:transparent;color:var(--t2);font-size:14px;font-weight:400;cursor:pointer;transition:all .25s;margin-left:8px;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;letter-spacing:0}
+.lg{padding:4px 10px;border:none;background:transparent;color:#505068;font-size:11px;cursor:pointer;transition:color .2s;margin-left:8px}
 .lg:hover{border-color:var(--bdr2);color:var(--t1);background:rgba(255,255,255,0.03)}
 
 /* 粒子背景 */
@@ -48,7 +48,7 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
 /* 滚动显示动画 */
 .fade-in{opacity:0;transform:translateY(30px);transition:all .6s var(--ease)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
-</style>
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -59,12 +59,12 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
       <span>OPC Platform</span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="nl">首页</a>
-      <a href="legends.html" class="nl">名人堂</a>
-      <a href="challenge.html" class="nl active">揭榜挂帅</a>
-      <a href="community.html" class="nl">社区</a>
-      <a href="platform.html" class="nl">平台</a>
-      <button class="lg">登录</button>
+      <a href="index.html" class="nl"></a>
+      <a href="legends.html" class="nl"></a>
+      <a href="challenge.html" class="nl active"></a>
+      <a href="community.html" class="nl"></a>
+      <a href="platform.html" class="nl"></a>
+      <button class="lg"></button>
     </div>
   </div>
 </nav>
@@ -109,17 +109,14 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
   <section class="filter-section fade-in">
     <div class="filter-bar">
       <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">全部项目</button>
-        <button class="filter-tab" data-filter="ai">人工智能</button>
-        <button class="filter-tab" data-filter="tech">技术攻关</button>
-        <button class="filter-tab" data-filter="business">商业创新</button>
-        <button class="filter-tab" data-filter="research">科研难题</button>
+        <button class="filter-tab active" data-filter="all"></button>
+        <button class="filter-tab" data-filter="ai"></button>
+        <button class="filter-tab" data-filter="tech"></button>
+        <button class="filter-tab" data-filter="business"></button>
+        <button class="filter-tab" data-filter="research"></button>
       </div>
       <div class="search-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
+        
         <input type="text" placeholder="搜索项目名称、关键词..." id="searchInput">
       </div>
     </div>
@@ -305,17 +302,11 @@ function renderProjects(projects) {
       
       <div class="card-footer">
         <button class="btn btn-detail" onclick="goToDetail('${project.id}')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
+          
           查看详情
         </button>
         <button class="btn btn-apply" onclick="goToApply('${project.id}')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14"></path>
-            <path d="m12 5 7 7-7 7"></path>
-          </svg>
+          
           立即申报
         </button>
       </div>
