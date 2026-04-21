@@ -14,14 +14,15 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;opacity:.4}
 .c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.8);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
-.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
+.nav-l{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;color:#a0a0b8;margin-right:auto}
 .nav-l .d{color:var(--green)}
-.nav-lks{display:flex;align-items:center;gap:32px}
-.nav-lk{text-decoration:none;color:var(--t3);font-size:.875rem;font-weight:500;transition:color .2s;position:relative}
-.nav-lk:hover{color:var(--t1)}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--green);border-radius:1px}
-.lbtn{background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--t2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.nav-lks{display:flex;align-items:center;gap:4px}
+.nav-lk{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nav-lk:hover{color:#9090a8}.nav-lk.a{color:var(--t1)}.nav-lk.a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--green);border-radius:1px}
+.lbtn{padding:4px 10px;border:none;background:transparent;color:#505068;font-size:11px;cursor:pointer;transition:color .2s;margin-left:8px}
 .hero{min-height:50vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 24px 60px}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(0,214,143,.06),transparent 70%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(78,168,222,.03),transparent 60%)}
 .hero-c{text-align:center;max-width:860px;position:relative;z-index:1}
@@ -81,24 +82,25 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 @keyframes ci{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .ai{animation:ci .6s var(--e) both}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
-@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.post-grid,.member-grid,.event-grid{grid-template-columns:1fr}.nav-lks{gap:16px}.nav-lk{font-size:.8rem}.ht{font-size:2rem}.c{padding:0 16px}}
+
+@media(max-width:768px){.sr{grid-template-columns:repeat(2,1fr)}.post-grid,.member-grid,.event-grid{grid-template-columns:1fr}.nav-lks{display:flex;align-items:center;gap:4px}.nav-lk{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}.ht{font-size:2rem}.c{padding:0 16px}}
 .mmb{display:none;background:none;border:none;color:var(--t1);font-size:1.4rem;cursor:pointer}
-@media(max-width:640px){.nav-lks{display:none}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
-</style>
+@media(max-width:640px){.nav-lks{display:flex;align-items:center;gap:4px}.mmb{display:block}.nav-lks.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(6,6,10,.98);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}}
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">◆ OPC Platform</a>
+        <a href="index.html" class="logo"> OPC Platform</a>
         <div class="nav-links">
-            <a href="service.html">创业助手</a>
-            <a href="platform.html">平台</a>
-            <a href="government.html">揭榜挂帅</a>
-            <a href="superagent.html">超级个体</a>
-            <a href="legends.html">名人堂</a>
-            <a href="academy.html">学院</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
+            <a href="service.html"></a>
+            <a href="platform.html"></a>
+            <a href="government.html"></a>
+            <a href="superagent.html"></a>
+            <a href="legends.html"></a>
+            <a href="academy.html"></a>
+            <a href="policy.html"></a>
+            <a href="community.html"></a>
+            <a href="chat.html"></a>
         </div>
     </nav>
 
@@ -116,12 +118,14 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 
 <!-- 热门讨论 -->
 <section><div class="c">
+
 <div class="sh"><div class="sh-tag">HOT TOPICS</div><h2 class="sh-title">🔥 热门讨论</h2><p class="sh-desc">社区中最活跃的话题</p></div>
 <div class="post-grid" id="postGrid"></div>
 </div></section>
 
 <!-- 活跃成员 -->
 <section><div class="c">
+
 <div class="sh"><div class="sh-tag">ACTIVE MEMBERS</div><h2 class="sh-title">🌟 活跃成员</h2><p class="sh-desc">社区中最活跃的独立创业者</p></div>
 <div class="member-grid" id="memberGrid"></div>
 </div></section>
@@ -134,6 +138,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 
 <!-- Agent对接系统 -->
 <section><div class="c">
+
 <div class="sh"><div class="sh-tag">AGENT MATCHING</div><h2 class="sh-title">🤖 OPC创业者-Agent对接</h2><p class="sh-desc">找到最适合你的AI Agent助手，提升创业效率</p></div>
 
 <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:40px">
@@ -146,18 +151,19 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 </div>
 
 <div style="background:linear-gradient(135deg,rgba(0,214,143,.1),rgba(78,168,222,.1));border:1px solid rgba(0,214,143,.2);border-radius:16px;padding:32px;text-align:center">
+
 <h3 style="font-family:var(--fd);font-size:1.3rem;font-weight:600;margin-bottom:12px">🚀 立即对接你的Agent</h3>
 <p style="color:var(--t2);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto">填写你的需求，系统自动匹配最适合的Agent助手</p>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<button class="btn" onclick="matchAgent()" style="padding:12px 32px;font-size:.95rem">🤖 智能匹配Agent</button>
-<button class="btn-o" onclick="browseAgents()" style="padding:12px 32px;font-size:.95rem">👀 浏览所有Agent</button>
+<button class="btn" onclick="matchAgent()" style="padding:12px 32px;font-size:.95rem">🤖 Agent</button>
+<button class="btn-o" onclick="browseAgents()" style="padding:12px 32px;font-size:.95rem"> Agent</button>
 </div>
 </div>
 </div></section>
 
 <footer><div class="ft-i">
 <div class="ft-t">© 2026 OPC Community · 一个人的公司，无限可能</div>
-<div class="ft-l"><a href="index.html">首页</a><a href="platform.html">平台</a><a href="legends.html">名人堂</a></div>
+<div class="ft-l"><a href="index.html"></a><a href="platform.html"></a><a href="legends.html"></a></div>
 </div></footer>
 
 <script>
@@ -165,6 +171,7 @@ footer{border-top:1px solid var(--border);padding:48px 0;position:relative;z-ind
 const POSTS=[
 // SaaS创业类
 {ava:"🧑‍💻",name:"张三",time:"2小时前",title:"我的第一个SaaS产品月入$5000的经验分享",desc:"从零开始，用了3个月时间，终于做到了月入$5000。分享一下我的完整经历和踩过的坑。技术栈：Next.js + Supabase + Stripe。获客主要靠Twitter公开构建和SEO。",tags:["SaaS","经验分享","公开构建"],likes:128,comments:45,shares:23,agent:"saas_agent"},
+
 {ava:"🚀",name:"Marc Chen",time:"4小时前",title:"一周发布一个MVP的方法论",desc:"我如何用7天时间从想法到上线。Day1：验证想法，Day2-3：核心功能，Day4-5：UI优化，Day6：测试，Day7：发布。Ship fast, iterate faster.",tags:["MVP","快速发布","方法论"],likes:234,comments:67,shares:45,agent:"ship_agent"},
 
 // 内容创作类
@@ -184,11 +191,13 @@ const POSTS=[
 {ava:"🔧",name:"Tony Wu",time:"4天前",title:"从程序员到独立开发者的转型之路",desc:"在大厂写了5年代码，辞职后做了3个产品，2个失败，1个成功。总结：1）先验证再开发，2）做自己会用的产品，3）公开构建获取反馈。",tags:["转型","程序员","经验"],likes:267,comments:78,shares:56,agent:"career_agent"},
 
 // 产品发布类
+
 {ava:"🚀",name:"孙八",time:"4天前",title:"Product Hunt首发第一名的经验总结",desc:"如何在Product Hunt上成功发布产品，获得首批1000用户。准备工作：1）提前2周预热，2）准备好所有素材，3）发动社区支持，4）实时回复评论。",tags:["Product Hunt","产品发布","增长黑客"],likes:198,comments:67,shares:41,agent:"ship_agent"},
 {ava:"📱",name:"Lisa Chen",time:"5天前",title:"我的App Store优化(ASO)策略",desc:"分享如何通过ASO让App自然下载量提升300%。关键词优化、截图设计、评论管理、本地化。附工具推荐和数据对比。",tags:["ASO","App","增长"],likes:134,comments:45,shares:23,agent:"ship_agent"},
 
 // 远程工作类
 {ava:"🌍",name:"Mike Liu",time:"5天前",title:"数字游民生活3年的真实体验",desc:"在东南亚、欧洲、南美远程工作3年的真实感受。优点：自由、低成本、新体验。缺点：时差、孤独、不稳定。建议：先在国内远程半年再考虑。",tags:["数字游民","远程工作","生活方式"],likes:189,comments:67,shares:45,agent:"lifestyle_agent"},
+
 {ava:"⏰",name:"Amy Zhang",time:"6天前",title:"一人公司的时间管理方法",desc:"作为一人公司，时间是最宝贵的资源。分享我的时间管理：1）主题日（周一产品、周二营销、周三内容...），2）番茄工作法，3）每周复盘。",tags:["时间管理","效率","一人公司"],likes:156,comments:34,shares:23,agent:"productivity_agent"},
 
 // 心理健康类
@@ -199,6 +208,7 @@ const POSTS=[
 // 活跃成员数据 - 扩充版
 const MEMBERS=[
 {ava:"🧑‍💻",name:"Pieter Levels",role:"SaaS连续创业者",tags:["SaaS","远程","公开构建"],agent:"saas_agent",desc:"70+产品，4个百万级业务"},
+
 {ava:"✍️",name:"James Clear",role:"习惯养成大师",tags:["写作","习惯","Newsletter"],agent:"content_agent",desc:"《原子习惯》作者，1500万册"},
 {ava:"🤖",name:"Marc Lou",role:"AI产品构建者",tags:["AI","快速发布","独立黑客"],agent:"ship_agent",desc:"2年发布20+产品的极速发布者"},
 {ava:"📊",name:"Naval Ravikant",role:"投资哲学家",tags:["投资","杠杆","哲学"],agent:"finance_agent",desc:"AngelList联合创始人，身价$10亿+"},
@@ -213,11 +223,13 @@ const MEMBERS=[
 {ava:"🧬",name:"Anne-Laure Le Cunff",role:"神经科学创业者",tags:["Ness Labs","正念","脑科学"],agent:"wellness_agent",desc:"离开谷歌研究脑科学创业"},
 {ava:"📰",name:"Pat Walls",role:"创业故事构建者",tags:["Starter Story","SEO","创始人访谈"],agent:"content_agent",desc:"采访3000+创始人的内容机器"},
 {ava:"🎮",name:"Pieter Levels",role:"数字游民缔造者",tags:["Nomad List","远程","社区"],agent:"lifestyle_agent",desc:"数字游民社区的缔造者"},
+
 {ava:"💡",name:"Jack Butcher",role:"视觉价值创造者",tags:["Visualize Value","NFT","视觉思维"],agent:"content_agent",desc:"用Figma构建视觉帝国"}
 ];
 
 // 近期活动数据 - 扩充版
 const EVENTS=[
+
 {day:"25",month:"4月 2026",title:"OPC创业者线上交流会",desc:"每月一次的线上交流，分享近期进展和遇到的问题。本期主题：如何用AI提升一人公司效率。",meta:["📍 线上Zoom","⏰ 晚8:00","👥 限50人","🎯 主题分享+自由交流"]},
 {day:"28",month:"4月 2026",title:"AI产品快速构建工作坊",desc:"手把手教你用AI工具在3天内构建一个可用产品。包括：需求分析、原型设计、代码生成、部署上线。",meta:["📍 线上直播","⏰ 全天","👥 限100人","🛠️ 实操演练"]},
 {day:"5",month:"5月 2026",title:"北京OPC创业者线下聚会",desc:"北京地区的独立创业者线下见面，networking和经验分享。免费参加，提供茶歇。",meta:["📍 北京朝阳","⏰ 下午2:00","👥 限30人","☕ 免费茶歇"]},
@@ -242,6 +254,7 @@ document.getElementById('postGrid').innerHTML=POSTS.map((p,i)=>`
 <div class="post-tags">${p.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
 <div class="post-stats">
 <div class="ps">❤️ ${p.likes}</div>
+
 <div class="ps">💬 ${p.comments}</div>
 <div class="ps">🔄 ${p.shares}</div>
 </div>
@@ -269,9 +282,10 @@ document.getElementById('eventGrid').innerHTML=EVENTS.map((e,i)=>`
 </div>
 `).join('');
 
-// ========== Agent对接系统 ==========
+// === Agent对接系统 ===
 const AGENTS=[
 {id:"saas_agent",name:"SaaS创业助手",icon:"🧑‍💻",color:"#6366f1",desc:"帮助你从0到1构建SaaS产品，包括产品定位、技术选型、定价策略、增长获客",skills:["产品定位","技术选型","定价策略","增长获客","用户访谈"],match_score:95},
+
 {id:"ship_agent",name:"快速发布助手",icon:"🚀",color:"#f97316",desc:"帮你快速发布产品，从MVP到上线。7天发布一个产品的极速方法论",skills:["MVP设计","快速开发","Product Hunt","增长黑客","用户反馈"],match_score:92},
 {id:"content_agent",name:"内容创作助手",icon:"✍️",color:"#f59e0b",desc:"帮你构建个人品牌和内容体系，从Newsletter到畅销书",skills:["Newsletter","写作习惯","SEO优化","个人品牌","读者增长"],match_score:88},
 {id:"ai_agent",name:"AI产品助手",icon:"🤖",color:"#ef4444",desc:"帮你用AI构建产品，从Prompt Engineering到AI Agent开发",skills:["Prompt Engineering","API集成","AI产品设计","模型选择","成本优化"],match_score:90},
@@ -301,7 +315,7 @@ ${a.skills.slice(0,3).map(s=>`<span style="font-size:.68rem;padding:2px 8px;bord
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center">
 <div style="font-size:.78rem;color:var(--t3)">匹配度: <span style="color:${a.color};font-weight:600">${a.match_score}%</span></div>
-<button style="background:${a.color};border:none;color:#fff;padding:6px 12px;border-radius:6px;font-size:.75rem;cursor:pointer">对接</button>
+<button style="background:${a.color};border:none;color:#fff;padding:6px 12px;border-radius:6px;font-size:.75rem;cursor:pointer"></button>
 </div>
 </div>
 `).join('');
@@ -330,8 +344,8 @@ ${agent.skills.map(s=>`<span style="font-size:.75rem;padding:4px 10px;border-rad
 <textarea id="agentNeed" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--t1);font-size:.88rem;resize:vertical;min-height:100px;font-family:var(--fb)" placeholder="请描述你的具体需求，例如：我想做一个SaaS产品，需要帮助确定产品方向和技术栈..."></textarea>
 </div>
 <div style="display:flex;gap:12px">
-<button onclick="submitAgentRequest('${agent.id}')" style="flex:1;background:${agent.color};border:none;color:#fff;padding:12px;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer">提交对接请求</button>
-<button onclick="this.parentElement.parentElement.parentElement.remove()" style="flex:1;background:transparent;border:1px solid var(--border);color:var(--t2);padding:12px;border-radius:8px;font-size:.88rem;cursor:pointer">取消</button>
+<button onclick="submitAgentRequest('${agent.id}')" style="flex:1;background:${agent.color};border:none;color:#fff;padding:12px;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer"></button>
+<button onclick="this.parentElement.parentElement.parentElement.remove()" style="flex:1;background:transparent;border:1px solid var(--border);color:var(--t2);padding:12px;border-radius:8px;font-size:.88rem;cursor:pointer"></button>
 </div>
 </div>
 `;
@@ -346,6 +360,7 @@ alert('请描述你的需求');
 return;
 }
 const agent=AGENTS.find(a=>a.id===agentId);
+
 alert(`✅ 对接请求已提交！\n\nAgent：${agent.name}\n需求：${need.substring(0,50)}...\n\n我们将在24小时内安排Agent与你对接。\n\n请添加客服微信：OPC-Agent`);
 document.querySelector('[style*="position:fixed"][style*="z-index:9999"]').remove();
 }
@@ -357,12 +372,14 @@ modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:99
 modal.innerHTML=`
 <div style="background:var(--card);border-radius:16px;padding:32px;max-width:600px;width:100%">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+
 <h2 style="font-size:1.3rem">🤖 智能匹配Agent</h2>
 <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background:none;border:none;color:var(--t2);font-size:1.5rem;cursor:pointer">×</button>
 </div>
 <div style="margin-bottom:20px">
 <div style="font-size:.82rem;font-weight:600;margin-bottom:8px">1️⃣ 你的创业阶段</div>
 <select id="matchStage" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--t1);font-size:.88rem">
+
 <option value="idea">💡 想法阶段</option>
 <option value="mvp">🛠️ MVP阶段</option>
 <option value="growth">📈 增长阶段</option>
@@ -373,6 +390,7 @@ modal.innerHTML=`
 <div style="font-size:.82rem;font-weight:600;margin-bottom:8px">2️⃣ 你的主要需求</div>
 <select id="matchNeed" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--t1);font-size:.88rem">
 <option value="product">🧑‍💻 产品开发</option>
+
 <option value="content">✍️ 内容创作</option>
 <option value="finance">📊 财务管理</option>
 <option value="growth">📈 增长获客</option>
@@ -385,7 +403,7 @@ modal.innerHTML=`
 <div style="font-size:.82rem;font-weight:600;margin-bottom:8px">3️⃣ 补充描述</div>
 <textarea id="matchDesc" style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--t1);font-size:.88rem;resize:vertical;min-height:80px;font-family:var(--fb)" placeholder="可选：补充描述你的具体情况..."></textarea>
 </div>
-<button onclick="executeMatch()" style="width:100%;background:linear-gradient(135deg,var(--green),var(--blue));border:none;color:#fff;padding:14px;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer">🔍 开始匹配</button>
+<button onclick="executeMatch()" style="width:100%;background:linear-gradient(135deg,var(--green),var(--blue));border:none;color:#fff;padding:14px;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer"> </button>
 </div>
 `;
 document.body.appendChild(modal);
@@ -435,7 +453,7 @@ function openPostModal() {
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">✏️ 发布帖子</h2>
-                <button onclick="closePostModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closePostModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
             <form id="postForm" onsubmit="submitPost(event)">
@@ -483,8 +501,8 @@ function openPostModal() {
                 </div>
                 
                 <div style="display: flex; gap: 12px;">
-                    <button type="button" onclick="closePostModal()" style="flex: 1; padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--t1); font-weight: 500; cursor: pointer;">取消</button>
-                    <button type="submit" style="flex: 1; padding: 14px; border-radius: 10px; border: none; background: var(--green); color: #fff; font-weight: 600; cursor: pointer;">发布帖子</button>
+                    <button type="button" onclick="closePostModal()" style="flex: 1; padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--t1); font-weight: 500; cursor: pointer;"></button>
+                    <button type="submit" style="flex: 1; padding: 14px; border-radius: 10px; border: none; background: var(--green); color: #fff; font-weight: 600; cursor: pointer;"></button>
                 </div>
             </form>
         </div>
@@ -523,8 +541,9 @@ function openCommentModal(postId) {
     modal.innerHTML = `
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+
                 <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">💬 评论</h2>
-                <button onclick="closeCommentModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closeCommentModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
             <!-- 评论列表 -->
@@ -544,6 +563,7 @@ function openCommentModal(postId) {
                     
                     <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+
                             <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--pink)); display: flex; align-items: center; justify-content: center; font-size: 1rem;">✍️</div>
                             <div>
                                 <div style="font-weight: 600;">李薇</div>
@@ -564,7 +584,7 @@ function openCommentModal(postId) {
                         <input type="checkbox" id="commentAnonymous" style="accent-color: var(--green);">
                         <span style="font-size: 0.85rem;">匿名评论</span>
                     </label>
-                    <button onclick="submitComment(${postId})" style="background: var(--green); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">发表评论</button>
+                    <button onclick="submitComment(${postId})" style="background: var(--green); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;"></button>
                 </div>
             </div>
         </div>
@@ -590,6 +610,7 @@ function submitComment(postId) {
     alert('评论发表成功！');
     closeCommentModal();
 }
+
 
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
