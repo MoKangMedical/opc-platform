@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC大赛报名 — 一键报名</title>
+    <meta name="description" content="OPC创业大赛一键报名平台，支持所有OPC大赛的在线报名">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060a;
+            --bg-elevated: #0d0d14;
+            --bg-card: #111119;
+            --bg-card-hover: #16161f;
+            --bg-surface: rgba(255,255,255,0.02);
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+            --text: #e8e8f0;
+            --text-secondary: #9898b0;
+            --text-muted: #5a5a72;
+            --accent: #e74c3c;
+            --accent-light: #ff6b6b;
+            --accent-warm: #ff8a50;
+            --green: #00d68f;
+            --blue: #4ea8de;
+            --purple: #a78bfa;
+            --gold: #f0c040;
+            --font-display: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 24px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration: 0.5s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            height: 64px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo .dot { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
+            font-weight: 500; transition: color 0.2s; position: relative;
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link.active { color: var(--text); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+            height: 2px; background: var(--accent); border-radius: 1px;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 140px 24px 80px;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(231,76,60,0.08) 0%, transparent 60%);
+        }
+        .hero-content {
+            text-align: center; position: relative; z-index: 1;
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.15);
+            padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
+            font-size: 0.85rem; color: var(--accent-light); font-weight: 500;
+        }
+        .pulse {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .hero-title {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700; line-height: 1.15; margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+        .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;
+            margin: 0 auto 48px; line-height: 1.8;
+        }
+
+        /* ===== Form ===== */
+        .form-section {
+            padding: 0 0 80px;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto; padding: 0 32px;
+        }
+        .form-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 48px;
+        }
+        .form-title {
+            font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+            margin-bottom: 8px; letter-spacing: -0.02em;
+        }
+        .form-subtitle {
+            color: var(--text-secondary); margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-label {
+            display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 8px;
+            color: var(--text);
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 12px 16px; border-radius: 10px;
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text); font-size: 0.9rem; font-family: var(--font-body);
+            transition: all 0.2s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(231,76,60,0.1);
+        }
+        .form-textarea {
+            min-height: 120px; resize: vertical;
+        }
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        .form-checkbox {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 24px;
+        }
+        .form-checkbox input {
+            width: 18px; height: 18px; accent-color: var(--accent);
+        }
+        .form-checkbox label {
+            font-size: 0.9rem; color: var(--text-secondary);
+        }
+        .btn-submit {
+            width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            border: none; color: white; padding: 16px 32px; border-radius: 12px;
+            font-size: 1rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font-body);
+        }
+        .btn-submit:hover {
+            opacity: 0.9; transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(231,76,60,0.3);
+        }
+
+        /* ===== Competition Info ===== */
+        .competition-info {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 32px; margin-bottom: 32px;
+        }
+        .competition-title {
+            font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .competition-meta {
+            display: flex; gap: 24px; margin-bottom: 16px;
+        }
+        .meta-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem; color: var(--text-secondary);
+        }
+        .meta-item .label { color: var(--text-muted); }
+        .meta-item .value { color: var(--text); font-weight: 500; }
+        .meta-item .value.budget { color: var(--gold); font-weight: 600; }
+        .meta-item .value.deadline { color: var(--accent-light); }
+
+        /* ===== Success Message ===== */
+        .success-message {
+            display: none; text-align: center; padding: 48px;
+        }
+        .success-icon {
+            font-size: 4rem; margin-bottom: 24px;
+        }
+        .success-title {
+            font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .success-desc {
+            color: var(--text-secondary); margin-bottom: 32px;
+        }
+        .btn-back {
+            display: inline-block; background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text); padding: 12px 24px; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; text-decoration: none;
+        }
+        .btn-back:hover { background: rgba(255,255,255,0.04); }
+
+        /* ===== Footer ===== */
+        .footer {
+            border-top: 1px solid var(--border); padding: 48px 0;
+            background: var(--bg-elevated);
+        }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-text { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a {
+            font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 120px 20px 60px; }
+            .form-card { padding: 32px 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .competition-meta { flex-direction: column; gap: 12px; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span>◆ OPC Platform</span>
+            </a>
+            <div class="nav-links">
+                <a href="service.html" class="nav-link">创业助手</a>
+                <a href="platform.html" class="nav-link">平台</a>
+                <a href="government.html" class="nav-link">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link">超级个体</a>
+                <a href="legends.html" class="nav-link">名人堂</a>
+                <a href="academy.html" class="nav-link">学院</a>
+                <a href="health.html" class="nav-link">健康</a>
+                <a href="policy.html" class="nav-link">政策</a>
+                <a href="community.html" class="nav-link">社区</a>
+                <a href="chat.html" class="nav-link">聊天</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>OPC大赛报名</span>
+            </div>
+            <h1 class="hero-title">
+                <span>OPC大赛</span><br>
+                <span class="gradient">一键报名</span>
+            </h1>
+            <p class="hero-desc">
+                填写以下信息，一键报名参加OPC创业大赛。我们会在3个工作日内审核您的报名信息。
+            </p>
+        </div>
+    </section>
+
+    <!-- Form -->
+    <section class="form-section">
+        <div class="container">
+            <!-- Competition Info -->
+            <div class="competition-info" id="competitionInfo">
+                <h3 class="competition-title" id="competitionTitle">加载中...</h3>
+                <div class="competition-meta">
+                    <div class="meta-item">
+                        <span class="label">💰 奖金:</span>
+                        <span class="value budget" id="competitionBudget">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">📅 截止:</span>
+                        <span class="value deadline" id="competitionDeadline">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">🏢 主办:</span>
+                        <span class="value" id="competitionOrganizer">--</span>
+                    </div>
+                </div>
+                <p id="competitionDesc" style="color: var(--text-secondary); line-height: 1.6;"></p>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form-card" id="registrationForm">
+                <h2 class="form-title">报名信息</h2>
+                <p class="form-subtitle">请填写以下信息完成报名</p>
+                
+                <form id="applyForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">姓名 *</label>
+                            <input type="text" class="form-input" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">手机号 *</label>
+                            <input type="tel" class="form-input" name="phone" required placeholder="请输入您的手机号">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">邮箱 *</label>
+                            <input type="email" class="form-input" name="email" required placeholder="请输入您的邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">公司/团队名称</label>
+                            <input type="text" class="form-input" name="company" placeholder="请输入公司或团队名称">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">项目名称 *</label>
+                        <input type="text" class="form-input" name="project" required placeholder="请输入您的项目名称">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">项目简介 *</label>
+                        <textarea class="form-textarea" name="description" required placeholder="请简要介绍您的项目（200字以内）"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">项目阶段</label>
+                            <select class="form-select" name="stage">
+                                <option value="">请选择项目阶段</option>
+                                <option value="idea">想法阶段</option>
+                                <option value="mvp">MVP阶段</option>
+                                <option value="growth">成长阶段</option>
+                                <option value="mature">成熟阶段</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">融资需求</label>
+                            <select class="form-select" name="funding">
+                                <option value="">请选择融资需求</option>
+                                <option value="none">暂不需要</option>
+                                <option value="seed">种子轮（50万以下）</option>
+                                <option value="angel">天使轮（50-500万）</option>
+                                <option value="a">A轮（500万以上）</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">补充说明</label>
+                        <textarea class="form-textarea" name="notes" placeholder="请补充其他需要说明的信息"></textarea>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree">我已阅读并同意《OPC大赛参赛协议》和《隐私政策》</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">提交报名</button>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">🎉</div>
+                <h2 class="success-title">报名成功！</h2>
+                <p class="success-desc">
+                    感谢您报名参加OPC大赛！我们会在3个工作日内审核您的报名信息，审核结果会通过短信和邮件通知您。
+                </p>
+                <a href="opc-competitions.html" class="btn-back">返回大赛列表</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-text">© 2026 OPC Platform · OPC大赛报名</p>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="opc-competitions.html">大赛列表</a>
+                <a href="policy.html">政策汇总</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ===== Competition Data =====
+    const COMPETITIONS = {
+        1: {
+            title: "2026全国OPC创业大赛",
+            budget: "最高500万元",
+            deadline: "2026年8月31日",
+            organizer: "OPC联盟",
+            desc: "面向全国OPC创业者的创业大赛，获奖项目可获得最高500万元投资和全国推广支持。"
+        },
+        2: {
+            title: "OPC+AI应用创新大赛",
+            budget: "最高100万元",
+            deadline: "2026年7月15日",
+            organizer: "江苏省人工智能学会",
+            desc: "聚焦AI技术在创业场景中的应用，获奖项目可获得技术指导和产业对接。"
+        },
+        3: {
+            title: "OPC+认股权创新大赛",
+            budget: "最高200万元",
+            deadline: "2026年9月30日",
+            organizer: "江苏股权交易中心",
+            desc: "探索'OPC+认股权'创新模式，推动金融创新服务实体经济。"
+        },
+        4: {
+            title: "OPC+跨境电商大赛",
+            budget: "最高300万元",
+            deadline: "2026年10月31日",
+            organizer: "江苏省商务厅",
+            desc: "推动跨境电商发展，帮助OPC创业者开拓海外市场。"
+        },
+        5: {
+            title: "OPC全球创业大赛",
+            budget: "最高100万美元",
+            deadline: "2026年12月31日",
+            organizer: "OPC国际联盟",
+            desc: "面向全球OPC创业者的顶级赛事，获奖项目可获得国际投资和推广。"
+        },
+        6: {
+            title: "OPC亚洲创业大赛",
+            budget: "最高500万元",
+            deadline: "2026年11月30日",
+            organizer: "OPC亚洲联盟",
+            desc: "聚焦亚洲市场的OPC创业大赛，提供本地化支持和资源对接。"
+        },
+        7: {
+            title: "OPC+医疗健康大赛",
+            budget: "最高300万元",
+            deadline: "2026年9月30日",
+            organizer: "中国医学科学院",
+            desc: "面向医疗健康领域的OPC创业者，提供临床资源和专家指导。"
+        },
+        8: {
+            title: "OPC+教育科技大赛",
+            budget: "最高150万元",
+            deadline: "2026年8月31日",
+            organizer: "教育部科技发展中心",
+            desc: "聚焦教育科技创新，推动OPC模式在教育领域的应用。"
+        },
+        9: {
+            title: "OPC+金融科技大赛",
+            budget: "最高400万元",
+            deadline: "2026年11月15日",
+            organizer: "中国银行业协会",
+            desc: "探索金融科技与OPC模式的结合，推动金融创新。"
+        },
+        10: {
+            title: "苏州OPC创业大赛",
+            budget: "最高100万元",
+            deadline: "2026年7月31日",
+            organizer: "苏州市政府",
+            desc: "苏州市举办的OPC创业大赛，提供场地和资金支持。"
+        },
+        11: {
+            title: "南京OPC创新大赛",
+            budget: "最高80万元",
+            deadline: "2026年8月15日",
+            organizer: "南京市政府",
+            desc: "南京市举办的OPC创新大赛，聚焦科技创业。"
+        },
+        12: {
+            title: "杭州OPC数字经济大赛",
+            budget: "最高120万元",
+            deadline: "2026年9月15日",
+            organizer: "杭州市政府",
+            desc: "杭州市举办的数字经济OPC大赛，推动数字经济发展。"
+        },
+        13: {
+            title: "OPC+区块链创业大赛",
+            budget: "最高250万元",
+            deadline: "2026年10月31日",
+            organizer: "中国区块链技术协会",
+            desc: "探索区块链技术在OPC创业中的应用。"
+        },
+        14: {
+            title: "OPC+元宇宙创业大赛",
+            budget: "最高300万元",
+            deadline: "2026年11月30日",
+            organizer: "中国虚拟现实产业联盟",
+            desc: "聚焦元宇宙和虚拟现实技术创业。"
+        },
+        15: {
+            title: "OPC+绿色科技大赛",
+            budget: "最高200万元",
+            deadline: "2026年12月15日",
+            organizer: "中国环保产业协会",
+            desc: "推动绿色科技和可持续发展创业。"
+        }
+    };
+
+    // ===== Initialize Page =====
+    function initPage() {
+        // Get competition ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const competitionId = urlParams.get('id');
+        
+        if (competitionId && COMPETITIONS[competitionId]) {
+            const competition = COMPETITIONS[competitionId];
+            
+            // Update page title
+            document.title = `报名 - ${competition.title} | OPC大赛`;
+            
+            // Update competition info
+            document.getElementById('competitionTitle').textContent = competition.title;
+            document.getElementById('competitionBudget').textContent = competition.budget;
+            document.getElementById('competitionDeadline').textContent = competition.deadline;
+            document.getElementById('competitionOrganizer').textContent = competition.organizer;
+            document.getElementById('competitionDesc').textContent = competition.desc;
+            
+            // Store competition ID in form
+            document.getElementById('applyForm').dataset.competitionId = competitionId;
+        } else {
+            // No competition ID, show default
+            document.getElementById('competitionTitle').textContent = "OPC创业大赛";
+            document.getElementById('competitionBudget').textContent = "最高500万元";
+            document.getElementById('competitionDeadline').textContent = "2026年12月31日";
+            document.getElementById('competitionOrganizer').textContent = "OPC联盟";
+            document.getElementById('competitionDesc').textContent = "面向全国OPC创业者的创业大赛，获奖项目可获得投资和资源支持。";
+        }
+    }
+
+    // ===== Form Submission =====
+    document.getElementById('applyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        // Add competition ID
+        data.competitionId = this.dataset.competitionId || 'all';
+        
+        // Validate
+        if (!data.name || !data.phone || !data.email || !data.project || !data.description) {
+            alert('请填写必填字段');
+            return;
+        }
+        
+        if (!data.agree) {
+            alert('请同意参赛协议和隐私政策');
+            return;
+        }
+        
+        // Show loading
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = '提交中...';
+        submitBtn.disabled = true;
+        
+        // Simulate submission (in real app, this would be an API call)
+        setTimeout(() => {
+            // Hide form, show success message
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }, 1500);
+    });
+
+    // Initialize page
+    initPage();
+    </script>
+</body>
+</html>
