@@ -1,435 +1,727 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPC创业助手 — 一站式创业服务平台</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#06060a;--bg2:#0d0d14;--card:#111119;--card2:#16161f;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--t1:#e8e8f0;--t2:#9898b0;--t3:#5a5a72;--green:#00d68f;--blue:#4ea8de;--purple:#a78bfa;--orange:#ff8a50;--gold:#f0c040;--red:#ff6b6b;--pink:#fd79a8;--fd:'Space Grotesk',-apple-system,sans-serif;--fb:'Inter',-apple-system,sans-serif;--r:16px;--e:cubic-bezier(0.16,1,0.3,1)}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
-.c{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,10,.9);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid var(--border)}
-.nav-i{max-width:1280px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-l{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-family:var(--fd);font-weight:700;font-size:1.1rem}
-.nav-l .d{color:var(--green)}
-.nav-lks{display:flex;align-items:center;gap:24px}
-.nav-lk{text-decoration:none;color:var(--t3);font-size:.82rem;font-weight:500;transition:color .2s;padding:6px 10px;border-radius:6px}
-.nav-lk:hover{color:var(--t1);background:rgba(255,255,255,.04)}
-.nav-lk.a{color:var(--green);background:rgba(0,214,143,.1)}
-/* Hero */
-.hero{padding:100px 24px 60px;text-align:center;position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(0,214,143,.08),transparent 70%)}
-.hero h1{font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:16px}
-.hero h1 span{background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--t2);max-width:600px;margin:0 auto}
-/* AI Assistant */
-.ai-section{padding:40px 0}
-.ai-card{max-width:800px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden}
-.ai-header{padding:24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
-.ai-avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--green),var(--blue));display:flex;align-items:center;justify-content:center;font-size:1.8rem}
-.ai-info h3{font-family:var(--fd);font-size:1.2rem;margin-bottom:4px}
-.ai-info p{font-size:.82rem;color:var(--green)}
-.ai-chat{padding:24px;min-height:300px;max-height:400px;overflow-y:auto}
-.ai-msg{margin-bottom:16px;display:flex;gap:12px}
-.ai-msg.bot .bubble{background:var(--bg2);border:1px solid var(--border);border-radius:12px 12px 12px 4px;padding:12px 16px;max-width:80%}
-.ai-msg.user{flex-direction:row-reverse}
-.ai-msg.user .bubble{background:linear-gradient(135deg,var(--green),var(--blue));color:#000;border-radius:12px 12px 4px 12px;padding:12px 16px;max-width:80%;font-weight:500}
-.ai-input-area{padding:16px 24px;border-top:1px solid var(--border)}
-.ai-quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.aq{padding:6px 14px;border-radius:100px;background:rgba(0,214,143,.08);border:1px solid rgba(0,214,143,.15);color:var(--green);font-size:.78rem;cursor:pointer;transition:all .2s}
-.aq:hover{background:rgba(0,214,143,.15)}
-.ai-input{display:flex;gap:12px}
-.ai-input input{flex:1;background:var(--bg2);border:1px solid var(--border);color:var(--t1);padding:12px 16px;border-radius:12px;font-size:.88rem;font-family:var(--fb);outline:none}
-.ai-input input:focus{border-color:var(--green)}
-.ai-input button{background:linear-gradient(135deg,var(--green),var(--blue));border:none;color:#000;padding:12px 24px;border-radius:12px;font-weight:600;cursor:pointer}
-/* Services Grid */
-.services{padding:60px 0}
-.s-title{font-family:var(--fd);font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:8px}
-.s-desc{color:var(--t2);text-align:center;margin-bottom:40px}
-.s-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.s-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:all .3s var(--e);cursor:pointer}
-.s-card:hover{border-color:var(--border2);transform:translateY(-4px)}
-.s-icon{font-size:2.5rem;margin-bottom:12px}
-.s-name{font-family:var(--fd);font-size:1.1rem;font-weight:600;margin-bottom:8px}
-.s-desc2{font-size:.82rem;color:var(--t2);line-height:1.5;margin-bottom:12px}
-.s-tags{display:flex;gap:4px;flex-wrap:wrap}
-.st{font-size:.68rem;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.04);color:var(--t3)}
-/* Events */
-.events{padding:60px 0}
-.e-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.e-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;gap:16px;transition:all .3s var(--e)}
-.e-card:hover{border-color:var(--border2)}
-.e-date{width:60px;text-align:center;flex-shrink:0}
-.e-day{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--green)}
-.e-month{font-size:.72rem;color:var(--t3)}
-.e-info h4{font-size:.95rem;margin-bottom:4px}
-.e-info p{font-size:.82rem;color:var(--t2);margin-bottom:8px}
-.e-meta{display:flex;gap:8px;font-size:.72rem;color:var(--t3)}
-/* Footer */
-footer{border-top:1px solid var(--border);padding:40px 0;text-align:center}
-footer p{color:var(--t3);font-size:.82rem}
-@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.ai{animation:fu .6s var(--e) both}
-@media(max-width:768px){.nav-lks{display:none}.s-grid,.e-grid{grid-template-columns:1fr}.hero h1{font-size:1.8rem}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OPC创业助手 — 您的专属AI创业伙伴，一站式解决创业路上所有问题">
+    <title>创业助手 — OPC Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e94560'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Arial' font-size='60' font-weight='bold' fill='white'>O</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/design-system.css">
+    
+    <!-- Additional Styles -->
+    <style>
+        .hero-service {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .chat-container {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .chat-header {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+        }
+        
+        .chat-info h3 {
+            color: white;
+            margin-bottom: var(--space-1);
+        }
+        
+        .chat-status {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .chat-messages {
+            padding: var(--space-6);
+            min-height: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: var(--space-4);
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .message-user {
+            justify-content: flex-end;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: var(--space-4);
+            border-radius: var(--radius-xl);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+        }
+        
+        .message-bot .message-content {
+            background: var(--color-gray-100);
+            color: var(--color-gray-800);
+            border-bottom-left-radius: var(--radius-sm);
+        }
+        
+        .message-user .message-content {
+            background: var(--color-accent);
+            color: white;
+            border-bottom-right-radius: var(--radius-sm);
+        }
+        
+        .chat-input {
+            border-top: 1px solid var(--color-gray-200);
+            padding: var(--space-4);
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            transition: var(--transition-all);
+        }
+        
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+        }
+        
+        .chat-input button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: var(--font-semibold);
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .chat-input button:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-1px);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+        
+        .service-card {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            transition: var(--transition-all);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-gray-300);
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: var(--space-6);
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-xl);
+        }
+        
+        .service-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .service-text {
+            font-size: var(--text-base);
+            color: var(--color-gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+        
+        .service-tag {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+        
+        .event-card {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            transition: var(--transition-all);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-gray-300);
+        }
+        
+        .event-header {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: white;
+            padding: var(--space-4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-date {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+        }
+        
+        .event-month {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+        
+        .event-type {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+        }
+        
+        .event-body {
+            padding: var(--space-6);
+        }
+        
+        .event-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .event-desc {
+            font-size: var(--text-sm);
+            color: var(--color-gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--color-gray-500);
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">◆ OPC Platform</a>
-        <div class="nav-links">
-            <a href="service.html">创业助手</a>
-            <a href="platform.html">平台</a>
-            <a href="government.html">揭榜挂帅</a>
-            <a href="superagent.html">超级个体</a>
-            <a href="legends.html">名人堂</a>
-            <a href="academy.html">学院</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">O</div>
+                <span>OPC Platform</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="service.html" class="nav-link active">创业助手</a>
+                <a href="platform.html" class="nav-link">平台</a>
+                <a href="government.html" class="nav-link">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link">超级个体</a>
+                <a href="legends.html" class="nav-link">名人堂</a>
+                <a href="academy.html" class="nav-link">学院</a>
+                <a href="policy.html" class="nav-link">政策</a>
+                <a href="community.html" class="nav-link">社区</a>
+                <a href="chat.html" class="nav-link">聊天</a>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost btn-sm">登录</a>
+                <a href="register.html" class="btn btn-primary btn-sm">免费注册</a>
+                <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="nav-mobile hidden" id="mobileMenu">
+            <div class="container">
+                <div class="flex flex-col gap-4 p-6">
+                    <a href="service.html" class="nav-link active">创业助手</a>
+                    <a href="platform.html" class="nav-link">平台</a>
+                    <a href="government.html" class="nav-link">揭榜挂帅</a>
+                    <a href="superagent.html" class="nav-link">超级个体</a>
+                    <a href="legends.html" class="nav-link">名人堂</a>
+                    <a href="academy.html" class="nav-link">学院</a>
+                    <a href="policy.html" class="nav-link">政策</a>
+                    <a href="community.html" class="nav-link">社区</a>
+                    <a href="chat.html" class="nav-link">聊天</a>
+                    <div class="flex gap-4 mt-4">
+                        <a href="login.html" class="btn btn-ghost btn-sm">登录</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">免费注册</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-<section class="hero">
-<h1>OPC <span>创业助手</span></h1>
-<p>您的专属AI创业伙伴，一站式解决创业路上所有问题</p>
-</section>
-
-<!-- AI Assistant -->
-<section class="ai-section"><div class="c">
-<div class="ai-card ai">
-<div class="ai-header">
-<div class="ai-avatar">🤖</div>
-<div class="ai-info">
-<h3>小创 — 您的专属创业伙伴</h3>
-<p>● 在线 | 已帮助 12,847 位创业者</p>
-</div>
-</div>
-<div class="ai-chat" id="aiChat">
-<div class="ai-msg bot">
-<div class="bubble">👋 您好！我是小创，您的专属AI创业助手。<br><br>我可以帮您：<br>• 查询创业政策和补贴<br>• 匹配融资渠道和投资人<br>• 推荐合适的办公场地<br>• 指导公司注册流程<br>• 对接项目合作机会<br><br>有什么可以帮到您？</div>
-</div>
-</div>
-<div class="ai-input-area">
-<div class="ai-quick">
-<span class="aq" onclick="quickAsk('有什么创业补贴可以申请？')">💰 创业补贴</span>
-<span class="aq" onclick="quickAsk('如何注册一家公司？')">📋 注册公司</span>
-<span class="aq" onclick="quickAsk('帮我找融资渠道')">🏦 找融资</span>
-<span class="aq" onclick="quickAsk('推荐一些创业场地')">🏠 找场地</span>
-<span class="aq" onclick="quickAsk('有什么税收优惠？')">📊 税收优惠</span>
-<span class="aq" onclick="quickAsk('如何申请人才政策？')">👤 人才政策</span>
-</div>
-<div class="ai-input">
-<input type="text" id="aiInput" placeholder="输入您的创业问题..." onkeypress="if(event.key==='Enter')sendMsg()">
-<button onclick="sendMsg()">发送</button>
-</div>
-</div>
-</div>
-</div></section>
-
-<!-- Services -->
-<section class="services"><div class="c">
-<h2 class="s-title">🚀 一站式创业服务</h2>
-<p class="s-desc">覆盖创业全场景，让创业更简单</p>
-<div class="s-grid" id="serviceGrid"></div>
-</div></section>
-
-<!-- Events -->
-<section class="events"><div class="c">
-<h2 class="s-title">📅 近期活动</h2>
-<p class="s-desc">线上线下活动，拓展人脉资源</p>
-<div class="e-grid" id="eventGrid"></div>
-</div></section>
-
-<footer><p>© 2026 OPC Platform · 一个人的公司，无限可能</p></footer>
-
-<script>
-// Services Data
-const SERVICES=[
-{icon:"📋",name:"开公司",desc:"企业注册、工商登记、银行开户一站式办理",tags:["工商登记","银行开户","税务登记"],link:"policy.html"},
-{icon:"💰",name:"找资金",desc:"对接投资人、申请贷款、获取创业补贴",tags:["融资对接","创业贷款","政府补贴"],link:"policy.html"},
-{icon:"🏠",name:"找场地",desc:"办公空间、孵化器、众创空间推荐",tags:["办公室","孵化器","众创空间"],link:"community.html"},
-{icon:"📊",name:"找政策",desc:"创业优惠政策、税收减免、补贴申请",tags:["政策查询","税收优惠","补贴申请"],link:"policy.html"},
-{icon:"🎯",name:"找场景",desc:"产品应用场景对接，助力项目落地",tags:["场景对接","项目落地","资源匹配"],link:"government.html"},
-{icon:"👥",name:"找人才",desc:"招聘、合伙人对接、团队组建",tags:["招聘","合伙人","团队组建"],link:"community.html"},
-{icon:"🔬",name:"转成果",desc:"科技成果转化、知识产权、技术转让",tags:["成果转化","知识产权","技术转让"],link:"government.html"},
-{icon:"📜",name:"报资质",desc:"高新技术企业、专精特新等资质申报",tags:["高新认定","专精特新","资质申报"],link:"policy.html"},
-{icon:"🏘️",name:"找住房",desc:"人才公寓、租房补贴、购房优惠",tags:["人才公寓","租房补贴","购房优惠"],link:"policy.html"},
-{icon:"🎓",name:"找培训",desc:"创业培训、技能培训、管理课程",tags:["创业培训","技能培训","管理课程"],link:"academy.html"},
-{icon:"🤝",name:"找合作",desc:"项目合作、资源对接、业务拓展",tags:["项目合作","资源对接","业务拓展"],link:"community.html"},
-{icon:"🌐",name:"出海服务",desc:"海外市场、跨境支付、国际推广",tags:["海外市场","跨境支付","国际推广"],link:"platform.html"}
-];
-
-// Events Data
-const EVENTS=[
-{day:"25",month:"4月",title:"OPC创业者线上交流会",desc:"分享创业经验，对接合作资源",meta:["线上Zoom","晚8:00"]},
-{day:"28",month:"4月",title:"AI产品快速构建工作坊",desc:"手把手教你3天打造AI产品",meta:["线上直播","全天"]},
-{day:"5",month:"5月",title:"北京创业者线下聚会",desc:"面对面交流，深度对接",meta:["北京朝阳","下午2:00"]},
-{day:"12",month:"5月",title:"融资对接会",desc:"10+投资人现场对接",meta:["线上直播","晚8:00"]},
-{day:"18",month:"5月",title:"上海创业者聚会",desc:"华东地区创业者交流",meta:["上海浦东","下午2:00"]},
-{day:"25",month:"5月",title:"政策解读专场",desc:"最新创业政策深度解读",meta:["线上直播","晚8:00"]}
-];
-
-// Render Services
-document.getElementById('serviceGrid').innerHTML=SERVICES.map((s,i)=>`
-<div class="s-card ai" style="animation-delay:${i*0.06}s" onclick="location.href='${s.link}'">
-<div class="s-icon">${s.icon}</div>
-<div class="s-name">${s.name}</div>
-<p class="s-desc2">${s.desc}</p>
-<div class="s-tags">${s.tags.map(t=>`<span class="st">${t}</span>`).join('')}</div>
-</div>
-`).join('');
-
-// Render Events
-document.getElementById('eventGrid').innerHTML=EVENTS.map((e,i)=>`
-<div class="e-card ai" style="animation-delay:${i*0.06}s">
-<div class="e-date">
-<div class="e-day">${e.day}</div>
-<div class="e-month">${e.month}</div>
-</div>
-<div class="e-info">
-<h4>${e.title}</h4>
-<p>${e.desc}</p>
-<div class="e-meta">${e.meta.map(m=>`<span>${m}</span>`).join(' · ')}</div>
-</div>
-</div>
-`).join('');
-
-// AI Chat Functions
-const AI_RESPONSES={
-"补贴":"根据您的情况，您可能符合以下补贴政策：\n\n1️⃣ **创业担保贷款**：最高50万，财政贴息50%\n2️⃣ **一次性创业补贴**：5000-20000元\n3️⃣ **场地租金补贴**：补贴50%-100%\n4️⃣ **社保补贴**：灵活就业补贴2/3\n\n需要我帮您详细了解哪个政策？",
-"注册":"公司注册流程如下：\n\n1️⃣ **核名**：1个工作日\n2️⃣ **提交材料**：身份证、地址证明、公司章程\n3️⃣ **领取执照**：1-3个工作日\n4️⃣ **刻章**：公章、财务章、法人章\n5️⃣ **银行开户**：选择银行开设对公账户\n6️⃣ **税务登记**：核定税种、申领发票\n\n全程约5-7个工作日，我可以帮您对接代办服务。",
-"融资":"为您推荐以下融资渠道：\n\n1️⃣ **创业担保贷款**：最高50万，贴息50%\n2️⃣ **天使投资**：种子轮50-500万\n3️⃣ **政府引导基金**：参股25%以内\n4️⃣ **知识产权质押**：专利质押贷款\n5️⃣ **应收账款融资**：以应收账款质押\n\n您的项目是什么阶段？我帮您精准匹配。",
-"场地":"为您推荐以下场地选择：\n\n1️⃣ **创业孵化器**：免费或低价，含服务\n2️⃣ **众创空间**：灵活工位，按月付费\n3️⃣ **创业园区**：税收返还50%-80%\n4️⃣ **写字楼**：独立办公，形象好\n\n您的预算和团队规模是多少？",
-"税收":"您可能享受以下税收优惠：\n\n1️⃣ **小微企业**：实际税负仅5%\n2️⃣ **增值税**：月销10万以下免征\n3️⃣ **个体工商户**：个税减半征收\n4️⃣ **高新技术企业**：税率15%+研发加计100%\n5️⃣ **软件企业**：2免3减半\n\n需要我帮您评估具体能省多少税吗？",
-"人才":"人才政策包括：\n\n1️⃣ **人才补贴**：5000-20000元\n2️⃣ **人才公寓**：低价租房\n3️⃣ **落户政策**：快速办理\n4️⃣ **子女教育**：优先入学\n5️⃣ **医疗保障**：绿色通道\n\n您是什么类型的人才？"
-};
-
-function quickAsk(q){
-document.getElementById('aiInput').value=q;
-sendMsg();
-}
-
-function sendMsg(){
-const input=document.getElementById('aiInput');
-const msg=input.value.trim();
-if(!msg)return;
-input.value='';
-
-const chat=document.getElementById('aiChat');
-chat.innerHTML+=`<div class="ai-msg user"><div class="bubble">${msg}</div></div>`;
-chat.scrollTop=chat.scrollHeight;
-
-setTimeout(()=>{
-let response="感谢您的提问！这是一个很好的问题。\n\n";
-for(const[key,ans] of Object.entries(AI_RESPONSES)){
-if(msg.includes(key)){
-response=ans;
-break;
-}
-}
-if(response==="感谢您的提问！这是一个很好的问题。\n\n"){
-response+="我可以帮您：\n• 查询创业政策\n• 匹配融资渠道\n• 推荐办公场地\n• 指导公司注册\n• 对接项目合作\n\n请告诉我您具体需要什么帮助？";
-}
-chat.innerHTML+=`<div class="ai-msg bot"><div class="bubble">${response.replace(/\n/g,'<br>')}</div></div>`;
-chat.scrollTop=chat.scrollHeight;
-},800);
-}
-
-// 智能推荐功能
-function showSmartRecommendations() {
-    const modal = document.createElement('div');
-    modal.id = 'recommendModal';
-    modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
-    
-    modal.innerHTML = `
-        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; padding: 32px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">🎯 智能推荐</h2>
-                <button onclick="closeRecommendModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
-            </div>
-            
-            <!-- 推荐分类 -->
-            <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-                <button onclick="showRecommendCategory('policies')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;">政策推荐</button>
-                <button onclick="showRecommendCategory('services')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;">服务推荐</button>
-                <button onclick="showRecommendCategory('partners')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;">合作伙伴</button>
-                <button onclick="showRecommendCategory('resources')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;">学习资源</button>
-            </div>
-            
-            <!-- 推荐内容 -->
-            <div id="recommendContent">
-                <div style="text-align: center; color: var(--t3); padding: 40px;">选择推荐类别</div>
+    <!-- Hero Section -->
+    <section class="hero hero-service">
+        <div class="container">
+            <div class="hero-content">
+                <div class="flex items-center justify-center gap-2 mb-6">
+                    <span class="px-3 py-1 bg-white/10 rounded-full text-sm text-white/80">
+                        AI 创业助手
+                    </span>
+                </div>
+                <h1 class="hero-title animate-fade-in">
+                    OPC 创业助手<br>
+                    <span class="logo-gradient">您的专属AI创业伙伴</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in" style="animation-delay: 0.2s;">
+                    您的专属AI创业伙伴，一站式解决创业路上所有问题
+                </p>
+                
+                <!-- Stats -->
+                <div class="stats animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="stat stat-card">
+                        <div class="stat-value">12,847</div>
+                        <div class="stat-label">已帮助创业者</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">在线服务</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">满意度</div>
+                    </div>
+                    <div class="stat stat-card">
+                        <div class="stat-value">100+</div>
+                        <div class="stat-label">服务项目</div>
+                    </div>
+                </div>
             </div>
         </div>
-    `;
-    
-    document.body.appendChild(modal);
-}
+    </section>
 
-function closeRecommendModal() {
-    const modal = document.getElementById('recommendModal');
-    if (modal) modal.remove();
-}
-
-function showRecommendCategory(category) {
-    const contentDiv = document.getElementById('recommendContent');
-    
-    const recommendations = {
-        policies: [
-            { title: '创业担保贷款', desc: '最高50万，财政贴息50%', match: '95%', icon: '💰' },
-            { title: '一次性创业补贴', desc: '5000-20000元', match: '90%', icon: '🎁' },
-            { title: '场地租金补贴', desc: '补贴50%-100%', match: '85%', icon: '🏢' }
-        ],
-        services: [
-            { title: '工商注册代办', desc: '全程代办，3天拿证', match: '92%', icon: '📋' },
-            { title: '财税代理服务', desc: '专业记账报税', match: '88%', icon: '📊' },
-            { title: '法律咨询服务', desc: '合同审查、知识产权', match: '82%', icon: '⚖️' }
-        ],
-        partners: [
-            { title: '张工 - 智能制造专家', desc: '15年工业自动化经验', match: '94%', icon: '👨‍💼' },
-            { title: '李薇 - 内容营销专家', desc: '擅长品牌推广', match: '86%', icon: '👩‍💼' },
-            { title: '王强 - 技术开发团队', desc: '全栈开发，快速交付', match: '90%', icon: '👨‍💻' }
-        ],
-        resources: [
-            { title: '《从0到1》创业课程', desc: '6位导师，48课时', match: '96%', icon: '📚' },
-            { title: '创业法律指南', desc: '合同、股权、融资', match: '84%', icon: '📖' },
-            { title: 'AI产品设计实战', desc: '案例分析+实操', match: '91%', icon: '🤖' }
-        ]
-    };
-    
-    const items = recommendations[category] || [];
-    
-    contentDiv.innerHTML = `
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            ${items.map(item => `
-                <div style="background: var(--bg2); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px;">
-                    <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(0,214,143,.12); display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">${item.icon}</div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; margin-bottom: 4px;">${item.title}</div>
-                        <div style="font-size: 0.9rem; color: var(--t2);">${item.desc}</div>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--green);">${item.match}</div>
-                        <div style="font-size: 0.75rem; color: var(--t3);">匹配度</div>
-                    </div>
-                    <button onclick="applyRecommendation('${item.title}')" style="background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color: #000; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;">立即对接</button>
-                </div>
-            `).join('')}
-        </div>
-    `;
-}
-
-function applyRecommendation(title) {
-    alert(`已提交对接请求！\n\n服务：${title}\n\n我们将在24小时内与您联系安排对接。`);
-    closeRecommendModal();
-}
-
-// 服务对接功能
-function openServiceMatching() {
-    const modal = document.createElement('div');
-    modal.id = 'matchingModal';
-    modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
-    
-    modal.innerHTML = `
-        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">🤝 服务对接</h2>
-                <button onclick="closeMatchingModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+    <!-- Chat Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">与小创对话</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">我可以帮您查询创业政策、匹配融资渠道、推荐办公场地、指导公司注册流程、对接项目合作机会</p>
             </div>
             
-            <form id="matchingForm" onsubmit="submitMatchingForm(event)">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">您的需求 *</label>
-                    <select required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
-                        <option value="">请选择...</option>
-                        <option value="policy">政策咨询</option>
-                        <option value="registration">工商注册</option>
-                        <option value="finance">财税代理</option>
-                        <option value="legal">法律咨询</option>
-                        <option value="tech">技术开发</option>
-                        <option value="marketing">营销推广</option>
-                        <option value="hr">人力资源</option>
-                        <option value="other">其他服务</option>
-                    </select>
-                </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">详细描述 *</label>
-                    <textarea required rows="4" placeholder="请详细描述您的需求..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">联系人 *</label>
-                        <input type="text" required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">联系电话 *</label>
-                        <input type="tel" required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+            <div class="chat-container animate-fade-in">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-info">
+                        <h3>小创 — 您的专属创业伙伴</h3>
+                        <div class="chat-status">● 在线 | 已帮助 12,847 位创业者</div>
                     </div>
                 </div>
                 
-                <div style="margin-bottom: 24px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">预算范围</label>
-                    <div style="display: flex; gap: 12px;">
-                        <input type="number" placeholder="最低预算（元）" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
-                        <input type="number" placeholder="最高预算（元）" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+                <div class="chat-messages">
+                    <div class="message message-bot">
+                        <div class="message-content">
+                            👋 您好！我是小创，您的专属AI创业助手。<br><br>
+                            我可以帮您：<br>
+                            • 查询创业政策和补贴<br>
+                            • 匹配融资渠道和投资人<br>
+                            • 推荐合适的办公场地<br>
+                            • 指导公司注册流程<br>
+                            • 对接项目合作机会<br><br>
+                            有什么可以帮到您？
+                        </div>
+                    </div>
+                    
+                    <div class="message message-user">
+                        <div class="message-content">
+                            我想了解一下创业担保贷款的申请流程
+                        </div>
+                    </div>
+                    
+                    <div class="message message-bot">
+                        <div class="message-content">
+                            创业担保贷款申请流程：<br><br>
+                            1️⃣ 准备材料：身份证、创业计划书、营业执照<br>
+                            2️⃣ 提交申请：到当地人社局或网上申请<br>
+                            3️⃣ 审核评估：约15个工作日<br>
+                            4️⃣ 签订合同：审核通过后签订贷款合同<br>
+                            5️⃣ 放款：最高50万，财政贴息50%<br><br>
+                            需要我帮您对接政策专员吗？
+                        </div>
                     </div>
                 </div>
                 
-                <div style="margin-bottom: 24px;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                        <input type="checkbox" checked style="accent-color: var(--green);">
-                        <span style="font-size: 0.9rem;">我同意OPC平台将我的需求推送给服务商</span>
-                    </label>
+                <div class="chat-input">
+                    <input type="text" placeholder="输入您的创业问题...">
+                    <button>发送</button>
                 </div>
-                
-                <button type="submit" style="width: 100%; background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color: #000; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交需求</button>
-            </form>
+            </div>
         </div>
-    `;
-    
-    document.body.appendChild(modal);
-}
+    </section>
 
-function closeMatchingModal() {
-    const modal = document.getElementById('matchingModal');
-    if (modal) modal.remove();
-}
+    <!-- Services Section -->
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">一站式创业服务</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">覆盖创业全场景，让创业更简单</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-fade-in">
+                    <div class="service-icon">📋</div>
+                    <h3 class="service-title">开公司</h3>
+                    <p class="service-text">企业注册、工商登记、银行开户一站式办理</p>
+                    <div class="service-tags">
+                        <span class="service-tag">工商登记</span>
+                        <span class="service-tag">银行开户</span>
+                        <span class="service-tag">税务登记</span>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="service-icon">💰</div>
+                    <h3 class="service-title">找资金</h3>
+                    <p class="service-text">对接投资人、申请贷款、获取创业补贴</p>
+                    <div class="service-tags">
+                        <span class="service-tag">融资对接</span>
+                        <span class="service-tag">创业贷款</span>
+                        <span class="service-tag">政府补贴</span>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">找场地</h3>
+                    <p class="service-text">办公空间、孵化器、众创空间推荐</p>
+                    <div class="service-tags">
+                        <span class="service-tag">办公室</span>
+                        <span class="service-tag">孵化器</span>
+                        <span class="service-tag">众创空间</span>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">找政策</h3>
+                    <p class="service-text">创业优惠政策、税收减免、补贴申请</p>
+                    <div class="service-tags">
+                        <span class="service-tag">政策查询</span>
+                        <span class="service-tag">税收优惠</span>
+                        <span class="service-tag">补贴申请</span>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">找场景</h3>
+                    <p class="service-text">产品应用场景对接，助力项目落地</p>
+                    <div class="service-tags">
+                        <span class="service-tag">场景对接</span>
+                        <span class="service-tag">项目落地</span>
+                        <span class="service-tag">资源匹配</span>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-fade-in" style="animation-delay: 0.5s;">
+                    <div class="service-icon">👥</div>
+                    <h3 class="service-title">找人才</h3>
+                    <p class="service-text">招聘、合伙人对接、团队组建</p>
+                    <div class="service-tags">
+                        <span class="service-tag">招聘</span>
+                        <span class="service-tag">合伙人</span>
+                        <span class="service-tag">团队组建</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function submitMatchingForm(event) {
-    event.preventDefault();
-    alert('需求提交成功！\n\n我们将在24小时内为您匹配最合适的服务商，并安排对接。');
-    closeMatchingModal();
-}
+    <!-- Events Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">近期活动</h2>
+                <p class="text-lg text-gray max-w-2xl mx-auto">线上线下活动，拓展人脉资源</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card animate-fade-in">
+                    <div class="event-header">
+                        <div>
+                            <div class="event-date">25</div>
+                            <div class="event-month">4月</div>
+                        </div>
+                        <span class="event-type">线上</span>
+                    </div>
+                    <div class="event-body">
+                        <h3 class="event-title">OPC创业者线上交流会</h3>
+                        <p class="event-desc">分享创业经验，对接合作资源</p>
+                        <div class="event-meta">
+                            <span>📍 线上Zoom</span>
+                            <span>⏰ 晚8:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="event-header">
+                        <div>
+                            <div class="event-date">28</div>
+                            <div class="event-month">4月</div>
+                        </div>
+                        <span class="event-type">直播</span>
+                    </div>
+                    <div class="event-body">
+                        <h3 class="event-title">AI产品快速构建工作坊</h3>
+                        <p class="event-desc">手把手教你3天打造AI产品</p>
+                        <div class="event-meta">
+                            <span>📍 线上直播</span>
+                            <span>⏰ 全天</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="event-header">
+                        <div>
+                            <div class="event-date">5</div>
+                            <div class="event-month">5月</div>
+                        </div>
+                        <span class="event-type">线下</span>
+                    </div>
+                    <div class="event-body">
+                        <h3 class="event-title">北京创业者线下聚会</h3>
+                        <p class="event-desc">面对面交流，深度对接</p>
+                        <div class="event-meta">
+                            <span>📍 北京朝阳</span>
+                            <span>⏰ 下午2:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// ===== OPC Platform 增强功能 =====
-function showNotification(msg,type='success'){
-const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
-n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
-}
-function toggleFavorite(id,type){
-const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
-localStorage.setItem(k,JSON.stringify(f));
-}
-function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
-}
-function showModal(c){
-const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
-document.body.appendChild(m);
-}
-function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
-function getUserData(k){return JSON.parse(localStorage.getItem('opc-'+k)||'null');}
-function validateForm(fid){const f=document.getElementById(fid);if(!f)return false;let v=true;f.querySelectorAll('[required]').forEach(e=>{if(!e.value.trim()){e.style.borderColor='#ff6b6b';v=false;}else{e.style.borderColor='';}});return v;}
+    <!-- CTA Section -->
+    <section class="cta cta-gradient">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">开始你的创业之旅</h2>
+                <p class="cta-text">与全球独立创业者一起学习、连接、合作、成长</p>
+                <div class="cta-actions">
+                    <a href="register.html" class="btn btn-secondary btn-lg">
+                        免费注册
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                    <a href="government.html" class="btn btn-ghost btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">
+                        浏览项目
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</script>
-</body></html>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold">
+                            O
+                        </div>
+                        OPC Platform
+                    </a>
+                    <p class="footer-desc">全球领先的独立创业者赋能平台，连接、展示、赋能全球独立创业者。</p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">平台</h4>
+                    <ul class="footer-links">
+                        <li><a href="service.html">创业助手</a></li>
+                        <li><a href="platform.html">一站式平台</a></li>
+                        <li><a href="government.html">揭榜挂帅</a></li>
+                        <li><a href="superagent.html">超级个体</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">资源</h4>
+                    <ul class="footer-links">
+                        <li><a href="legends.html">名人堂</a></li>
+                        <li><a href="academy.html">学院课程</a></li>
+                        <li><a href="policy.html">创业政策</a></li>
+                        <li><a href="community.html">社区交流</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="chat.html">在线客服</a></li>
+                        <li><a href="health.html">健康中心</a></li>
+                        <li><a href="city-policies.html">城市政策</a></li>
+                        <li><a href="opc-competitions.html">创业大赛</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 OPC Platform. All rights reserved. 一个人的公司，无限可能。</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animate-fade-in class
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
