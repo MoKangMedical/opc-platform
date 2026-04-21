@@ -14,11 +14,12 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;cursor:pointer;margin-left:8px}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px;color:var(--t1);text-decoration:none}
 .nav-logo .dot{color:var(--accent);font-size:18px}
-.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links{display:flex;align-items:center;gap:4px}
 .nav-link{padding:6px 11px;border-radius:8px;color:var(--t2);font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .2s}
 .nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
 
@@ -121,40 +122,38 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 
 body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
 .nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
-.nav-links{display:flex;align-items:center;gap:2px}
-.nl{padding:6px 12px;border-radius:7px;color:#8888a0;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
-.nl:hover{color:#e8e8ed;background:rgba(255,255,255,0.05)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nl{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nl:hover{color:#9090a8}
 .nl.a{color:#e8e8ed;background:rgba(99,102,241,0.1)}
 .lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
 .lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
-</style>
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
 
 <nav class="nav">
 <div class="nav-in">
-  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:#818cf8">Platform</span></span></a>
+  <a href="index.html" class="nav-logo"><div class="mark"></div><span>OPC Platform</span></a>
   <div class="nav-links">
-    <a href="platform.html" class="nl"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
-    <a href="government.html" class="nl"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
-    <a href="superagent.html" class="nl"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
-    <a href="legends.html" class="nl"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
-    <a href="academy.html" class="nl a"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
-    <a href="health.html" class="nl"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
-    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+    <a href="service.html" class="nl"></a>
+    <a href="platform.html" class="nl"></a>
+    <a href="government.html" class="nl"></a>
+    <a href="superagent.html" class="nl"></a>
+    <a href="legends.html" class="nl"></a>
+    <a href="academy.html" class="nl a"></a>
+    <a href="policy.html" class="nl"></a>
+    <a href="community.html" class="nl"></a>
+    <a href="chat.html" class="nl"></a>
+    <button class="lg" onclick="togLang()"> EN/</button>
   </div>
 </div>
-
-            <a href="service.html">创业助手</a>
-            <a href="policy.html">政策</a>
-            <a href="community.html">社区</a>
-            <a href="chat.html">聊天</a>
-        </div>
-    </nav>
+</nav>
 
 <section class="hero">
 <h1><span class="zh">📚 <span class="grad">OPC 学院</span></span><span class="en" style="display:none">📚 <span class="grad">OPC Academy</span></span></h1>
@@ -169,11 +168,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 <div class="container">
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('courses',this)"><span class="zh">📖 课程中心</span><span class="en" style="display:none">📖 Courses</span></button>
-  <button class="tab-btn" onclick="showTab('paths',this)"><span class="zh">🗺️ 学习路径</span><span class="en" style="display:none">🗺️ Paths</span></button>
-  <button class="tab-btn" onclick="showTab('mentors',this)"><span class="zh">👨‍🏫 导师匹配</span><span class="en" style="display:none">👨‍🏫 Mentors</span></button>
-  <button class="tab-btn" onclick="showTab('certs',this)"><span class="zh">🏅 技能认证</span><span class="en" style="display:none">🏅 Certs</span></button>
-  <button class="tab-btn" onclick="showTab('my',this)"><span class="zh">📋 我的学习</span><span class="en" style="display:none">📋 My Learning</span></button>
+
+  <button class="tab-btn active" onclick="showTab('courses',this)"><span class="zh"> </span><span class="en" style="display:none"> Courses</span></button>
+  <button class="tab-btn" onclick="showTab('paths',this)"><span class="zh"> </span><span class="en" style="display:none"> Paths</span></button>
+  <button class="tab-btn" onclick="showTab('mentors',this)"><span class="zh">‍ </span><span class="en" style="display:none">‍ Mentors</span></button>
+  <button class="tab-btn" onclick="showTab('certs',this)"><span class="zh"> </span><span class="en" style="display:none"> Certs</span></button>
+  <button class="tab-btn" onclick="showTab('my',this)"><span class="zh"> </span><span class="en" style="display:none"> My Learning</span></button>
 </div>
 
 <!-- COURSES TAB -->
@@ -185,12 +185,14 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 <!-- PATHS TAB -->
 <div class="tab-content" id="tab-paths">
 <div class="pathgrid">
+
   <div class="pcard"><div class="picon">🚀</div>
     <h3><span class="zh">新手起步路径</span><span class="en" style="display:none">Beginner Path</span></h3>
     <p class="pdesc"><span class="zh">适合刚开始考虑独立创业的你</span><span class="en" style="display:none">For those starting OPC</span></p>
     <ol class="steps"><li><span class="zh">自我评估：你适合做OPC吗？</span><span class="en" style="display:none">Self-assessment</span></li><li><span class="zh">市场调研与机会发现</span><span class="en" style="display:none">Market research</span></li><li><span class="zh">最小可行产品(MVP)构建</span><span class="en" style="display:none">Build MVP</span></li><li><span class="zh">获取第一批客户</span><span class="en" style="display:none">First customers</span></li></ol>
     <div class="prog"><div class="prog-bar" style="width:25%"></div></div>
   </div>
+
   <div class="pcard"><div class="picon">🤖</div>
     <h3><span class="zh">AI赋能路径</span><span class="en" style="display:none">AI Empowerment Path</span></h3>
     <p class="pdesc"><span class="zh">用AI工具放大你的个人能力</span><span class="en" style="display:none">Amplify abilities with AI</span></p>
@@ -219,6 +221,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 <!-- MY LEARNING TAB -->
 <div class="tab-content" id="tab-my">
+
 <div class="section-head"><h2><span class="zh">📋 我的学习进度</span><span class="en" style="display:none">📋 My Progress</span></h2></div>
 <div id="myEnrollments"><div style="text-align:center;padding:40px;color:var(--t3)"><span class="zh">你还没有报名任何课程，去课程中心看看吧！</span><span class="en" style="display:none">No enrollments yet. Browse courses!</span></div></div>
 </div>
@@ -238,6 +241,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 <footer class="footer"><p><span class="zh">OPC Academy · 让每个独立创业者都能持续成长</span><span class="en" style="display:none">OPC Academy · Empowering every OPC to grow</span></p></footer>
 
 <script>
+
 
 const FALLBACK_COURSES=[
 {id:1,title:"从零搭建SaaS产品",title_en:"Build SaaS from Scratch",description:"手把手教你从想法到上线，覆盖产品设计、技术选型、增长获客全流程",lesson_count:24,duration_hours:12,level:"beginner",price:299,cover_gradient:"linear-gradient(135deg,#667eea,#764ba2)",cover_emoji:"💻",tags:["SaaS","产品","增长"],student_count:1234,rating:4.8,instructor:"Pieter Levels"},
@@ -277,6 +281,7 @@ async function loadCourses() {
     renderCourses(allCourses);
     renderFilters();
   } catch(e) {
+
     console.log('API unavailable, using fallback');
     allCourses = FALLBACK_COURSES;
     document.getElementById('statCourses').textContent = allCourses.length;
@@ -291,6 +296,7 @@ async function loadMentors() {
     const data = await resp.json();
     document.getElementById('statMentors').textContent = data.mentors.length;
     renderMentors(data.mentors);
+
   } catch(e) { document.getElementById('statMentors').textContent = FALLBACK_MENTORS.length; renderMentors(FALLBACK_MENTORS); }
 }
 
@@ -300,6 +306,7 @@ async function loadCerts() {
     const data = await resp.json();
     document.getElementById('statCerts').textContent = data.certifications.length;
     renderCerts(data.certifications);
+
   } catch(e) { document.getElementById('statCerts').textContent = FALLBACK_CERTS.length; renderCerts(FALLBACK_CERTS); }
 }
 
@@ -309,6 +316,7 @@ async function loadEnrollments() {
     const data = await resp.json();
     (data.enrollments || []).forEach(e => enrolledIds.add(e.course_id));
     renderMyEnrollments(data.enrollments || []);
+
   } catch(e) { console.log('Enrollments unavailable'); }
 }
 
@@ -331,7 +339,8 @@ function renderCourses(courses) {
         <div class="ccard-footer">
           <span class="price">${priceText}</span>
           <span class="students">${c.student_count} ${lang === 'en' ? 'learners' : '人学习'}</span>
-          <button class="enroll-btn ${enrolled ? 'enrolled' : ''}" onclick="event.stopPropagation();${enrolled ? '' : `enrollCourse(${c.id})`}">${enrolled ? '✅ ' + (lang === 'en' ? 'Enrolled' : '已报名') : (lang === 'en' ? 'Enroll' : '报名')}</button>
+
+          <button class="enroll-btn ${enrolled ? 'enrolled' : ''}" onclick="event.stopPropagation();${enrolled ? '' : `enrollCourse(${c.id})`}">${enrolled ? ' ' + (lang === 'en' ? 'Enrolled' : '') : (lang === 'en' ? 'Enroll' : '')}</button>
         </div>
       </div>
     </div>`;
@@ -358,7 +367,7 @@ function renderMentors(mentors) {
       <p class="bio">${bio}</p>
       <div class="skills">${(m.skills||[]).map(s => `<span class="stag">${s}</span>`).join('')}</div>
       <div class="rating">⭐ ${m.rating} · ${m.total_sessions} ${lang === 'en' ? 'sessions' : '次辅导'}</div>
-      <button class="match-btn" onclick="matchMentor(${m.id},'${name}')"><span class="zh">申请匹配</span><span class="en" style="display:none">Request Match</span></button>
+      <button class="match-btn" onclick="matchMentor(${m.id},'${name}')"><span class="zh"></span><span class="en" style="display:none">Request Match</span></button>
     </div>`;
   }).join('');
 }
@@ -423,6 +432,7 @@ async function openCourse(id) {
       <div style="display:flex;gap:16px;margin-bottom:16px;font-size:13px;color:var(--t3)">
         <span>👨‍🏫 ${c.instructor_name}</span>
         <span>⏱ ${c.duration_hours}h</span>
+
         <span>📊 ${levelText(c.level)}</span>
         <span>💰 ${c.price === 0 ? (lang==='en'?'Free':'免费') : '¥'+c.price}</span>
       </div>
@@ -434,8 +444,9 @@ async function openCourse(id) {
         }).join('')}
       </ul>
       <div class="enroll-action">
-        ${enrolled ? '<button class="enroll-big" style="background:var(--bg3);color:var(--green)" disabled>✅ '+(lang==='en'?'Already Enrolled':'已报名')+'</button>' :
-        `<button class="enroll-big" onclick="enrollCourse(${c.id});closeModal()">${lang==='en'?'Enroll Now':'立即报名'} · ${c.price === 0 ? (lang==='en'?'Free':'免费') : '¥'+c.price}</button>`}
+
+        ${enrolled ? '<button class="enroll-big" style="background:var(--bg3);color:var(--green)" disabled> '+(lang==='en'?'Already Enrolled':'')+'</button>' :
+        `<button class="enroll-big" onclick="enrollCourse(${c.id});closeModal()">${lang==='en'?'Enroll Now':''} · ${c.price === 0 ? (lang==='en'?'Free':'') : '¥'+c.price}</button>`}
       </div>`;
     document.getElementById('courseModal').classList.add('show');
   } catch(e) { console.log('Open course error:', e); }
@@ -486,6 +497,7 @@ fetch(`${API}/api/academy/seed`, {method: 'POST'}).then(() => {
 });
 
 document.getElementById('courseModal').addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) closeModal(); });
+
 
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
