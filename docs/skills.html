@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPC Skills - 顶级大咖Agent系统</title>
+    <title>OPC Skills - Agent</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -532,52 +532,52 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1> OPC Skills Agent系统</h1>
-            <p>与全球顶级大咖对话，获取专属商业智慧和技能指导</p>
+            <h1> OPC Skills Agent</h1>
+            <p></p>
         </header>
 
         <!-- AI Advisor Section -->
         <section class="advisor-section">
             <div class="advisor-card">
-                <h2 class="advisor-title"> Skills顾问</h2>
-                <p style="color: var(--text-dim); margin-bottom: 20px;">描述你的问题或需求，AI为你推荐最合适的大咖</p>
+                <h2 class="advisor-title"> Skills</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px;">AI</p>
                 <div class="advisor-input-group">
-                    <input type="text" class="advisor-input" id="advisorQuestion" placeholder="例如：我想学习如何做产品、如何融资、如何提高效率...">
+                    <input type="text" class="advisor-input" id="advisorQuestion" placeholder="...">
                     <button class="advisor-btn" onclick="getRecommendations()"></button>
                 </div>
                 <div class="advisor-recommendations" id="recommendations">
-                    <!-- 推荐结果将在这里显示 -->
+                    <!--  -->
                 </div>
             </div>
         </section>
 
         <!-- Categories Section -->
         <section class="categories-section">
-            <h2 class="section-title"> 大咖分类</h2>
-            <p class="section-desc">按领域浏览顶级大咖</p>
+            <h2 class="section-title"> </h2>
+            <p class="section-desc"></p>
             <div class="categories-grid" id="categoriesGrid">
-                <!-- 分类卡片将在这里显示 -->
+                <!--  -->
             </div>
 
-            <h2 class="section-title" id="legendsTitle"> 所有大咖</h2>
-            <p class="section-desc" id="legendsDesc">点击卡片开始对话</p>
+            <h2 class="section-title" id="legendsTitle"> </h2>
+            <p class="section-desc" id="legendsDesc"></p>
             <div class="legends-grid" id="legendsGrid">
-                <!-- 传奇人物卡片将在这里显示 -->
+                <!--  -->
             </div>
         </section>
 
         <!-- Skills Cloud Section -->
         <section class="skills-section">
-            <h2 class="section-title" style="text-align: center;">✨ 热门Skills</h2>
-            <p class="section-desc" style="text-align: center; margin-bottom: 32px;">点击Skill查看擅长的大咖</p>
+            <h2 class="section-title" style="text-align: center;"> Skills</h2>
+            <p class="section-desc" style="text-align: center; margin-bottom: 32px;">Skill</p>
             <div class="skills-cloud" id="skillsCloud">
-                <!-- 技能云将在这里显示 -->
+                <!--  -->
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>OPC Platform - 一站式OPC赋能平台 | 连接全球独立创业者</p>
+            <p>OPC Platform - OPC | </p>
         </footer>
     </div>
 
@@ -587,38 +587,38 @@
             <div class="chat-header">
                 <div class="chat-header-info">
                     <span class="chat-header-emoji" id="chatEmoji"></span>
-                    <span class="chat-header-name" id="chatName">对话中...</span>
+                    <span class="chat-header-name" id="chatName">...</span>
                 </div>
                 <button class="chat-close" onclick="closeChat()">×</button>
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message assistant">
-                    你好！我是你的商业导师。请告诉我你想了解什么，我会用我的经验为你提供建议。
+                    
                 </div>
             </div>
             <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="输入你的问题..." onkeypress="handleKeyPress(event)">
+                <input type="text" class="chat-input" id="chatInput" placeholder="..." onkeypress="handleKeyPress(event)">
                 <button class="chat-send" id="chatSend" onclick="sendMessage()"></button>
             </div>
         </div>
     </div>
 
     <script>
-        // API配置
+        // API
         const API_BASE = window.location.origin;
 
-        // 状态管理
+        // 
         let currentLegend = null;
         let chatHistory = [];
 
-        // 初始化
+        // 
         document.addEventListener('DOMContentLoaded', () => {
             loadCategories();
             loadLegends();
             loadSkillsCloud();
         });
 
-        // 加载分类
+        // 
         async function loadCategories() {
             try {
                 const response = await fetch(`${API_BASE}/api/chat/skills/categories`);
@@ -640,7 +640,7 @@
             `).join('');
         }
 
-        // 加载传奇人物
+        // 
         async function loadLegends(category = null) {
             try {
                 const url = category 
@@ -651,7 +651,7 @@
                 const legends = category ? data.legends : data.legends;
                 renderLegends(legends);
                 
-                // 更新标题
+                // 
                 if (category) {
                     const catResponse = await fetch(`${API_BASE}/api/chat/skills/categories`);
                     const catData = await catResponse.json();
@@ -659,8 +659,8 @@
                     document.getElementById('legendsTitle').textContent = `${cat.emoji} ${cat.name}`;
                     document.getElementById('legendsDesc').textContent = cat.description;
                 } else {
-                    document.getElementById('legendsTitle').textContent = ' 所有大咖';
-                    document.getElementById('legendsDesc').textContent = '点击卡片开始对话';
+                    document.getElementById('legendsTitle').textContent = ' ';
+                    document.getElementById('legendsDesc').textContent = '';
                 }
             } catch (error) {
                 console.error('Failed to load legends:', error);
@@ -682,15 +682,15 @@
                         ${legend.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                     </div>
                     <div class="legend-action">
-                         开始对话 →
+                          →
                     </div>
                 </div>
             `).join('');
         }
 
-        // 按分类筛选
+        // 
         function filterByCategory(category) {
-            // 更新活跃状态
+            // 
             document.querySelectorAll('.category-card').forEach(card => {
                 card.classList.remove('active');
             });
@@ -699,7 +699,7 @@
             loadLegends(category);
         }
 
-        // 加载技能云
+        // 
         async function loadSkillsCloud() {
             try {
                 const response = await fetch(`${API_BASE}/api/chat/skills/all`);
@@ -721,7 +721,7 @@
             `).join('');
         }
 
-        // 按技能搜索
+        // 
         async function searchBySkill(skill) {
             try {
                 const response = await fetch(`${API_BASE}/api/chat/skills/search?skill=${encodeURIComponent(skill)}`);
@@ -736,7 +736,7 @@
             }
         }
 
-        // 获取推荐
+        // 
         async function getRecommendations() {
             const question = document.getElementById('advisorQuestion').value.trim();
             if (!question) return;
@@ -765,49 +765,49 @@
             `).join('');
         }
 
-        // 打开聊天
+        // 
         function openChat(legendId, emoji, name) {
             currentLegend = legendId;
             chatHistory = [];
             
             document.getElementById('chatEmoji').textContent = emoji;
-            document.getElementById('chatName').textContent = `与 ${name} 对话`;
+            document.getElementById('chatName').textContent = ` ${name} `;
             document.getElementById('chatMessages').innerHTML = `
                 <div class="message assistant">
-                    你好！我是${name}。请告诉我你想了解什么，我会用我的经验为你提供建议。
+                    ${name}
                 </div>
             `;
             document.getElementById('chatModal').classList.add('active');
             document.getElementById('chatInput').focus();
         }
 
-        // 关闭聊天
+        // 
         function closeChat() {
             document.getElementById('chatModal').classList.remove('active');
             currentLegend = null;
             chatHistory = [];
         }
 
-        // 处理回车键
+        // 
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // 发送消息
+        // 
         async function sendMessage() {
             const input = document.getElementById('chatInput');
             const message = input.value.trim();
             
             if (!message || !currentLegend) return;
 
-            // 添加用户消息
+            // 
             addMessage(message, 'user');
             input.value = '';
             chatHistory.push({ role: 'user', content: message });
 
-            // 显示加载状态
+            // 
             const loadingId = addLoading();
 
             try {
@@ -818,17 +818,17 @@
                 });
                 const data = await response.json();
 
-                // 移除加载状态，添加回复
+                // 
                 removeLoading(loadingId);
                 addMessage(data.response, 'assistant');
                 chatHistory.push({ role: 'assistant', content: data.response });
             } catch (error) {
                 removeLoading(loadingId);
-                addMessage('抱歉，服务暂时不可用，请稍后再试。', 'assistant');
+                addMessage('', 'assistant');
             }
         }
 
-        // 添加消息
+        // 
         function addMessage(content, role) {
             const messages = document.getElementById('chatMessages');
             const div = document.createElement('div');
@@ -838,7 +838,7 @@
             messages.scrollTop = messages.scrollHeight;
         }
 
-        // 添加加载状态
+        // 
         function addLoading() {
             const messages = document.getElementById('chatMessages');
             const id = 'loading-' + Date.now();
@@ -851,13 +851,13 @@
             return id;
         }
 
-        // 移除加载状态
+        // 
         function removeLoading(id) {
             const loading = document.getElementById(id);
             if (loading) loading.remove();
         }
 
-        // 点击模态框外部关闭
+        // 
         document.getElementById('chatModal').addEventListener('click', (e) => {
             if (e.target.id === 'chatModal') {
                 closeChat();
