@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title> - OPC Platform</title>
-<meta name="description" content="OPC">
+<title>注册 - OPC Platform</title>
+<meta name="description" content="注册OPC平台，开始你的创业之旅">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -28,8 +28,11 @@ body{
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
+  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
+  border-bottom:1px solid var(--bdr)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
+  display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;
   background:linear-gradient(135deg,var(--a),var(--c));
@@ -96,7 +99,7 @@ a{color:inherit;text-decoration:none}
   background:var(--bg3);display:flex;align-items:center;justify-content:center;
   transition:all .2s;flex-shrink:0;margin-top:2px}
 .checkbox input:checked+.check{background:var(--a);border-color:var(--a)}
-.checkbox .check::after{content:'';font-size:11px;color:#fff;opacity:0;transition:opacity .2s}
+.checkbox .check::after{content:'✓';font-size:11px;color:#fff;opacity:0;transition:opacity .2s}
 .checkbox input:checked+.check::after{opacity:1}
 .checkbox span{font-size:13px;color:var(--t2);line-height:1.5}
 .checkbox a{color:var(--a2)}
@@ -118,82 +121,82 @@ a{color:inherit;text-decoration:none}
   .auth-card{padding:36px 24px}
   .form-row{flex-direction:column;gap:0}
 }
-a{text-decoration:none;color:inherit}</style>
+</style>
 </head>
 <body>
 
 <nav class="nav"><div class="nav-i">
   <a href="index.html" class="nav-logo">
-    <div class="mk"></div>
+    <div class="mk">◆</div>
     <span>OPC <span style="color:var(--a2)">Platform</span></span>
   </a>
   <div style="display:flex;gap:8px">
-    <a href="login.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px"></a>
+    <a href="login.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px">登录</a>
   </div>
 </div></nav>
 
 <section class="auth">
   <div class="auth-card">
     <div class="auth-h">
-      <h1></h1>
-      <p>OPC</p>
+      <h1>创建账户</h1>
+      <p>加入OPC平台，开始你的创业之旅</p>
     </div>
     
     <form id="registerForm">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label"></label>
-          <input type="text" class="form-input" id="username" placeholder="" required>
-          <div class="form-hint">3-20</div>
+          <label class="form-label">用户名</label>
+          <input type="text" class="form-input" id="username" placeholder="输入用户名" required>
+          <div class="form-hint">用于登录，3-20个字符</div>
         </div>
         <div class="form-group">
-          <label class="form-label"></label>
-          <input type="text" class="form-input" id="displayName" placeholder="">
-          <div class="form-hint"></div>
+          <label class="form-label">显示名称</label>
+          <input type="text" class="form-input" id="displayName" placeholder="你的名字">
+          <div class="form-hint">其他人看到的名字</div>
         </div>
       </div>
       
       <div class="form-group">
-        <label class="form-label"></label>
+        <label class="form-label">邮箱</label>
         <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
       </div>
       
       <div class="form-group">
-        <label class="form-label"></label>
-        <input type="password" class="form-input" id="password" placeholder="8" required>
-        <div class="form-hint"></div>
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" id="password" placeholder="至少8个字符" required>
+        <div class="form-hint">建议使用字母、数字和符号的组合</div>
       </div>
       
       <div class="form-group">
-        <label class="form-label"></label>
-        <input type="password" class="form-input" id="confirmPassword" placeholder="" required>
+        <label class="form-label">确认密码</label>
+        <input type="password" class="form-input" id="confirmPassword" placeholder="再次输入密码" required>
       </div>
       
       <label class="checkbox">
         <input type="checkbox" id="agreeTerms" required>
         <div class="check"></div>
-        <span> <a href="#"></a>  <a href="#"></a></span>
+        <span>我已阅读并同意 <a href="#">服务条款</a> 和 <a href="#">隐私政策</a></span>
       </label>
       
       <button type="submit" class="btn btn-p" id="submitBtn">
-        <span></span>
+        <span>创建账户</span>
       </button>
     </form>
     
     <div class="auth-footer">
-      <a href="login.html"></a>
+      已有账户？<a href="login.html">立即登录</a>
     </div>
     
-    <div class="auth-divider"></div>
+    <div class="auth-divider">或</div>
     
     <button class="btn btn-s" onclick="window.location.href='index.html'">
-      
+      返回首页
     </button>
   </div>
 </section>
 
 <footer class="ft">
-  <div class="ft-bot">© 2026 OPC Platform · </div>
+  <div class="ft-bot">© 2026 OPC Platform · 一个人的公司，无限可能</div>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -201,7 +204,7 @@ a{text-decoration:none;color:inherit}</style>
 <script>
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
-// 
+// 显示提示
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   toast.textContent = message;
@@ -209,7 +212,7 @@ function showToast(message, type = 'success') {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// 
+// 检查是否已登录
 function checkAuth() {
   const token = localStorage.getItem('opc_token');
   if (token) {
@@ -217,7 +220,7 @@ function checkAuth() {
   }
 }
 
-// 
+// 注册
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
@@ -228,30 +231,30 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   const displayName = document.getElementById('displayName').value;
   const agreeTerms = document.getElementById('agreeTerms').checked;
   
-  // 
+  // 验证
   if (username.length < 3 || username.length > 20) {
-    showToast('3-20', 'error');
+    showToast('用户名需要3-20个字符', 'error');
     return;
   }
   
   if (password.length < 8) {
-    showToast('8', 'error');
+    showToast('密码至少需要8个字符', 'error');
     return;
   }
   
   if (password !== confirmPassword) {
-    showToast('', 'error');
+    showToast('两次输入的密码不一致', 'error');
     return;
   }
   
   if (!agreeTerms) {
-    showToast('', 'error');
+    showToast('请同意服务条款和隐私政策', 'error');
     return;
   }
   
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
-  submitBtn.innerHTML = '<span>...</span>';
+  submitBtn.innerHTML = '<span>注册中...</span>';
   
   try {
     const response = await fetch(`${API_BASE}/api/auth/register`, {
@@ -270,14 +273,14 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const data = await response.json();
     
     if (!response.ok) {
-      throw new Error(data.detail || '');
+      throw new Error(data.detail || '注册失败');
     }
     
-    // token
+    // 保存token和用户信息
     localStorage.setItem('opc_token', data.access_token);
     localStorage.setItem('opc_user', JSON.stringify(data.user));
     
-    showToast('...', 'success');
+    showToast('注册成功！正在跳转...', 'success');
     
     setTimeout(() => {
       window.location.href = 'platform.html';
@@ -286,11 +289,11 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   } catch (error) {
     showToast(error.message, 'error');
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<span></span>';
+    submitBtn.innerHTML = '<span>创建账户</span>';
   }
 });
 
-// 
+// 初始化
 checkAuth();
 </script>
 <script src="mobile.js"></script>

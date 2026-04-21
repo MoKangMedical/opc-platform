@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title> - OPC Platform</title>
-<meta name="description" content="OPC">
+<title>登录 - OPC Platform</title>
+<meta name="description" content="登录OPC平台，开始你的创业之旅">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -28,8 +28,11 @@ body{
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
+  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
+  border-bottom:1px solid var(--bdr)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
+  display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;
   background:linear-gradient(135deg,var(--a),var(--c));
@@ -103,57 +106,57 @@ a{color:inherit;text-decoration:none}
   .auth-card{padding:36px 24px}
   .form-row{flex-direction:column;gap:0}
 }
-a{text-decoration:none;color:inherit}</style>
+</style>
 </head>
 <body>
 
 <nav class="nav"><div class="nav-i">
   <a href="index.html" class="nav-logo">
-    <div class="mk"></div>
+    <div class="mk">◆</div>
     <span>OPC <span style="color:var(--a2)">Platform</span></span>
   </a>
   <div style="display:flex;gap:8px">
-    <a href="register.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px"></a>
+    <a href="register.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px">注册</a>
   </div>
 </div></nav>
 
 <section class="auth">
   <div class="auth-card">
     <div class="auth-h">
-      <h1></h1>
-      <p>OPC</p>
+      <h1>欢迎回来</h1>
+      <p>登录你的OPC账户，继续你的创业之旅</p>
     </div>
     
     <form id="loginForm">
       <div class="form-group">
-        <label class="form-label"></label>
-        <input type="text" class="form-input" id="username" placeholder="" required>
+        <label class="form-label">用户名</label>
+        <input type="text" class="form-input" id="username" placeholder="输入用户名" required>
       </div>
       
       <div class="form-group">
-        <label class="form-label"></label>
-        <input type="password" class="form-input" id="password" placeholder="" required>
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" id="password" placeholder="输入密码" required>
       </div>
       
       <button type="submit" class="btn btn-p" id="submitBtn">
-        <span></span>
+        <span>登录</span>
       </button>
     </form>
     
     <div class="auth-footer">
-      <a href="register.html"></a>
+      还没有账户？<a href="register.html">立即注册</a>
     </div>
     
-    <div class="auth-divider"></div>
+    <div class="auth-divider">或</div>
     
     <button class="btn btn-s" onclick="window.location.href='index.html'">
-      
+      返回首页
     </button>
   </div>
 </section>
 
 <footer class="ft">
-  <div class="ft-bot">© 2026 OPC Platform · </div>
+  <div class="ft-bot">© 2026 OPC Platform · 一个人的公司，无限可能</div>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -161,7 +164,7 @@ a{text-decoration:none;color:inherit}</style>
 <script>
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
-// 
+// 显示提示
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   toast.textContent = message;
@@ -169,7 +172,7 @@ function showToast(message, type = 'success') {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// 
+// 检查是否已登录
 function checkAuth() {
   const token = localStorage.getItem('opc_token');
   if (token) {
@@ -177,7 +180,7 @@ function checkAuth() {
   }
 }
 
-// 
+// 登录
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
@@ -186,7 +189,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const submitBtn = document.getElementById('submitBtn');
   
   submitBtn.disabled = true;
-  submitBtn.innerHTML = '<span>...</span>';
+  submitBtn.innerHTML = '<span>登录中...</span>';
   
   try {
     const formData = new URLSearchParams();
@@ -204,14 +207,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const data = await response.json();
     
     if (!response.ok) {
-      throw new Error(data.detail || '');
+      throw new Error(data.detail || '登录失败');
     }
     
-    // token
+    // 保存token和用户信息
     localStorage.setItem('opc_token', data.access_token);
     localStorage.setItem('opc_user', JSON.stringify(data.user));
     
-    showToast('...', 'success');
+    showToast('登录成功！正在跳转...', 'success');
     
     setTimeout(() => {
       window.location.href = 'platform.html';
@@ -220,11 +223,11 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   } catch (error) {
     showToast(error.message, 'error');
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<span></span>';
+    submitBtn.innerHTML = '<span>登录</span>';
   }
 });
 
-// 
+// 初始化
 checkAuth();
 </script>
 <script src="mobile.js"></script>

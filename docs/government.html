@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> — OPC Marketplace</title>
-    <meta name="description" content="2167AI">
+    <title>揭榜挂帅 — OPC Marketplace</title>
+    <meta name="description" content="江苏省21家省属企业发布67个AI应用场景需求，面向全社会公开征集技术解决方案">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -59,7 +59,6 @@
         /* ===== Navigation ===== */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-
             background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
             border-bottom: 1px solid var(--border);
             transition: background 0.3s;
@@ -373,28 +372,29 @@
             .mobile-menu-btn { display: block; }
             .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(6,6,10,0.98); padding: 20px 32px; gap: 16px; border-bottom: 1px solid var(--border); }
         }
-    a{text-decoration:none;color:inherit}</style>
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><span class="dot"></span> OPC Platform</a>
+            <a href="index.html" class="nav-logo"><span class="dot">◆</span> OPC Platform</a>
             <div class="nav-links" id="navLinks">
-                <a href="service.html" class="nav-link"></a>
-                <a href="platform.html" class="nav-link"></a>
-                <a href="government.html" class="nav-link active"></a>
-                <a href="superagent.html" class="nav-link"></a>
-                <a href="legends.html" class="nav-link"></a>
-                <a href="academy.html" class="nav-link"></a>
-                <a href="policy.html" class="nav-link"></a>
-                <a href="community.html" class="nav-link"></a>
-                <a href="chat.html" class="nav-link"></a>
-                <button class="lang-btn" onclick="toggleLang()"> EN/</button>
+                <a href="platform.html" class="nav-link" data-en="Platform">平台</a>
+                <a href="government.html" class="nav-link active" data-en="Marketplace">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link" data-en="Super Agent">超级个体</a>
+                <a href="legends.html" class="nav-link" data-en="Hall of Fame">名人堂</a>
+                <a href="academy.html" class="nav-link" data-en="Academy">学院</a>
+                <a href="health.html" class="nav-link" data-en="Health">健康</a>
+                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
             </div>
-            <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')"></button>
+            <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
         </div>
-    </nav>
+    
+            <a href="service.html">创业助手</a>
+            <a href="policy.html">政策</a>
+            <a href="community.html">社区</a>
+            <a href="chat.html">聊天</a>
         </div>
     </nav>
 
@@ -403,35 +403,35 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse"></span>
-                <span data-en="AI+ ACTION · STATE-OWNED ENTERPRISES">AI+ ·  · </span>
+                <span data-en="AI+ ACTION · STATE-OWNED ENTERPRISES">AI+行动 · 省属企业 · 揭榜挂帅</span>
             </div>
             <h1 class="hero-title">
-                <span data-en="Government Tech Innovation"></span><br>
-                <span class="gradient" data-en="Challenge Marketplace"></span>
+                <span data-en="Government Tech Innovation">政府科技创新项目</span><br>
+                <span class="gradient" data-en="Challenge Marketplace">揭榜挂帅对接平台</span>
             </h1>
             <p class="hero-desc" data-en="21 state-owned enterprises in Jiangsu Province published 67 AI application scenarios, with a total investment of 350 million yuan, openly seeking technical solutions from the public.">
-                2167AI3.5
+                江苏省21家省属企业发布67个AI应用场景需求，涉及建设投资3.5亿元，面向全社会公开征集技术解决方案。
             </p>
             <div class="stats-row">
                 <div class="stat-cell">
                     <div class="stat-number red" data-count="67">67</div>
-                    <div class="stat-label" data-en="Total Projects"></div>
+                    <div class="stat-label" data-en="Total Projects">项目总数</div>
                 </div>
                 <div class="stat-cell">
-                    <div class="stat-number gold">3.5</div>
-                    <div class="stat-label" data-en="Total Budget"></div>
+                    <div class="stat-number gold">3.5亿</div>
+                    <div class="stat-label" data-en="Total Budget">总预算</div>
                 </div>
                 <div class="stat-cell">
                     <div class="stat-number blue" data-count="26">26</div>
-                    <div class="stat-label" data-en="Industries"></div>
+                    <div class="stat-label" data-en="Industries">行业覆盖</div>
                 </div>
                 <div class="stat-cell">
                     <div class="stat-number green" data-count="21">21</div>
-                    <div class="stat-label" data-en="Publishers"></div>
+                    <div class="stat-label" data-en="Publishers">发布方</div>
                 </div>
             </div>
             <a href="#projects" class="hero-cta">
-                <span data-en="Browse Projects"></span>
+                <span data-en="Browse Projects">浏览项目</span>
                 <span>↓</span>
             </a>
         </div>
@@ -444,8 +444,8 @@
                 <!-- Generated by JS -->
             </div>
             <div class="search-bar">
-                <span class="icon"></span>
-                <input type="text" id="searchInput" placeholder="..." data-en-placeholder="Search projects, companies, technologies...">
+                <span class="icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="搜索项目名称、企业、技术关键词..." data-en-placeholder="Search projects, companies, technologies...">
                 <span class="count" id="searchCount"></span>
             </div>
         </div>
@@ -455,15 +455,15 @@
     <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-en="All Projects"></h2>
+                <h2 class="section-title" data-en="All Projects">全部项目</h2>
                 <span class="section-count" id="projectCount"></span>
             </div>
             <div class="projects-grid" id="projectsGrid">
                 <!-- Generated by JS -->
             </div>
             <div class="empty-state" id="emptyState" style="display:none;">
-                <div class="icon"></div>
-                <p data-en="No projects found. Try adjusting your filters."></p>
+                <div class="icon">🔍</div>
+                <p data-en="No projects found. Try adjusting your filters.">没有找到匹配的项目，请调整筛选条件。</p>
             </div>
         </div>
     </section>
@@ -471,11 +471,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-inner">
-            <p class="footer-text">© 2026 OPC Alliance ·  · AI</p>
+            <p class="footer-text">© 2026 OPC Alliance · 揭榜挂帅 · 江苏省属企业AI场景对接</p>
             <div class="footer-links">
-                <a href="index.html" data-en="Home"></a>
-                <a href="platform.html" data-en="Platform"></a>
-                <a href="superagent.html" data-en="Super Agent"></a>
+                <a href="index.html" data-en="Home">首页</a>
+                <a href="platform.html" data-en="Platform">平台</a>
+                <a href="superagent.html" data-en="Super Agent">超级个体</a>
             </div>
         </div>
     </footer>
@@ -483,52 +483,51 @@
     <script>
     // ===== Project Data (embedded from jiangsu_ai_scenarios.json) =====
     const PROJECTS = [
-        {id:1,title:"",company:"",category:"",desc:"",budget:"¥200-300",budgetMin:200,deadline:"2026-06-13",tags:["","",""],contact:"",featured:true},
-        {id:2,title:"",company:"",category:"",desc:"AI+",budget:"¥200-300",budgetMin:200,deadline:"2026-05-11",tags:["","",""],contact:"",featured:true},
-        {id:3,title:"300MW",company:"",category:"",desc:"++",budget:"¥800",budgetMin:800,deadline:"2026-05-05",tags:["",""],contact:"",featured:true},
-        {id:4,title:"",company:"",category:"",desc:"AI",budget:"¥200-500",budgetMin:200,deadline:"2026-05-21",tags:["",""],contact:""},
-        {id:5,title:"",company:"",category:"",desc:"",budget:"¥200-300",budgetMin:200,deadline:"2026-05-19",tags:["","",""],contact:""},
-        {id:6,title:"",company:"",category:"",desc:"+AI",budget:"¥180",budgetMin:180,deadline:"2026-05-18",tags:["","SLAM",""],contact:""},
-        {id:7,title:"",company:"",category:"",desc:"",budget:"¥150",budgetMin:150,deadline:"2026-05-12",tags:["",""],contact:""},
-        {id:8,title:"",company:"",category:"",desc:"AI",budget:"¥100",budgetMin:100,deadline:"2026-05-10",tags:["",""],contact:""},
-        {id:9,title:"",company:"",category:"",desc:"EI",budget:"¥200",budgetMin:200,deadline:"2026-06-16",tags:["","",""],contact:""},
-        {id:10,title:"",company:"",category:"",desc:"AI",budget:"¥200-500",budgetMin:200,deadline:"2026-06-07",tags:["",""],contact:""},
-        {id:11,title:"",company:"",category:"",desc:"AI",budget:"¥200-500",budgetMin:200,deadline:"2026-05-09",tags:[""],contact:""},
-        {id:12,title:"",company:"",category:"",desc:"",budget:"¥700",budgetMin:700,deadline:"2026-06-10",tags:["","","NLP"],contact:""},
-        {id:13,title:"",company:"",category:"",desc:"",budget:"¥2400",budgetMin:2400,deadline:"2026-05-31",tags:["",""],contact:"",hot:true},
-        {id:14,title:"",company:"",category:"",desc:"GNSS-SLAM",budget:"¥150",budgetMin:150,deadline:"2026-05-06",tags:["","","SLAM"],contact:""},
-        {id:15,title:"",company:"",category:"",desc:"AI",budget:"¥220",budgetMin:220,deadline:"2026-05-05",tags:["",""],contact:""},
-        {id:16,title:"",company:"",category:"",desc:"",budget:"¥1000",budgetMin:1000,deadline:"2026-05-09",tags:["",""],contact:"",hot:true},
-        {id:17,title:"",company:"",category:"",desc:"AI",budget:"¥100-300",budgetMin:100,deadline:"2026-05-17",tags:[""],contact:""},
-        {id:18,title:"",company:"",category:"",desc:"AI",budget:"¥100-300",budgetMin:100,deadline:"2026-05-18",tags:[""],contact:""},
-        {id:19,title:"AI",company:"",category:"",desc:"AI",budget:"¥100",budgetMin:100,deadline:"2026-06-05",tags:["","",""],contact:""},
-        {id:20,title:"",company:"",category:"",desc:"AI",budget:"¥600",budgetMin:600,deadline:"2026-06-11",tags:["","",""],contact:""},
-        {id:21,title:"AI3D",company:"",category:"",desc:"3D",budget:"¥150",budgetMin:150,deadline:"2026-05-05",tags:["","3D"],contact:""},
-        {id:22,title:"",company:"",category:"",desc:"AIB2B---",budget:"¥360",budgetMin:360,deadline:"2026-05-15",tags:["",""],contact:""},
-        {id:23,title:"",company:"",category:"",desc:"AI",budget:"¥500",budgetMin:500,deadline:"2026-06-01",tags:["","","NLP"],contact:""},
-        {id:24,title:"AI",company:"",category:"",desc:"AI",budget:"¥100-300",budgetMin:100,deadline:"2026-05-20",tags:[""],contact:""},
-        {id:25,title:"AI",company:"",category:"",desc:"AI",budget:"¥100-300",budgetMin:100,deadline:"2026-05-25",tags:[""],contact:""},
-        {id:26,title:"",company:"",category:"",desc:"AI",budget:"¥200-500",budgetMin:200,deadline:"2026-05-30",tags:[""],contact:""},
-        {id:27,title:"",company:"",category:"",desc:"AI",budget:"¥500",budgetMin:500,deadline:"2026-06-01",tags:["","",""],contact:""},
-        {id:28,title:"",company:"",category:"",desc:"",budget:"¥70",budgetMin:70,deadline:"2026-05-10",tags:["",""],contact:""},
-        {id:29,title:"",company:"",category:"",desc:"AI",budget:"¥47",budgetMin:47,deadline:"2026-05-15",tags:["","",""],contact:""},
-        {id:30,title:"AI+",company:"",category:"",desc:"AIAI",budget:"¥350",budgetMin:350,deadline:"2026-05-25",tags:["","",""],contact:""}
+        {id:1,title:"海上风电场智能运维场景",company:"江苏省国信集团有限公司",category:"新能源",desc:"融合人工智能技术，在海上风电项目建设智能运维系统中对风机状态进行实时评估和远程运维，实现海上风电机组无人巡检、故障预测维护，提升运维效率和安全性。",budget:"¥200万-300万",budgetMin:200,deadline:"2026-06-13",tags:["人工智能","物联网","大数据"],contact:"叶兴沛",featured:true},
+        {id:2,title:"智慧电厂全景感知与自主优化场景",company:"江苏省国信集团有限公司",category:"能源",desc:"部署智能传感、工业互联网平台和自主控制系统，构建AI+数字孪生电厂，涵盖燃料输送智能调度、机组参数实时监控、无人巡检及智能决策优化。",budget:"¥200万-300万",budgetMin:200,deadline:"2026-05-11",tags:["人工智能","数字孪生","物联网"],contact:"王强",featured:true},
+        {id:3,title:"300MW级高温绝热压缩空气储能系统全过程智能运行场景",company:"江苏省国信集团有限公司",category:"储能",desc:"建设智能灵活调控+实时滚动优化+高精度故障诊断三位一体的全过程智能运行体系，提升安全性、经济性与调峰支撑能力。",budget:"¥800万",budgetMin:800,deadline:"2026-05-05",tags:["人工智能","故障诊断"],contact:"杨正",featured:true},
+        {id:4,title:"基于火焰视觉感知与高温气象场测量的锅炉燃烧智能管控场景",company:"江苏省国信集团有限公司",category:"能源",desc:"利用AI视觉感知和高温气象场测量技术，对锅炉燃烧过程进行智能管控和优化。",budget:"¥200万-500万",budgetMin:200,deadline:"2026-05-21",tags:["人工智能","计算机视觉"],contact:"叶兴沛"},
+        {id:5,title:"施工安全智能监测场景",company:"江苏省国信集团有限公司",category:"安全监测",desc:"利用无人机、机器狗、安全传感器等，在电厂基建工地和重大施工项目应用智慧工地解决方案，实现高危作业智能监测预警、施工现场数字孪生可视化和违规行为自动抓拍。",budget:"¥200万-300万",budgetMin:200,deadline:"2026-05-19",tags:["人工智能","无人机","数字孪生"],contact:"王毅"},
+        {id:6,title:"煤炭码头船舶安全靠泊引导场景",company:"江苏省国信集团有限公司",category:"物流仓储",desc:"构建多源感知+AI融合决策的智能靠泊引导体系，通过激光雷达、无人机等硬件，实时采集船舶动态与水文气象数据，实现智能分析及风险预警。",budget:"¥180万",budgetMin:180,deadline:"2026-05-18",tags:["人工智能","SLAM算法","深度学习"],contact:"胡高斌"},
+        {id:7,title:"一站式智能保险规划场景",company:"江苏省国信集团有限公司",category:"保险",desc:"嵌入客户需求分析与产品知识库，实现保障缺口量化、智能产品匹配与标准化建议书一键生成，为代理人提供实时专业支持。",budget:"¥150万",budgetMin:150,deadline:"2026-05-12",tags:["人工智能","知识库"],contact:"兰峰"},
+        {id:8,title:"主动集体健康管理场景",company:"江苏省国信集团有限公司",category:"医疗健康",desc:"通过定制智能穿戴设备持续采集患者生命体征数据，结合AI算法分析预警，推动病区护理数字化升级，助力老年心血管疾病管理从被动救治转主动预防。",budget:"¥100万",budgetMin:100,deadline:"2026-05-10",tags:["人工智能","可穿戴设备"],contact:"顾博森"},
+        {id:9,title:"路网营运知识工程及高质量数据集建设场景",company:"江苏交通控股有限公司",category:"交通",desc:"围绕路网运行复杂高频业务场景，聚焦多模态数据集规范建设、知识库语义对齐、跨系统数据动态调用等关键难题，开展江苏高速EI路网智能体知识工程建设技术与应用模式研究。",budget:"¥200万",budgetMin:200,deadline:"2026-06-16",tags:["人工智能","知识图谱","大数据"],contact:"王浩淼"},
+        {id:10,title:"路网智慧管控场景",company:"江苏交通控股有限公司",category:"交通",desc:"基于AI视频分析与交通流预测技术，实现路网事件自动检测、拥堵预警、应急资源智能调度，提升高速公路运营管控效率与安全水平。",budget:"¥200万-500万",budgetMin:200,deadline:"2026-06-07",tags:["人工智能","计算机视觉"],contact:"王浩淼"},
+        {id:11,title:"定制化出行服务场景",company:"江苏交通控股有限公司",category:"交通",desc:"运用AI分析用户出行习惯和实时路况，提供个性化路线规划、一站式出行服务、伴随式信息服务，提升出行体验。",budget:"¥200万-500万",budgetMin:200,deadline:"2026-05-09",tags:["人工智能"],contact:"王浩淼"},
+        {id:12,title:"智能客服场景",company:"江苏交通控股有限公司",category:"交通",desc:"基于交通行业大模型优化意图识别与语义理解，结合出行者路线咨询、收费标准解读、路况查询等需求，构建智慧客服智能体系统，提升常见出行问题应答准确率。",budget:"¥700万",budgetMin:700,deadline:"2026-06-10",tags:["人工智能","大模型","NLP"],contact:"钱旻"},
+        {id:13,title:"智慧收费清分与结算场景",company:"江苏交通控股有限公司",category:"交通",desc:"基于智能数据分析技术以及模型算法，构建结算对账优化系统，实现结算对账体系优化，有效减少对账差错、提升工作效率。",budget:"¥2400万",budgetMin:2400,deadline:"2026-05-31",tags:["人工智能","数据分析"],contact:"奚韩",hot:true},
+        {id:14,title:"桥梁经常检查场景",company:"江苏交通控股有限公司",category:"交通",desc:"研发GNSS-激光雷达SLAM导航定位协调技术、智能视觉病害识别算法、厘米级病害定位等关键技术，构建智能化桥梁巡检体系。",budget:"¥150万",budgetMin:150,deadline:"2026-05-06",tags:["人工智能","无人机","SLAM"],contact:"郑俊秋"},
+        {id:15,title:"桥梁智慧化运维场景",company:"江苏交通控股有限公司",category:"交通",desc:"探索基于监测视频开展桥梁坍塌、桥面大变形等重大风险自动识别算法研究，融合结构健康监测数据与AI图形识别能力提升桥梁风险预警能力。",budget:"¥220万",budgetMin:220,deadline:"2026-05-05",tags:["人工智能","计算机视觉"],contact:"郑俊秋"},
+        {id:16,title:"无人机融合应用场景",company:"江苏交通控股有限公司",category:"交通",desc:"打通无人机与现有高速公路作业系统和数据中台融合，持续提升算法识别的准确性场景丰富性。",budget:"¥1000万",budgetMin:1000,deadline:"2026-05-09",tags:["人工智能","无人机"],contact:"田鹏",hot:true},
+        {id:17,title:"媒体生产全链路智能协同与任务调度系统",company:"江苏省广播电视集团有限公司",category:"传媒",desc:"构建媒体内容生产全链路AI协同平台，实现选题策划、素材采集、内容编辑、审核发布、效果分析的智能化调度与任务分配。",budget:"¥100万-300万",budgetMin:100,deadline:"2026-05-17",tags:["人工智能"],contact:"席鲁江"},
+        {id:18,title:"江苏省城市足球联赛智慧赛事分析及产业化应用场景",company:"江苏省广播电视集团有限公司",category:"传媒",desc:"利用AI技术对足球联赛进行智慧赛事分析，涵盖球员表现评估、战术分析、观众行为洞察，推动赛事产业化发展。",budget:"¥100万-300万",budgetMin:100,deadline:"2026-05-18",tags:["人工智能"],contact:"席鲁江"},
+        {id:19,title:"面向演唱会及大型演艺的AI智能化舞台全流程模拟与合成平台",company:"江苏省广播电视集团有限公司",category:"传媒",desc:"构建以AI为核心的全链路虚拟制作平台，实现舞台视觉、灯光、镜头等全要素智能化生成控制，突破实时渲染与协同调度技术。",budget:"¥100万",budgetMin:100,deadline:"2026-06-05",tags:["人工智能","虚拟制作","实时渲染"],contact:"席鲁江"},
+        {id:20,title:"机场飞行区安全风险智能监测与预警场景",company:"东部机场集团有限公司",category:"航空安全",desc:"结合监控、雷达数据，运用多源传感融合和AI计算机视觉技术，实现跑道非法入侵、鸟击、外来物损伤、无人机干扰等核心风险智能识别、实时预警与协同处置。",budget:"¥600万",budgetMin:600,deadline:"2026-06-11",tags:["人工智能","计算机视觉","传感器融合"],contact:"王苗苗"},
+        {id:21,title:"AI技术赋能3D服装设计应用场景",company:"江苏省苏豪控股集团有限公司",category:"纺织服装",desc:"聚焦服装研发需求，智能分析市场趋势与客户画像，3D虚拟打样减少浪费，解决研发周期长、成本高、适配差痛点。",budget:"¥150万",budgetMin:150,deadline:"2026-05-05",tags:["人工智能","3D虚拟打样"],contact:"邢梦婷"},
+        {id:22,title:"跨境电商选品从经验驱动转为数据驱动场景",company:"江苏省苏豪控股集团有限公司",category:"跨境电商",desc:"以AI赋能B2B贸易为核心，构建覆盖建站获客-内容生成-智能营销-一键通关全流程的一站式数字外贸服务平台。",budget:"¥360万",budgetMin:360,deadline:"2026-05-15",tags:["人工智能","大数据"],contact:"邢梦婷"},
+        {id:23,title:"苏豪云大模型驱动跨境电商全链路数字营销与合规服务场景",company:"江苏省苏豪控股集团有限公司",category:"跨境电商",desc:"依托自主微调的苏豪云电商垂直大模型，构建智能化内容生成与合规引擎，融合AI自然语言处理技术与跨境电商业务规则。",budget:"¥500万",budgetMin:500,deadline:"2026-06-01",tags:["人工智能","大模型","NLP"],contact:"邢梦婷"},
+        {id:24,title:"轮胎智能制造AI应用场景",company:"江苏省苏豪控股集团有限公司",category:"先进制造",desc:"将AI技术应用于轮胎智能制造全流程，包括工艺参数优化、质量在线检测、设备预测性维护，提升生产效率和产品质量。",budget:"¥100万-300万",budgetMin:100,deadline:"2026-05-20",tags:["人工智能"],contact:"邢梦婷"},
+        {id:25,title:"轮胎产品研发与材料创新AI场景",company:"江苏省苏豪控股集团有限公司",category:"先进制造",desc:"利用AI加速轮胎产品研发，包括新材料配方优化、产品性能仿真预测、研发周期缩短，推动材料创新与产品升级。",budget:"¥100万-300万",budgetMin:100,deadline:"2026-05-25",tags:["人工智能"],contact:"邢梦婷"},
+        {id:26,title:"智慧供应链与绿色制造场景",company:"江苏省苏豪控股集团有限公司",category:"供应链",desc:"构建AI驱动的智慧供应链管理平台，实现采购、生产、物流全链路智能化协同，结合绿色制造理念降低碳排放。",budget:"¥200万-500万",budgetMin:200,deadline:"2026-05-30",tags:["人工智能"],contact:"邢梦婷"},
+        {id:27,title:"安全生产智能预警与管控场景",company:"江苏省苏豪控股集团有限公司",category:"安全监测",desc:"融合AI视觉与物联网技术构建立体化安全防控体系，实现风险感知、研判、处置闭环，变被动为主动预防。",budget:"¥500万",budgetMin:500,deadline:"2026-06-01",tags:["人工智能","物联网","计算机视觉"],contact:"邢梦婷"},
+        {id:28,title:"安全生产便携式智能预警与管控场景",company:"江苏省苏豪控股集团有限公司",category:"安全监测",desc:"融合安全法律法规、深度算法管理，实现拍照识别后自动比对显示隐患内容，达成安全隐患排查自动化、智能化。",budget:"¥70万",budgetMin:70,deadline:"2026-05-10",tags:["人工智能","图像识别"],contact:"邢梦婷"},
+        {id:29,title:"化工安全与经营智能决策应用场景",company:"江苏省苏豪控股集团有限公司",category:"化工",desc:"融合AI算力、大模型、智能感知等技术，围绕安全可控、提质增效、数智赋能目标，落地多场景智能化应用。",budget:"¥47万",budgetMin:47,deadline:"2026-05-15",tags:["人工智能","大模型","智能感知"],contact:"邢梦婷"},
+        {id:30,title:"基于数据中台的AI+智能风险管控平台",company:"江苏省苏豪控股集团有限公司",category:"综合管理",desc:"融合数据中台、AI视觉模型及知识图谱技术，构建数据资产体系、打造AI服务，推进主数据标准化与稽核智能协同。",budget:"¥350万",budgetMin:350,deadline:"2026-05-25",tags:["人工智能","数据中台","知识图谱"],contact:"邢梦婷"}
     ];
 
     // Categories
-    const CATEGORIES = ['',...new Set(PROJECTS.map(p=>p.category))];
+    const CATEGORIES = ['全部',...new Set(PROJECTS.map(p=>p.category))];
+    const CAT_ICONS = {'全部':'📋','新能源':'⚡','能源':'🔥','储能':'🔋','交通':'🚄','安全监测':'🛡️','传媒':'📺','航空安全':'✈️','纺织服装':'👗','跨境电商':'🌐','先进制造':'🏭','供应链':'📦','化工':'🧪','综合管理':'📊','保险':'🛡️','医疗健康':'🏥','物流仓储':'📦'};
 
-    const CAT_ICONS = {'':'','':'','':'','':'','':'','':'','':'','':'','':'','':'','':'','':'','':'🧪','':'','':'','':'','':''};
-
-    let currentFilter = '';
+    let currentFilter = '全部';
     let searchTerm = '';
 
     // ===== Render Filter Bar =====
     function renderFilters() {
         const bar = document.getElementById('filterBar');
         bar.innerHTML = CATEGORIES.map(cat => {
-            const count = cat === '' ? PROJECTS.length : PROJECTS.filter(p => p.category === cat).length;
-            const icon = CAT_ICONS[cat] || '';
+            const count = cat === '全部' ? PROJECTS.length : PROJECTS.filter(p => p.category === cat).length;
+            const icon = CAT_ICONS[cat] || '📌';
             return `<button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterBy('${cat}')">${icon} ${cat} (${count})</button>`;
         }).join('');
     }
@@ -541,7 +540,7 @@
         const searchCountEl = document.getElementById('searchCount');
 
         let filtered = PROJECTS;
-        if (currentFilter !== '') filtered = filtered.filter(p => p.category === currentFilter);
+        if (currentFilter !== '全部') filtered = filtered.filter(p => p.category === currentFilter);
         if (searchTerm) {
             const s = searchTerm.toLowerCase();
             filtered = filtered.filter(p =>
@@ -552,8 +551,8 @@
             );
         }
 
-        countEl.textContent = `${filtered.length} `;
-        searchCountEl.textContent = searchTerm ? `${filtered.length} ` : '';
+        countEl.textContent = `${filtered.length} 个项目`;
+        searchCountEl.textContent = searchTerm ? `${filtered.length} 匹配` : '';
 
         if (filtered.length === 0) {
             grid.innerHTML = '';
@@ -566,28 +565,27 @@
             const deadlineDate = new Date(p.deadline);
             const now = new Date();
             const daysLeft = Math.ceil((deadlineDate - now) / (1000 * 60 * 60 * 24));
-            const deadlineText = daysLeft > 0 ? `${daysLeft}` : '';
+            const deadlineText = daysLeft > 0 ? `还剩${daysLeft}天` : '已截止';
             const deadlineColor = daysLeft <= 10 ? 'color: #ff6b6b;' : daysLeft <= 30 ? 'color: #f0c040;' : '';
 
             return `
             <div class="project-card animate-in" style="animation-delay: ${i * 0.05}s">
                 <div class="card-header">
-                    <span class="card-company"> ${p.company.replace(/(|)/g,'')}</span>
-                    ${p.featured ? '<span class="card-badge badge-featured"></span>' : ''}
-
-                    ${p.hot ? '<span class="card-badge badge-hot"> </span>' : ''}
+                    <span class="card-company">🏢 ${p.company.replace(/(有限公司|集团)/g,'')}</span>
+                    ${p.featured ? '<span class="card-badge badge-featured">精选</span>' : ''}
+                    ${p.hot ? '<span class="card-badge badge-hot">🔥 热门</span>' : ''}
                 </div>
                 <h3 class="card-title">${p.title}</h3>
                 <p class="card-desc">${p.desc}</p>
                 <div class="card-meta">
-                    <div class="meta-item"><span class="label"></span> <span class="value budget">${p.budget}</span></div>
-                    <div class="meta-item"><span class="label"></span> <span class="value deadline" style="${deadlineColor}">${daysLeft > 0 ? deadlineText : ''}</span></div>
-                    <div class="meta-item"><span class="label"></span> <span class="value">${p.contact}</span></div>
+                    <div class="meta-item"><span class="label">💰</span> <span class="value budget">${p.budget}</span></div>
+                    <div class="meta-item"><span class="label">📅</span> <span class="value deadline" style="${deadlineColor}">${daysLeft > 0 ? deadlineText : '已截止'}</span></div>
+                    <div class="meta-item"><span class="label">👤</span> <span class="value">${p.contact}</span></div>
                 </div>
                 <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
                 <div class="card-actions">
-                    <button class="btn-detail" onclick="showDetail(${p.id})"></button>
-                    <button class="btn-apply"> →</button>
+                    <button class="btn-detail" onclick="showDetail(${p.id})">查看详情</button>
+                    <button class="btn-apply">立即申报 →</button>
                 </div>
             </div>`;
         }).join('');
@@ -602,8 +600,7 @@
     function showDetail(id) {
         const p = PROJECTS.find(x => x.id === id);
         if (!p) return;
-
-        alert(` ${p.title}\n\n ${p.company}\n : ${p.budget}\n : ${p.deadline}\n : ${p.contact}\n : ${p.tags.join(', ')}\n\n${p.desc}`);
+        alert(`📋 ${p.title}\n\n🏢 ${p.company}\n💰 预算: ${p.budget}\n📅 截止: ${p.deadline}\n👤 联系人: ${p.contact}\n🔧 技术: ${p.tags.join(', ')}\n\n${p.desc}`);
     }
 
     // ===== Search =====
@@ -638,9 +635,8 @@
     // ===== Init =====
     renderFilters();
     renderProjects();
-
     
-// ===== OPC Platform  =====
+// ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
@@ -648,11 +644,11 @@ n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){
 const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('');}else{f.push(id);showNotification('');}
+const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
 localStorage.setItem(k,JSON.stringify(f));
 }
 function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('');}
+if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';

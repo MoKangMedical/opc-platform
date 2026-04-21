@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>OPC Health | OPC</title>
+<title>OPC Health | OPC健康</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,13 +14,12 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .lang-btn{padding:4px 10px;border-radius:5px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:11px;cursor:pointer;margin-left:6px}
 
 /* NAV */
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:16px;color:var(--t1);text-decoration:none}
 .nav-logo .d{color:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nl{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:5px 10px;border-radius:7px;color:var(--t2);font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap}
 .nl:hover,.nl.a{color:var(--t1);background:var(--bg3)}
 
 /* HERO */
@@ -140,43 +139,44 @@ textarea{height:40px;resize:vertical}
 
 body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
 .nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nl{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
-.nl:hover{color:#9090a8}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:6px 12px;border-radius:7px;color:#8888a0;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
+.nl:hover{color:#e8e8ed;background:rgba(255,255,255,0.05)}
 .nl.a{color:#e8e8ed;background:rgba(99,102,241,0.1)}
 .lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
 .lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
-a{text-decoration:none;color:inherit}</style>
+</style>
 </head>
 <body>
 
 <nav class="nav">
 <div class="nav-in">
-  <a href="index.html" class="nav-logo"><div class="mark"></div><span>OPC Platform</span></a>
+  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:#818cf8">Platform</span></span></a>
   <div class="nav-links">
-    <a href="service.html" class="nl"></a>
-    <a href="platform.html" class="nl"></a>
-    <a href="government.html" class="nl"></a>
-    <a href="superagent.html" class="nl"></a>
-    <a href="legends.html" class="nl"></a>
-    <a href="academy.html" class="nl"></a>
-    <a href="policy.html" class="nl"></a>
-    <a href="community.html" class="nl"></a>
-    <a href="chat.html" class="nl"></a>
-    <button class="lg" onclick="togLang()"> EN/</button>
+    <a href="platform.html" class="nl"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
+    <a href="government.html" class="nl"><span class="zh">揭榜挂帅</span><span class="en" style="display:none">Projects</span></a>
+    <a href="superagent.html" class="nl"><span class="zh">超级个体</span><span class="en" style="display:none">Agents</span></a>
+    <a href="legends.html" class="nl"><span class="zh">名人堂</span><span class="en" style="display:none">Legends</span></a>
+    <a href="academy.html" class="nl"><span class="zh">学院</span><span class="en" style="display:none">Academy</span></a>
+    <a href="health.html" class="nl a"><span class="zh">健康</span><span class="en" style="display:none">Health</span></a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
   </div>
 </div>
-</nav>
+
+            <a href="service.html">创业助手</a>
+            <a href="policy.html">政策</a>
+            <a href="community.html">社区</a>
+            <a href="chat.html">聊天</a>
+        </div>
     </nav>
 
 <section class="hero">
-<h1><span class="zh"> <span class="g">OPC </span></span><span class="en" style="display:none"> <span class="g">OPC Health</span></span></h1>
-<p><span class="zh"> ·  ·  ·  · </span><span class="en" style="display:none">Exercise · Check-in · Leaderboard · Challenges</span></p>
+<h1><span class="zh">❤️ <span class="g">OPC 健康</span></span><span class="en" style="display:none">❤️ <span class="g">OPC Health</span></span></h1>
+<p><span class="zh">运动 · 打卡 · 排行 · 挑战 · 成就</span><span class="en" style="display:none">Exercise · Check-in · Leaderboard · Challenges</span></p>
 </section>
 
 <div class="container">
@@ -186,73 +186,69 @@ a{text-decoration:none;color:inherit}</style>
   <div class="ring" id="mainRing" style="--p:0">
     <div class="ring-in">
       <div class="ring-n" id="mainScore">--</div>
-      <div class="ring-l"><span class="zh"></span><span class="en" style="display:none">Score</span></div>
+      <div class="ring-l"><span class="zh">健康评分</span><span class="en" style="display:none">Score</span></div>
     </div>
   </div>
 </div>
 <div style="text-align:center">
-
-  <div class="streak-badge" id="streakBadge"> <span id="streakNum">0</span> <span class="zh"></span><span class="en" style="display:none">day streak</span></div>
+  <div class="streak-badge" id="streakBadge">🔥 <span id="streakNum">0</span> <span class="zh">天连续打卡</span><span class="en" style="display:none">day streak</span></div>
 </div>
 
 <!-- MINI RINGS -->
 <div class="rings">
-  <div class="mini-ring" style="--c:var(--green)"><div class="mini-ring-in"><div class="mini-ring-n" id="rMood">--</div><div class="mini-ring-l"><span class="zh"></span><span class="en" style="display:none">Mood</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--cyan)"><div class="mini-ring-in"><div class="mini-ring-n" id="rSleep">--</div><div class="mini-ring-l"><span class="zh"></span><span class="en" style="display:none">Sleep</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--orange)"><div class="mini-ring-in"><div class="mini-ring-n" id="rExercise">--</div><div class="mini-ring-l"><span class="zh"></span><span class="en" style="display:none">Exercise</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--pink)"><div class="mini-ring-in"><div class="mini-ring-n" id="rStress">--</div><div class="mini-ring-l"><span class="zh"></span><span class="en" style="display:none">Stress</span></div></div></div>
+  <div class="mini-ring" style="--c:var(--green)"><div class="mini-ring-in"><div class="mini-ring-n" id="rMood">--</div><div class="mini-ring-l"><span class="zh">心情</span><span class="en" style="display:none">Mood</span></div></div></div>
+  <div class="mini-ring" style="--c:var(--cyan)"><div class="mini-ring-in"><div class="mini-ring-n" id="rSleep">--</div><div class="mini-ring-l"><span class="zh">睡眠</span><span class="en" style="display:none">Sleep</span></div></div></div>
+  <div class="mini-ring" style="--c:var(--orange)"><div class="mini-ring-in"><div class="mini-ring-n" id="rExercise">--</div><div class="mini-ring-l"><span class="zh">运动</span><span class="en" style="display:none">Exercise</span></div></div></div>
+  <div class="mini-ring" style="--c:var(--pink)"><div class="mini-ring-in"><div class="mini-ring-n" id="rStress">--</div><div class="mini-ring-l"><span class="zh">压力</span><span class="en" style="display:none">Stress</span></div></div></div>
 </div>
 
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab a" onclick="showTab('checkin',this)"> <span class="zh"></span><span class="en" style="display:none">Check-in</span></button>
-  <button class="tab" onclick="showTab('activity',this)"> <span class="zh"></span><span class="en" style="display:none">Activity</span></button>
-
-  <button class="tab" onclick="showTab('challenges',this)"> <span class="zh"></span><span class="en" style="display:none">Challenges</span></button>
-  <button class="tab" onclick="showTab('leaderboard',this)"> <span class="zh"></span><span class="en" style="display:none">Rank</span></button>
-  <button class="tab" onclick="showTab('achievements',this)"> <span class="zh"></span><span class="en" style="display:none">Badges</span></button>
-  <button class="tab" onclick="showTab('history',this)"> <span class="zh"></span><span class="en" style="display:none">History</span></button>
+  <button class="tab a" onclick="showTab('checkin',this)">📝 <span class="zh">打卡</span><span class="en" style="display:none">Check-in</span></button>
+  <button class="tab" onclick="showTab('activity',this)">🏃 <span class="zh">运动</span><span class="en" style="display:none">Activity</span></button>
+  <button class="tab" onclick="showTab('challenges',this)">🎯 <span class="zh">挑战</span><span class="en" style="display:none">Challenges</span></button>
+  <button class="tab" onclick="showTab('leaderboard',this)">🏆 <span class="zh">排行</span><span class="en" style="display:none">Rank</span></button>
+  <button class="tab" onclick="showTab('achievements',this)">🏅 <span class="zh">成就</span><span class="en" style="display:none">Badges</span></button>
+  <button class="tab" onclick="showTab('history',this)">📊 <span class="zh">记录</span><span class="en" style="display:none">History</span></button>
 </div>
 
 <!-- CHECKIN TAB -->
 <div class="tc a" id="tab-checkin">
 <div class="cf">
-  <h2> <span class="zh"></span><span class="en" style="display:none">Daily Check-in</span></h2>
+  <h2>📝 <span class="zh">每日打卡</span><span class="en" style="display:none">Daily Check-in</span></h2>
   <div class="fr">
-    <div class="fg"><label> <span class="zh"></span><span class="en" style="display:none">Mood</span> <span class="sv" id="v1">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s1" oninput="document.getElementById('v1').textContent=this.value"><span>10</span></div></div>
-
-    <div class="fg"><label> <span class="zh"></span><span class="en" style="display:none">Energy</span> <span class="sv" id="v2">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s2" oninput="document.getElementById('v2').textContent=this.value"><span>10</span></div></div>
-    <div class="fg"><label> <span class="zh"></span><span class="en" style="display:none">Stress</span> <span class="sv" id="v3">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s3" oninput="document.getElementById('v3').textContent=this.value"><span>10</span></div></div>
+    <div class="fg"><label>😊 <span class="zh">心情</span><span class="en" style="display:none">Mood</span> <span class="sv" id="v1">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s1" oninput="document.getElementById('v1').textContent=this.value"><span>10</span></div></div>
+    <div class="fg"><label>⚡ <span class="zh">精力</span><span class="en" style="display:none">Energy</span> <span class="sv" id="v2">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s2" oninput="document.getElementById('v2').textContent=this.value"><span>10</span></div></div>
+    <div class="fg"><label>😰 <span class="zh">压力</span><span class="en" style="display:none">Stress</span> <span class="sv" id="v3">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s3" oninput="document.getElementById('v3').textContent=this.value"><span>10</span></div></div>
   </div>
   <div class="fr">
-    <div class="fg"><label> <span class="zh">(h)</span><span class="en" style="display:none">Sleep(h)</span></label><input type="number" id="iSleep" value="7" min="0" max="24" step="0.5"></div>
-    <div class="fg"><label> <span class="zh">(ml)</span><span class="en" style="display:none">Water(ml)</span></label><input type="number" id="iWater" value="1500" min="0" step="100"></div>
-    <div class="fg"><label> <span class="zh"></span><span class="en" style="display:none">Steps</span></label><input type="number" id="iSteps" value="5000" min="0" step="500"></div>
+    <div class="fg"><label>😴 <span class="zh">睡眠(h)</span><span class="en" style="display:none">Sleep(h)</span></label><input type="number" id="iSleep" value="7" min="0" max="24" step="0.5"></div>
+    <div class="fg"><label>💧 <span class="zh">饮水(ml)</span><span class="en" style="display:none">Water(ml)</span></label><input type="number" id="iWater" value="1500" min="0" step="100"></div>
+    <div class="fg"><label>👣 <span class="zh">步数</span><span class="en" style="display:none">Steps</span></label><input type="number" id="iSteps" value="5000" min="0" step="500"></div>
   </div>
   <div class="fr">
-
-    <div class="fg"><label>⏰ <span class="zh">(h)</span><span class="en" style="display:none">Work(h)</span></label><input type="number" id="iWork" value="8" min="0" max="24" step="0.5"></div>
-    <div class="fg"><label> <span class="zh">(kg)</span><span class="en" style="display:none">Weight(kg)</span></label><input type="number" id="iWeight" value="70" min="0" step="0.1"></div>
+    <div class="fg"><label>⏰ <span class="zh">工作(h)</span><span class="en" style="display:none">Work(h)</span></label><input type="number" id="iWork" value="8" min="0" max="24" step="0.5"></div>
+    <div class="fg"><label>⚖️ <span class="zh">体重(kg)</span><span class="en" style="display:none">Weight(kg)</span></label><input type="number" id="iWeight" value="70" min="0" step="0.1"></div>
   </div>
-  <div class="fg" style="margin-bottom:12px"><label> <span class="zh"></span><span class="en" style="display:none">Notes</span></label><textarea id="iNotes" placeholder=""></textarea></div>
-  <button class="btn btn-g" onclick="submitCheckin()" style="width:100%;padding:12px;font-size:14px"> <span class="zh"></span><span class="en" style="display:none">Submit</span></button>
+  <div class="fg" style="margin-bottom:12px"><label>📝 <span class="zh">备注</span><span class="en" style="display:none">Notes</span></label><textarea id="iNotes" placeholder="今天状态如何？"></textarea></div>
+  <button class="btn btn-g" onclick="submitCheckin()" style="width:100%;padding:12px;font-size:14px">✅ <span class="zh">提交打卡</span><span class="en" style="display:none">Submit</span></button>
 </div>
 </div>
 
 <!-- ACTIVITY TAB -->
 <div class="tc" id="tab-activity">
 <div class="cf">
-  <h2> <span class="zh"></span><span class="en" style="display:none">Log Activity</span></h2>
-  <p style="font-size:11px;color:var(--t3);margin-bottom:10px"><span class="zh"></span><span class="en" style="display:none">Select activity type</span></p>
+  <h2>🏃 <span class="zh">记录运动</span><span class="en" style="display:none">Log Activity</span></h2>
+  <p style="font-size:11px;color:var(--t3);margin-bottom:10px"><span class="zh">选择运动类型</span><span class="en" style="display:none">Select activity type</span></p>
   <div class="act-grid" id="actGrid"></div>
   <div class="fr" style="margin-top:12px">
-    <div class="fg"><label>⏱ <span class="zh">()</span><span class="en" style="display:none">Duration(min)</span></label><input type="number" id="actDur" value="30" min="1"></div>
-    <div class="fg"><label> <span class="zh">(km)</span><span class="en" style="display:none">Distance(km)</span></label><input type="number" id="actDist" value="0" min="0" step="0.1"></div>
-    <div class="fg"><label> <span class="zh"></span><span class="en" style="display:none">Intensity</span></label>
-      <select id="actInt"><option value="light"><span class="zh"></span><span class="en" style="display:none">Light</span></option><option value="moderate" selected><span class="zh"></span><span class="en" style="display:none">Moderate</span></option><option value="intense"><span class="zh"></span><span class="en" style="display:none">Intense</span></option></select>
+    <div class="fg"><label>⏱ <span class="zh">时长(分钟)</span><span class="en" style="display:none">Duration(min)</span></label><input type="number" id="actDur" value="30" min="1"></div>
+    <div class="fg"><label>📏 <span class="zh">距离(km)</span><span class="en" style="display:none">Distance(km)</span></label><input type="number" id="actDist" value="0" min="0" step="0.1"></div>
+    <div class="fg"><label>💪 <span class="zh">强度</span><span class="en" style="display:none">Intensity</span></label>
+      <select id="actInt"><option value="light"><span class="zh">轻度</span><span class="en" style="display:none">Light</span></option><option value="moderate" selected><span class="zh">中度</span><span class="en" style="display:none">Moderate</span></option><option value="intense"><span class="zh">高强度</span><span class="en" style="display:none">Intense</span></option></select>
     </div>
   </div>
-  <button class="btn btn-g" onclick="logActivity()" style="width:100%;padding:12px;font-size:14px;margin-top:8px"> <span class="zh"></span><span class="en" style="display:none">Log</span></button>
+  <button class="btn btn-g" onclick="logActivity()" style="width:100%;padding:12px;font-size:14px;margin-top:8px">🏃 <span class="zh">记录运动</span><span class="en" style="display:none">Log</span></button>
   <div class="alog" id="actLog" style="margin-top:12px"></div>
 </div>
 </div>
@@ -260,9 +256,8 @@ a{text-decoration:none;color:inherit}</style>
 <!-- CHALLENGES TAB -->
 <div class="tc" id="tab-challenges">
 <div class="cf">
-
-  <h2> <span class="zh"></span><span class="en" style="display:none">Daily Challenges</span></h2>
-  <p style="font-size:11px;color:var(--t3);margin-bottom:12px"><span class="zh"></span><span class="en" style="display:none">Complete challenges for points</span></p>
+  <h2>🎯 <span class="zh">每日挑战</span><span class="en" style="display:none">Daily Challenges</span></h2>
+  <p style="font-size:11px;color:var(--t3);margin-bottom:12px"><span class="zh">完成挑战获得积分，提升排名</span><span class="en" style="display:none">Complete challenges for points</span></p>
   <div id="challengesList"></div>
 </div>
 </div>
@@ -270,7 +265,7 @@ a{text-decoration:none;color:inherit}</style>
 <!-- LEADERBOARD TAB -->
 <div class="tc" id="tab-leaderboard">
 <div class="cf">
-  <h2> <span class="zh"></span><span class="en" style="display:none">Leaderboard</span></h2>
+  <h2>🏆 <span class="zh">排行榜</span><span class="en" style="display:none">Leaderboard</span></h2>
   <div class="mf" id="lbFilter"></div>
   <div id="lbList"></div>
 </div>
@@ -279,8 +274,8 @@ a{text-decoration:none;color:inherit}</style>
 <!-- ACHIEVEMENTS TAB -->
 <div class="tc" id="tab-achievements">
 <div class="cf">
-  <h2> <span class="zh"></span><span class="en" style="display:none">Achievements</span></h2>
-  <p style="font-size:11px;color:var(--t3);margin-bottom:12px"><span id="achCount">0</span><span class="zh">/12 </span><span class="en" style="display:none">/12 unlocked</span></p>
+  <h2>🏅 <span class="zh">成就系统</span><span class="en" style="display:none">Achievements</span></h2>
+  <p style="font-size:11px;color:var(--t3);margin-bottom:12px"><span id="achCount">0</span><span class="zh">/12 已解锁</span><span class="en" style="display:none">/12 unlocked</span></p>
   <div class="ach-grid" id="achGrid"></div>
 </div>
 </div>
@@ -288,8 +283,7 @@ a{text-decoration:none;color:inherit}</style>
 <!-- HISTORY TAB -->
 <div class="tc" id="tab-history">
 <div class="cf">
-
-  <h2> <span class="zh"></span><span class="en" style="display:none">Activity History</span></h2>
+  <h2>📊 <span class="zh">运动记录</span><span class="en" style="display:none">Activity History</span></h2>
   <div id="histList"></div>
 </div>
 </div>
@@ -297,15 +291,14 @@ a{text-decoration:none;color:inherit}</style>
 </div>
 
 <div class="toast" id="toast"></div>
-<footer class="footer"><p><span class="zh">OPC Health · Keep</span><span class="en" style="display:none">OPC Health · Keep-style health management</span></p></footer>
+<footer class="footer"><p><span class="zh">OPC Health · 像Keep一样管理你的健康</span><span class="en" style="display:none">OPC Health · Keep-style health management</span></p></footer>
 
 <script>
 
-
 const FALLBACK_DASHBOARD={score:86,streak:12,mood:8,energy:7,stress:3,sleep_hours:7.5,water_ml:2000,steps:8500,work_hours:8,weight_kg:70,weekly:{avg_mood:7.5,avg_sleep:7.2,avg_steps:8000,avg_water:2000}};
-const FALLBACK_CHALLENGES=[{id:1,title:"30",description:"6:00",icon:"",progress:12,total:30},{id:2,title:"",description:"10000",icon:"",progress:18,total:30},{id:3,title:"",description:"30",icon:"",progress:25,total:30},{id:4,title:"",description:"10",icon:"🧘",progress:8,total:30}];
-const FALLBACK_LEADERBOARD=[{rank:1,name:"",score:95,streak:30},{rank:2,name:"",score:92,streak:25},{rank:3,name:"",score:90,streak:22},{rank:4,name:"",score:88,streak:20},{rank:5,name:"",score:86,streak:12}];
-const FALLBACK_ACHIEVEMENTS=[{id:1,name:"",icon:"",description:"",unlocked:true},{id:2,name:"7",icon:"",description:"7",unlocked:true},{id:3,name:"",icon:"",description:"10000",unlocked:true},{id:4,name:"",icon:"",unlocked:false,progress:3},{id:5,name:"",icon:"",unlocked:true},{id:6,name:"",icon:"",unlocked:false,progress:5}];
+const FALLBACK_CHALLENGES=[{id:1,title:"30天早起挑战",description:"每天6:00前起床",icon:"🌅",progress:12,total:30},{id:2,title:"万步挑战",description:"每天走10000步",icon:"🚶",progress:18,total:30},{id:3,title:"阅读挑战",description:"每天阅读30分钟",icon:"📚",progress:25,total:30},{id:4,title:"冥想挑战",description:"每天冥想10分钟",icon:"🧘",progress:8,total:30}];
+const FALLBACK_LEADERBOARD=[{rank:1,name:"张三",score:95,streak:30},{rank:2,name:"李四",score:92,streak:25},{rank:3,name:"王五",score:90,streak:22},{rank:4,name:"赵六",score:88,streak:20},{rank:5,name:"我",score:86,streak:12}];
+const FALLBACK_ACHIEVEMENTS=[{id:1,name:"初次打卡",icon:"🎯",description:"完成第一次健康打卡",unlocked:true},{id:2,name:"连续7天",icon:"🔥",description:"连续打卡7天",unlocked:true},{id:3,name:"万步达人",icon:"🚶",description:"单日步数超过10000",unlocked:true},{id:4,name:"早起鸟儿",icon:"🌅",unlocked:false,progress:3},{id:5,name:"水王",icon:"💧",unlocked:true},{id:6,name:"运动达人",icon:"🏃",unlocked:false,progress:5}];
 
 const API=window.location.hostname==='localhost'?'http://localhost:8000':'';
 const UID=1;
@@ -364,11 +357,10 @@ async function submitCheckin(){
   try{
     const r=await fetch(`${API}/api/health/checkin?${p}`,{method:'POST'});
     const d=await r.json();
-
-    showToast(d.message||' ');
+    showToast(d.message||'✅ 打卡成功！');
     document.getElementById('streakNum').textContent=d.streak||0;
     loadDash();
-  }catch(e){showToast(' ',1)}
+  }catch(e){showToast('❌ 失败',1)}
 }
 
 // ===== LOG ACTIVITY =====
@@ -380,11 +372,10 @@ async function logActivity(){
   try{
     const r=await fetch(`${API}/api/health/activity?${p}`,{method:'POST'});
     const d=await r.json();
-
-    showToast(d.message||' ');
-    document.getElementById('actLog').innerHTML+=`<span class="atag">${d.emoji} ${d.activity} ${d.duration}min </span>`;
+    showToast(d.message||'✅ 已记录');
+    document.getElementById('actLog').innerHTML+=`<span class="atag">${d.emoji} ${d.activity} ${d.duration}min ✅</span>`;
     loadDash();
-  }catch(e){showToast(' ',1)}
+  }catch(e){showToast('❌ 失败',1)}
 }
 
 // ===== LOAD CHALLENGES =====
@@ -398,8 +389,7 @@ async function loadChallenges(){
         <div class="ch-emoji">${c.emoji}</div>
         <div class="ch-info">
           <div class="ch-name">${c.name}</div>
-
-          <div class="ch-progress">${c.completed?' ':''}</div>
+          <div class="ch-progress">${c.completed?'✅ 已完成':'进行中'}</div>
           <div class="ch-bar"><div class="ch-fill" style="width:${c.completed?100:Math.min(c.progress/c.target*100,95)}%"></div></div>
         </div>
         <div class="ch-pts">+${c.points}</div>
@@ -415,7 +405,7 @@ async function loadLeaderboard(metric='exercise_min',period='week'){
     const d=await r.json();
     const filter=document.getElementById('lbFilter');
     filter.innerHTML=[
-      {m:'exercise_min',l:''},{m:'streak',l:''},{m:'calories',l:''},{m:'checkin_days',l:''}
+      {m:'exercise_min',l:'运动时长'},{m:'streak',l:'连续打卡'},{m:'calories',l:'消耗热量'},{m:'checkin_days',l:'打卡天数'}
     ].map(f=>`<button class="mf-btn ${f.m===metric?'a':''}" onclick="loadLeaderboard('${f.m}','${period}')">${f.l}</button>`).join('');
     
     const list=document.getElementById('lbList');
@@ -423,9 +413,9 @@ async function loadLeaderboard(metric='exercise_min',period='week'){
       <div class="lb-row">
         <div class="lb-rank">${u.badge}</div>
         <div class="lb-avatar">${u.avatar_emoji}</div>
-        <div class="lb-info"><div class="lb-name">${u.user_name}</div><div class="lb-val">${u[metric]} ${metric==='exercise_min'?'':metric==='streak'?'':metric==='calories'?'':''}</div></div>
+        <div class="lb-info"><div class="lb-name">${u.user_name}</div><div class="lb-val">${u[metric]} ${metric==='exercise_min'?'分钟':metric==='streak'?'天':metric==='calories'?'卡':'天'}</div></div>
       </div>
-    `).join('')||'<p style="text-align:center;color:var(--t3);padding:20px"></p>';
+    `).join('')||'<p style="text-align:center;color:var(--t3);padding:20px">暂无数据</p>';
   }catch(e){}
 }
 
@@ -456,10 +446,9 @@ async function loadHistory(){
     list.innerHTML=(d.activities||[]).map(a=>`
       <div class="h-row">
         <div class="h-left"><div class="h-emoji">${a.emoji}</div><div><div class="h-name">${a.name}</div><div class="h-date">${new Date(a.date).toLocaleDateString('zh-CN')}</div></div></div>
-
-        <div class="h-stats"><span>⏱ ${a.duration}min</span><span> ${a.calories}cal</span>${a.distance?`<span> ${a.distance}km</span>`:''}</div>
+        <div class="h-stats"><span>⏱ ${a.duration}min</span><span>🔥 ${a.calories}cal</span>${a.distance?`<span>📏 ${a.distance}km</span>`:''}</div>
       </div>
-    `).join('')||'<p style="text-align:center;color:var(--t3);padding:20px"><span class="zh"></span><span class="en" style="display:none">No records yet</span></p>';
+    `).join('')||'<p style="text-align:center;color:var(--t3);padding:20px"><span class="zh">暂无运动记录</span><span class="en" style="display:none">No records yet</span></p>';
   }catch(e){}
 }
 
@@ -487,8 +476,7 @@ applyLang();
 loadDash();
 loadActivities();
 
-
-// ===== OPC Platform  =====
+// ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
@@ -496,11 +484,11 @@ n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){
 const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('');}else{f.push(id);showNotification('');}
+const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
 localStorage.setItem(k,JSON.stringify(f));
 }
 function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('');}
+if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';

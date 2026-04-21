@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>OPC Platform — </title>
-<meta name="description" content="OPC67AI · A2A · ">
+<title>OPC Platform — 一个人的公司，无限可能</title>
+<meta name="description" content="一站式OPC赋能平台。连接、展示、赋能全球独立创业者。揭榜挂帅67个AI项目 · A2A超级个体 · 名人堂智慧">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -22,17 +21,17 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
 ::selection{background:var(--a);color:#fff}a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);transition:all .4s}
-.nav.on{background:rgba(10,10,15,0.98);box-shadow:0 2px 40px rgba(0,0,0,0.5)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
-.nav-logo{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;color:#a0a0b8;margin-right:auto}
-.nav-logo .mk{width:24px;height:24px;border-radius:5px;background:linear-gradient(135deg,#3b3b4f,#2a2a3a);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#707080;box-shadow:none}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nl{padding:6px 10px;border-radius:0;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
-.nl:hover{color:#9090a8;background:none}
-.lg{padding:4px 10px;border-radius:0;border:none;background:transparent;color:#505068;font-size:11px;cursor:pointer;transition:color .2s;margin-left:8px}
-.lg:hover{color:#808098;border:none}
-.mob{display:none;background:none;border:none;color:#505068;font-size:20px;cursor:pointer}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--bdr);transition:all .4s}
+.nav.on{background:rgba(6,6,10,0.93);box-shadow:0 2px 40px rgba(0,0,0,0.5)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--gw)}
+.nav-links{display:flex;align-items:center;gap:1px}
+.nl{padding:6px 13px;border-radius:7px;color:var(--t2);font-size:12.5px;font-weight:500;transition:all .2s var(--ease)}
+.nl:hover{color:var(--t1);background:rgba(255,255,255,0.035)}
+.lg{padding:4px 11px;border-radius:6px;border:1px solid var(--bdr2);background:transparent;color:var(--t2);font-size:10.5px;cursor:pointer;transition:all .25s;margin-left:6px}
+.lg:hover{border-color:var(--a);color:var(--t1)}
+.mob{display:none;background:none;border:none;color:var(--t1);font-size:20px;cursor:pointer}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 28px 48px;overflow:hidden}
@@ -135,14 +134,14 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
   .hero h1{font-size:36px;letter-spacing:-1px}
   .ft-i{grid-template-columns:1fr}
 }
-a{text-decoration:none;color:inherit}</style>
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
 <div class="nav-i">
-<a href="index.html" class="nav-logo"><span class="mk"></span> OPC Platform</a>
+<a href="index.html" class="nav-logo"><span class="mk">◆</span> OPC Platform</a>
 <div class="nav-links">
 <a href="service.html" class="nl">创业助手</a>
 <a href="platform.html" class="nl">平台</a>
@@ -152,8 +151,7 @@ a{text-decoration:none;color:inherit}</style>
 <a href="academy.html" class="nl">学院</a>
 <a href="policy.html" class="nl">政策</a>
 <a href="community.html" class="nl">社区</a>
-<a href="chat.html" class="nl">聊天</a>
-<button class="lg" onclick="togLang()">EN/中</button>
+<button class="lg" onclick="togLang()">🌐 EN/中</button>
 </div>
 <button class="mob" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">☰</button>
 </div>
@@ -164,18 +162,18 @@ a{text-decoration:none;color:inherit}</style>
 <div class="hero-glow"></div>
 <div class="hero-grid"></div>
 <div class="hero-c">
-<div class="hero-bdg"><span class="dot"></span> 67AI · 2.5 · </div>
-<h1><span class="gr">OPC</span></h1>
-<p class="hero-sub"> · A2A ·  · </p>
+<div class="hero-bdg"><span class="dot"></span> 67个AI项目 · 2.5亿预算 · 正在寻找你</div>
+<h1>一站式<span class="gr">OPC赋能平台</span></h1>
+<p class="hero-sub">连接、展示、赋能全球独立创业者。揭榜挂帅真实项目 · A2A超级个体协作 · 名人堂智慧传承 · 政策补贴一站获取</p>
 <div class="hero-ctas">
-<a href="service.html" class="btn-p"> </a>
-<a href="platform.html" class="btn-s"> →</a>
+<a href="service.html" class="btn-p">🚀 开始创业之旅</a>
+<a href="platform.html" class="btn-s">探索全部功能 →</a>
 </div>
 <div class="stats">
-<div class="stat"><div class="stat-n" data-count="67">0</div><div class="stat-l">AI</div></div>
-<div class="stat"><div class="stat-n" data-count="25000">0</div><div class="stat-l">()</div></div>
-<div class="stat"><div class="stat-n" data-count="21">0</div><div class="stat-l"></div></div>
-<div class="stat"><div class="stat-n" data-count="18">0</div><div class="stat-l"></div></div>
+<div class="stat"><div class="stat-n" data-count="67">0</div><div class="stat-l">AI场景项目</div></div>
+<div class="stat"><div class="stat-n" data-count="25000">0</div><div class="stat-l">总预算(万)</div></div>
+<div class="stat"><div class="stat-n" data-count="21">0</div><div class="stat-l">省属企业</div></div>
+<div class="stat"><div class="stat-n" data-count="18">0</div><div class="stat-l">传奇人物</div></div>
 </div>
 </div>
 </section>
@@ -185,36 +183,36 @@ a{text-decoration:none;color:inherit}</style>
 <div class="sec-i">
 <div class="sec-h fade-up">
 <div class="sec-tag">WHY OPC</div>
-<h2 class="sec-title">OPC Platform</h2>
-<p class="sec-desc"></p>
+<h2 class="sec-title">为什么选择OPC Platform？</h2>
+<p class="sec-desc">专为独立创业者打造的一站式赋能平台</p>
 </div>
 <div class="why-grid">
 <div class="why-card fade-up">
-<div class="why-icon"></div>
+<div class="why-icon">🎯</div>
 <div>
-<div class="why-title"></div>
-<div class="why-desc">67AI2.5</div>
+<div class="why-title">真实项目对接</div>
+<div class="why-desc">67个江苏省属企业AI场景需求，总预算超2.5亿元。不是模拟题，是真实的商业机会。</div>
 </div>
 </div>
 <div class="why-card fade-up">
 <div class="why-icon">🤖</div>
 <div>
-<div class="why-title">AI Agent</div>
-<div class="why-desc">A2AAgentSecondMeAI</div>
+<div class="why-title">AI Agent协作</div>
+<div class="why-desc">A2A架构让Agent自主交流、匹配项目。连接SecondMe数字分身，打造你的AI助手。</div>
 </div>
 </div>
 <div class="why-card fade-up">
-<div class="why-icon"></div>
+<div class="why-icon">📚</div>
 <div>
-<div class="why-title"></div>
-<div class="why-desc">Pieter LevelsNaval Ravikant18AI</div>
+<div class="why-title">传奇智慧传承</div>
+<div class="why-desc">与Pieter Levels、Naval Ravikant等18位传奇人物AI对话，获取第一手创业经验。</div>
 </div>
 </div>
 <div class="why-card fade-up">
-<div class="why-icon"></div>
+<div class="why-icon">💰</div>
 <div>
-<div class="why-title"></div>
-<div class="why-desc">40+13</div>
+<div class="why-title">政策一站获取</div>
+<div class="why-desc">40+条创业优惠政策，13个类别，覆盖贷款、补贴、税收、场地、社保全场景。</div>
 </div>
 </div>
 </div>
@@ -226,51 +224,51 @@ a{text-decoration:none;color:inherit}</style>
 <div class="sec-i">
 <div class="sec-h fade-up">
 <div class="sec-tag">CORE MODULES</div>
-<h2 class="sec-title"></h2>
-<p class="sec-desc"></p>
+<h2 class="sec-title">核心功能模块</h2>
+<p class="sec-desc">从项目对接到个人成长，全方位赋能</p>
 </div>
 <div class="mods">
 <div class="mod fade-up">
-<div class="mod-icon"></div>
-<div class="mod-name"></div>
-<div class="mod-desc">AI67262.5</div>
-<div class="mod-fts"><span class="mod-ft"></span><span class="mod-ft"></span><span class="mod-ft"></span></div>
-<a href="government.html" class="mod-link"> →</a>
+<div class="mod-icon">🏛️</div>
+<div class="mod-name">揭榜挂帅</div>
+<div class="mod-desc">江苏省属企业AI场景需求。67个真实项目，26个行业，总预算超2.5亿元。</div>
+<div class="mod-fts"><span class="mod-ft">智能匹配</span><span class="mod-ft">在线投标</span><span class="mod-ft">项目管理</span></div>
+<a href="government.html" class="mod-link">浏览项目 →</a>
 </div>
 <div class="mod fade-up">
 <div class="mod-icon">🤖</div>
-<div class="mod-name"></div>
-<div class="mod-desc">A2AAI AgentSecondMeAgent</div>
-<div class="mod-fts"><span class="mod-ft">SecondMe</span><span class="mod-ft">Agent</span><span class="mod-ft"></span></div>
-<a href="superagent.html" class="mod-link"> →</a>
+<div class="mod-name">超级个体</div>
+<div class="mod-desc">A2A架构的AI Agent协作平台。连接SecondMe数字分身，Agent间自主交流。</div>
+<div class="mod-fts"><span class="mod-ft">SecondMe</span><span class="mod-ft">Agent对话</span><span class="mod-ft">智能匹配</span></div>
+<a href="superagent.html" class="mod-link">体验平台 →</a>
 </div>
 <div class="mod fade-up">
-<div class="mod-icon"></div>
-<div class="mod-name"></div>
-<div class="mod-desc">18Pieter LevelsNaval RavikantAI</div>
-<div class="mod-fts"><span class="mod-ft">AI</span><span class="mod-ft"></span><span class="mod-ft"></span></div>
-<a href="legends.html" class="mod-link"> →</a>
+<div class="mod-icon">👑</div>
+<div class="mod-name">名人堂</div>
+<div class="mod-desc">18位传奇人物深度剖析。与Pieter Levels、Naval Ravikant等AI对话，获取商业建议。</div>
+<div class="mod-fts"><span class="mod-ft">AI对话</span><span class="mod-ft">商业哲学</span><span class="mod-ft">案例研究</span></div>
+<a href="legends.html" class="mod-link">探索传奇 →</a>
 </div>
 <div class="mod fade-up">
-<div class="mod-icon"></div>
-<div class="mod-name">OPC</div>
-<div class="mod-desc"></div>
-<div class="mod-fts"><span class="mod-ft">6</span><span class="mod-ft">6</span><span class="mod-ft"></span></div>
-<a href="academy.html" class="mod-link"> →</a>
+<div class="mod-icon">📚</div>
+<div class="mod-name">OPC学院</div>
+<div class="mod-desc">创业技能成长平台。精品课程、学习路径、导师匹配、技能认证。</div>
+<div class="mod-fts"><span class="mod-ft">6门课程</span><span class="mod-ft">6位导师</span><span class="mod-ft">技能认证</span></div>
+<a href="academy.html" class="mod-link">进入学院 →</a>
 </div>
 <div class="mod fade-up">
-<div class="mod-icon"></div>
-<div class="mod-name"></div>
-<div class="mod-desc">40+13</div>
-<div class="mod-fts"><span class="mod-ft"></span><span class="mod-ft"></span><span class="mod-ft"></span></div>
-<a href="policy.html" class="mod-link"> →</a>
+<div class="mod-icon">📋</div>
+<div class="mod-name">政策汇总</div>
+<div class="mod-desc">40+条创业优惠政策，13个类别。贷款、补贴、税收、场地、社保全覆盖。</div>
+<div class="mod-fts"><span class="mod-ft">政策查询</span><span class="mod-ft">补贴计算</span><span class="mod-ft">一键申请</span></div>
+<a href="policy.html" class="mod-link">查看政策 →</a>
 </div>
 <div class="mod fade-up">
-<div class="mod-icon"></div>
-<div class="mod-name">OPC</div>
-<div class="mod-desc">10Agent</div>
-<div class="mod-fts"><span class="mod-ft"></span><span class="mod-ft">Agent</span><span class="mod-ft"></span></div>
-<a href="community.html" class="mod-link"> →</a>
+<div class="mod-icon">💬</div>
+<div class="mod-name">OPC社区</div>
+<div class="mod-desc">连接全球独立创业者，分享经验、寻找伙伴。10个专业Agent助手等你对接。</div>
+<div class="mod-fts"><span class="mod-ft">经验分享</span><span class="mod-ft">Agent对接</span><span class="mod-ft">线下活动</span></div>
+<a href="community.html" class="mod-link">加入社区 →</a>
 </div>
 </div>
 </div>
@@ -281,29 +279,29 @@ a{text-decoration:none;color:inherit}</style>
 <div class="sec-i">
 <div class="sec-h fade-up">
 <div class="sec-tag">SUCCESS STORIES</div>
-<h2 class="sec-title"></h2>
-<p class="sec-desc">OPC</p>
+<h2 class="sec-title">创业者怎么说</h2>
+<p class="sec-desc">来自OPC社区的真实反馈</p>
 </div>
 <div class="test-grid">
 <div class="test fade-up">
-<div class="test-quote">"OPC35"</div>
+<div class="test-quote">"在OPC平台找到了第一个付费客户，揭榜挂帅项目直接对接了江苏省属企业，3个月做到了月入5万。"</div>
 <div class="test-author">
-<div class="test-ava">🧑‍</div>
-<div><div class="test-name"></div><div class="test-role">AI</div></div>
+<div class="test-ava">🧑‍💻</div>
+<div><div class="test-name">张明</div><div class="test-role">AI解决方案创业者</div></div>
 </div>
 </div>
 <div class="test fade-up">
-<div class="test-quote">"AINaval"</div>
+<div class="test-quote">"名人堂的AI对话帮我理清了商业模式，Naval的杠杆思维让我重新思考了产品定价策略。非常有价值！"</div>
 <div class="test-author">
-<div class="test-ava"></div>
-<div><div class="test-name"></div><div class="test-role"></div></div>
+<div class="test-ava">✍️</div>
+<div><div class="test-name">李薇</div><div class="test-role">内容创作者</div></div>
 </div>
 </div>
 <div class="test fade-up">
-<div class="test-quote">"50"</div>
+<div class="test-quote">"政策汇总功能太实用了！一键申请了创业担保贷款50万，还有场地租金补贴，省了大量时间和精力。"</div>
 <div class="test-author">
-<div class="test-ava"></div>
-<div><div class="test-name"></div><div class="test-role">SaaS</div></div>
+<div class="test-ava">🚀</div>
+<div><div class="test-name">王强</div><div class="test-role">SaaS创业者</div></div>
 </div>
 </div>
 </div>
@@ -314,11 +312,11 @@ a{text-decoration:none;color:inherit}</style>
 <section class="sec">
 <div class="sec-i">
 <div class="cta fade-up">
-<h2 class="cta-title">OPC</h2>
-<p class="cta-desc"></p>
+<h2 class="cta-title">开始你的OPC之旅</h2>
+<p class="cta-desc">与全球独立创业者一起学习、连接、合作、成长</p>
 <div class="cta-btns">
-<a href="service.html" class="btn-p"> </a>
-<a href="community.html" class="btn-s"></a>
+<a href="service.html" class="btn-p">🚀 免费开始</a>
+<a href="community.html" class="btn-s">加入社区</a>
 </div>
 </div>
 </div>
@@ -328,29 +326,29 @@ a{text-decoration:none;color:inherit}</style>
 <footer>
 <div class="ft-i">
 <div>
-<div class="ft-brand"><span class="mk"></span> OPC Platform</div>
-<p class="ft-desc">OPC</p>
+<div class="ft-brand"><span class="mk">◆</span> OPC Platform</div>
+<p class="ft-desc">一站式OPC赋能平台，连接、展示、赋能全球独立创业者。一个人的公司，无限可能。</p>
 </div>
 <div class="ft-col">
-<h4></h4>
-<a href="service.html"></a>
-<a href="platform.html"></a>
-<a href="government.html"></a>
-<a href="superagent.html"></a>
+<h4>平台</h4>
+<a href="service.html">创业助手</a>
+<a href="platform.html">全功能平台</a>
+<a href="government.html">揭榜挂帅</a>
+<a href="superagent.html">超级个体</a>
 </div>
 <div class="ft-col">
-<h4></h4>
-<a href="legends.html"></a>
-<a href="academy.html"></a>
-<a href="policy.html"></a>
-<a href="community.html"></a>
+<h4>资源</h4>
+<a href="legends.html">名人堂</a>
+<a href="academy.html">学院</a>
+<a href="policy.html">政策汇总</a>
+<a href="community.html">社区</a>
 </div>
 <div class="ft-col">
-<h4></h4>
-<a href="chat.html"></a>
-<a href="health.html"></a>
-<a href="#"></a>
-<a href="#"></a>
+<h4>支持</h4>
+<a href="chat.html">实时聊天</a>
+<a href="health.html">健康</a>
+<a href="#">帮助中心</a>
+<a href="#">联系我们</a>
 </div>
 </div>
 <div class="ft-bottom">
@@ -358,7 +356,7 @@ a{text-decoration:none;color:inherit}</style>
 <div class="ft-social">
 <a href="#">Twitter</a>
 <a href="#">GitHub</a>
-<a href="#"></a>
+<a href="#">微信</a>
 </div>
 </div>
 </footer>
@@ -381,7 +379,7 @@ function animateCounters() {
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(eased * target);
-      el.textContent = current >= 1000 ? (current / 10000).toFixed(1) + '' : current;
+      el.textContent = current >= 1000 ? (current / 10000).toFixed(1) + '亿' : current;
       if(progress < 1) requestAnimationFrame(update);
     }
     requestAnimationFrame(update);

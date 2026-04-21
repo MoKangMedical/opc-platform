@@ -1,422 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-===  ===
-        const API_BASE = window.location.origin;
-        const WS_BASE = (location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + location.host;
-        const USER_ID = 1; // ID
-
-        // ===  ===
-        let currentRoomId = null;
-        let ws = null;
-        let connected = false;
-        let agentMode = false;
-        let currentSecondMeRoute = null;
-
-        // ===  ===
-        document.addEventListener('DOMContentLoaded', () => {
-            loadRooms();
-            connectWebSocket();
-            setupInputHandler();
-            
-            // Seed rooms if empty
-            fetch(`${API_BASE}/api/chat/seed-rooms`, { method: 'POST' })
-                .then(() => loadRooms())
-                .catch(console.error);
-        });
-
-        // === WebSocket ===
-        function connectWebSocket() {
-            const statusEl = document.getElementById('connectionStatus');
-            statusEl.className = 'connection-status connecting';
-            statusEl.innerHTML = '<span></span> ...';
-
-            ws = new WebSocket(`${WS_BASE}/api/chat/ws?user_id=${USER_ID}`);
-
-            ws.onopen = () => {
-                connected = true;
-                statusEl.className = 'connection-status connected';
-                statusEl.innerHTML = '<span></span> ';
-                console.log('WebSocket connected');
-                
-                // 
-                if (currentRoomId) {
-                    joinRoom(currentRoomId);
-                }
-            };
-
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                handleWebSocketMessage(data);
-            };
-
-            ws.onclose = () => {
-                connected = false;
-                statusEl.className = 'connection-status disconnected';
-                statusEl.innerHTML = '<span></span> ';
-                console.log('WebSocket disconnected');
-                
-                // 
-                setTimeout(connectWebSocket, 3000);
-            };
-
-            ws.onerror = (error) => {
-                console.error('WebSocket error:', error);
-            };
-        }
-
-        function handleWebSocketMessage(data) {
-            const typingEl = document.getElementById('typingIndicator');
-            
-            switch (data.type) {
-                case 'message':
-                    addMessage(data, false);
-                    break;
-                case 'agent_response':
-                    typingEl.classList.remove('active');
-                    addMessage(data, false, true);
-                    break;
-                case 'system':
-                    addSystemMessage(data.content);
-                    break;
-                case 'error':
-                    addSystemMessage(`: ${data.content}`, true);
-                    break;
-                case 'typing':
-                    if (data.is_typing) {
-                        typingEl.classList.add('active');
-                    } else {
-                        typingEl.classList.remove('active');
-                    }
-                    break;
-                case 'pong':
-                    // 
-                    break;
-            }
-        }
-
-        // ===  ===
-        async function loadRooms() {
-            try {
-                const res = await fetch(`${API_BASE}/api/chat/rooms`);
-                const data = await res.json();
-                renderRoomList(data.rooms);
-            } catch (error) {
-                console.error('Failed to load rooms:', error);
-            }
-        }
-
-        function renderRoomList(rooms) {
-            const container = document.getElementById('roomList');
-            container.innerHTML = rooms.map(room => `
-                <div class="room-item ${currentRoomId === room.id ? 'active' : ''}" 
-                     onclick="selectRoom(${room.id}, '${escapeHtml(room.name)}', '${escapeHtml(room.description || '')}')">
-                    <div class="room-name">
-                        ${room.name}
-                        ${room.room_type === 'agent_hybrid' ? '<span class="room-type-badge agent">Agent</span>' : ''}
-                    </div>
-                    ${room.last_message ? `
-                        <div class="room-last-msg">
-                            ${room.last_message.sender_name ? room.last_message.sender_name + ': ' : ''}
-                            ${escapeHtml(room.last_message.content || '')}
-                        </div>
-                    ` : ''}
-                    <div class="room-meta">
-                        <span> ${room.member_count} </span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        async function selectRoom(roomId, roomName, roomDesc) {
-            // 
-            if (currentRoomId && ws && connected) {
-                ws.send(JSON.stringify({ type: 'leave', room_id: currentRoomId }));
-            }
-
-            currentRoomId = roomId;
-            
-            // UI
-            document.getElementById('currentRoomName').textContent = roomName;
-            document.getElementById('currentRoomDesc').textContent = roomDesc || '';
-            
-            // 
-            document.querySelectorAll('.room-item').forEach(el => {
-                el.classList.remove('active');
-                if (el.onclick.toString().includes(`selectRoom(${roomId}`)) {
-                    el.classList.add('active');
-                }
-            });
-
-            // 
-            const messagesEl = document.getElementById('chatMessages');
-            messagesEl.innerHTML = '<div class="message-system">...</div>';
-            
-            await loadMessages(roomId);
-            
-            // 
-            joinRoom(roomId);
-        }
-
-        function joinRoom(roomId) {
-            if (ws && connected) {
-                ws.send(JSON.stringify({ type: 'join', room_id: roomId }));
-            }
-        }
-
-        async function loadMessages(roomId) {
-            try {
-                const res = await fetch(`${API_BASE}/api/chat/rooms/${roomId}/messages`);
-                const data = await res.json();
-                
-                const messagesEl = document.getElementById('chatMessages');
-                messagesEl.innerHTML = '';
-                
-                if (data.messages.length === 0) {
-                    messagesEl.innerHTML = '<div class="message-system"></div>';
-                } else {
-                    data.messages.forEach(msg => {
-                        addMessage(msg, true);
-                    });
-                }
-                
-                scrollToBottom();
-            } catch (error) {
-                console.error('Failed to load messages:', error);
-            }
-        }
-
-        // ===  ===
-        function addMessage(data, isHistory = false, isAgent = false) {
-            const messagesEl = document.getElementById('chatMessages');
-            
-            // ""
-            const emptyMsg = messagesEl.querySelector('.message-system');
-            if (emptyMsg && emptyMsg.textContent.includes('')) {
-                emptyMsg.remove();
-            }
-
-            const isSelf = data.sender_type === 'user' && data.sender_id === USER_ID;
-            const isAgentMsg = data.sender_type === 'agent' || isAgent;
-            
-            const msgEl = document.createElement('div');
-            msgEl.className = `message ${isSelf ? 'self' : ''} ${isAgentMsg ? 'agent' : ''}`;
-            
-            const avatar = isAgentMsg ? '🧠' : (isSelf ? '' : '');
-            const senderName = data.sender_name || (isSelf ? '' : '');
-            const time = data.timestamp || data.created_at || new Date().toISOString();
-            
-            msgEl.innerHTML = `
-                <div class="message-avatar">${avatar}</div>
-                <div class="message-content">
-                    <div class="message-sender">${escapeHtml(senderName)}</div>
-                    <div class="message-text">${escapeHtml(data.content)}</div>
-                    <div class="message-time">${formatTime(time)}</div>
-                </div>
-            `;
-            
-            messagesEl.appendChild(msgEl);
-            
-            if (!isHistory) {
-                scrollToBottom();
-            }
-        }
-
-        function addSystemMessage(text, isError = false) {
-            const messagesEl = document.getElementById('chatMessages');
-            const msgEl = document.createElement('div');
-            msgEl.className = 'message-system';
-            msgEl.innerHTML = isError 
-                ? `<span style="color: var(--red)">${escapeHtml(text)}</span>`
-                : text;
-            messagesEl.appendChild(msgEl);
-            scrollToBottom();
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const content = input.value.trim();
-            
-            if (!content || !currentRoomId || !connected) return;
-            
-            if (agentMode && currentSecondMeRoute) {
-                // Agent
-                ws.send(JSON.stringify({
-                    type: 'agent_chat',
-                    room_id: currentRoomId,
-                    content: content,
-                    target_secondme: currentSecondMeRoute
-                }));
-                
-                // 
-                document.getElementById('typingIndicator').classList.add('active');
-            } else {
-                // 
-                ws.send(JSON.stringify({
-                    type: 'message',
-                    room_id: currentRoomId,
-                    content: content
-                }));
-            }
-            
-            input.value = '';
-            input.style.height = 'auto';
-        }
-
-        // === SecondMe ===
-        function toggleSecondMePanel() {
-            const panel = document.getElementById('secondmePanel');
-            panel.classList.toggle('active');
-        }
-
-        async function connectSecondMe() {
-            const route = document.getElementById('secondmeRoute').value.trim();
-            if (!route) {
-                alert('SecondMe');
-                return;
-            }
-
-            try {
-                // Agent
-                if (currentRoomId) {
-                    const res = await fetch(`${API_BASE}/api/chat/rooms/${currentRoomId}/invite-agent`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ secondme_route: route })
-                    });
-                    
-                    const data = await res.json();
-                    
-                    if (res.ok) {
-                        currentSecondMeRoute = route;
-                        agentMode = true;
-                        
-                        // UI
-                        document.getElementById('agentModeIndicator').classList.add('active');
-                        document.getElementById('agentModeText').textContent = 
-                            ` SecondMe Agent (${route}) `;
-                        
-                        // Agent
-                        const agentItem = document.getElementById('secondmeAgentItem');
-                        agentItem.style.display = 'flex';
-                        document.getElementById('secondmeAgentName').textContent = 
-                            `${route}Agent`;
-                        
-                        // 
-                        document.getElementById('secondmePanel').classList.remove('active');
-                        
-                        addSystemMessage(`🧠 SecondMe Agent (${route}) `);
-                    } else {
-                        alert(data.detail || '');
-                    }
-                } else {
-                    alert('');
-                }
-            } catch (error) {
-                console.error('Failed to connect SecondMe:', error);
-                alert('');
-            }
-        }
-
-        // ===  ===
-        function showNewRoomModal() {
-            document.getElementById('newRoomModal').classList.add('active');
-        }
-
-        function hideNewRoomModal() {
-            document.getElementById('newRoomModal').classList.remove('active');
-        }
-
-        async function createNewRoom() {
-            const name = document.getElementById('newRoomName').value.trim();
-            const desc = document.getElementById('newRoomDesc').value.trim();
-            const type = document.getElementById('newRoomType').value;
-            
-            if (!name) {
-                alert('');
-                return;
-            }
-
-            try {
-                const res = await fetch(`${API_BASE}/api/chat/rooms`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: name,
-                        description: desc,
-                        room_type: type,
-                        user_id: USER_ID
-                    })
-                });
-                
-                const data = await res.json();
-                
-                if (res.ok) {
-                    hideNewRoomModal();
-                    loadRooms();
-                    selectRoom(data.id, name, desc);
-                } else {
-                    alert(data.detail || '');
-                }
-            } catch (error) {
-                console.error('Failed to create room:', error);
-                alert('');
-            }
-        }
-
-        // ===  ===
-        function setupInputHandler() {
-            const input = document.getElementById('messageInput');
-            
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-            
-            // 
-            input.addEventListener('input', () => {
-                input.style.height = 'auto';
-                input.style.height = Math.min(input.scrollHeight, 120) + 'px';
-            });
-        }
-
-        function scrollToBottom() {
-            const messagesEl = document.getElementById('chatMessages');
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-        }
-
-        function formatTime(isoString) {
-            const date = new Date(isoString);
-            const now = new Date();
-            const diff = now - date;
-            
-            if (diff < 60000) return '';
-            if (diff < 3600000) return `${Math.floor(diff / 60000)}`;
-            if (diff < 86400000) return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-            return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // 
-        setInterval(() => {
-            if (ws && connected) {
-                ws.send(JSON.stringify({ type: 'ping' }));
-            }
-        }, 30000);
-    </script>
-</body>
-</html>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPC Chat - </title>
+<title>OPC Chat - 实时沟通中心</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -433,11 +20,11 @@ body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;background:rgba(6,6,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 20px}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
 .nav-logo .mk{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nl{padding:6px 10px;color:#606078;font-size:12px;font-weight:400;transition:color .2s;letter-spacing:.02em}
+.nav-links{display:flex;gap:16px;align-items:center}
+.nl{font-size:12px;color:var(--t3);transition:color .2s}
 .nl:hover,.nl.a{color:var(--t1)}
 
 /* APP */
@@ -517,24 +104,24 @@ a{color:inherit;text-decoration:none}
 @media(max-width:768px){
   .sidebar{display:none}
   .members-panel{display:none!important}
-  .nav-links{display:flex;align-items:center;gap:4px}
+  .nav-links{display:none}
 }
-a{text-decoration:none;color:inherit}</style>
+</style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo"> OPC Platform</a>
+        <a href="index.html" class="logo">◆ OPC Platform</a>
         <div class="nav-links">
-            <a href="service.html"></a>
-            <a href="platform.html"></a>
-            <a href="government.html"></a>
-            <a href="superagent.html"></a>
-            <a href="legends.html"></a>
-            <a href="academy.html"></a>
-            <a href="policy.html"></a>
-            <a href="community.html"></a>
-            <a href="chat.html"></a>
+            <a href="service.html">创业助手</a>
+            <a href="platform.html">平台</a>
+            <a href="government.html">揭榜挂帅</a>
+            <a href="superagent.html">超级个体</a>
+            <a href="legends.html">名人堂</a>
+            <a href="academy.html">学院</a>
+            <a href="policy.html">政策</a>
+            <a href="community.html">社区</a>
+            <a href="chat.html">聊天</a>
         </div>
     </nav>
 
@@ -542,34 +129,34 @@ a{text-decoration:none;color:inherit}</style>
 <!-- SIDEBAR -->
 <div class="sidebar">
 <div class="sidebar-header">
-<div class="logo"><span></span> OPC Chat</div>
-<button class="btn-new" onclick="createRoom()">+ </button>
+<div class="logo"><span>◆</span> OPC Chat</div>
+<button class="btn-new" onclick="createRoom()">+ 新建</button>
 </div>
 <div class="room-list" id="roomList">
 <div class="room-item active" onclick="selectRoom('general')">
-<div class="room-name"> </div>
-<div class="room-meta"> 128 </div>
-<div class="room-last">: </div>
+<div class="room-name">💬 综合讨论</div>
+<div class="room-meta">👥 128 成员</div>
+<div class="room-last">张三: 大家有什么好的创业想法吗？</div>
 </div>
 <div class="room-item" onclick="selectRoom('saas')">
-<div class="room-name"> SaaS</div>
-<div class="room-meta"> 56 </div>
-<div class="room-last">: SaaS$5000</div>
+<div class="room-name">💻 SaaS创业</div>
+<div class="room-meta">👥 56 成员</div>
+<div class="room-last">李四: 我的SaaS产品月入$5000了</div>
 </div>
 <div class="room-item" onclick="selectRoom('ai')">
-<div class="room-name">🤖 AI</div>
-<div class="room-meta"> 89 </div>
-<div class="room-last">: AI</div>
+<div class="room-name">🤖 AI产品</div>
+<div class="room-meta">👥 89 成员</div>
+<div class="room-last">王五: 用AI做了一个周报工具</div>
 </div>
 <div class="room-item" onclick="selectRoom('policy')">
-<div class="room-name"> </div>
-<div class="room-meta"> 45 </div>
-<div class="room-last">: 50</div>
+<div class="room-name">📋 政策讨论</div>
+<div class="room-meta">👥 45 成员</div>
+<div class="room-last">小创: 创业担保贷款最高50万</div>
 </div>
 <div class="room-item" onclick="selectRoom('agent')">
-<div class="room-name badge agent">🤖 Agent</div>
-<div class="room-meta"> 23 </div>
-<div class="room-last">Agent: !</div>
+<div class="room-name badge agent">🤖 Agent协作</div>
+<div class="room-meta">👥 23 成员</div>
+<div class="room-last">林博士Agent: 项目匹配成功!</div>
 </div>
 </div>
 </div>
@@ -578,74 +165,74 @@ a{text-decoration:none;color:inherit}</style>
 <div class="chat-main">
 <div class="chat-header">
 <div>
-<div class="chat-title" id="chatTitle"> </div>
-<div class="chat-desc" id="chatDesc">OPC</div>
+<div class="chat-title" id="chatTitle">💬 综合讨论</div>
+<div class="chat-desc" id="chatDesc">OPC创业者综合交流群</div>
 </div>
 <div class="header-actions">
-<div class="status on"><span></span> </div>
-<button class="btn-sm" onclick="toggleMembers()"> </button>
-<button class="btn-sm" onclick="showSettings()"> </button>
+<div class="status on"><span>●</span> 已连接</div>
+<button class="btn-sm" onclick="toggleMembers()">👥 成员</button>
+<button class="btn-sm" onclick="showSettings()">⚙️ 设置</button>
 </div>
 </div>
 
 <div class="messages" id="messages">
 <div class="msg">
-<div class="msg-avatar">🧑‍</div>
+<div class="msg-avatar">🧑‍💻</div>
 <div class="msg-body">
-<div class="msg-sender"></div>
-<div class="msg-text">OPCAI</div>
+<div class="msg-sender">张三</div>
+<div class="msg-text">大家好！我是刚加入OPC平台的创业者，主要做AI相关的产品。有什么好的建议吗？</div>
 <div class="msg-time">10:30</div>
 </div>
 </div>
 <div class="msg">
-<div class="msg-avatar"></div>
+<div class="msg-avatar">🚀</div>
 <div class="msg-body">
-<div class="msg-sender"></div>
-<div class="msg-text">AI1002400</div>
+<div class="msg-sender">李四</div>
+<div class="msg-text">欢迎！建议先去「揭榜挂帅」看看，有很多真实的AI项目需求，预算从100万到2400万不等。</div>
 <div class="msg-time">10:32</div>
 </div>
 </div>
 <div class="msg agent">
 <div class="msg-avatar">🤖</div>
 <div class="msg-body">
-<div class="msg-sender"> (AI)</div>
-<div class="msg-text">1⃣  2⃣  3⃣ Agent</div>
+<div class="msg-sender">小创 (AI助手)</div>
+<div class="msg-text">欢迎新朋友！我可以帮您：1️⃣ 查询创业政策 2️⃣ 匹配项目机会 3️⃣ 对接Agent助手。有什么需要帮助的吗？</div>
 <div class="msg-time">10:33</div>
 </div>
 </div>
 <div class="msg self">
-<div class="msg-avatar"></div>
+<div class="msg-avatar">👤</div>
 <div class="msg-body">
-<div class="msg-sender"></div>
-<div class="msg-text"></div>
+<div class="msg-sender">我</div>
+<div class="msg-text">谢谢大家！我想了解一下创业担保贷款的申请流程。</div>
 <div class="msg-time">10:35</div>
 </div>
 </div>
 <div class="msg agent">
 <div class="msg-avatar">🤖</div>
 <div class="msg-body">
-<div class="msg-sender"> (AI)</div>
-<div class="msg-text">\n1⃣ \n2⃣ \n3⃣ 15\n4⃣ \n5⃣ 5050%\n\n</div>
+<div class="msg-sender">小创 (AI助手)</div>
+<div class="msg-text">创业担保贷款申请流程：\n1️⃣ 准备材料：身份证、创业计划书、营业执照\n2️⃣ 提交申请：到当地人社局或网上申请\n3️⃣ 审核评估：约15个工作日\n4️⃣ 签订合同：审核通过后签订贷款合同\n5️⃣ 放款：最高50万，财政贴息50%\n\n需要我帮您对接政策专员吗？</div>
 <div class="msg-time">10:36</div>
 </div>
 </div>
 </div>
 
 <div class="chat-input">
-<input type="text" id="msgInput" placeholder="... (Enter)" onkeypress="if(event.key==='Enter')sendMsg()">
-<button onclick="sendMsg()"></button>
+<input type="text" id="msgInput" placeholder="输入消息... (Enter发送)" onkeypress="if(event.key==='Enter')sendMsg()">
+<button onclick="sendMsg()">发送</button>
 </div>
 </div>
 
 <!-- MEMBERS PANEL -->
 <div class="members-panel" id="membersPanel">
-<div class="members-title"> (12)</div>
-<div class="member-item"><div class="member-ava">🧑‍</div><div class="member-name"></div><div class="member-status"></div></div>
-<div class="member-item"><div class="member-ava"></div><div class="member-name"></div><div class="member-status"></div></div>
-<div class="member-item"><div class="member-ava">🤖</div><div class="member-ava"></div><div class="member-status"></div></div>
-<div class="member-item"><div class="member-ava">🤖</div><div class="member-name"> (AI)</div><div class="member-status"></div></div>
-<div class="member-item"><div class="member-ava"></div><div class="member-name"></div><div class="member-status"></div></div>
-<div class="member-item"><div class="member-ava"></div><div class="member-name"></div><div class="member-status"></div></div>
+<div class="members-title">在线成员 (12)</div>
+<div class="member-item"><div class="member-ava">🧑‍💻</div><div class="member-name">张三</div><div class="member-status"></div></div>
+<div class="member-item"><div class="member-ava">🚀</div><div class="member-name">李四</div><div class="member-status"></div></div>
+<div class="member-item"><div class="member-ava">🤖</div><div class="member-ava">王五</div><div class="member-status"></div></div>
+<div class="member-item"><div class="member-ava">🤖</div><div class="member-name">小创 (AI)</div><div class="member-status"></div></div>
+<div class="member-item"><div class="member-ava">🔬</div><div class="member-name">林博士</div><div class="member-status"></div></div>
+<div class="member-item"><div class="member-ava">🏗️</div><div class="member-name">张工</div><div class="member-status"></div></div>
 </div>
 </div>
 
@@ -662,9 +249,9 @@ function sendMsg(){
   
   messages.innerHTML+=`
     <div class="msg self">
-      <div class="msg-avatar"></div>
+      <div class="msg-avatar">👤</div>
       <div class="msg-body">
-        <div class="msg-sender"></div>
+        <div class="msg-sender">我</div>
         <div class="msg-text">${msg}</div>
         <div class="msg-time">${time}</div>
       </div>
@@ -675,18 +262,18 @@ function sendMsg(){
   // Simulate AI response
   setTimeout(()=>{
     const responses=[
-      '...',
-      '',
-      '',
-      '...',
-      ''
+      '收到！让我帮您查询相关信息...',
+      '好的，我来为您分析这个问题。',
+      '这个问题很好！建议您查看「政策汇总」页面获取详细信息。',
+      '我可以帮您对接相关专家，请稍等...',
+      '感谢您的提问！这里有几点建议供参考。'
     ];
     const resp=responses[Math.floor(Math.random()*responses.length)];
     messages.innerHTML+=`
       <div class="msg agent">
         <div class="msg-avatar">🤖</div>
         <div class="msg-body">
-          <div class="msg-sender"> (AI)</div>
+          <div class="msg-sender">小创 (AI助手)</div>
           <div class="msg-text">${resp}</div>
           <div class="msg-time">${time}</div>
         </div>
@@ -702,11 +289,11 @@ function selectRoom(room){
   event.currentTarget.classList.add('active');
   
   const rooms={
-    general:{title:' ',desc:'OPC'},
-    saas:{title:' SaaS',desc:'SaaS'},
-    ai:{title:'🤖 AI',desc:'AI'},
-    policy:{title:' ',desc:''},
-    agent:{title:'🤖 Agent',desc:'AI Agent'}
+    general:{title:'💬 综合讨论',desc:'OPC创业者综合交流群'},
+    saas:{title:'💻 SaaS创业',desc:'SaaS产品开发与增长'},
+    ai:{title:'🤖 AI产品',desc:'AI产品开发与应用'},
+    policy:{title:'📋 政策讨论',desc:'创业政策交流'},
+    agent:{title:'🤖 Agent协作',desc:'AI Agent对接'}
   };
   
   if(rooms[room]){
@@ -722,15 +309,15 @@ function toggleMembers(){
 
 // Create room
 function createRoom(){
-  const name=prompt('');
+  const name=prompt('请输入聊天室名称：');
   if(name){
-    alert(`${name}`);
+    alert(`聊天室「${name}」创建成功！`);
   }
 }
 
 // Show settings
 function showSettings(){
-  alert('...');
+  alert('设置功能开发中...');
 }
 </script>
 </body></html>
