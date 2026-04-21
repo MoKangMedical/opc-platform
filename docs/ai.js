@@ -6,7 +6,7 @@ const MimoAI = (function() {
     'use strict';
 
     const CONFIG = {
-        apiKey: 'sk-ccwzuzw9e1t42xjok84nfx7wrv4geuzc590ojipwfqga5uxl',
+        apiKey: env.MIMO_API_KEY || '',
         baseUrl: 'https://api.xiaomimimo.com/v1',
         model: 'mimo-v2-pro'
     };
