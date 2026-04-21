@@ -28,11 +28,8 @@ body{
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
-  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
-  border-bottom:1px solid var(--bdr)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
-  display:flex;align-items:center;justify-content:space-between}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;
   background:linear-gradient(135deg,var(--a),var(--c));
@@ -106,7 +103,7 @@ a{color:inherit;text-decoration:none}
   .auth-card{padding:36px 24px}
   .form-row{flex-direction:column;gap:0}
 }
-</style>
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
 
@@ -116,7 +113,7 @@ a{color:inherit;text-decoration:none}
     <span>OPC <span style="color:var(--a2)">Platform</span></span>
   </a>
   <div style="display:flex;gap:8px">
-    <a href="register.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px">注册</a>
+    <a href="register.html" class="btn btn-s" style="width:auto;padding:8px 20px;font-size:13px"></a>
   </div>
 </div></nav>
 
@@ -144,7 +141,7 @@ a{color:inherit;text-decoration:none}
     </form>
     
     <div class="auth-footer">
-      还没有账户？<a href="register.html">立即注册</a>
+      <a href="register.html"></a>
     </div>
     
     <div class="auth-divider">或</div>
