@@ -27,11 +27,8 @@ body{
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
-  background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);
-  border-bottom:1px solid var(--bdr)}
-.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;
-  display:flex;align-items:center;justify-content:space-between}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(15,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;
   background:linear-gradient(135deg,var(--a),var(--c));
@@ -132,7 +129,7 @@ textarea.form-input{min-height:100px;resize:vertical}
   .form-row{flex-direction:column;gap:0}
   .tabs{flex-direction:column}
 }
-</style>
+a{text-decoration:none;color:inherit}</style>
 </head>
 <body>
 
@@ -142,7 +139,7 @@ textarea.form-input{min-height:100px;resize:vertical}
     <span>OPC <span style="color:var(--a2)">Platform</span></span>
   </a>
   <div id="authNav" style="display:flex;gap:8px">
-    <a href="login.html" class="btn btn-s" style="padding:6px 16px;font-size:12px">登录</a>
+    <a href="login.html" class="btn btn-s" style="padding:6px 16px;font-size:12px"></a>
   </div>
 </div></nav>
 
@@ -201,7 +198,7 @@ textarea.form-input{min-height:100px;resize:vertical}
           </div>
           
           <div class="btn-group">
-            <button type="submit" class="btn btn-p" id="saveProfileBtn">保存修改</button>
+            <button type="submit" class="btn btn-p" id="saveProfileBtn"></button>
           </div>
         </form>
       </div>
@@ -226,7 +223,7 @@ textarea.form-input{min-height:100px;resize:vertical}
           </div>
           
           <div class="btn-group">
-            <button type="submit" class="btn btn-p" id="changePasswordBtn">修改密码</button>
+            <button type="submit" class="btn btn-p" id="changePasswordBtn"></button>
           </div>
         </form>
       </div>
@@ -243,7 +240,7 @@ textarea.form-input{min-height:100px;resize:vertical}
         </div>
         
         <div class="btn-group">
-          <button type="button" class="btn btn-p" id="saveSkillsBtn">保存技能</button>
+          <button type="button" class="btn btn-p" id="saveSkillsBtn"></button>
         </div>
       </div>
     </div>
