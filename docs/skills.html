@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC Skills - 顶级大咖Agent系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #111118;
+            --bg-card-hover: #16161f;
+            --border: #1e1e2e;
+            --border-hover: #2a2a40;
+            --text: #e4e4ef;
+            --text-dim: #8888a0;
+            --text-muted: #55556a;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --gold: #f0c040;
+            --green: #00d68f;
+            --red: #ff6b6b;
+            --blue: #4ecdc4;
+            --orange: #fdcb6e;
+            --pink: #fd79a8;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .header {
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* Advisor Section */
+        .advisor-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, rgba(108, 92, 231, 0.05) 0%, transparent 100%);
+        }
+
+        .advisor-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .advisor-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .advisor-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .advisor-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .advisor-input:focus {
+            border-color: var(--accent);
+        }
+
+        .advisor-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 16px 32px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .advisor-btn:hover {
+            background: var(--accent-light);
+        }
+
+        .advisor-recommendations {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .recommendation-card {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .recommendation-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .recommendation-emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .recommendation-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .recommendation-reason {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            color: var(--text-dim);
+            margin-bottom: 32px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-card:hover,
+        .category-card.active {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+
+        .category-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .category-desc {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Legends Grid */
+        .legends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .legend-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .legend-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .legend-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .legend-emoji {
+            font-size: 3rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(240, 192, 64, 0.2));
+            border-radius: var(--radius);
+        }
+
+        .legend-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .legend-info .category-badge {
+            font-size: 0.75rem;
+            color: var(--accent-light);
+            background: rgba(108, 92, 231, 0.15);
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .legend-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-size: 0.8rem;
+            color: var(--gold);
+            background: rgba(240, 192, 64, 0.1);
+            border: 1px solid rgba(240, 192, 64, 0.2);
+            padding: 6px 12px;
+            border-radius: 100px;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: rgba(240, 192, 64, 0.2);
+            border-color: var(--gold);
+        }
+
+        .legend-action {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Chat Modal */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-modal.active {
+            display: flex;
+        }
+
+        .chat-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 700px;
+            height: 80vh;
+            max-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header-emoji {
+            font-size: 2rem;
+        }
+
+        .chat-header-name {
+            font-family: var(--font-display);
+            font-weight: 600;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-close:hover {
+            color: var(--text);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .message.user {
+            background: var(--accent);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.loading {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            align-self: flex-start;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            resize: none;
+            transition: var(--transition);
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent);
+        }
+
+        .chat-send {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 14px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-send:hover {
+            background: var(--accent-light);
+        }
+
+        .chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Skills Cloud */
+        .skills-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(108, 92, 231, 0.05) 100%);
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .skill-cloud-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-cloud-item:hover {
+            border-color: var(--gold);
+            background: rgba(240, 192, 64, 0.1);
+            transform: scale(1.05);
+        }
+
+        .skill-count {
+            background: rgba(240, 192, 64, 0.2);
+            color: var(--gold);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 100px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .advisor-input-group { flex-direction: column; }
+            .legends-grid { grid-template-columns: 1fr; }
+            .chat-container { width: 95%; height: 90vh; }
+        }
+    a{text-decoration:none;color:inherit}</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1> OPC Skills Agent系统</h1>
+            <p>与全球顶级大咖对话，获取专属商业智慧和技能指导</p>
+        </header>
+
+        <!-- AI Advisor Section -->
+        <section class="advisor-section">
+            <div class="advisor-card">
+                <h2 class="advisor-title"> Skills顾问</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px;">描述你的问题或需求，AI为你推荐最合适的大咖</p>
+                <div class="advisor-input-group">
+                    <input type="text" class="advisor-input" id="advisorQuestion" placeholder="例如：我想学习如何做产品、如何融资、如何提高效率...">
+                    <button class="advisor-btn" onclick="getRecommendations()"></button>
+                </div>
+                <div class="advisor-recommendations" id="recommendations">
+                    <!-- 推荐结果将在这里显示 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title"> 大咖分类</h2>
+            <p class="section-desc">按领域浏览顶级大咖</p>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- 分类卡片将在这里显示 -->
+            </div>
+
+            <h2 class="section-title" id="legendsTitle"> 所有大咖</h2>
+            <p class="section-desc" id="legendsDesc">点击卡片开始对话</p>
+            <div class="legends-grid" id="legendsGrid">
+                <!-- 传奇人物卡片将在这里显示 -->
+            </div>
+        </section>
+
+        <!-- Skills Cloud Section -->
+        <section class="skills-section">
+            <h2 class="section-title" style="text-align: center;">✨ 热门Skills</h2>
+            <p class="section-desc" style="text-align: center; margin-bottom: 32px;">点击Skill查看擅长的大咖</p>
+            <div class="skills-cloud" id="skillsCloud">
+                <!-- 技能云将在这里显示 -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>OPC Platform - 一站式OPC赋能平台 | 连接全球独立创业者</p>
+        </footer>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <span class="chat-header-emoji" id="chatEmoji"></span>
+                    <span class="chat-header-name" id="chatName">对话中...</span>
+                </div>
+                <button class="chat-close" onclick="closeChat()">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message assistant">
+                    你好！我是你的商业导师。请告诉我你想了解什么，我会用我的经验为你提供建议。
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="输入你的问题..." onkeypress="handleKeyPress(event)">
+                <button class="chat-send" id="chatSend" onclick="sendMessage()"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API配置
+        const API_BASE = window.location.origin;
+
+        // 状态管理
+        let currentLegend = null;
+        let chatHistory = [];
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCategories();
+            loadLegends();
+            loadSkillsCloud();
+        });
+
+        // 加载分类
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/skills/categories`);
+                const data = await response.json();
+                renderCategories(data.categories);
+            } catch (error) {
+                console.error('Failed to load categories:', error);
+            }
+        }
+
+        function renderCategories(categories) {
+            const grid = document.getElementById('categoriesGrid');
+            grid.innerHTML = Object.entries(categories).map(([key, cat]) => `
+                <div class="category-card" onclick="filterByCategory('${key}')">
+                    <div class="category-emoji">${cat.emoji}</div>
+                    <div class="category-name">${cat.name}</div>
+                    <div class="category-desc">${cat.description}</div>
+                </div>
+            `).join('');
+        }
+
+        // 加载传奇人物
+        async function loadLegends(category = null) {
+            try {
+                const url = category 
+                    ? `${API_BASE}/api/chat/legends/${category}`
+                    : `${API_BASE}/api/chat/legends`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const legends = category ? data.legends : data.legends;
+                renderLegends(legends);
+                
+                // 更新标题
+                if (category) {
+                    const catResponse = await fetch(`${API_BASE}/api/chat/skills/categories`);
+                    const catData = await catResponse.json();
+                    const cat = catData.categories[category];
+                    document.getElementById('legendsTitle').textContent = `${cat.emoji} ${cat.name}`;
+                    document.getElementById('legendsDesc').textContent = cat.description;
+                } else {
+                    document.getElementById('legendsTitle').textContent = ' 所有大咖';
+                    document.getElementById('legendsDesc').textContent = '点击卡片开始对话';
+                }
+            } catch (error) {
+                console.error('Failed to load legends:', error);
+            }
+        }
+
+        function renderLegends(legends) {
+            const grid = document.getElementById('legendsGrid');
+            grid.innerHTML = legends.map(legend => `
+                <div class="legend-card" onclick="openChat('${legend.id}', '${legend.emoji}', '${legend.name_zh}')">
+                    <div class="legend-header">
+                        <div class="legend-emoji">${legend.emoji}</div>
+                        <div class="legend-info">
+                            <h3>${legend.name_zh}</h3>
+                            <span class="category-badge">${legend.name}</span>
+                        </div>
+                    </div>
+                    <div class="legend-skills">
+                        ${legend.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                    <div class="legend-action">
+                         开始对话 →
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 按分类筛选
+        function filterByCategory(category) {
+            // 更新活跃状态
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            loadLegends(category);
+        }
+
+        // 加载技能云
+        async function loadSkillsCloud() {
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/skills/all`);
+                const data = await response.json();
+                renderSkillsCloud(data.skills);
+            } catch (error) {
+                console.error('Failed to load skills cloud:', error);
+            }
+        }
+
+        function renderSkillsCloud(skills) {
+            const cloud = document.getElementById('skillsCloud');
+            const sortedSkills = Object.entries(skills).sort((a, b) => b[1].length - a[1].length);
+            cloud.innerHTML = sortedSkills.map(([skill, legends]) => `
+                <div class="skill-cloud-item" onclick="searchBySkill('${skill}')">
+                    <span>${skill}</span>
+                    <span class="skill-count">${legends.length}</span>
+                </div>
+            `).join('');
+        }
+
+        // 按技能搜索
+        async function searchBySkill(skill) {
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/skills/search?skill=${encodeURIComponent(skill)}`);
+                const data = await response.json();
+                
+                if (data.results.length > 0) {
+                    const legend = data.results[0];
+                    openChat(legend.id, legend.emoji, legend.name_zh);
+                }
+            } catch (error) {
+                console.error('Failed to search by skill:', error);
+            }
+        }
+
+        // 获取推荐
+        async function getRecommendations() {
+            const question = document.getElementById('advisorQuestion').value.trim();
+            if (!question) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/advisor`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question })
+                });
+                const data = await response.json();
+                renderRecommendations(data.recommendations);
+            } catch (error) {
+                console.error('Failed to get recommendations:', error);
+            }
+        }
+
+        function renderRecommendations(recommendations) {
+            const container = document.getElementById('recommendations');
+            container.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-card" onclick="openChat('${rec.id}', '${rec.emoji}', '${rec.name}')">
+                    <div class="recommendation-emoji">${rec.emoji}</div>
+                    <div class="recommendation-name">${rec.name}</div>
+                    <div class="recommendation-reason">${rec.match_reason}</div>
+                </div>
+            `).join('');
+        }
+
+        // 打开聊天
+        function openChat(legendId, emoji, name) {
+            currentLegend = legendId;
+            chatHistory = [];
+            
+            document.getElementById('chatEmoji').textContent = emoji;
+            document.getElementById('chatName').textContent = `与 ${name} 对话`;
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="message assistant">
+                    你好！我是${name}。请告诉我你想了解什么，我会用我的经验为你提供建议。
+                </div>
+            `;
+            document.getElementById('chatModal').classList.add('active');
+            document.getElementById('chatInput').focus();
+        }
+
+        // 关闭聊天
+        function closeChat() {
+            document.getElementById('chatModal').classList.remove('active');
+            currentLegend = null;
+            chatHistory = [];
+        }
+
+        // 处理回车键
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message || !currentLegend) return;
+
+            // 添加用户消息
+            addMessage(message, 'user');
+            input.value = '';
+            chatHistory.push({ role: 'user', content: message });
+
+            // 显示加载状态
+            const loadingId = addLoading();
+
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/legend/${currentLegend}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatHistory })
+                });
+                const data = await response.json();
+
+                // 移除加载状态，添加回复
+                removeLoading(loadingId);
+                addMessage(data.response, 'assistant');
+                chatHistory.push({ role: 'assistant', content: data.response });
+            } catch (error) {
+                removeLoading(loadingId);
+                addMessage('抱歉，服务暂时不可用，请稍后再试。', 'assistant');
+            }
+        }
+
+        // 添加消息
+        function addMessage(content, role) {
+            const messages = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `message ${role}`;
+            div.textContent = content;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // 添加加载状态
+        function addLoading() {
+            const messages = document.getElementById('chatMessages');
+            const id = 'loading-' + Date.now();
+            const div = document.createElement('div');
+            div.className = 'message loading';
+            div.id = id;
+            div.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+            return id;
+        }
+
+        // 移除加载状态
+        function removeLoading(id) {
+            const loading = document.getElementById(id);
+            if (loading) loading.remove();
+        }
+
+        // 点击模态框外部关闭
+        document.getElementById('chatModal').addEventListener('click', (e) => {
+            if (e.target.id === 'chatModal') {
+                closeChat();
+            }
+        });
+    </script>
+</body>
+</html>
