@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPC创业助手 — 一站式创业服务平台</title>
+<title>OPC — </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -97,8 +97,8 @@ a{text-decoration:none;color:inherit}</style>
     </nav>
 
 <section class="hero">
-<h1>OPC <span>创业助手</span></h1>
-<p>您的专属AI创业伙伴，一站式解决创业路上所有问题</p>
+<h1>OPC <span></span></h1>
+<p>AI</p>
 </section>
 
 <!-- AI Assistant -->
@@ -108,27 +108,27 @@ a{text-decoration:none;color:inherit}</style>
 
 <div class="ai-avatar">🤖</div>
 <div class="ai-info">
-<h3>小创 — 您的专属创业伙伴</h3>
-<p>● 在线 | 已帮助 12,847 位创业者</p>
+<h3> — </h3>
+<p>  |  12,847 </p>
 </div>
 </div>
 <div class="ai-chat" id="aiChat">
 <div class="ai-msg bot">
-<div class="bubble">👋 您好！我是小创，您的专属AI创业助手。<br><br>我可以帮您：<br>• 查询创业政策和补贴<br>• 匹配融资渠道和投资人<br>• 推荐合适的办公场地<br>• 指导公司注册流程<br>• 对接项目合作机会<br><br>有什么可以帮到您？</div>
+<div class="bubble"> AI<br><br><br>• <br>• <br>• <br>• <br>• <br><br></div>
 </div>
 </div>
 <div class="ai-input-area">
 <div class="ai-quick">
-<span class="aq" onclick="quickAsk('有什么创业补贴可以申请？')">💰 创业补贴</span>
+<span class="aq" onclick="quickAsk('')"> </span>
 
-<span class="aq" onclick="quickAsk('如何注册一家公司？')">📋 注册公司</span>
-<span class="aq" onclick="quickAsk('帮我找融资渠道')">🏦 找融资</span>
-<span class="aq" onclick="quickAsk('推荐一些创业场地')">🏠 找场地</span>
-<span class="aq" onclick="quickAsk('有什么税收优惠？')">📊 税收优惠</span>
-<span class="aq" onclick="quickAsk('如何申请人才政策？')">👤 人才政策</span>
+<span class="aq" onclick="quickAsk('')"> </span>
+<span class="aq" onclick="quickAsk('')"> </span>
+<span class="aq" onclick="quickAsk('')"> </span>
+<span class="aq" onclick="quickAsk('')"> </span>
+<span class="aq" onclick="quickAsk('')"> </span>
 </div>
 <div class="ai-input">
-<input type="text" id="aiInput" placeholder="输入您的创业问题..." onkeypress="if(event.key==='Enter')sendMsg()">
+<input type="text" id="aiInput" placeholder="..." onkeypress="if(event.key==='Enter')sendMsg()">
 <button onclick="sendMsg()"></button>
 </div>
 </div>
@@ -138,46 +138,46 @@ a{text-decoration:none;color:inherit}</style>
 <!-- Services -->
 <section class="services"><div class="c">
 
-<h2 class="s-title">🚀 一站式创业服务</h2>
-<p class="s-desc">覆盖创业全场景，让创业更简单</p>
+<h2 class="s-title"> </h2>
+<p class="s-desc"></p>
 <div class="s-grid" id="serviceGrid"></div>
 </div></section>
 
 <!-- Events -->
 <section class="events"><div class="c">
-<h2 class="s-title">📅 近期活动</h2>
-<p class="s-desc">线上线下活动，拓展人脉资源</p>
+<h2 class="s-title"> </h2>
+<p class="s-desc"></p>
 <div class="e-grid" id="eventGrid"></div>
 </div></section>
 
-<footer><p>© 2026 OPC Platform · 一个人的公司，无限可能</p></footer>
+<footer><p>© 2026 OPC Platform · </p></footer>
 
 <script>
 // Services Data
 const SERVICES=[
 
-{icon:"📋",name:"开公司",desc:"企业注册、工商登记、银行开户一站式办理",tags:["工商登记","银行开户","税务登记"],link:"policy.html"},
-{icon:"💰",name:"找资金",desc:"对接投资人、申请贷款、获取创业补贴",tags:["融资对接","创业贷款","政府补贴"],link:"policy.html"},
-{icon:"🏠",name:"找场地",desc:"办公空间、孵化器、众创空间推荐",tags:["办公室","孵化器","众创空间"],link:"community.html"},
-{icon:"📊",name:"找政策",desc:"创业优惠政策、税收减免、补贴申请",tags:["政策查询","税收优惠","补贴申请"],link:"policy.html"},
-{icon:"🎯",name:"找场景",desc:"产品应用场景对接，助力项目落地",tags:["场景对接","项目落地","资源匹配"],link:"government.html"},
-{icon:"👥",name:"找人才",desc:"招聘、合伙人对接、团队组建",tags:["招聘","合伙人","团队组建"],link:"community.html"},
-{icon:"🔬",name:"转成果",desc:"科技成果转化、知识产权、技术转让",tags:["成果转化","知识产权","技术转让"],link:"government.html"},
-{icon:"📜",name:"报资质",desc:"高新技术企业、专精特新等资质申报",tags:["高新认定","专精特新","资质申报"],link:"policy.html"},
-{icon:"🏘️",name:"找住房",desc:"人才公寓、租房补贴、购房优惠",tags:["人才公寓","租房补贴","购房优惠"],link:"policy.html"},
-{icon:"🎓",name:"找培训",desc:"创业培训、技能培训、管理课程",tags:["创业培训","技能培训","管理课程"],link:"academy.html"},
-{icon:"🤝",name:"找合作",desc:"项目合作、资源对接、业务拓展",tags:["项目合作","资源对接","业务拓展"],link:"community.html"},
-{icon:"🌐",name:"出海服务",desc:"海外市场、跨境支付、国际推广",tags:["海外市场","跨境支付","国际推广"],link:"platform.html"}
+{icon:"",name:"",desc:"",tags:["","",""],link:"policy.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"policy.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"community.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"policy.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"government.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"community.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"government.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"policy.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"policy.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"academy.html"},
+{icon:"🤝",name:"",desc:"",tags:["","",""],link:"community.html"},
+{icon:"",name:"",desc:"",tags:["","",""],link:"platform.html"}
 ];
 
 // Events Data
 const EVENTS=[
-{day:"25",month:"4月",title:"OPC创业者线上交流会",desc:"分享创业经验，对接合作资源",meta:["线上Zoom","晚8:00"]},
-{day:"28",month:"4月",title:"AI产品快速构建工作坊",desc:"手把手教你3天打造AI产品",meta:["线上直播","全天"]},
-{day:"5",month:"5月",title:"北京创业者线下聚会",desc:"面对面交流，深度对接",meta:["北京朝阳","下午2:00"]},
-{day:"12",month:"5月",title:"融资对接会",desc:"10+投资人现场对接",meta:["线上直播","晚8:00"]},
-{day:"18",month:"5月",title:"上海创业者聚会",desc:"华东地区创业者交流",meta:["上海浦东","下午2:00"]},
-{day:"25",month:"5月",title:"政策解读专场",desc:"最新创业政策深度解读",meta:["线上直播","晚8:00"]}
+{day:"25",month:"4",title:"OPC",desc:"",meta:["Zoom","8:00"]},
+{day:"28",month:"4",title:"AI",desc:"3AI",meta:["",""]},
+{day:"5",month:"5",title:"",desc:"",meta:["","2:00"]},
+{day:"12",month:"5",title:"",desc:"10+",meta:["","8:00"]},
+{day:"18",month:"5",title:"",desc:"",meta:["","2:00"]},
+{day:"25",month:"5",title:"",desc:"",meta:["","8:00"]}
 ];
 
 // Render Services
@@ -207,12 +207,12 @@ document.getElementById('eventGrid').innerHTML=EVENTS.map((e,i)=>`
 
 // AI Chat Functions
 const AI_RESPONSES={
-"补贴":"根据您的情况，您可能符合以下补贴政策：\n\n1️⃣ **创业担保贷款**：最高50万，财政贴息50%\n2️⃣ **一次性创业补贴**：5000-20000元\n3️⃣ **场地租金补贴**：补贴50%-100%\n4️⃣ **社保补贴**：灵活就业补贴2/3\n\n需要我帮您详细了解哪个政策？",
-"注册":"公司注册流程如下：\n\n1️⃣ **核名**：1个工作日\n2️⃣ **提交材料**：身份证、地址证明、公司章程\n3️⃣ **领取执照**：1-3个工作日\n4️⃣ **刻章**：公章、财务章、法人章\n5️⃣ **银行开户**：选择银行开设对公账户\n6️⃣ **税务登记**：核定税种、申领发票\n\n全程约5-7个工作日，我可以帮您对接代办服务。",
-"融资":"为您推荐以下融资渠道：\n\n1️⃣ **创业担保贷款**：最高50万，贴息50%\n2️⃣ **天使投资**：种子轮50-500万\n3️⃣ **政府引导基金**：参股25%以内\n4️⃣ **知识产权质押**：专利质押贷款\n5️⃣ **应收账款融资**：以应收账款质押\n\n您的项目是什么阶段？我帮您精准匹配。",
-"场地":"为您推荐以下场地选择：\n\n1️⃣ **创业孵化器**：免费或低价，含服务\n2️⃣ **众创空间**：灵活工位，按月付费\n3️⃣ **创业园区**：税收返还50%-80%\n4️⃣ **写字楼**：独立办公，形象好\n\n您的预算和团队规模是多少？",
-"税收":"您可能享受以下税收优惠：\n\n1️⃣ **小微企业**：实际税负仅5%\n2️⃣ **增值税**：月销10万以下免征\n3️⃣ **个体工商户**：个税减半征收\n4️⃣ **高新技术企业**：税率15%+研发加计100%\n5️⃣ **软件企业**：2免3减半\n\n需要我帮您评估具体能省多少税吗？",
-"人才":"人才政策包括：\n\n1️⃣ **人才补贴**：5000-20000元\n2️⃣ **人才公寓**：低价租房\n3️⃣ **落户政策**：快速办理\n4️⃣ **子女教育**：优先入学\n5️⃣ **医疗保障**：绿色通道\n\n您是什么类型的人才？"
+"":"\n\n1⃣ ****5050%\n2⃣ ****5000-20000\n3⃣ ****50%-100%\n4⃣ ****2/3\n\n",
+"":"\n\n1⃣ ****1\n2⃣ ****\n3⃣ ****1-3\n4⃣ ****\n5⃣ ****\n6⃣ ****\n\n5-7",
+"":"\n\n1⃣ ****5050%\n2⃣ ****50-500\n3⃣ ****25%\n4⃣ ****\n5⃣ ****\n\n",
+"":"\n\n1⃣ ****\n2⃣ ****\n3⃣ ****50%-80%\n4⃣ ****\n\n",
+"":"\n\n1⃣ ****5%\n2⃣ ****10\n3⃣ ****\n4⃣ ****15%+100%\n5⃣ ****23\n\n",
+"":"\n\n1⃣ ****5000-20000\n2⃣ ****\n3⃣ ****\n4⃣ ****\n5⃣ ****\n\n"
 };
 
 function quickAsk(q){
@@ -231,22 +231,22 @@ chat.innerHTML+=`<div class="ai-msg user"><div class="bubble">${msg}</div></div>
 chat.scrollTop=chat.scrollHeight;
 
 setTimeout(()=>{
-let response="感谢您的提问！这是一个很好的问题。\n\n";
+let response="\n\n";
 for(const[key,ans] of Object.entries(AI_RESPONSES)){
 if(msg.includes(key)){
 response=ans;
 break;
 }
 }
-if(response==="感谢您的提问！这是一个很好的问题。\n\n"){
-response+="我可以帮您：\n• 查询创业政策\n• 匹配融资渠道\n• 推荐办公场地\n• 指导公司注册\n• 对接项目合作\n\n请告诉我您具体需要什么帮助？";
+if(response==="\n\n"){
+response+="\n• \n• \n• \n• \n• \n\n";
 }
 chat.innerHTML+=`<div class="ai-msg bot"><div class="bubble">${response.replace(/\n/g,'<br>')}</div></div>`;
 chat.scrollTop=chat.scrollHeight;
 },800);
 }
 
-// 智能推荐功能
+// 
 function showSmartRecommendations() {
     const modal = document.createElement('div');
     modal.id = 'recommendModal';
@@ -256,11 +256,11 @@ function showSmartRecommendations() {
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
 
-                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">🎯 智能推荐</h2>
+                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;"> </h2>
                 <button onclick="closeRecommendModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
-            <!-- 推荐分类 -->
+            <!--  -->
             <div style="display: flex; gap: 12px; margin-bottom: 24px;">
                 <button onclick="showRecommendCategory('policies')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;"></button>
                 <button onclick="showRecommendCategory('services')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;"></button>
@@ -268,9 +268,9 @@ function showSmartRecommendations() {
                 <button onclick="showRecommendCategory('resources')" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-weight: 500; cursor: pointer;"></button>
             </div>
             
-            <!-- 推荐内容 -->
+            <!--  -->
             <div id="recommendContent">
-                <div style="text-align: center; color: var(--t3); padding: 40px;">选择推荐类别</div>
+                <div style="text-align: center; color: var(--t3); padding: 40px;"></div>
             </div>
         </div>
     `;
@@ -288,25 +288,25 @@ function showRecommendCategory(category) {
     
     const recommendations = {
         policies: [
-            { title: '创业担保贷款', desc: '最高50万，财政贴息50%', match: '95%', icon: '💰' },
-            { title: '一次性创业补贴', desc: '5000-20000元', match: '90%', icon: '🎁' },
-            { title: '场地租金补贴', desc: '补贴50%-100%', match: '85%', icon: '🏢' }
+            { title: '', desc: '5050%', match: '95%', icon: '' },
+            { title: '', desc: '5000-20000', match: '90%', icon: '' },
+            { title: '', desc: '50%-100%', match: '85%', icon: '' }
         ],
         services: [
 
-            { title: '工商注册代办', desc: '全程代办，3天拿证', match: '92%', icon: '📋' },
-            { title: '财税代理服务', desc: '专业记账报税', match: '88%', icon: '📊' },
-            { title: '法律咨询服务', desc: '合同审查、知识产权', match: '82%', icon: '⚖️' }
+            { title: '', desc: '3', match: '92%', icon: '' },
+            { title: '', desc: '', match: '88%', icon: '' },
+            { title: '', desc: '', match: '82%', icon: '' }
         ],
         partners: [
-            { title: '张工 - 智能制造专家', desc: '15年工业自动化经验', match: '94%', icon: '👨‍💼' },
-            { title: '李薇 - 内容营销专家', desc: '擅长品牌推广', match: '86%', icon: '👩‍💼' },
-            { title: '王强 - 技术开发团队', desc: '全栈开发，快速交付', match: '90%', icon: '👨‍💻' }
+            { title: ' - ', desc: '15', match: '94%', icon: '‍' },
+            { title: ' - ', desc: '', match: '86%', icon: '‍' },
+            { title: ' - ', desc: '', match: '90%', icon: '‍' }
         ],
         resources: [
-            { title: '《从0到1》创业课程', desc: '6位导师，48课时', match: '96%', icon: '📚' },
-            { title: '创业法律指南', desc: '合同、股权、融资', match: '84%', icon: '📖' },
-            { title: 'AI产品设计实战', desc: '案例分析+实操', match: '91%', icon: '🤖' }
+            { title: '01', desc: '648', match: '96%', icon: '' },
+            { title: '', desc: '', match: '84%', icon: '' },
+            { title: 'AI', desc: '+', match: '91%', icon: '🤖' }
         ]
     };
     
@@ -323,7 +323,7 @@ function showRecommendCategory(category) {
                     </div>
                     <div style="text-align: right;">
                         <div style="font-size: 1.2rem; font-weight: 700; color: var(--green);">${item.match}</div>
-                        <div style="font-size: 0.75rem; color: var(--t3);">匹配度</div>
+                        <div style="font-size: 0.75rem; color: var(--t3);"></div>
                     </div>
                     <button onclick="applyRecommendation('${item.title}')" style="background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color: #000; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;"></button>
                 </div>
@@ -333,11 +333,11 @@ function showRecommendCategory(category) {
 }
 
 function applyRecommendation(title) {
-    alert(`已提交对接请求！\n\n服务：${title}\n\n我们将在24小时内与您联系安排对接。`);
+    alert(`\n\n${title}\n\n24`);
     closeRecommendModal();
 }
 
-// 服务对接功能
+// 
 function openServiceMatching() {
     const modal = document.createElement('div');
     modal.id = 'matchingModal';
@@ -347,54 +347,54 @@ function openServiceMatching() {
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
 
-                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">🤝 服务对接</h2>
+                <h2 style="font-family: var(--fd); font-size: 1.5rem; font-weight: 700;">🤝 </h2>
                 <button onclick="closeMatchingModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;"></button>
             </div>
             
             <form id="matchingForm" onsubmit="submitMatchingForm(event)">
                 <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">您的需求 *</label>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;"> *</label>
                     <select required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
-                        <option value="">请选择...</option>
-                        <option value="policy">政策咨询</option>
-                        <option value="registration">工商注册</option>
-                        <option value="finance">财税代理</option>
-                        <option value="legal">法律咨询</option>
-                        <option value="tech">技术开发</option>
-                        <option value="marketing">营销推广</option>
-                        <option value="hr">人力资源</option>
-                        <option value="other">其他服务</option>
+                        <option value="">...</option>
+                        <option value="policy"></option>
+                        <option value="registration"></option>
+                        <option value="finance"></option>
+                        <option value="legal"></option>
+                        <option value="tech"></option>
+                        <option value="marketing"></option>
+                        <option value="hr"></option>
+                        <option value="other"></option>
                     </select>
                 </div>
                 
                 <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">详细描述 *</label>
-                    <textarea required rows="4" placeholder="请详细描述您的需求..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;"> *</label>
+                    <textarea required rows="4" placeholder="..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
                     <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">联系人 *</label>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;"> *</label>
                         <input type="text" required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
                     </div>
                     <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">联系电话 *</label>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;"> *</label>
                         <input type="tel" required style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
                     </div>
                 </div>
                 
                 <div style="margin-bottom: 24px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">预算范围</label>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;"></label>
                     <div style="display: flex; gap: 12px;">
-                        <input type="number" placeholder="最低预算（元）" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
-                        <input type="number" placeholder="最高预算（元）" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+                        <input type="number" placeholder="" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+                        <input type="number" placeholder="" style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
                     </div>
                 </div>
                 
                 <div style="margin-bottom: 24px;">
                     <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                         <input type="checkbox" checked style="accent-color: var(--green);">
-                        <span style="font-size: 0.9rem;">我同意OPC平台将我的需求推送给服务商</span>
+                        <span style="font-size: 0.9rem;">OPC</span>
                     </label>
                 </div>
                 
@@ -413,12 +413,12 @@ function closeMatchingModal() {
 
 function submitMatchingForm(event) {
     event.preventDefault();
-    alert('需求提交成功！\n\n我们将在24小时内为您匹配最合适的服务商，并安排对接。');
+    alert('\n\n24');
     closeMatchingModal();
 }
 
 
-// ===== OPC Platform 增强功能 =====
+// ===== OPC Platform  =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
 n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
@@ -426,11 +426,11 @@ n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){
 const k='opc-fav-'+type;let f=JSON.parse(localStorage.getItem(k)||'[]');
-const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('已取消收藏');}else{f.push(id);showNotification('已添加收藏');}
+const i=f.indexOf(id);if(i>-1){f.splice(i,1);showNotification('');}else{f.push(id);showNotification('');}
 localStorage.setItem(k,JSON.stringify(f));
 }
 function shareContent(title,url){
-if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('链接已复制');}
+if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.writeText(url);showNotification('');}
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
