@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC大赛 — 创业竞赛平台</title>
+    <meta name="description" content="OPC创业大赛、AI应用创新大赛、金融创新大赛等，为创业者提供展示舞台和资源对接">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060a;
+            --bg-elevated: #0d0d14;
+            --bg-card: #111119;
+            --bg-card-hover: #16161f;
+            --bg-surface: rgba(255,255,255,0.02);
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+            --text: #e8e8f0;
+            --text-secondary: #9898b0;
+            --text-muted: #5a5a72;
+            --accent: #e74c3c;
+            --accent-light: #ff6b6b;
+            --accent-warm: #ff8a50;
+            --green: #00d68f;
+            --blue: #4ea8de;
+            --purple: #a78bfa;
+            --gold: #f0c040;
+            --font-display: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 24px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration: 0.5s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            height: 64px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo .dot { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
+            font-weight: 500; transition: color 0.2s; position: relative;
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link.active { color: var(--text); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+            height: 2px; background: var(--accent); border-radius: 1px;
+        }
+        .lang-btn {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 6px 14px; border-radius: 8px;
+            font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+        }
+        .lang-btn:hover { border-color: var(--border-hover); color: var(--text); }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 140px 24px 80px;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(231,76,60,0.08) 0%, transparent 60%);
+        }
+        .hero-content {
+            text-align: center; position: relative; z-index: 1;
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.15);
+            padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
+            font-size: 0.85rem; color: var(--accent-light); font-weight: 500;
+        }
+        .pulse {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .hero-title {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700; line-height: 1.15; margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+        .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;
+            margin: 0 auto 48px; line-height: 1.8;
+        }
+
+        /* ===== Stats Row ===== */
+        .stats-row {
+            display: flex; justify-content: center; gap: 48px; margin-bottom: 48px;
+        }
+        .stat-cell { text-align: center; }
+        .stat-number {
+            font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .stat-number.red { color: var(--accent); }
+        .stat-number.gold { color: var(--gold); }
+        .stat-number.blue { color: var(--blue); }
+        .stat-number.green { color: var(--green); }
+        .stat-label {
+            font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* ===== Filter ===== */
+        .filter-section {
+            padding: 0 0 40px;
+        }
+        .filter-bar {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 24px;
+        }
+        .filter-btn {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 10px 20px; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font-body);
+        }
+        .filter-btn:hover {
+            border-color: var(--border-hover); color: var(--text);
+            background: rgba(255,255,255,0.04);
+        }
+        .filter-btn.active {
+            background: rgba(231,76,60,0.1); border-color: rgba(231,76,60,0.3);
+            color: var(--accent-light);
+        }
+
+        /* ===== Project Grid ===== */
+        .projects-section { padding: 0 0 80px; }
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 32px;
+        }
+        .section-title {
+            font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .section-count {
+            font-size: 0.85rem; color: var(--text-muted);
+            background: var(--bg-surface); padding: 6px 14px; border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== Project Card ===== */
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px; position: relative;
+            transition: all 0.4s var(--ease); overflow: hidden;
+        }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .project-card:hover {
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+        }
+        .project-card:hover::before { opacity: 1; }
+
+        .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .card-company {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .card-badge {
+            font-size: 0.68rem; padding: 3px 10px; border-radius: 6px;
+            font-weight: 600; letter-spacing: 0.5px;
+        }
+        .badge-featured {
+            background: rgba(231,76,60,0.12); color: var(--accent-light); border: 1px solid rgba(231,76,60,0.2);
+        }
+        .badge-hot {
+            background: rgba(240,192,64,0.12); color: var(--gold); border: 1px solid rgba(240,192,64,0.2);
+        }
+
+        .card-title {
+            font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;
+            line-height: 1.4; margin-bottom: 12px; letter-spacing: -0.01em;
+            color: var(--text);
+        }
+        .card-desc {
+            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65;
+            margin-bottom: 20px;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .meta-item .label { color: var(--text-muted); }
+        .meta-item .value { color: var(--text-secondary); font-weight: 500; }
+        .meta-item .value.budget { color: var(--gold); font-weight: 600; }
+        .meta-item .value.deadline { color: var(--accent-light); }
+
+        .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tag {
+            font-size: 0.72rem; padding: 4px 10px; border-radius: 6px;
+            background: rgba(255,255,255,0.04); color: var(--text-muted);
+            border: 1px solid var(--border); font-weight: 500;
+        }
+
+        .card-actions { display: flex; gap: 10px; }
+        .btn-detail {
+            flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 10px 16px; border-radius: 10px;
+            font-size: 0.82rem; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; text-align: center; text-decoration: none;
+            font-family: var(--font-body);
+        }
+        .btn-detail:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+        .btn-apply {
+            flex: 1; background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            border: none; color: white; padding: 10px 16px; border-radius: 10px;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; text-align: center; text-decoration: none;
+            font-family: var(--font-body);
+        }
+        .btn-apply:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ===== Footer ===== */
+        .footer {
+            border-top: 1px solid var(--border); padding: 48px 0;
+            background: var(--bg-elevated);
+        }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-text { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a {
+            font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ===== Animations ===== */
+        .animate-in {
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.6s var(--ease) forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 120px 20px 60px; }
+            .stats-row { gap: 24px; flex-wrap: wrap; }
+            .stat-number { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span>◆ OPC Platform</span>
+            </a>
+            <div class="nav-links">
+                <a href="service.html" class="nav-link">创业助手</a>
+                <a href="platform.html" class="nav-link">平台</a>
+                <a href="government.html" class="nav-link">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link">超级个体</a>
+                <a href="legends.html" class="nav-link">名人堂</a>
+                <a href="academy.html" class="nav-link">学院</a>
+                <a href="health.html" class="nav-link">健康</a>
+                <a href="policy.html" class="nav-link">政策</a>
+                <a href="community.html" class="nav-link">社区</a>
+                <a href="chat.html" class="nav-link">聊天</a>
+                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>OPC大赛 · 创业竞赛平台</span>
+            </div>
+            <h1 class="hero-title">
+                <span>OPC创业大赛</span><br>
+                <span class="gradient">展示你的创业梦想</span>
+            </h1>
+            <p class="hero-desc">
+                参加OPC创业大赛、AI应用创新大赛、金融创新大赛等，获得投资、资源对接和全国推广机会。
+            </p>
+            <div class="stats-row">
+                <div class="stat-cell">
+                    <div class="stat-number red">4</div>
+                    <div class="stat-label">大赛项目</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number gold">¥1000万+</div>
+                    <div class="stat-label">总奖金池</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number blue">全国</div>
+                    <div class="stat-label">覆盖范围</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number green">长期</div>
+                    <div class="stat-label">有效期限</div>
+                </div>
+            </div>
+            <a href="#competitions" class="hero-cta">
+                <span>浏览大赛</span>
+                <span>↓</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Filter -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar" id="filterBar">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects-section" id="competitions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">全部大赛</h2>
+                <span class="section-count" id="projectCount"></span>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-text">© 2026 OPC Platform · OPC创业大赛</p>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="policy.html">政策汇总</a>
+                <a href="government.html">揭榜挂帅</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ===== Competition Data =====
+    const COMPETITIONS = [
+        {id:1,title:"2026全国OPC创业大赛",company:"OPC联盟",category:"创业大赛",desc:"面向全国OPC创业者的创业大赛，获奖项目可获得最高500万元投资和全国推广支持。",budget:"最高500万元",deadline:"2026年8月31日",tags:["创业大赛","投资","全国推广"],contact:"OPC大赛组委会",link:"https://opcplatform.cn/competition.html",hot:true},
+        {id:2,title:"OPC+AI应用创新大赛",company:"江苏省人工智能学会",category:"AI大赛",desc:"聚焦AI技术在创业场景中的应用，获奖项目可获得技术指导和产业对接。",budget:"最高100万元",deadline:"2026年7月15日",tags:["AI大赛","技术指导","产业对接"],contact:"江苏省人工智能学会",link:"https://opcplatform.cn/competition.html"},
+        {id:3,title:"OPC+认股权创新大赛",company:"江苏股权交易中心",category:"金融创新大赛",desc:"探索'OPC+认股权'创新模式，推动金融创新服务实体经济。",budget:"最高200万元",deadline:"2026年9月30日",tags:["金融创新","认股权","实体经济"],contact:"江苏股权交易中心",link:"https://opcplatform.cn/competition.html"},
+        {id:4,title:"OPC+跨境电商大赛",company:"江苏省商务厅",category:"电商大赛",desc:"推动跨境电商发展，帮助OPC创业者开拓海外市场。",budget:"最高300万元",deadline:"2026年10月31日",tags:["跨境电商","海外市场","创业支持"],contact:"江苏省商务厅",link:"https://opcplatform.cn/competition.html",hot:true}
+    ];
+
+    // Categories
+    const CATEGORIES = ['全部', ...new Set(COMPETITIONS.map(p => p.category))];
+    const CAT_ICONS = {
+        '全部': '📋', '创业大赛': '🏆', 'AI大赛': '🤖',
+        '金融创新大赛': '💰', '电商大赛': '🌐'
+    };
+
+    let currentFilter = '全部';
+
+    // ===== Render Filter Bar =====
+    function renderFilters() {
+        const bar = document.getElementById('filterBar');
+        bar.innerHTML = CATEGORIES.map(cat => {
+            const count = cat === '全部' ? COMPETITIONS.length : COMPETITIONS.filter(p => p.category === cat).length;
+            const icon = CAT_ICONS[cat] || '📌';
+            return `<button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterBy('${cat}')">${icon} ${cat} (${count})</button>`;
+        }).join('');
+    }
+
+    // ===== Render Projects =====
+    function renderProjects() {
+        const grid = document.getElementById('projectsGrid');
+        const countEl = document.getElementById('projectCount');
+
+        let filtered = COMPETITIONS;
+        if (currentFilter !== '全部') filtered = filtered.filter(p => p.category === currentFilter);
+
+        countEl.textContent = `${filtered.length} 个大赛`;
+
+        grid.innerHTML = filtered.map((p, i) => {
+            return `
+            <div class="project-card animate-in" style="animation-delay: ${i * 0.05}s">
+                <div class="card-header">
+                    <span class="card-company">🏢 ${p.company}</span>
+                    ${p.hot ? '<span class="card-badge badge-hot">🔥 热门</span>' : ''}
+                </div>
+                <h3 class="card-title">${p.title}</h3>
+                <p class="card-desc">${p.desc}</p>
+                <div class="card-meta">
+                    <div class="meta-item"><span class="label">💰</span> <span class="value budget">${p.budget}</span></div>
+                    <div class="meta-item"><span class="label">📅</span> <span class="value deadline">${p.deadline}</span></div>
+                    <div class="meta-item"><span class="label">👤</span> <span class="value">${p.contact}</span></div>
+                </div>
+                <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                <div class="card-actions">
+                    <a href="${p.link}" target="_blank" class="btn-detail">查看详情</a>
+                    <a href="${p.link}" target="_blank" class="btn-apply">立即报名 →</a>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function filterBy(cat) {
+        currentFilter = cat;
+        renderFilters();
+        renderProjects();
+    }
+
+    // Initialize
+    renderFilters();
+    renderProjects();
+    </script>
+</body>
+</html>
