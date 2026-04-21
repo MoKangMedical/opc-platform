@@ -404,21 +404,10 @@
     <script>
     // ===== Competition Data =====
     const COMPETITIONS = [
-        {id:1,title:"2026全国OPC创业大赛",company:"OPC联盟",category:"创业大赛",desc:"面向全国OPC创业者的创业大赛，获奖项目可获得最高500万元投资和全国推广支持。",budget:"最高500万元",deadline:"2026年8月31日",tags:["创业大赛","投资","全国推广"],contact:"OPC大赛组委会",link:"https://opcplatform.cn/apply.html?id=1",hot:true},
-        {id:2,title:"OPC+AI应用创新大赛",company:"江苏省人工智能学会",category:"AI大赛",desc:"聚焦AI技术在创业场景中的应用，获奖项目可获得技术指导和产业对接。",budget:"最高100万元",deadline:"2026年7月15日",tags:["AI大赛","技术指导","产业对接"],contact:"江苏省人工智能学会",link:"https://opcplatform.cn/apply.html?id=2"},
-        {id:3,title:"OPC+认股权创新大赛",company:"江苏股权交易中心",category:"金融创新大赛",desc:"探索'OPC+认股权'创新模式，推动金融创新服务实体经济。",budget:"最高200万元",deadline:"2026年9月30日",tags:["金融创新","认股权","实体经济"],contact:"江苏股权交易中心",link:"https://opcplatform.cn/apply.html?id=3"},
-        {id:4,title:"OPC+跨境电商大赛",company:"江苏省商务厅",category:"电商大赛",desc:"推动跨境电商发展，帮助OPC创业者开拓海外市场。",budget:"最高300万元",deadline:"2026年10月31日",tags:["跨境电商","海外市场","创业支持"],contact:"江苏省商务厅",link:"https://opcplatform.cn/apply.html?id=4",hot:true},
-        {id:5,title:"OPC全球创业大赛",company:"OPC国际联盟",category:"国际大赛",desc:"面向全球OPC创业者的顶级赛事，获奖项目可获得国际投资和推广。",budget:"最高100万美元",deadline:"2026年12月31日",tags:["国际大赛","全球推广","国际投资"],contact:"OPC国际联盟",link:"https://opcplatform.cn/apply.html?id=5",hot:true},
-        {id:6,title:"OPC亚洲创业大赛",company:"OPC亚洲联盟",category:"国际大赛",desc:"聚焦亚洲市场的OPC创业大赛，提供本地化支持和资源对接。",budget:"最高500万元",deadline:"2026年11月30日",tags:["亚洲市场","本地化支持","资源对接"],contact:"OPC亚洲联盟",link:"https://opcplatform.cn/apply.html?id=6"},
-        {id:7,title:"OPC+医疗健康大赛",company:"中国医学科学院",category:"医疗大赛",desc:"面向医疗健康领域的OPC创业者，提供临床资源和专家指导。",budget:"最高300万元",deadline:"2026年9月30日",tags:["医疗健康","临床资源","专家指导"],contact:"中国医学科学院",link:"https://opcplatform.cn/apply.html?id=7"},
-        {id:8,title:"OPC+教育科技大赛",company:"教育部科技发展中心",category:"教育大赛",desc:"聚焦教育科技创新，推动OPC模式在教育领域的应用。",budget:"最高150万元",deadline:"2026年8月31日",tags:["教育科技","创新应用","教育领域"],contact:"教育部科技发展中心",link:"https://opcplatform.cn/apply.html?id=8"},
-        {id:9,title:"OPC+金融科技大赛",company:"中国银行业协会",category:"金融大赛",desc:"探索金融科技与OPC模式的结合，推动金融创新。",budget:"最高400万元",deadline:"2026年11月15日",tags:["金融科技","金融创新","模式结合"],contact:"中国银行业协会",link:"https://opcplatform.cn/apply.html?id=9"},
-        {id:10,title:"苏州OPC创业大赛",company:"苏州市政府",category:"地方大赛",desc:"苏州市举办的OPC创业大赛，提供场地和资金支持。",budget:"最高100万元",deadline:"2026年7月31日",tags:["苏州","场地支持","资金支持"],contact:"苏州市政府",link:"https://opcplatform.cn/apply.html?id=10"},
-        {id:11,title:"南京OPC创新大赛",company:"南京市政府",category:"地方大赛",desc:"南京市举办的OPC创新大赛，聚焦科技创业。",budget:"最高80万元",deadline:"2026年8月15日",tags:["南京","科技创业","创新大赛"],contact:"南京市政府",link:"https://opcplatform.cn/apply.html?id=11"},
-        {id:12,title:"杭州OPC数字经济大赛",company:"杭州市政府",category:"地方大赛",desc:"杭州市举办的数字经济OPC大赛，推动数字经济发展。",budget:"最高120万元",deadline:"2026年9月15日",tags:["杭州","数字经济","经济发展"],contact:"杭州市政府",link:"https://opcplatform.cn/apply.html?id=12"},
-        {id:13,title:"OPC+区块链创业大赛",company:"中国区块链技术协会",category:"新技术大赛",desc:"探索区块链技术在OPC创业中的应用。",budget:"最高250万元",deadline:"2026年10月31日",tags:["区块链","技术应用","创业应用"],contact:"中国区块链技术协会",link:"https://opcplatform.cn/apply.html?id=13"},
-        {id:14,title:"OPC+元宇宙创业大赛",company:"中国虚拟现实产业联盟",category:"新技术大赛",desc:"聚焦元宇宙和虚拟现实技术创业。",budget:"最高300万元",deadline:"2026年11月30日",tags:["元宇宙","虚拟现实","技术创业"],contact:"中国虚拟现实产业联盟",link:"https://opcplatform.cn/apply.html?id=14"},
-        {id:15,title:"OPC+绿色科技大赛",company:"中国环保产业协会",category:"新技术大赛",desc:"推动绿色科技和可持续发展创业。",budget:"最高200万元",deadline:"2026年12月15日",tags:["绿色科技","可持续发展","环保创业"],contact:"中国环保产业协会",link:"https://opcplatform.cn/apply.html?id=15"}
+        {id:1,title:"2026全国OPC创业大赛",company:"OPC联盟",category:"创业大赛",desc:"面向全国OPC创业者的创业大赛，获奖项目可获得最高500万元投资和全国推广支持。",budget:"最高500万元",deadline:"2026年8月31日",tags:["创业大赛","投资","全国推广"],contact:"OPC大赛组委会",link:"https://opcplatform.cn/competition.html",hot:true},
+        {id:2,title:"OPC+AI应用创新大赛",company:"江苏省人工智能学会",category:"AI大赛",desc:"聚焦AI技术在创业场景中的应用，获奖项目可获得技术指导和产业对接。",budget:"最高100万元",deadline:"2026年7月15日",tags:["AI大赛","技术指导","产业对接"],contact:"江苏省人工智能学会",link:"https://opcplatform.cn/competition.html"},
+        {id:3,title:"OPC+认股权创新大赛",company:"江苏股权交易中心",category:"金融创新大赛",desc:"探索'OPC+认股权'创新模式，推动金融创新服务实体经济。",budget:"最高200万元",deadline:"2026年9月30日",tags:["金融创新","认股权","实体经济"],contact:"江苏股权交易中心",link:"https://opcplatform.cn/competition.html"},
+        {id:4,title:"OPC+跨境电商大赛",company:"江苏省商务厅",category:"电商大赛",desc:"推动跨境电商发展，帮助OPC创业者开拓海外市场。",budget:"最高300万元",deadline:"2026年10月31日",tags:["跨境电商","海外市场","创业支持"],contact:"江苏省商务厅",link:"https://opcplatform.cn/competition.html",hot:true}
     ];
 
     // Categories
