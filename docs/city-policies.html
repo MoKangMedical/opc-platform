@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市创业政策 — 苏州·南京·杭州</title>
+    <meta name="description" content="苏州、南京、杭州等城市创业政策汇总，包括创业补贴、人才计划、产业支持等">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060a;
+            --bg-elevated: #0d0d14;
+            --bg-card: #111119;
+            --bg-card-hover: #16161f;
+            --bg-surface: rgba(255,255,255,0.02);
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+            --text: #e8e8f0;
+            --text-secondary: #9898b0;
+            --text-muted: #5a5a72;
+            --accent: #e74c3c;
+            --accent-light: #ff6b6b;
+            --accent-warm: #ff8a50;
+            --green: #00d68f;
+            --blue: #4ea8de;
+            --purple: #a78bfa;
+            --gold: #f0c040;
+            --font-display: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 24px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration: 0.5s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(6, 6, 10, 0.8); backdrop-filter: blur(24px) saturate(1.5);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            height: 64px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo .dot { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
+            font-weight: 500; transition: color 0.2s; position: relative;
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link.active { color: var(--text); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+            height: 2px; background: var(--accent); border-radius: 1px;
+        }
+        .lang-btn {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 6px 14px; border-radius: 8px;
+            font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+        }
+        .lang-btn:hover { border-color: var(--border-hover); color: var(--text); }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 140px 24px 80px;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(231,76,60,0.08) 0%, transparent 60%);
+        }
+        .hero-content {
+            text-align: center; position: relative; z-index: 1;
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.15);
+            padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
+            font-size: 0.85rem; color: var(--accent-light); font-weight: 500;
+        }
+        .pulse {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .hero-title {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700; line-height: 1.15; margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+        .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;
+            margin: 0 auto 48px; line-height: 1.8;
+        }
+
+        /* ===== Stats Row ===== */
+        .stats-row {
+            display: flex; justify-content: center; gap: 48px; margin-bottom: 48px;
+        }
+        .stat-cell { text-align: center; }
+        .stat-number {
+            font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .stat-number.red { color: var(--accent); }
+        .stat-number.gold { color: var(--gold); }
+        .stat-number.blue { color: var(--blue); }
+        .stat-number.green { color: var(--green); }
+        .stat-label {
+            font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* ===== Filter ===== */
+        .filter-section {
+            padding: 0 0 40px;
+        }
+        .filter-bar {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 24px;
+        }
+        .filter-btn {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 10px 20px; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font-body);
+        }
+        .filter-btn:hover {
+            border-color: var(--border-hover); color: var(--text);
+            background: rgba(255,255,255,0.04);
+        }
+        .filter-btn.active {
+            background: rgba(231,76,60,0.1); border-color: rgba(231,76,60,0.3);
+            color: var(--accent-light);
+        }
+
+        /* ===== Project Grid ===== */
+        .projects-section { padding: 0 0 80px; }
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 32px;
+        }
+        .section-title {
+            font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .section-count {
+            font-size: 0.85rem; color: var(--text-muted);
+            background: var(--bg-surface); padding: 6px 14px; border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== Project Card ===== */
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px; position: relative;
+            transition: all 0.4s var(--ease); overflow: hidden;
+        }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .project-card:hover {
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+        }
+        .project-card:hover::before { opacity: 1; }
+
+        .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .card-company {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .card-badge {
+            font-size: 0.68rem; padding: 3px 10px; border-radius: 6px;
+            font-weight: 600; letter-spacing: 0.5px;
+        }
+        .badge-featured {
+            background: rgba(231,76,60,0.12); color: var(--accent-light); border: 1px solid rgba(231,76,60,0.2);
+        }
+
+        .card-title {
+            font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;
+            line-height: 1.4; margin-bottom: 12px; letter-spacing: -0.01em;
+            color: var(--text);
+        }
+        .card-desc {
+            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65;
+            margin-bottom: 20px;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .meta-item .label { color: var(--text-muted); }
+        .meta-item .value { color: var(--text-secondary); font-weight: 500; }
+        .meta-item .value.budget { color: var(--gold); font-weight: 600; }
+        .meta-item .value.deadline { color: var(--accent-light); }
+
+        .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tag {
+            font-size: 0.72rem; padding: 4px 10px; border-radius: 6px;
+            background: rgba(255,255,255,0.04); color: var(--text-muted);
+            border: 1px solid var(--border); font-weight: 500;
+        }
+
+        .card-actions { display: flex; gap: 10px; }
+        .btn-detail {
+            flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 10px 16px; border-radius: 10px;
+            font-size: 0.82rem; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; text-align: center; text-decoration: none;
+            font-family: var(--font-body);
+        }
+        .btn-detail:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+        .btn-apply {
+            flex: 1; background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            border: none; color: white; padding: 10px 16px; border-radius: 10px;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; text-align: center; text-decoration: none;
+            font-family: var(--font-body);
+        }
+        .btn-apply:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ===== Footer ===== */
+        .footer {
+            border-top: 1px solid var(--border); padding: 48px 0;
+            background: var(--bg-elevated);
+        }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-text { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a {
+            font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ===== Animations ===== */
+        .animate-in {
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.6s var(--ease) forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 120px 20px 60px; }
+            .stats-row { gap: 24px; flex-wrap: wrap; }
+            .stat-number { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span>◆ OPC Platform</span>
+            </a>
+            <div class="nav-links">
+                <a href="service.html" class="nav-link">创业助手</a>
+                <a href="platform.html" class="nav-link">平台</a>
+                <a href="government.html" class="nav-link">揭榜挂帅</a>
+                <a href="superagent.html" class="nav-link">超级个体</a>
+                <a href="legends.html" class="nav-link">名人堂</a>
+                <a href="academy.html" class="nav-link">学院</a>
+                <a href="health.html" class="nav-link">健康</a>
+                <a href="policy.html" class="nav-link active">政策</a>
+                <a href="community.html" class="nav-link">社区</a>
+                <a href="chat.html" class="nav-link">聊天</a>
+                <button class="lang-btn" onclick="toggleLang()">🌐 EN/中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>城市创业政策 · 苏州·南京·杭州</span>
+            </div>
+            <h1 class="hero-title">
+                <span>城市创业政策</span><br>
+                <span class="gradient">苏州·南京·杭州</span>
+            </h1>
+            <p class="hero-desc">
+                汇集苏州、南京、杭州等城市的创业扶持政策，包括创业补贴、人才计划、产业支持等，助力OPC创业者快速发展。
+            </p>
+            <div class="stats-row">
+                <div class="stat-cell">
+                    <div class="stat-number red">9</div>
+                    <div class="stat-label">政策总数</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number gold">3</div>
+                    <div class="stat-label">覆盖城市</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number blue">¥500万+</div>
+                    <div class="stat-label">最高补贴</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-number green">长期</div>
+                    <div class="stat-label">有效期限</div>
+                </div>
+            </div>
+            <a href="#policies" class="hero-cta">
+                <span>浏览政策</span>
+                <span>↓</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Filter -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar" id="filterBar">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects-section" id="policies">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">全部政策</h2>
+                <span class="section-count" id="projectCount"></span>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-text">© 2026 OPC Platform · 城市创业政策</p>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="policy.html">政策汇总</a>
+                <a href="government.html">揭榜挂帅</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ===== Policy Data =====
+    const POLICIES = [
+        // 苏州
+        {id:1,title:"苏州工业园区创业补贴政策",city:"苏州",company:"苏州工业园区管委会",category:"创业补贴",desc:"对入驻工业园区的创业者提供最高50万元的创业补贴，包括场地租金补贴、人才引进补贴、研发费用补贴等。",budget:"最高50万元",deadline:"长期有效",tags:["创业补贴","场地租金","人才引进"],contact:"工业园区创业服务中心",link:"https://www.sipac.gov.cn"},
+        {id:2,title:"苏州高新区科技创新券政策",city:"苏州",company:"苏州高新区管委会",category:"创新支持",desc:"高新区企业可申请科技创新券，用于购买科技服务、技术转让、知识产权等，最高补贴50万元。",budget:"最高50万元",deadline:"2026年12月31日",tags:["创新券","科技服务","知识产权"],contact:"高新区科技局",link:"https://www.snd.gov.cn"},
+        {id:3,title:"苏州姑苏区OPC+认股权政策",city:"苏州",company:"姑苏区发展和改革局",category:"金融创新",desc:"全国首创'OPC+认股权'服务模式，以认股权为纽带，将孵化服务价值与企业成长收益绑定。",budget:"不适用",deadline:"长期有效",tags:["OPC","认股权","孵化服务"],contact:"蔡经理 13913907977",link:"https://mp.weixin.qq.com/s/eeQtYAjrhshCKd7zq8jyog"},
+        // 南京
+        {id:4,title:"南京江北新区创业扶持政策",city:"南京",company:"南京江北新区管委会",category:"创业扶持",desc:"对在江北新区注册的科技型企业，提供创业启动资金、研发费用补贴、人才公寓等支持。",budget:"最高100万元",deadline:"长期有效",tags:["创业扶持","研发补贴","人才公寓"],contact:"江北新区人才服务中心",link:"https://www.njna.gov.cn"},
+        {id:5,title:"南京紫金山英才计划",city:"南京",company:"南京市委组织部",category:"人才计划",desc:"对引进的高层次人才提供项目资助、住房补贴、子女教育等全方位支持。",budget:"最高500万元",deadline:"2026年6月30日",tags:["人才计划","项目资助","住房补贴"],contact:"市委组织部人才处",link:"https://www.nj.gov.cn"},
+        {id:6,title:"南京雨花台区软件产业政策",city:"南京",company:"雨花台区政府",category:"产业政策",desc:"对软件和信息服务企业给予税收优惠、研发补贴、人才引进等支持。",budget:"最高200万元",deadline:"长期有效",tags:["软件产业","税收优惠","研发补贴"],contact:"雨花台区科技局",link:"https://www.yuhuatai.gov.cn"},
+        // 杭州
+        {id:7,title:"杭州高新区创业扶持政策",city:"杭州",company:"杭州高新区管委会",category:"创业扶持",desc:"对入驻高新区的创业者提供办公场地、创业辅导、融资对接等一站式服务。",budget:"最高30万元",deadline:"长期有效",tags:["创业扶持","办公场地","融资对接"],contact:"高新区创业服务中心",link:"https://www.hhtz.gov.cn"},
+        {id:8,title:"杭州西湖区创业大赛政策",city:"杭州",company:"西湖区政府",category:"创业大赛",desc:"举办创业大赛，获奖项目可获得最高100万元奖金和落地扶持政策。",budget:"最高100万元",deadline:"2026年9月30日",tags:["创业大赛","奖金","落地扶持"],contact:"西湖区人社局",link:"https://www.xihu.gov.cn"},
+        {id:9,title:"杭州未来科技城人才政策",city:"杭州",company:"余杭区政府",category:"人才政策",desc:"对未来科技城引进的高端人才给予安家补贴、子女入学、医疗保障等支持。",budget:"最高300万元",deadline:"长期有效",tags:["人才政策","安家补贴","子女入学"],contact:"未来科技城管委会",link:"https://www.yuhang.gov.cn"}
+    ];
+
+    // Categories and Cities
+    const CITIES = ['全部', '苏州', '南京', '杭州'];
+    const CATEGORIES = ['全部', ...new Set(POLICIES.map(p => p.category))];
+    const CAT_ICONS = {
+        '全部': '📋', '苏州': '🌿', '南京': '🏙️', '杭州': '🏞️',
+        '创业补贴': '💰', '创新支持': '🚀', '金融创新': '💰',
+        '创业扶持': '🤝', '人才计划': '👨‍🔬', '产业政策': '🏭',
+        '创业大赛': '🏆', '人才政策': '👨‍💼'
+    };
+
+    let currentFilter = '全部';
+    let currentCity = '全部';
+
+    // ===== Render Filter Bar =====
+    function renderFilters() {
+        const bar = document.getElementById('filterBar');
+        let html = '<div style="margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted);">按城市筛选:</div>';
+        html += CITIES.map(city => {
+            const count = city === '全部' ? POLICIES.length : POLICIES.filter(p => p.city === city).length;
+            const icon = CAT_ICONS[city] || '📌';
+            return `<button class="filter-btn ${city === currentCity ? 'active' : ''}" onclick="filterByCity('${city}')">${icon} ${city} (${count})</button>`;
+        }).join('');
+        
+        html += '<div style="margin: 16px 0; font-size: 0.9rem; color: var(--text-muted);">按类型筛选:</div>';
+        html += CATEGORIES.map(cat => {
+            const count = cat === '全部' ? POLICIES.length : POLICIES.filter(p => p.category === cat).length;
+            const icon = CAT_ICONS[cat] || '📌';
+            return `<button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterByCategory('${cat}')">${icon} ${cat} (${count})</button>`;
+        }).join('');
+        
+        bar.innerHTML = html;
+    }
+
+    // ===== Render Projects =====
+    function renderProjects() {
+        const grid = document.getElementById('projectsGrid');
+        const countEl = document.getElementById('projectCount');
+
+        let filtered = POLICIES;
+        if (currentCity !== '全部') filtered = filtered.filter(p => p.city === currentCity);
+        if (currentFilter !== '全部') filtered = filtered.filter(p => p.category === currentFilter);
+
+        countEl.textContent = `${filtered.length} 项政策`;
+
+        grid.innerHTML = filtered.map((p, i) => {
+            return `
+            <div class="project-card animate-in" style="animation-delay: ${i * 0.05}s">
+                <div class="card-header">
+                    <span class="card-company">🏢 ${p.company}</span>
+                    <span class="card-badge badge-featured">${p.city}</span>
+                </div>
+                <h3 class="card-title">${p.title}</h3>
+                <p class="card-desc">${p.desc}</p>
+                <div class="card-meta">
+                    <div class="meta-item"><span class="label">💰</span> <span class="value budget">${p.budget}</span></div>
+                    <div class="meta-item"><span class="label">📅</span> <span class="value deadline">${p.deadline}</span></div>
+                    <div class="meta-item"><span class="label">👤</span> <span class="value">${p.contact}</span></div>
+                </div>
+                <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                <div class="card-actions">
+                    <a href="${p.link}" target="_blank" class="btn-detail">查看详情</a>
+                    <a href="${p.link}" target="_blank" class="btn-apply">立即申请 →</a>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function filterByCity(city) {
+        currentCity = city;
+        renderFilters();
+        renderProjects();
+    }
+
+    function filterByCategory(cat) {
+        currentFilter = cat;
+        renderFilters();
+        renderProjects();
+    }
+
+    // Initialize
+    renderFilters();
+    renderProjects();
+    </script>
+</body>
+</html>
