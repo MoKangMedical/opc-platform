@@ -433,43 +433,43 @@ function openPostModal() {
     modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
     
     modal.innerHTML = `
-        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
+        <div style="background: var(--card); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <h2 style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 1.5rem; font-weight: 700;">✏️ 发布帖子</h2>
-                <button onclick="closePostModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closePostModal()" style="background: none; border: none; color: #6a6a88; font-size: 1.5rem; cursor: pointer;">✕</button>
             </div>
             
             <form id="postForm" onsubmit="submitPost(event)">
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; font-weight: 500;">标题 *</label>
-                    <input type="text" id="postTitle" required placeholder="输入帖子标题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem;">
+                    <input type="text" id="postTitle" required placeholder="输入帖子标题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: #0d1220; color: #ffffff; font-size: 0.95rem;">
                 </div>
                 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; font-weight: 500;">内容 *</label>
-                    <textarea id="postContent" required rows="6" placeholder="分享你的想法、经验或问题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
+                    <textarea id="postContent" required rows="6" placeholder="分享你的想法、经验或问题..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: #0d1220; color: #ffffff; font-size: 0.95rem; resize: vertical;"></textarea>
                 </div>
                 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; font-weight: 500;">标签（可多选）</label>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: #0d1220; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
                             <input type="checkbox" name="postTags" value="创业经验" style="accent-color: var(--accent, #e94560);">
                             <span>创业经验</span>
                         </label>
-                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: #0d1220; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
                             <input type="checkbox" name="postTags" value="技术分享" style="accent-color: var(--accent, #e94560);">
                             <span>技术分享</span>
                         </label>
-                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: #0d1220; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
                             <input type="checkbox" name="postTags" value="项目合作" style="accent-color: var(--accent, #e94560);">
                             <span>项目合作</span>
                         </label>
-                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: #0d1220; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
                             <input type="checkbox" name="postTags" value="问题求助" style="accent-color: var(--accent, #e94560);">
                             <span>问题求助</span>
                         </label>
-                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); cursor: pointer;">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: #0d1220; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
                             <input type="checkbox" name="postTags" value="资源分享" style="accent-color: var(--accent, #e94560);">
                             <span>资源分享</span>
                         </label>
@@ -484,7 +484,7 @@ function openPostModal() {
                 </div>
                 
                 <div style="display: flex; gap: 12px;">
-                    <button type="button" onclick="closePostModal()" style="flex: 1; padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--t1); font-weight: 500; cursor: pointer;">取消</button>
+                    <button type="button" onclick="closePostModal()" style="flex: 1; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #ffffff; font-weight: 500; cursor: pointer;">取消</button>
                     <button type="submit" style="flex: 1; padding: 14px; border-radius: 10px; border: none; background: var(--accent, #e94560); color: #fff; font-weight: 600; cursor: pointer;">发布帖子</button>
                 </div>
             </form>
@@ -522,44 +522,44 @@ function openCommentModal(postId) {
     modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
     
     modal.innerHTML = `
-        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 32px;">
+        <div style="background: var(--card); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 32px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <h2 style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 1.5rem; font-weight: 700;">💬 评论</h2>
-                <button onclick="closeCommentModal()" style="background: none; border: none; color: var(--t3); font-size: 1.5rem; cursor: pointer;">✕</button>
+                <button onclick="closeCommentModal()" style="background: none; border: none; color: #6a6a88; font-size: 1.5rem; cursor: pointer;">✕</button>
             </div>
             
             <!-- 评论列表 -->
             <div style="margin-bottom: 24px;">
                 <h3 style="font-weight: 600; margin-bottom: 16px;">评论区</h3>
                 <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
+                    <div style="background: #0d1220; border-radius: 12px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                             <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent, #e94560), var(--secondary, #ff6b6b)); display: flex; align-items: center; justify-content: center; font-size: 1rem;">🧑‍💻</div>
                             <div>
                                 <div style="font-weight: 600;">张明</div>
-                                <div style="font-size: 0.8rem; color: var(--t3);">10分钟前</div>
+                                <div style="font-size: 0.8rem; color: #6a6a88;">10分钟前</div>
                             </div>
                         </div>
-                        <div style="color: var(--t2); margin-left: 48px;">写得很好！我也遇到过类似的问题，最终是通过调整心态解决的。</div>
+                        <div style="color: #a0a0c0; margin-left: 48px;">写得很好！我也遇到过类似的问题，最终是通过调整心态解决的。</div>
                     </div>
                     
-                    <div style="background: var(--bg2); border-radius: 12px; padding: 16px;">
+                    <div style="background: #0d1220; border-radius: 12px; padding: 16px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                             <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-light, #ff6b6b), var(--accent-dark, #c92a42)); display: flex; align-items: center; justify-content: center; font-size: 1rem;">✍️</div>
                             <div>
                                 <div style="font-weight: 600;">李薇</div>
-                                <div style="font-size: 0.8rem; color: var(--t3);">1小时前</div>
+                                <div style="font-size: 0.8rem; color: #6a6a88;">1小时前</div>
                             </div>
                         </div>
-                        <div style="color: var(--t2); margin-left: 48px;">感谢分享！请问可以详细说说具体是怎么做的吗？</div>
+                        <div style="color: #a0a0c0; margin-left: 48px;">感谢分享！请问可以详细说说具体是怎么做的吗？</div>
                     </div>
                 </div>
             </div>
             
             <!-- 发表评论 -->
-            <div style="background: var(--bg2); border-radius: 16px; padding: 20px;">
+            <div style="background: #0d1220; border-radius: 16px; padding: 20px;">
                 <h3 style="font-weight: 600; margin-bottom: 12px;">发表评论</h3>
-                <textarea id="commentContent" rows="3" placeholder="写下你的评论..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem; resize: vertical; margin-bottom: 12px;"></textarea>
+                <textarea id="commentContent" rows="3" placeholder="写下你的评论..." style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--card); color: #ffffff; font-size: 0.95rem; resize: vertical; margin-bottom: 12px;"></textarea>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
                         <input type="checkbox" id="commentAnonymous" style="accent-color: var(--accent, #e94560);">
