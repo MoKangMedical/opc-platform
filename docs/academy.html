@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--bg4:#1e1e30;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--pink:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
+:root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--bg4:#1e1e30;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--accent2:#818cf8;--accent:#22c55e;--accent:#f59e0b;--red:#ef4444;--accent-dark:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
 body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .zh,.en{transition:opacity .2s}
@@ -53,11 +53,11 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .ccard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .ctag{padding:2px 8px;border-radius:8px;font-size:10.5px;background:var(--bg3);color:var(--t2)}
 .ccard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
-.price{font-weight:700;color:var(--green);font-size:15px}
+.price{font-weight:700;color:var(--accent, #e94560);font-size:15px}
 .students{font-size:11px;color:var(--t3)}
 .enroll-btn{padding:6px 16px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
 .enroll-btn:hover{background:var(--accent2)}
-.enroll-btn.enrolled{background:var(--bg3);color:var(--green)}
+.enroll-btn.enrolled{background:var(--bg3);color:var(--accent, #e94560)}
 
 /* FILTER */
 .filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
@@ -67,14 +67,14 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 /* MENTOR CARDS */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
 .mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s}
-.mcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.mcard:hover{border-color:var(--accent, #e94560);transform:translateY(-2px)}
 .mcard .av{width:56px;height:56px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--bg3)}
 .mcard h3{font-size:16px;margin-bottom:2px}
-.mcard .title{font-size:12px;color:var(--gold);margin-bottom:8px}
+.mcard .title{font-size:12px;color:var(--accent, #e94560);margin-bottom:8px}
 .mcard .bio{font-size:12px;color:var(--t2);margin-bottom:12px}
 .mcard .skills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px}
 .stag{padding:3px 9px;border-radius:8px;font-size:10.5px;background:var(--bg3);color:var(--t2)}
-.mcard .rating{font-size:12px;color:var(--gold);margin-bottom:10px}
+.mcard .rating{font-size:12px;color:var(--accent, #e94560);margin-bottom:10px}
 .match-btn{padding:7px 20px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
 .match-btn:hover{background:var(--accent);color:#fff}
 
@@ -107,12 +107,12 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .modal .close-btn{float:right;background:none;border:none;color:var(--t2);font-size:20px;cursor:pointer}
 .modal .lesson-list{list-style:none;margin:16px 0}
 .modal .lesson-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:13px}
-.modal .lesson-list .free{color:var(--green);font-size:11px}
+.modal .lesson-list .free{color:var(--accent, #e94560);font-size:11px}
 .modal .enroll-action{margin-top:20px;text-align:center}
 .modal .enroll-big{padding:12px 32px;border-radius:10px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer}
 .modal .enroll-big:hover{background:var(--accent2)}
 
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:300;display:none;animation:fadeInUp .3s}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent, #e94560);color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:300;display:none;animation:fadeInUp .3s}
 @keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
 .tab-content{display:none}.tab-content.active{display:block}
@@ -121,7 +121,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 
 body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.08)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
 .nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
@@ -132,6 +132,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
 .lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
 </style>
+    <link rel="stylesheet" href="design-system.css">
 </head>
 <body>
 
@@ -434,7 +435,7 @@ async function openCourse(id) {
         }).join('')}
       </ul>
       <div class="enroll-action">
-        ${enrolled ? '<button class="enroll-big" style="background:var(--bg3);color:var(--green)" disabled>✅ '+(lang==='en'?'Already Enrolled':'已报名')+'</button>' :
+        ${enrolled ? '<button class="enroll-big" style="background:var(--bg3);color:var(--accent, #e94560)" disabled>✅ '+(lang==='en'?'Already Enrolled':'已报名')+'</button>' :
         `<button class="enroll-big" onclick="enrollCourse(${c.id});closeModal()">${lang==='en'?'Enroll Now':'立即报名'} · ${c.price === 0 ? (lang==='en'?'Free':'免费') : '¥'+c.price}</button>`}
       </div>`;
     document.getElementById('courseModal').classList.add('show');
@@ -469,7 +470,7 @@ function showTab(name, btn) {
 // ===== HELPERS =====
 function levelText(l) { return {beginner: lang==='en'?'Beginner':'初级', intermediate: lang==='en'?'Intermediate':'中级', advanced: lang==='en'?'Advanced':'高级', all: lang==='en'?'All Levels':'所有级别'}[l] || l; }
 function catLabel(c) { return {startup:lang==='en'?'Startup':'创业',ai:'AI',finance:lang==='en'?'Finance':'财务',marketing:lang==='en'?'Marketing':'营销',legal:lang==='en'?'Legal':'法律',data:lang==='en'?'Data':'数据',comprehensive:lang==='en'?'Comprehensive':'综合',technical:lang==='en'?'Technical':'技术',specialized:lang==='en'?'Specialized':'专项',professional:lang==='en'?'Professional':'专业'}[c]||c; }
-function showToast(msg, err) { const t = document.getElementById('toast'); t.textContent = msg; t.style.background = err ? 'var(--red)' : 'var(--green)'; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
+function showToast(msg, err) { const t = document.getElementById('toast'); t.textContent = msg; t.style.background = err ? 'var(--red)' : 'var(--accent, #e94560)'; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
 
 // ===== BILINGUAL =====
 let lang = localStorage.getItem('opc-lang') || 'zh';
@@ -490,7 +491,7 @@ document.getElementById('courseModal').addEventListener('click', e => { if (e.ta
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#e94560':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
 n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){
