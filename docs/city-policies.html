@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0f;
+            --bg: #0a0f1a;
             --bg-elevated: #0d0d14;
-            --bg-card: rgba(255,255,255,0.05);
-            --bg-card-hover: rgba(255,255,255,0.08);
+            --bg-card: rgba(255,255,255,0.06);
+            --bg-card-hover: rgba(255,255,255,0.1);
             --bg-surface: rgba(255,255,255,0.02);
             --border: rgba(255,255,255,0.08);
             --border-hover: rgba(255,255,255,0.15);
@@ -41,7 +41,7 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--bg);
+            background: #0a0f1a;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -76,7 +76,7 @@
             height: 2px; background: var(--accent); border-radius: 1px;
         }
         .lang-btn {
-            background: var(--bg-surface); border: 1px solid var(--border);
+            background: var(--bg-surface); border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-secondary); padding: 6px 14px; border-radius: 8px;
             font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
         }
@@ -150,7 +150,7 @@
             margin-bottom: 24px;
         }
         .filter-btn {
-            background: var(--bg-surface); border: 1px solid var(--border);
+            background: var(--bg-surface); border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-secondary); padding: 10px 20px; border-radius: 10px;
             font-size: 0.85rem; font-weight: 500; cursor: pointer;
             transition: all 0.2s; font-family: var(--font-body);
@@ -177,7 +177,7 @@
         .section-count {
             font-size: 0.85rem; color: var(--text-muted);
             background: var(--bg-surface); padding: 6px 14px; border-radius: 8px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .projects-grid {
@@ -187,7 +187,7 @@
 
         /* ===== Project Card ===== */
         .project-card {
-            background: var(--bg-card); border: 1px solid var(--border);
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
             border-radius: var(--radius); padding: 28px; position: relative;
             transition: all 0.4s var(--ease); overflow: hidden;
         }
@@ -243,12 +243,12 @@
         .tag {
             font-size: 0.72rem; padding: 4px 10px; border-radius: 6px;
             background: rgba(255,255,255,0.04); color: var(--text-muted);
-            border: 1px solid var(--border); font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1); font-weight: 500;
         }
 
         .card-actions { display: flex; gap: 10px; }
         .btn-detail {
-            flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+            flex: 1; background: var(--bg-surface); border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-secondary); padding: 10px 16px; border-radius: 10px;
             font-size: 0.82rem; font-weight: 500; cursor: pointer;
             transition: all 0.2s; text-align: center; text-decoration: none;
