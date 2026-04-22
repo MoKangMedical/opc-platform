@@ -10,23 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #06060a;
+            --bg: #0a0a0f;
             --bg-elevated: #0d0d14;
-            --bg-card: #111119;
-            --bg-card-hover: #16161f;
+            --bg-card: rgba(255,255,255,0.05);
+            --bg-card-hover: rgba(255,255,255,0.08);
             --bg-surface: rgba(255,255,255,0.02);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(255,255,255,0.12);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
             --text: #e8e8f0;
             --text-secondary: #9898b0;
             --text-muted: #5a5a72;
             --accent: #e74c3c;
             --accent-light: #ff6b6b;
-            --accent-warm: #ff8a50;
-            --green: #00d68f;
-            --blue: #4ea8de;
-            --purple: #a78bfa;
-            --gold: #f0c040;
+            --accent-warm: #ff6b6b;
+            --accent: #e94560;
+            --secondary: #ff6b6b;
+            --accent-light: #ff6b6b;
+            --accent: #e94560;
             --font-display: 'Space Grotesk', -apple-system, sans-serif;
             --font-body: 'Inter', -apple-system, sans-serif;
             --radius: 16px;
@@ -133,9 +133,9 @@
             letter-spacing: -0.02em;
         }
         .stat-number.red { color: var(--accent); }
-        .stat-number.gold { color: var(--gold); }
-        .stat-number.blue { color: var(--blue); }
-        .stat-number.green { color: var(--green); }
+        .stat-number.gold { color: var(--accent, #e94560); }
+        .stat-number.blue { color: var(--secondary, #ff6b6b); }
+        .stat-number.green { color: var(--accent, #e94560); }
         .stat-label {
             font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;
             font-weight: 500;
@@ -236,7 +236,7 @@
         }
         .meta-item .label { color: var(--text-muted); }
         .meta-item .value { color: var(--text-secondary); font-weight: 500; }
-        .meta-item .value.budget { color: var(--gold); font-weight: 600; }
+        .meta-item .value.budget { color: var(--accent, #e94560); font-weight: 600; }
         .meta-item .value.deadline { color: var(--accent-light); }
 
         .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -300,6 +300,7 @@
             .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
+    <link rel="stylesheet" href="design-system.css">
 </head>
 <body>
 
