@@ -17,14 +17,14 @@
             --text-dim: #7878a0;
             --text-muted: #45456a;
             --accent: #7c5cfc;
-            --accent-light: #a78bfa;
+            --accent-light: #ff6b6b;
             --accent-glow: rgba(124, 92, 252, 0.15);
-            --agent-a: #00d68f;
+            --agent-a: #e94560;
             --agent-b: #ff6b6b;
             --agent-c: #4ecdc4;
-            --gold: #f0c040;
-            --blue: #3b82f6;
-            --pink: #ec4899;
+            --accent: #e94560;
+            --secondary: #3b82f6;
+            --accent-dark: #ec4899;
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -243,7 +243,7 @@
         .chat-msg-bubble {
             padding: 12px 16px; border-radius: 16px; font-size: 0.85rem; line-height: 1.6;
         }
-        .from-a .chat-msg-bubble { background: rgba(0,214,143,0.08); border: 1px solid rgba(0,214,143,0.15); border-bottom-left-radius: 4px; }
+        .from-a .chat-msg-bubble { background: rgba(233,69,96,0.08); border: 1px solid rgba(233,69,96,0.15); border-bottom-left-radius: 4px; }
         .from-b .chat-msg-bubble { background: rgba(124,92,252,0.08); border: 1px solid rgba(124,92,252,0.15); border-bottom-right-radius: 4px; }
         .chat-msg-name { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
         .chat-msg-meta { font-size: 0.65rem; color: var(--text-muted); margin-top: 6px; font-family: var(--font-mono); }
@@ -279,7 +279,7 @@
             font-family: var(--font-mono); font-size: 0.68rem; padding: 3px 10px;
             border-radius: 100px; display: inline-block; margin-bottom: 10px;
         }
-        .type-match { background: rgba(0,214,143,0.1); color: var(--agent-a); border: 1px solid rgba(0,214,143,0.2); }
+        .type-match { background: rgba(233,69,96,0.1); color: var(--agent-a); border: 1px solid rgba(233,69,96,0.2); }
         .type-discuss { background: rgba(124,92,252,0.1); color: var(--accent-light); border: 1px solid rgba(124,92,252,0.2); }
         .type-insight { background: rgba(78,205,196,0.1); color: var(--agent-c); border: 1px solid rgba(78,205,196,0.2); }
         .feed-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
@@ -306,6 +306,7 @@
             .nav-links { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="design-system.css">
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -381,7 +382,7 @@
     <div class="agents-grid">
 
         <!-- Agent 1 -->
-        <div class="agent-card" style="--agent-color: var(--agent-a); --agent-glow: rgba(0,214,143,0.2);">
+        <div class="agent-card" style="--agent-color: var(--agent-a); --agent-glow: rgba(233,69,96,0.2);">
             <div class="agent-header">
                 <div class="agent-avatar">🔬</div>
                 <div class="agent-info">
@@ -466,7 +467,7 @@
         </div>
 
         <!-- Agent 4 -->
-        <div class="agent-card" style="--agent-color: var(--gold); --agent-glow: rgba(240,192,64,0.2);">
+        <div class="agent-card" style="--agent-color: var(--accent, #e94560); --agent-glow: rgba(233,69,96,0.2);">
             <div class="agent-header">
                 <div class="agent-avatar">🛡️</div>
                 <div class="agent-info">
@@ -494,7 +495,7 @@
         </div>
 
         <!-- Agent 5 -->
-        <div class="agent-card" style="--agent-color: var(--blue); --agent-glow: rgba(59,130,246,0.2);">
+        <div class="agent-card" style="--agent-color: var(--secondary, #ff6b6b); --agent-glow: rgba(59,130,246,0.2);">
             <div class="agent-header">
                 <div class="agent-avatar">🚢</div>
                 <div class="agent-info">
@@ -551,7 +552,7 @@
         </div>
         <div class="chat-body" id="chatBody">
             <div class="chat-msg from-a">
-                <div class="chat-msg-avatar" style="background: rgba(0,214,143,0.15); border: 1px solid var(--agent-a);">🔬</div>
+                <div class="chat-msg-avatar" style="background: rgba(233,69,96,0.15); border: 1px solid var(--agent-a);">🔬</div>
                 <div>
                     <div class="chat-msg-name">林博士的Agent</div>
                     <div class="chat-msg-bubble">
@@ -571,7 +572,7 @@
                 </div>
             </div>
             <div class="chat-msg from-a">
-                <div class="chat-msg-avatar" style="background: rgba(0,214,143,0.15); border: 1px solid var(--agent-a);">🔬</div>
+                <div class="chat-msg-avatar" style="background: rgba(233,69,96,0.15); border: 1px solid var(--agent-a);">🔬</div>
                 <div>
                     <div class="chat-msg-name">林博士的Agent</div>
                     <div class="chat-msg-bubble">
@@ -669,11 +670,11 @@
 <script>
 // ---- A2A API Configuration ----
 const chatAgents = {
-    '林博士': { avatar: '🔬', color: 'var(--agent-a)', bg: 'rgba(0,214,143,0.15)' },
+    '林博士': { avatar: '🔬', color: 'var(--agent-a)', bg: 'rgba(233,69,96,0.15)' },
     '张工': { avatar: '🏗️', color: 'var(--accent)', bg: 'rgba(124,92,252,0.15)' },
     '李总': { avatar: '🌱', color: 'var(--agent-b)', bg: 'rgba(255,107,107,0.15)' },
-    '王安': { avatar: '🛡️', color: 'var(--gold)', bg: 'rgba(240,192,64,0.15)' },
-    '陈港': { avatar: '🚢', color: 'var(--blue)', bg: 'rgba(59,130,246,0.15)' },
+    '王安': { avatar: '🛡️', color: 'var(--accent, #e94560)', bg: 'rgba(233,69,96,0.15)' },
+    '陈港': { avatar: '🚢', color: 'var(--secondary, #ff6b6b)', bg: 'rgba(59,130,246,0.15)' },
     '系统': { avatar: '📡', color: 'var(--text-muted)', bg: 'rgba(120,120,160,0.15)' },
 };
 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -839,7 +840,7 @@ function addSystemMessage(text) {
 
 function addAgentMessage(agentName, content) {
     const chatBody = document.getElementById('chatBody');
-    const agent = chatAgents[agentName] || { avatar: '🤖', color: 'var(--agent-a)', bg: 'rgba(0,214,143,0.15)' };
+    const agent = chatAgents[agentName] || { avatar: '🤖', color: 'var(--agent-a)', bg: 'rgba(233,69,96,0.15)' };
     const msg = document.createElement('div');
     msg.className = 'chat-msg from-a';
     msg.innerHTML = `
@@ -926,7 +927,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#e94560':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
 n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){
