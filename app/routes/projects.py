@@ -111,6 +111,11 @@ def industry_stats(db: Session = Depends(get_db)):
 @router.post("/{project_id}/bid")
 def submit_bid(
     project_id: int,
+    user_id: int = 1,
+    proposal: str = "",
+    budget_quote: float = 0,
+    timeline_days: int = 30,
+    db: Session = Depends(get_db)
     proposal: str = "",
     budget_quote: float = 0,
     timeline_days: int = 30,
@@ -123,6 +128,7 @@ def submit_bid(
     
     bid = ProjectBid(
         project_id=project_id,
+        user_id=user_id,
         user_id=current_user.id,
         proposal=proposal,
         budget_quote=budget_quote,
