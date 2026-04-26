@@ -297,6 +297,59 @@ class AgentMessage(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 
+
+# ========== 聊天室系统 =========
+class ChatRoom(Base):
+    """聊天室 - 支持多人实时聊天和Agent参与"""
+    __tablename__ = "chat_rooms"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    room_type = Column(String(20), default="public")  # public, private, agent_hybrid
+    max_members = Column(Integer, default=50)
+    is_active = Column(Boolean, default=True)
+    created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    
+    # Relationships
+    members = relationship("ChatRoomMember", back_populates="room")
+    messages = relationship("ChatMessage", back_populates="room")
+
+
+class ChatRoomMember(Base):
+    """聊天室成员"""
+    __tablename__ = "chat_room_members"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    room_id = Column(Integer, ForeignKey("chat_rooms.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    agent_id = Column(Integer, ForeignKey("agent_profiles.id"), nullable=True)  # Agent成员
+    role = Column(String(20), default="member")  # owner, admin, member, agent
+    joined_at = Column(DateTime, default=datetime.datetime.utcnow)
+    
+    room = relationship("ChatRoom", back_populates="members")
+
+
+class ChatMessage(Base):
+    """聊天消息 - 支持人和Agent发送"""
+    __tablename__ = "chat_messages"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    room_id = Column(Integer, ForeignKey("chat_rooms.id"), nullable=False)
+    sender_type = Column(String(10), nullable=False)  # user, agent, system
+    sender_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    sender_agent_id = Column(Integer, ForeignKey("agent_profiles.id"), nullable=True)
+    sender_name = Column(String(100))  # 显示名称
+    content = Column(Text, nullable=False)
+    message_type = Column(String(20), default="text")  # text, system, agent_response
+    metadata_ = Column("metadata", JSON, default=dict)
+    is_read = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    
+    room = relationship("ChatRoom", back_populates="messages")
+
+
 # ========== 消息系统 ==========
 class Message(Base):
     __tablename__ = "messages"
