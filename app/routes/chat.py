@@ -1,4 +1,8 @@
 """
+OPC Platform - Chat API (扩展版)
+支持传奇人物 + Agent Skills系统 + 流式响应
+"""
+from fastapi import APIRouter, Depends, HTTPException, Request, Query
 OPC Platform - Chat API
 与Agent分身对话 + 与传奇人物对话
 支持流式响应(SSE)
@@ -14,6 +18,15 @@ import asyncio
 
 from app.database import get_db
 from app.models import AgentProfile, AgentMessage
+
+# 导入扩展版传奇人物知识库
+from app.routes.legends_kb import (
+    LEGENDS_KB, SKILL_CATEGORIES,
+    get_all_legends, get_legends_by_category,
+    get_legend_by_skill, search_legends, get_all_skills
+)
+
+router = APIRouter(prefix="/api/chat", tags=["Chat"])
 
 router = APIRouter(prefix="/api/chat", tags=["Chat"])
 
@@ -273,6 +286,7 @@ AGENTS_KB = {
     },
 }
 
+# ========== 传奇人物对话端点 ==========
 # ========== 聊天端点 ==========
 @router.post("/agent/{agent_type}")
 async def chat_with_agent(
@@ -330,6 +344,73 @@ async def chat_with_legend(
         )
     else:
         response = await call_ai(chat_messages)
+        return {"legend": legend["name"], "response": response, "skills": legend["skills"]}
+
+# ========== Agent对话端点 ===@router.post("/agent/{agent_type}")
+async def chat_with_agent(
+    agent_type: str,
+    request: Request,
+):
+    """与Agent分身对话"""
+    body = await request.json()
+    messages = body.get("messages", [])
+    stream = body.get("stream", False)
+
+    if agent_type not in AGENTS_KB:
+        raise HTTPException(404, f"Agent '{agent_type}' not found")
+
+    agent = AGENTS_KB[agent_type]
+    
+    chat_messages = [{"role": "system", "content": agent["system_prompt"]}]
+    for msg in messages:
+        chat_messages.append({"role": msg["role"], "content": msg["content"]})
+
+    if stream:
+        return StreamingResponse(
+            stream_chat(chat_messages, agent["name"]),
+            media_type="text/event-stream"
+        )
+    else:
+        response = await call_ai(chat_messages)
+        return {"agent": agent["name"], "response": response}
+
+# ========== Skills查询端点 ==========
+@router.get("/skills/categories")
+def get_skill_categories():
+    """获取Skills分类"""
+    return {"categories": SKILL_CATEGORIES}
+
+@router.get("/skills/all")
+def get_all_skills_api():
+    """获取所有Skills标签"""
+    return {"skills": get_all_skills()}
+
+@router.get("/skills/search")
+def search_by_skill(skill: str = Query(..., description="技能关键词")):
+    """按技能搜索传奇人物"""
+    return {"results": get_legend_by_skill(skill)}
+
+# ========== 传奇人物查询端点 ==========
+@router.get("/legends")
+def list_legends():
+    """获取所有传奇人物列表"""
+    return {"legends": get_all_legends()}
+
+@router.get("/legends/{category}")
+def list_legends_by_category(category: str):
+    """按分类获取传奇人物"""
+    if category not in SKILL_CATEGORIES:
+        raise HTTPException(404, f"Category '{category}' not found")
+    return {
+        "category": SKILL_CATEGORIES[category],
+        "legends": get_legends_by_category(category)
+    }
+
+@router.get("/legends/search/{query}")
+def search_legends_api(query: str):
+    """搜索传奇人物"""
+    return {"query": query, "results": search_legends(query)}
+=======
         return {"legend": legend["name"], "response": response}
 
 
@@ -341,6 +422,93 @@ def list_chat_agents():
         for k, v in AGENTS_KB.items()
     ]}
 
+# ========== Skills顾问端点 ===@router.post("/advisor")
+async def skills_advisor(request: Request):
+    """Skills顾问 - 根据问题推荐合适的传奇人物"""
+    body = await request.json()
+    question = body.get("question", "")
+    
+    if not question:
+        raise HTTPException(400, "Question is required")
+    
+    # 分析问题，匹配合适的传奇人物
+    question_lower = question.lower()
+    matched_legends = []
+    
+    # 关键词匹配
+    keywords_map = {
+        "产品": ["steve_jobs", "zhang_yiming"],
+        "融资": ["sam_altman", "naval_ravikant"],
+        "投资": ["warren_buffett", "ray_dalio", "peter_thiel"],
+        "习惯": ["james_clear", "ali_abdaal"],
+        "效率": ["james_clear", "ali_abdaal"],
+        "创业": ["pieter_levels", "marc_lou", "jack_ma"],
+        "独立": ["pieter_levels", "marc_lou"],
+        "ai": ["sam_altman", "huang_renjun"],
+        "技术": ["elon_musk", "steve_jobs", "huang_renjun"],
+        "内容": ["mrbeast", "ali_abdaal"],
+        "营销": ["mrbeast", "jack_ma"],
+        "战略": ["jeff_bezos", "ray_dalio", "peter_thiel"],
+        "全球化": ["zhang_yiming", "jack_ma"],
+        "小米": ["lei_jun"],
+        "美团": ["wang_xing"],
+    }
+    
+    for keyword, legend_ids in keywords_map.items():
+        if keyword in question_lower:
+            for lid in legend_ids:
+                if lid in LEGENDS_KB and lid not in [l["id"] for l in matched_legends]:
+                    legend = LEGENDS_KB[lid]
+                    matched_legends.append({
+                        "id": lid,
+                        "name": legend["name_zh"],
+                        "emoji": legend["emoji"],
+                        "match_reason": f"擅长{keyword}相关问题",
+                        "skills": legend["skills"],
+                    })
+    
+    # 如果没有匹配到，推荐默认的几位
+    if not matched_legends:
+        default_ids = ["naval_ravikant", "james_clear", "pieter_levels"]
+        for lid in default_ids:
+            legend = LEGENDS_KB[lid]
+            matched_legends.append({
+                "id": lid,
+                "name": legend["name_zh"],
+                "emoji": legend["emoji"],
+                "match_reason": "通用商业建议",
+                "skills": legend["skills"],
+            })
+    
+    return {
+        "question": question,
+        "recommendations": matched_legends[:3],  # 最多推荐3位
+        "suggestion": f"根据你的问题，推荐向以下大咖请教：{', '.join([l['name'] for l in matched_legends[:3]])}"
+    }
+
+# ========== 统计端点 ==========
+@router.get("/stats")
+def chat_stats():
+    """获取聊天系统统计"""
+    legends_count = len(LEGENDS_KB)
+    agents_count = len(AGENTS_KB)
+    skills_count = len(get_all_skills())
+    categories_count = len(SKILL_CATEGORIES)
+    
+    return {
+        "legends": legends_count,
+        "agents": agents_count,
+        "skills": skills_count,
+        "categories": categories_count,
+        "categories_detail": {
+            k: {
+                "name": v["name"],
+                "count": len(get_legends_by_category(k))
+            }
+            for k, v in SKILL_CATEGORIES.items()
+        }
+    }
+=======
 
 @router.get("/legends")
 def list_chat_legends():
