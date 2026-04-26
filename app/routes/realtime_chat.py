@@ -24,6 +24,10 @@ class ChatConnectionManager:
     """WebSocket连接管理器 - 支持用户和Agent连接"""
     
     def __init__(self):
+        self.active_connections: Dict[str, WebSocket] = {}  # connection_id -> WebSocket
+        self.user_connections: Dict[int, set] = {}  # user_id -> {connection_ids}
+        self.agent_connections: Dict[int, set] = {}  # agent_id -> {connection_ids}
+        self.room_connections: Dict[int, set] = {}  # room_id -> {connection_ids}
         self.active_connections: Dict[str, WebSocket] = {}
         self.user_connections: Dict[int, set] = {}
         self.agent_connections: Dict[int, set] = {}
@@ -37,6 +41,7 @@ class ChatConnectionManager:
         return f"anon_{id(asyncio)}"
     
     async def connect(self, websocket: WebSocket, user_id: int = None, agent_id: int = None):
+        """建立连接"""
         await websocket.accept()
         conn_id = self._get_connection_id(user_id, agent_id)
         self.active_connections[conn_id] = websocket
@@ -54,6 +59,7 @@ class ChatConnectionManager:
         return conn_id
     
     def disconnect(self, conn_id: str, user_id: int = None, agent_id: int = None):
+        """断开连接"""
         self.active_connections.pop(conn_id, None)
         
         if user_id and user_id in self.user_connections:
@@ -65,21 +71,25 @@ class ChatConnectionManager:
             if not self.agent_connections[agent_id]:
                 del self.agent_connections[agent_id]
         
+        # 从所有房间移除
         for room_id, conns in self.room_connections.items():
             conns.discard(conn_id)
         
         logger.info(f"Disconnected: {conn_id}")
     
     async def join_room(self, conn_id: str, room_id: int):
+        """加入聊天室"""
         if room_id not in self.room_connections:
             self.room_connections[room_id] = set()
         self.room_connections[room_id].add(conn_id)
     
     async def leave_room(self, conn_id: str, room_id: int):
+        """离开聊天室"""
         if room_id in self.room_connections:
             self.room_connections[room_id].discard(conn_id)
     
     async def send_to_connection(self, conn_id: str, message: dict):
+        """发送消息到指定连接"""
         ws = self.active_connections.get(conn_id)
         if ws:
             try:
@@ -88,22 +98,26 @@ class ChatConnectionManager:
                 self.active_connections.pop(conn_id, None)
     
     async def send_to_user(self, user_id: int, message: dict):
+        """发送消息到用户的所有连接"""
         conn_ids = self.user_connections.get(user_id, set())
         for conn_id in conn_ids:
             await self.send_to_connection(conn_id, message)
     
     async def send_to_agent(self, agent_id: int, message: dict):
+        """发送消息到Agent的所有连接"""
         conn_ids = self.agent_connections.get(agent_id, set())
         for conn_id in conn_ids:
             await self.send_to_connection(conn_id, message)
     
     async def broadcast_to_room(self, room_id: int, message: dict, exclude_conn: str = None):
+        """向房间内所有人广播"""
         conn_ids = self.room_connections.get(room_id, set())
         for conn_id in conn_ids:
             if conn_id != exclude_conn:
                 await self.send_to_connection(conn_id, message)
 
 
+# 全局连接管理器
 chat_manager = ChatConnectionManager()
 
 
@@ -114,6 +128,7 @@ def list_chat_rooms(
     user_id: Optional[int] = None,
     db: Session = Depends(get_db)
 ):
+    """获取聊天室列表"""
     query = db.query(ChatRoom).filter(ChatRoom.is_active == True)
     
     if room_type:
@@ -123,10 +138,12 @@ def list_chat_rooms(
     
     result = []
     for room in rooms:
+        # 获取成员数
         member_count = db.query(ChatRoomMember).filter(
             ChatRoomMember.room_id == room.id
         ).count()
         
+        # 获取最后一条消息
         last_msg = db.query(ChatMessage).filter(
             ChatMessage.room_id == room.id
         ).order_by(desc(ChatMessage.created_at)).first()
@@ -156,6 +173,7 @@ def create_chat_room(
     user_id: int = 1,
     db: Session = Depends(get_db)
 ):
+    """创建聊天室"""
     room = ChatRoom(
         name=name,
         description=description,
@@ -166,6 +184,7 @@ def create_chat_room(
     db.commit()
     db.refresh(room)
     
+    # 创建者自动加入
     member = ChatRoomMember(
         room_id=room.id,
         user_id=user_id,
@@ -179,10 +198,12 @@ def create_chat_room(
 
 @router.get("/rooms/{room_id}")
 def get_chat_room(room_id: int, db: Session = Depends(get_db)):
+    """获取聊天室详情"""
     room = db.query(ChatRoom).filter(ChatRoom.id == room_id).first()
     if not room:
         raise HTTPException(404, "Chat room not found")
     
+    # 获取成员
     members = db.query(ChatRoomMember).filter(
         ChatRoomMember.room_id == room_id
     ).all()
@@ -223,6 +244,7 @@ def join_chat_room(
     user_id: int = 1,
     db: Session = Depends(get_db)
 ):
+    """加入聊天室"""
     room = db.query(ChatRoom).filter(ChatRoom.id == room_id).first()
     if not room:
         raise HTTPException(404, "Chat room not found")
@@ -253,22 +275,26 @@ async def invite_agent_to_room(
     secondme_route: str = None,
     db: Session = Depends(get_db)
 ):
+    """邀请Agent加入聊天室（SecondMe集成）"""
     room = db.query(ChatRoom).filter(ChatRoom.id == room_id).first()
     if not room:
         raise HTTPException(404, "Chat room not found")
     
     if secondme_route:
+        # 从SecondMe创建Agent并加入
         connector = get_connector()
         profile = await connector.get_user_profile(secondme_route)
         if not profile:
             raise HTTPException(400, "SecondMe profile not found")
         
+        # 检查是否已有Agent
         agent = db.query(AgentProfile).filter(
             AgentProfile.name == f"{profile.nickname}的Agent"
         ).first()
         
         if not agent:
             agent = AgentProfile(
+                user_id=1,  # 系统Agent
                 user_id=1,
                 name=f"{profile.nickname}的Agent",
                 avatar_emoji="🧠",
@@ -286,6 +312,7 @@ async def invite_agent_to_room(
     if not agent_id:
         raise HTTPException(400, "Either agent_id or secondme_route is required")
     
+    # 检查Agent是否已在房间
     existing = db.query(ChatRoomMember).filter(
         ChatRoomMember.room_id == room_id,
         ChatRoomMember.agent_id == agent_id
@@ -305,6 +332,7 @@ async def invite_agent_to_room(
     return {"message": "Agent joined chat room", "agent_id": agent_id}
 
 
+# ========== 聊天消息 ==========
 @router.get("/rooms/{room_id}/messages")
 def get_chat_messages(
     room_id: int,
@@ -312,12 +340,14 @@ def get_chat_messages(
     before_id: Optional[int] = None,
     db: Session = Depends(get_db)
 ):
+    """获取聊天室消息历史"""
     query = db.query(ChatMessage).filter(ChatMessage.room_id == room_id)
     
     if before_id:
         query = query.filter(ChatMessage.id < before_id)
     
     messages = query.order_by(desc(ChatMessage.created_at)).limit(limit).all()
+    messages.reverse()  # 按时间正序
     messages.reverse()
     
     return {"messages": [{
@@ -340,6 +370,18 @@ async def chat_websocket(
     user_id: int = 0,
     agent_id: int = 0
 ):
+    """
+    WebSocket实时聊天连接
+    
+    消息协议:
+    - {type: "join", room_id: N} - 加入房间
+    - {type: "leave", room_id: N} - 离开房间
+    - {type: "message", room_id: N, content: "..."} - 发送消息
+    - {type: "agent_chat", room_id: N, content: "...", target_secondme: "route"} - 与Agent对话
+    """
+    conn_id = await chat_manager.connect(websocket, user_id or None, agent_id or None)
+    
+    # 获取用户名
     conn_id = await chat_manager.connect(websocket, user_id or None, agent_id or None)
     
     sender_name = "Anonymous"
@@ -369,12 +411,15 @@ async def chat_websocket(
             room_id = msg.get("room_id")
             
             if msg_type == "join":
+                # 加入聊天室
                 if room_id:
                     await chat_manager.join_room(conn_id, room_id)
                     await chat_manager.send_to_connection(conn_id, {
                         "type": "system",
                         "content": f"Joined room {room_id}"
                     })
+                    
+                    # 广播通知
                     await chat_manager.broadcast_to_room(room_id, {
                         "type": "system",
                         "content": f"{sender_name} joined the chat",
@@ -382,6 +427,7 @@ async def chat_websocket(
                     }, exclude_conn=conn_id)
             
             elif msg_type == "leave":
+                # 离开聊天室
                 if room_id:
                     await chat_manager.leave_room(conn_id, room_id)
                     await chat_manager.broadcast_to_room(room_id, {
@@ -391,6 +437,10 @@ async def chat_websocket(
                     })
             
             elif msg_type == "message":
+                # 发送消息
+                content = msg.get("content", "")
+                if room_id and content:
+                    # 保存到数据库
                 content = msg.get("content", "")
                 if room_id and content:
                     from app.database import SessionLocal
@@ -408,6 +458,7 @@ async def chat_websocket(
                         db.commit()
                         db.refresh(chat_msg)
                         
+                        # 广播到房间
                         broadcast_msg = {
                             "type": "message",
                             "id": chat_msg.id,
@@ -423,10 +474,16 @@ async def chat_websocket(
                         db.close()
             
             elif msg_type == "agent_chat":
+                # 与SecondMe Agent对话
                 content = msg.get("content", "")
                 target_secondme = msg.get("target_secondme", "")
                 
                 if room_id and content and target_secondme:
+                    # 保存用户消息
+                    from app.database import SessionLocal
+                    db = SessionLocal()
+                    try:
+                        # 用户消息
                     from app.database import SessionLocal
                     db = SessionLocal()
                     try:
@@ -441,6 +498,7 @@ async def chat_websocket(
                         db.add(user_msg)
                         db.commit()
                         
+                        # 广播用户消息
                         await chat_manager.broadcast_to_room(room_id, {
                             "type": "message",
                             "room_id": room_id,
@@ -451,10 +509,16 @@ async def chat_websocket(
                             "timestamp": user_msg.created_at.isoformat()
                         })
                         
+                        # 调用SecondMe
                         connector = get_connector()
                         agent_response = await connector.chat_with_secondme(target_secondme, content)
                         
                         if agent_response:
+                            # 获取Agent名称
+                            profile = await connector.get_user_profile(target_secondme)
+                            agent_name = f"{profile.nickname}的Agent" if profile else "SecondMe Agent"
+                            
+                            # 保存Agent响应
                             profile = await connector.get_user_profile(target_secondme)
                             agent_name = f"{profile.nickname}的Agent" if profile else "SecondMe Agent"
                             
@@ -470,6 +534,7 @@ async def chat_websocket(
                             db.commit()
                             db.refresh(agent_msg)
                             
+                            # 广播Agent响应
                             await chat_manager.broadcast_to_room(room_id, {
                                 "type": "agent_response",
                                 "id": agent_msg.id,
@@ -488,6 +553,7 @@ async def chat_websocket(
                         db.close()
             
             elif msg_type == "ping":
+                # 心跳
                 await chat_manager.send_to_connection(conn_id, {
                     "type": "pong",
                     "timestamp": datetime.utcnow().isoformat()
@@ -497,6 +563,10 @@ async def chat_websocket(
         chat_manager.disconnect(conn_id, user_id or None, agent_id or None)
 
 
+# ========== 私信系统（保留兼容） ===@router.get("/messages")
+def get_messages(user_id: int = 1, db: Session = Depends(get_db)):
+    """获取私信列表"""
+=======
 # ========== 私信系统 ==========
 @router.get("/messages")
 def get_messages(user_id: int = 1, db: Session = Depends(get_db)):
@@ -516,6 +586,7 @@ def send_message(
     content: str = "",
     db: Session = Depends(get_db)
 ):
+    """发送私信"""
     msg = Message(sender_id=sender_id, receiver_id=receiver_id, content=content)
     db.add(msg)
     db.commit()
@@ -526,6 +597,7 @@ def send_message(
 # ========== 预设聊天室 ==========
 @router.post("/seed-rooms")
 def seed_chat_rooms(db: Session = Depends(get_db)):
+    """创建预设聊天室"""
     if db.query(ChatRoom).count() > 0:
         return {"message": "Chat rooms already exist"}
     
