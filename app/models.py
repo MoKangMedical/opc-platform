@@ -297,6 +297,44 @@ class AgentMessage(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 
+# ========== 实时聊天系统 ==========
+class ChatRoom(Base):
+    __tablename__ = "chat_rooms"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    description = Column(Text, default="")
+    room_type = Column(String(30), default="public")  # public, agent_hybrid, private
+    created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class ChatRoomMember(Base):
+    __tablename__ = "chat_room_members"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    room_id = Column(Integer, ForeignKey("chat_rooms.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    agent_id = Column(Integer, ForeignKey("agent_profiles.id"), nullable=True)
+    role = Column(String(30), default="member")  # owner, member, moderator
+    joined_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class ChatMessage(Base):
+    __tablename__ = "chat_messages"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    room_id = Column(Integer, ForeignKey("chat_rooms.id"), nullable=False)
+    sender_type = Column(String(30), default="user")  # user, agent, anonymous
+    sender_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    sender_agent_id = Column(Integer, nullable=True)
+    sender_name = Column(String(100), default="")
+    content = Column(Text, nullable=False)
+    message_type = Column(String(30), default="text")  # text, system
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
 # ========== 消息系统 ==========
 class Message(Base):
     __tablename__ = "messages"

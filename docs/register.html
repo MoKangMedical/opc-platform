@@ -121,9 +121,39 @@ a{color:inherit;text-decoration:none}
   .auth-card{padding:36px 24px}
   .form-row{flex-direction:column;gap:0}
 }
+
+/* -- OPC Nav -- */
+.opc-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,6,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(124,92,252,0.15);height:44px;display:flex;align-items:center;padding:0 20px}
+.opc-nav a{color:var(--t2);text-decoration:none;font-size:12px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all .2s}
+.opc-nav a:hover{color:var(--t1);background:var(--bg3)}
+.opc-nav .brand{color:var(--t1);font-weight:700;font-size:13px;margin-right:16px}
+.opc-nav .brand:hover{background:transparent}
+.opc-nav-spacer{flex:1}
+body{padding-top:44px}
 </style>
+
+<meta property="og:title" content="注册 — OPC Platform">
+<meta property="og:description" content="注册OPC平台，成为AI驱动的一人公司创业者。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokangmedical.github.io/opc-platform/register.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mokangmedical.github.io/opc-platform/register.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 </head>
 <body>
+
+<nav class="opc-nav">
+  <a href="index.html" class="brand">◆ OPC Platform</a>
+  <a href="academy.html">学院</a>
+  <a href="community.html">社区</a>
+  <a href="government.html">揭榜挂帅</a>
+  <a href="chat.html">聊天</a>
+  <a href="health.html">健康</a>
+  <span class="opc-nav-spacer"></span>
+  <a href="index.html">返回首页</a>
+</nav>
+
+
 
 <nav class="nav"><div class="nav-i">
   <a href="index.html" class="nav-logo">

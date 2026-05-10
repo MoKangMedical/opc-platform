@@ -77,6 +77,15 @@ footer p{color:var(--t3);font-size:.82rem}
 .ai{animation:fu .6s var(--e) both}
 @media(max-width:768px){.nav-lks{display:none}.s-grid,.e-grid{grid-template-columns:1fr}.hero h1{font-size:1.8rem}}
 </style>
+
+<meta name="description" content="AI创业助手提供商业计划生成、市场分析、竞品调研等智能服务，让你的创业决策有据可依。">
+<meta property="og:title" content="OPC 创业助手 — AI 驱动的创业服务">
+<meta property="og:description" content="AI创业助手提供商业计划生成、市场分析、竞品调研等智能服务，让你的创业决策有据可依。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokangmedical.github.io/opc-platform/service.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mokangmedical.github.io/opc-platform/service.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 </head>
 <body>
     <nav>
@@ -91,7 +100,8 @@ footer p{color:var(--t3);font-size:.82rem}
             <a href="policy.html">政策</a>
             <a href="community.html">社区</a>
             <a href="chat.html">聊天</a>
-        </div>
+                <a href="health.html">健康</a>
+</div>
     </nav>
 
 <section class="hero">
@@ -208,13 +218,14 @@ const AI_RESPONSES={
 "税收":"您可能享受以下税收优惠：\n\n1️⃣ **小微企业**：实际税负仅5%\n2️⃣ **增值税**：月销10万以下免征\n3️⃣ **个体工商户**：个税减半征收\n4️⃣ **高新技术企业**：税率15%+研发加计100%\n5️⃣ **软件企业**：2免3减半\n\n需要我帮您评估具体能省多少税吗？",
 "人才":"人才政策包括：\n\n1️⃣ **人才补贴**：5000-20000元\n2️⃣ **人才公寓**：低价租房\n3️⃣ **落户政策**：快速办理\n4️⃣ **子女教育**：优先入学\n5️⃣ **医疗保障**：绿色通道\n\n您是什么类型的人才？"
 };
+const API_BASE = '/api';
 
 function quickAsk(q){
 document.getElementById('aiInput').value=q;
 sendMsg();
 }
 
-function sendMsg(){
+async function sendMsg(){
 const input=document.getElementById('aiInput');
 const msg=input.value.trim();
 if(!msg)return;
@@ -224,13 +235,27 @@ const chat=document.getElementById('aiChat');
 chat.innerHTML+=`<div class="ai-msg user"><div class="bubble">${msg}</div></div>`;
 chat.scrollTop=chat.scrollHeight;
 
+// Try real API first, fallback to keyword matching
+try{
+const resp=await fetch(`${API_BASE}/chat/agent/general`,{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({query:msg,stream:false})
+});
+if(resp.ok){
+const data=await resp.json();
+const reply=data.response||data.answer||data.content||data.reply||'服务暂不可用';
+chat.innerHTML+=`<div class="ai-msg bot"><div class="bubble">${reply.replace(/\n/g,'<br>')}</div></div>`;
+chat.scrollTop=chat.scrollHeight;
+return;
+}
+}catch(e){console.warn('后端未连接，使用本地回复:',e.message)}
+
+// Fallback: keyword matching
 setTimeout(()=>{
 let response="感谢您的提问！这是一个很好的问题。\n\n";
 for(const[key,ans] of Object.entries(AI_RESPONSES)){
-if(msg.includes(key)){
-response=ans;
-break;
-}
+if(msg.includes(key)){response=ans;break;}
 }
 if(response==="感谢您的提问！这是一个很好的问题。\n\n"){
 response+="我可以帮您：\n• 查询创业政策\n• 匹配融资渠道\n• 推荐办公场地\n• 指导公司注册\n• 对接项目合作\n\n请告诉我您具体需要什么帮助？";

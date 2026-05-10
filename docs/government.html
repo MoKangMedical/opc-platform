@@ -373,6 +373,14 @@
             .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(6,6,10,0.98); padding: 20px 32px; gap: 16px; border-bottom: 1px solid var(--border); }
         }
     </style>
+
+<meta property="og:title" content="OPC 揭榜挂帅 — 政府科技项目对接平台">
+<meta property="og:description" content="精准匹配政府科技需求与创业者能力，揭榜挂帅模式让技术人才直接对接项目机会，实现快速变现。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokangmedical.github.io/opc-platform/government.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mokangmedical.github.io/opc-platform/government.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 </head>
 <body>
     <!-- Navigation -->
@@ -515,6 +523,10 @@
         {id:30,title:"基于数据中台的AI+智能风险管控平台",company:"江苏省苏豪控股集团有限公司",category:"综合管理",desc:"融合数据中台、AI视觉模型及知识图谱技术，构建数据资产体系、打造AI服务，推进主数据标准化与稽核智能协同。",budget:"¥350万",budgetMin:350,deadline:"2026-05-25",tags:["人工智能","数据中台","知识图谱"],contact:"邢梦婷"}
     ];
 
+    // ===== API Configuration =====
+    const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000/api' : '/api';
+    let allProjects = [];
+
     // Categories
     const CATEGORIES = ['全部',...new Set(PROJECTS.map(p=>p.category))];
     const CAT_ICONS = {'全部':'📋','新能源':'⚡','能源':'🔥','储能':'🔋','交通':'🚄','安全监测':'🛡️','传媒':'📺','航空安全':'✈️','纺织服装':'👗','跨境电商':'🌐','先进制造':'🏭','供应链':'📦','化工':'🧪','综合管理':'📊','保险':'🛡️','医疗健康':'🏥','物流仓储':'📦'};
@@ -526,7 +538,7 @@
     function renderFilters() {
         const bar = document.getElementById('filterBar');
         bar.innerHTML = CATEGORIES.map(cat => {
-            const count = cat === '全部' ? PROJECTS.length : PROJECTS.filter(p => p.category === cat).length;
+            const count = cat === '全部' ? allProjects.length : allProjects.filter(p => p.category === cat).length;
             const icon = CAT_ICONS[cat] || '📌';
             return `<button class="filter-btn ${cat === currentFilter ? 'active' : ''}" onclick="filterBy('${cat}')">${icon} ${cat} (${count})</button>`;
         }).join('');
@@ -539,7 +551,7 @@
         const countEl = document.getElementById('projectCount');
         const searchCountEl = document.getElementById('searchCount');
 
-        let filtered = PROJECTS;
+        let filtered = allProjects;
         if (currentFilter !== '全部') filtered = filtered.filter(p => p.category === currentFilter);
         if (searchTerm) {
             const s = searchTerm.toLowerCase();
@@ -598,7 +610,7 @@
     }
 
     function showDetail(id) {
-        const p = PROJECTS.find(x => x.id === id);
+        const p = allProjects.find(x => x.id === id);
         if (!p) return;
         alert(`📋 ${p.title}\n\n🏢 ${p.company}\n💰 预算: ${p.budget}\n📅 截止: ${p.deadline}\n👤 联系人: ${p.contact}\n🔧 技术: ${p.tags.join(', ')}\n\n${p.desc}`);
     }
@@ -632,9 +644,26 @@
         });
     }
 
+    // ===== Load Projects =====
+    async function loadProjects() {
+        const grid = document.getElementById('projectsGrid');
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted, #5a5a72);font-size:1rem">⏳ 加载中...</div>';
+        try {
+            const resp = await fetch(`${API_BASE}/government/`);
+            const data = await resp.json();
+            allProjects = data.projects || data || [];
+            document.getElementById('projectCount').textContent = `${allProjects.length} 个项目`;
+        } catch(e) {
+            console.log('API unavailable, using fallback data');
+            allProjects = PROJECTS;
+            document.getElementById('projectCount').textContent = `${allProjects.length} 个项目`;
+        }
+        renderFilters();
+        renderProjects();
+    }
+
     // ===== Init =====
-    renderFilters();
-    renderProjects();
+    loadProjects();
     
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
