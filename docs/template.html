@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoKangMedical — AI-Powered Medical Innovation Ecosystem | {{TOTAL_PROJECTS}} Projects</title>
+<meta name="description" content="{{TOTAL_PROJECTS}} AI projects across drug discovery, clinical research, digital health, and solo entrepreneur ecosystem. 6 business verticals, 5 revenue flywheels.">
+<meta name="keywords" content="medical AI, drug discovery, clinical research, Meta-analysis, biostatistics, rare disease, digital health, OPC, one person company">
+<meta property="og:title" content="MoKangMedical — AI-Powered Medical Innovation Ecosystem">
+<meta property="og:description" content="{{TOTAL_PROJECTS}} open-source medical AI projects. From drug discovery to digital health.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokangmedical.github.io/opc-homepage/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>M</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090b;--bg2:#111113;--bg3:#18181b;--bg4:#27272a;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#71717a;
+  --border:#27272a;--border2:#3f3f46;
+  --accent:#6366f1;--accent2:#818cf8;
+  --green:#10b981;--pink:#ec4899;--amber:#f59e0b;--purple:#8b5cf6;--cyan:#06b6d4;
+  --radius:12px;--radius-lg:16px;
+}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif}
+body{background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,box-shadow .4s}
+nav.scrolled{background:rgba(9,9,11,.85);border-bottom-color:rgba(99,102,241,.15);box-shadow:0 1px 24px rgba(99,102,241,.08)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:800;font-size:18px;letter-spacing:-.5px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:12px;font-weight:500;color:var(--text3)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-cta{background:var(--accent);color:#fff;padding:6px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+.nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:22px;padding:4px}
+
+.hero{padding:0 32px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 60%);pointer-events:none;z-index:0}
+.hero-mesh{position:absolute;inset:0;z-index:0;overflow:hidden!important}
+.hero>*:not(.hero-mesh){position:relative;z-index:1}
+.hero-mesh .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:morph 18s ease-in-out infinite alternate}
+.hero-mesh .orb-1{width:600px;height:600px;background:radial-gradient(circle,#6366f1,#8b5cf6);top:-15%;left:10%;animation-delay:0s}
+.hero-mesh .orb-2{width:500px;height:500px;background:radial-gradient(circle,#ec4899,#8b5cf6);bottom:-10%;right:5%;animation-delay:-6s}
+.hero-mesh .orb-3{width:400px;height:400px;background:radial-gradient(circle,#06b6d4,#6366f1);top:20%;right:25%;animation-delay:-12s}
+@keyframes morph{0%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-20px,40px) scale(.95)}100%{transform:translate(30px,10px) scale(1.05)}}
+.hero-grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+.hero-noise{position:absolute;inset:0;z-index:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px 128px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px;font-size:13px;color:var(--text2);margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(36px,6vw,68px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;max-width:860px;margin:0 auto 24px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--pink),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:17px;color:var(--text2);max-width:600px;margin:0 auto 48px;line-height:1.7}
+
+.stats-bar{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:40px 0}
+.stat-item{text-align:center}
+.stat-item .num{font-size:32px;font-weight:800;letter-spacing:-1px}
+.stat-item .num.accent{color:var(--accent2)}
+.stat-item .label{font-size:12px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+
+.controls{max-width:1280px;margin:0 auto;padding:0 32px 32px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.search-box{flex:1;min-width:200px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 16px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.search-box:focus{border-color:var(--accent)}
+.search-box::placeholder{color:var(--text3)}
+.filter-btn{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent2);background:rgba(99,102,241,.08)}
+.result-count{font-size:12px;color:var(--text3);margin-left:auto}
+
+.section{max-width:1280px;margin:0 auto;padding:80px 32px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header .tag{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:12px}
+.section-header h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+.section-header p{font-size:15px;color:var(--text2);max-width:520px;margin:0 auto}
+
+.fw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.fw-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.fw-card:hover{border-color:transparent;transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.2)}
+.fw-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
+.fw-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.fw-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px}
+.fw-tags{display:flex;gap:8px;flex-wrap:wrap}
+.fw-tags span{font-size:11px;background:var(--bg3);padding:3px 8px;border-radius:5px;color:var(--text3)}
+
+.segment{max-width:1280px;margin:0 auto;padding:48px 32px}
+.seg-header{display:flex;align-items:center;gap:12px;margin-bottom:8px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.seg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.seg-titles{display:flex;align-items:baseline;gap:10px;flex:1}
+.seg-titles h2{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.seg-zh{font-size:13px;color:var(--text3)}
+.seg-count{font-size:12px;color:var(--text3);background:var(--bg3);padding:3px 10px;border-radius:6px}
+.seg-tagline{font-size:14px;color:var(--text2);margin-bottom:20px;padding-left:22px}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.proj-card:hover{border-color:transparent;transform:translateY(-3px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.25)}
+.proj-card.hidden{display:none}
+.tier{position:absolute;top:14px;right:14px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 7px;border-radius:4px}
+.tier-cash-cow{background:rgba(16,185,129,.12);color:var(--green)}
+.tier-growth{background:rgba(99,102,241,.12);color:var(--accent2)}
+.tier-pipeline{background:rgba(245,158,11,.12);color:var(--amber)}
+.tier-moat{background:rgba(139,92,246,.12);color:var(--purple)}
+.tier-support{background:rgba(113,113,122,.08);color:var(--text3)}
+.tier-niche{background:rgba(6,182,212,.12);color:var(--cyan)}
+.proj-name{font-size:15px;font-weight:700;margin-bottom:6px;padding-right:70px}
+.proj-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;min-height:36px}
+.proj-impact{font-size:11px;color:var(--green);font-weight:600;margin-bottom:8px;padding:3px 8px;background:rgba(16,185,129,.08);border-radius:4px;display:inline-block}
+.proj-meta{display:flex;gap:6px;margin-bottom:10px}
+.stat-badge{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 6px;border-radius:4px}
+.proj-footer{display:flex;align-items:center;justify-content:space-between}
+.proj-status{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:5px}
+.dot-sm{width:5px;height:5px;border-radius:50%;display:inline-block}
+.status-live{color:var(--green)}.status-live .dot-sm{background:var(--green)}
+.status-dev{color:var(--amber)}.status-dev .dot-sm{background:var(--amber)}
+.proj-link{font-size:11px;color:var(--text3);transition:color .2s}
+.proj-link:hover{color:var(--accent2)}
+.proj-links{display:flex;gap:10px;align-items:center}
+.proj-link-demo{color:var(--accent2);font-weight:600}
+.proj-link-demo:hover{color:var(--accent);text-decoration:underline}
+
+/* ===== FEATURED DEMOS ===== */
+.fd-section{max-width:1280px;margin:0 auto;padding:48px 32px 0}
+.fd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.fd-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.fd-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--fd-accent,var(--accent));opacity:.8}
+.fd-card:hover{border-color:transparent;transform:translateY(-3px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.25)}
+.fd-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.fd-dot{width:8px;height:8px;border-radius:50%}
+.fd-segment{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.fd-name{font-size:16px;font-weight:700;margin-bottom:6px}
+.fd-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:16px;min-height:40px}
+.fd-links{display:flex;gap:10px}
+.fd-btn{font-size:12px;font-weight:600;padding:7px 16px;border-radius:7px;transition:all .2s;cursor:pointer;text-decoration:none}
+.fd-btn-demo{background:var(--accent);color:#fff}
+.fd-btn-demo:hover{opacity:.85;transform:translateY(-1px)}
+.fd-btn-github{background:var(--bg3);border:1px solid var(--border);color:var(--text2)}
+.fd-btn-github:hover{border-color:var(--accent);color:var(--accent2)}
+@media(max-width:768px){
+  .fd-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .fd-section{padding:24px 16px 0}
+  .fd-card{padding:20px}
+}
+
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:32px}
+.toggle-label{font-size:14px;color:var(--text3);transition:color .3s}
+.toggle-label.active{color:var(--text);font-weight:600}
+.save-badge{font-size:10px;background:rgba(16,185,129,.15);color:var(--green);padding:2px 6px;border-radius:4px;margin-left:4px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.price-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(99,102,241,.1)}
+.price-card.featured:hover{box-shadow:0 12px 40px rgba(99,102,241,.18)}
+.price-card.featured::before{content:'Recommended';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:1px}
+.price-tier{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:8px}
+.price-amount{font-size:36px;font-weight:900;letter-spacing:-1px;margin-bottom:4px}
+.price-amount .currency{font-size:16px;font-weight:500;vertical-align:top;color:var(--text3)}
+.price-period{font-size:12px;color:var(--text3);margin-bottom:20px}
+.price-features{list-style:none;text-align:left;margin-bottom:24px}
+.price-features li{font-size:13px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'\2713';color:var(--green);font-weight:700;font-size:12px}
+.price-btn{display:block;width:100%;padding:10px;border-radius:8px;font-size:14px;font-weight:600;text-align:center;transition:all .2s;cursor:pointer;font-family:inherit}
+.price-btn.primary{background:linear-gradient(135deg,var(--accent),#818cf8);color:#fff;border:none}
+.price-btn.primary:hover{opacity:.9;transform:translateY(-1px)}
+.price-btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+.price-btn.secondary:hover{border-color:var(--accent);color:var(--accent2)}
+
+.faq-list{max-width:720px;margin:0 auto;padding:0 8px}
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden}
+.faq-item summary{padding:16px 20px;font-size:14px;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:18px;color:var(--text3)}
+.faq-item[open] summary::after{content:'\2212'}
+.faq-item p{padding:0 20px 16px;font-size:13px;color:var(--text2);line-height:1.7}
+
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.team-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:14px;align-items:flex-start;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.team-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.team-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px}
+.team-badge.urgent{background:rgba(239,68,68,.12);color:#ef4444}
+.team-badge.important{background:rgba(245,158,11,.12);color:var(--amber)}
+.team-card h4{font-size:14px;font-weight:700;margin-bottom:3px}
+.team-card p{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:4px}
+.team-type{font-size:11px;color:var(--text3)}
+
+.contact-section{text-align:center;padding:100px 32px}
+.contact-section h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.contact-section p{font-size:15px;color:var(--text2);max-width:480px;margin:0 auto 28px}
+.contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:14px;transition:opacity .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{opacity:.85}
+.btn-secondary{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:12px 28px;border-radius:10px;font-weight:600;font-size:14px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent2)}
+
+.newsletter{max-width:480px;margin:0 auto;text-align:center}
+.newsletter-form{display:flex;gap:8px;margin-top:16px}
+.newsletter-form input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none}
+.newsletter-form input:focus{border-color:var(--accent)}
+.newsletter-form button{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
+
+footer{border-top:1px solid var(--border);padding:56px 32px 36px;max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand h3{font-size:16px;font-weight:800;margin-bottom:8px}
+.footer-brand p{font-size:13px;color:var(--text3);line-height:1.7}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:var(--text2);padding:5px 0;transition:all .2s}
+.footer-col a:hover{color:var(--accent2)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-stagger{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-stagger.visible{opacity:1;transform:translateY(0)}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:28px;font-size:14px;font-weight:500}
+.pricing-toggle .label{color:var(--text3);transition:color .3s}
+.pricing-toggle .label.active{color:var(--text)}
+.toggle-switch{width:48px;height:26px;background:var(--bg3);border:1px solid var(--border);border-radius:999px;cursor:pointer;position:relative;transition:background .3s,border-color .3s;flex-shrink:0}
+.toggle-switch.annual{background:var(--accent);border-color:var(--accent)}
+.toggle-switch .toggle-knob{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle-switch.annual .toggle-knob{transform:translateX(22px)}
+.save-badge{font-size:11px;font-weight:700;background:rgba(16,185,129,.15);color:var(--green);padding:2px 8px;border-radius:999px;margin-left:4px}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.how-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.how-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.how-num{font-size:32px;font-weight:900;color:var(--accent);margin-bottom:12px;opacity:.6}
+.how-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* USE CASES */
+.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.usecase-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.usecase-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.usecase-icon{font-size:28px;margin-bottom:12px}
+.usecase-card h3{font-size:16px;font-weight:700;margin-bottom:12px}
+.usecase-quote{font-size:13px;color:var(--text2);line-height:1.7;font-style:italic;margin-bottom:12px}
+.usecase-author{font-size:11px;color:var(--text3);margin-bottom:16px}
+.usecase-metric{display:flex;align-items:baseline;gap:8px;padding-top:12px;border-top:1px solid var(--border)}
+.metric-num{font-size:24px;font-weight:800;color:var(--accent2)}
+.metric-label{font-size:12px;color:var(--text3)}
+
+/* SOCIAL PROOF BAR */
+.proof-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;margin:0 auto;max-width:1280px}
+.proof-inner{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.proof-label{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
+.proof-item{font-size:13px;color:var(--text2);font-weight:500}
+.proof-dot{color:var(--text3)}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;z-index:50}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{border-color:var(--accent);color:var(--accent2)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile{display:block}
+  .stats-bar{gap:20px}
+  .stat-item .num{font-size:24px}
+  .projects-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .fw-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .usecase-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .controls{flex-direction:column}
+  .search-box{width:100%}
+  .result-count{margin-left:0}
+  .hero-mesh .orb{filter:blur(80px);opacity:.25}
+  .hero-mesh .orb-1{width:350px;height:350px}
+  .hero-mesh .orb-2{width:300px;height:300px}
+  .hero-mesh .orb-3{width:250px;height:250px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:28px}
+  .section{padding:40px 16px}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+/* Better touch targets */
+a, button, .filter-btn, .price-btn, .nav-cta, .btn-primary, .btn-secondary{
+  min-height:44px;
+  min-width:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.filter-btn{padding:10px 14px;font-size:13px}
+.nav-mobile{width:44px;height:44px;font-size:24px}
+
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:4px 10px;font-size:12px;
+  font-weight:600;color:var(--text2);cursor:pointer;
+  font-family:inherit;transition:all .2s;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.lang-toggle:hover{border-color:var(--accent);color:var(--accent2)}
+.lang-toggle .lang-active{color:var(--accent2);font-weight:700}
+.lang-toggle .lang-inactive{opacity:.5}
+.lang-toggle .lang-sep{color:var(--text3);margin:0 2px}
+
+/* Slide-in mobile menu */
+.mobile-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  z-index:99;opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+.mobile-overlay.open{opacity:1;pointer-events:auto}
+
+.nav-links.mobile-open{
+  position:fixed!important;top:0;right:0;bottom:0;
+  width:280px;max-width:80vw;display:flex!important;
+  flex-direction:column;background:var(--bg2)!important;
+  border-left:1px solid var(--border);
+  padding:80px 24px 24px!important;z-index:101;
+  gap:0!important;transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
+}
+.nav-links.mobile-open.open{transform:translateX(0)}
+.nav-links.mobile-open a{
+  padding:14px 16px;font-size:15px;font-weight:500;
+  color:var(--text2);border-bottom:1px solid var(--border);
+  transition:color .2s,background .2s;border-radius:0;
+}
+.nav-links.mobile-open a:hover{color:var(--text);background:rgba(99,102,241,.06)}
+
+/* Better spacing on small screens */
+@media(max-width:640px){
+  .hero{padding:0 20px;min-height:90vh}
+  .hero p{font-size:15px;margin-bottom:32px}
+  .hero-badge{font-size:12px;padding:5px 12px}
+  .stats-bar{gap:16px;padding:24px 0}
+  .stat-item .num{font-size:22px}
+  .stat-item .label{font-size:10px}
+  .controls{padding:0 16px 24px;gap:8px}
+  .segment{padding:32px 16px}
+  .contact-section{padding:60px 20px}
+  .contact-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;max-width:280px;justify-content:center}
+  .newsletter-form{flex-direction:column}
+  .newsletter-form button{width:100%}
+  footer{padding:40px 20px 28px}
+}
+
+/* ===== MICRO-INTERACTIONS ===== */
+/* Button press effect */
+button:active, .price-btn:active, .btn-primary:active, .btn-secondary:active, .nav-cta:active{
+  transform:scale(0.98)!important;
+  transition:transform .1s ease!important;
+}
+a.price-btn:active, a.btn-primary:active, a.btn-secondary:active, a.nav-cta:active{
+  transform:scale(0.98)!important;
+}
+
+/* Smooth focus states */
+input:focus, textarea:focus, select:focus{
+  outline:none;
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
+  transition:border-color .2s, box-shadow .2s;
+}
+.search-box:focus, .newsletter-form input:focus{
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
+}
+
+/* Card hover glow effect */
+.fw-card:hover, .proj-card:hover, .how-card:hover, .usecase-card:hover, .team-card:hover{
+  box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.2),0 0 60px rgba(99,102,241,.06);
+}
+.price-card:hover{
+  box-shadow:0 12px 40px rgba(99,102,241,.15),0 0 80px rgba(99,102,241,.08);
+}
+
+/* ===== ROI CALCULATOR ===== */
+.roi-section{
+  background:linear-gradient(135deg,rgba(99,102,241,.05),rgba(236,72,153,.03));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:48px 40px;
+  max-width:800px;
+  margin:0 auto;
+}
+.roi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:center;
+}
+.roi-input-area label{
+  display:block;font-size:14px;font-weight:600;
+  margin-bottom:12px;color:var(--text);
+}
+.roi-slider-wrap{position:relative}
+.roi-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:8px;border-radius:4px;
+  background:var(--bg4);outline:none;
+  margin:12px 0;
+}
+.roi-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--accent);cursor:pointer;
+  box-shadow:0 2px 8px rgba(99,102,241,.3);
+}
+.roi-slider::-moz-range-thumb{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--accent);cursor:pointer;border:none;
+  box-shadow:0 2px 8px rgba(99,102,241,.3);
+}
+.roi-hours-display{
+  text-align:center;font-size:28px;font-weight:800;
+  color:var(--accent2);margin-bottom:4px;
+}
+.roi-hours-label{
+  text-align:center;font-size:12px;color:var(--text3);
+}
+.roi-output-area{
+  display:flex;flex-direction:column;gap:20px;
+}
+.roi-output-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;text-align:center;
+}
+.roi-output-card .roi-val{
+  font-size:36px;font-weight:900;letter-spacing:-1px;
+  margin-bottom:4px;
+}
+.roi-output-card .roi-val.green{color:var(--green)}
+.roi-output-card .roi-val.pink{color:var(--pink)}
+.roi-output-card .roi-label{
+  font-size:13px;color:var(--text2);
+}
+@media(max-width:640px){
+  .roi-section{padding:32px 20px}
+  .roi-grid{grid-template-columns:1fr;gap:24px}
+  .roi-output-card .roi-val{font-size:28px}
+}
+
+/* ===== TECH STACK SHOWCASE ===== */
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:16px;
+  max-width:960px;
+  margin:0 auto;
+}
+.tech-item{
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;padding:24px 16px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  cursor:default;
+}
+.tech-item:hover{
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(99,102,241,.1),0 0 40px rgba(99,102,241,.06);
+}
+.tech-icon{
+  font-size:32px;line-height:1;
+}
+.tech-name{
+  font-size:13px;font-weight:600;color:var(--text2);
+  text-align:center;
+}
+@media(max-width:480px){
+  .tech-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px}
+  .tech-item{padding:18px 12px}
+  .tech-icon{font-size:26px}
+  .tech-name{font-size:11px}
+}
+
+/* ===== INTEGRATION ECOSYSTEM ===== */
+.integration-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  max-width:960px;
+  margin:0 auto;
+}
+.integration-item{
+  display:flex;align-items:center;gap:14px;
+  padding:20px 20px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.integration-item:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(99,102,241,.1),0 0 40px rgba(99,102,241,.06);
+}
+.integration-icon{
+  font-size:28px;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.integration-info h4{
+  font-size:14px;font-weight:700;margin-bottom:2px;
+}
+.integration-info p{
+  font-size:11px;color:var(--text3);
+}
+@media(max-width:480px){
+  .integration-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .integration-item{padding:14px;gap:10px}
+  .integration-icon{font-size:22px;width:32px;height:32px}
+  .integration-info h4{font-size:12px}
+  .integration-info p{font-size:10px}
+}
+
+/* ===== PROJECT DETAIL MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s ease;display:flex;align-items:center;justify-content:center}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal-content{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);max-width:640px;width:92%;max-height:85vh;overflow-y:auto;padding:0;transform:scale(.92) translateY(20px);transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s ease;opacity:0;position:relative}
+.modal-overlay.open .modal-content{transform:scale(1) translateY(0);opacity:1}
+.modal-header{padding:28px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.modal-header h2{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.modal-close{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.modal-close:hover{border-color:var(--accent);color:var(--accent2)}
+.modal-body{padding:24px 32px 32px}
+.modal-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.modal-impact{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--green);font-weight:600;padding:6px 14px;background:rgba(16,185,129,.08);border-radius:6px;margin-bottom:20px}
+.modal-meta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.modal-meta-item{font-size:12px;color:var(--text3);background:var(--bg3);padding:5px 12px;border-radius:6px;display:flex;align-items:center;gap:5px}
+.modal-github-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;transition:opacity .2s;margin-bottom:24px}
+.modal-github-link:hover{opacity:.85}
+.modal-related{margin-top:8px}
+.modal-related h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:12px}
+.modal-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.modal-related-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.modal-related-item:hover{border-color:var(--accent);color:var(--accent2)}
+
+/* ===== COMMAND PALETTE ===== */
+.cmd-palette-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s ease;display:flex;align-items:flex-start;justify-content:center;padding-top:min(18vh,140px)}
+.cmd-palette-overlay.open{opacity:1;pointer-events:auto}
+.cmd-palette{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);width:92%;max-width:560px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5);transform:scale(.95) translateY(-10px);transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease;opacity:0}
+.cmd-palette-overlay.open .cmd-palette{transform:scale(1) translateY(0);opacity:1}
+.cmd-input-wrap{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);gap:10px}
+.cmd-input-wrap .cmd-icon{font-size:16px;color:var(--text3);flex-shrink:0}
+.cmd-input{flex:1;background:transparent;border:none;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+.cmd-input::placeholder{color:var(--text3)}
+.cmd-results{max-height:340px;overflow-y:auto}
+.cmd-result-item{padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .15s;font-size:14px}
+.cmd-result-item:hover,.cmd-result-item.active{background:rgba(99,102,241,.1)}
+.cmd-result-name{font-weight:600;flex:1}
+.cmd-result-meta{font-size:11px;color:var(--text3);flex-shrink:0}
+.cmd-hint{padding:10px 20px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);display:flex;align-items:center;gap:16px}
+.cmd-hint kbd{background:var(--bg3);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:10px;font-family:inherit}
+
+/* ===== ACTIVITY FEED ===== */
+.activity-section{max-width:1280px;margin:0 auto;padding:48px 32px}
+.activity-ticker{overflow:hidden;position:relative;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2)}
+.activity-ticker::before,.activity-ticker::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none}
+.activity-ticker::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent)}
+.activity-ticker::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent)}
+.activity-track{display:flex;gap:32px;padding:16px 24px;animation:ticker 40s linear infinite;width:max-content}
+.activity-track:hover{animation-play-state:paused}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.activity-item{display:flex;align-items:center;gap:10px;flex-shrink:0;white-space:nowrap}
+.activity-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.activity-text{font-size:13px;color:var(--text2)}
+.activity-time{font-size:11px;color:var(--text3);flex-shrink:0}
+
+/* ===== CONTRIBUTING GUIDE ===== */
+.contributing-section{max-width:1280px;margin:0 auto;padding:80px 32px}
+.contributing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:960px;margin:0 auto}
+.contributing-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.contributing-card:hover{border-color:transparent;transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.2)}
+.contributing-icon{font-size:28px;margin-bottom:12px}
+.contributing-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.contributing-card p{font-size:13px;color:var(--text2);line-height:1.6}
+.contributing-links{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.contributing-link{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:600;transition:all .2s}
+.contributing-link.primary{background:var(--accent);color:#fff}
+.contributing-link.primary:hover{opacity:.85}
+.contributing-link.secondary{background:var(--bg3);border:1px solid var(--border);color:var(--text)}
+.contributing-link.secondary:hover{border-color:var(--accent);color:var(--accent2)}
+
+@media(max-width:768px){
+  .modal-content{width:96%;max-height:90vh}
+  .modal-header{padding:20px 20px 16px}
+  .modal-body{padding:16px 20px 24px}
+  .modal-related-grid{grid-template-columns:1fr 1fr}
+  .cmd-palette{width:96%}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MoKangMedical",
+  "url": "https://mokangmedical.github.io/opc-homepage/",
+  "logo": "https://mokangmedical.github.io/opc-homepage/",
+  "description": "AI-powered medical innovation ecosystem with 60+ open-source projects across drug discovery, clinical research, digital health, and solo entrepreneur empowerment.",
+  "sameAs": ["https://github.com/MoKangMedical"],
+  "founder": {
+    "@type": "Person",
+    "name": "MoKang"
+  },
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 1
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MoKangMedical",
+  "url": "https://mokangmedical.github.io/opc-homepage/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mokangmedical.github.io/opc-homepage/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+</head>
+<body>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+
+<nav>
+<div class="nav-inner">
+  <a href="javascript:void(0)" class="nav-logo">MoKang<span>Medical</span></a>
+  <div class="nav-links">
+    <a href="#flywheels" data-cn="商业模式">Business</a>
+    <a href="#featured" data-cn="精选">Featured</a>
+    <a href="#how" data-cn="工作原理">How It Works</a>
+    {{NAV_LINKS}}
+    <a href="#pricing" data-cn="定价">Pricing</a>
+    <a href="#faq" data-cn="常见问题">FAQ</a>
+    <a href="#team" data-cn="团队">Team</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Toggle language"><span class="lang-active">EN</span><span class="lang-sep">/</span><span class="lang-inactive">CN</span></button>
+    <a href="https://github.com/MoKangMedical" class="nav-cta" target="_blank" rel="noopener">GitHub</a>
+    <button class="nav-mobile" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-mesh"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="hero-badge" data-cn="{{TOTAL_PROJECTS}} 个活跃项目 &middot; {{TODAY}}"><span class="dot"></span>{{TOTAL_PROJECTS}} Projects Active &middot; {{TODAY}}</div>
+  <h1 data-cn="AI驱动的<br><span class='grad'>医疗创新</span><br>生态系统">AI-Powered<br><span class="grad">Medical Innovation</span><br>Ecosystem</h1>
+  <p data-cn="从药物发现到临床试验，从学术出版到数字健康。{{TOTAL_PROJECTS}} 个开源项目。六大业务垂直领域。五个收入飞轮。">From drug discovery to clinical trials, from academic publishing to digital health. {{TOTAL_PROJECTS}} open-source projects. Six business verticals. Five revenue flywheels.</p>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="num">{{TOTAL_PROJECTS}}</div><div class="label" data-cn="项目">Projects</div></div>
+    <div class="stat-item"><div class="num accent">{{LIVE_COUNT}}</div><div class="label" data-cn="上线">Live</div></div>
+    <div class="stat-item"><div class="num">{{TOTAL_STARS}}</div><div class="label" data-cn="星标">Stars</div></div>
+    <div class="stat-item"><div class="num accent">6</div><div class="label" data-cn="垂直领域">Verticals</div></div>
+    <div class="stat-item"><div class="num">5</div><div class="label" data-cn="飞轮">Flywheels</div></div>
+  </div>
+</section>
+
+<!-- FEATURED DEMOS -->
+<section class="fd-section" id="featured">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(16,185,129,.08);color:var(--green)" data-cn="在线演示">Live Now</div>
+  <h2 data-cn="精选演示">Featured Demos</h2>
+  <p data-cn="{{FEATURED_COUNT}} 个项目拥有在线演示。立即体验。">{{FEATURED_COUNT}} projects with live GitHub Pages demos. Try them now.</p>
+</div>
+<div class="fd-grid reveal">{{FEATURED_HTML}}</div>
+</section>
+
+<div class="controls" id="controls">
+  <input type="text" class="search-box" id="search" placeholder="Search projects..." data-cn-placeholder="搜索项目..." oninput="filterProjects()">
+  <button class="filter-btn active" data-filter="all" onclick="setFilter(this)">All</button>
+  <button class="filter-btn" data-filter="cash-cow" onclick="setFilter(this)">Cash Cow</button>
+  <button class="filter-btn" data-filter="growth" onclick="setFilter(this)">Growth</button>
+  <button class="filter-btn" data-filter="pipeline" onclick="setFilter(this)">Pipeline</button>
+  <button class="filter-btn" data-filter="live" onclick="setFilter(this)">Live</button>
+  <button class="filter-btn" data-filter="dev" onclick="setFilter(this)">In Dev</button>
+  <button class="filter-btn" data-filter="demos" onclick="setFilter(this)">Has Demo</button>
+  <span class="result-count" id="resultCount">{{TOTAL_PROJECTS}} projects</span>
+</div>
+
+<section class="section" id="flywheels">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(99,102,241,.08);color:var(--accent2)" data-cn="商业模式">Business Model</div>
+  <h2 data-cn="五大收入飞轮">Five Revenue Flywheels</h2>
+  <p data-cn="自我强化的项目集群，相互促进增长和收入。">Self-reinforcing project clusters that amplify each other's growth and revenue.</p>
+</div>
+<div class="fw-grid reveal">{{FW_HTML}}</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(6,182,212,.08);color:var(--cyan)" data-cn="工作原理">How It Works</div>
+  <h2 data-cn="三步创造价值">Three Steps to Value</h2>
+  <p data-cn="从发现到部署只需几分钟，而非几个月。">From discovery to deployment in minutes, not months.</p>
+</div>
+<div class="how-grid reveal">
+  <div class="how-card">
+    <div class="how-num">01</div>
+    <h3 data-cn="发现">Discover</h3>
+    <p data-cn="按类别、状态或用例浏览 60+ 开源项目。搜索和筛选找到您需要的。">Browse 60+ open-source projects by category, status, or use case. Search and filter to find exactly what you need.</p>
+  </div>
+  <div class="how-card">
+    <div class="how-num">02</div>
+    <h3 data-cn="部署">Deploy</h3>
+    <p data-cn="从 GitHub 克隆，按照文档部署。大多数项目 5 分钟内运行。企业版？我们为您处理。">Clone from GitHub, follow the docs, and deploy. Most projects run in under 5 minutes. Enterprise? We handle it for you.</p>
+  </div>
+  <div class="how-card">
+    <div class="how-num">03</div>
+    <h3 data-cn="扩展">Scale</h3>
+    <p data-cn="免费开始，准备就绪后升级。从单个研究人员到全机构部署。可提供自定义集成。">Start free, upgrade when ready. From single researcher to institution-wide deployment. Custom integrations available.</p>
+  </div>
+</div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-bar reveal">
+  <div class="proof-inner">
+    <span class="proof-label">Built for</span>
+    <span class="proof-item">Researchers</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Clinicians</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Pharma Companies</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">CROs</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Medical Schools</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Solo Entrepreneurs</span>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="section" id="usecases">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(236,72,153,.08);color:var(--pink)" data-cn="使用案例">Use Cases</div>
+  <h2 data-cn="真实世界影响">Real-World Impact</h2>
+  <p data-cn="研究人员和组织如何使用我们的平台加速突破。">How researchers and organizations use our platform to accelerate breakthroughs.</p>
+</div>
+<div class="usecase-grid reveal">
+  <div class="usecase-card">
+    <div class="usecase-icon">&#128218;</div>
+    <h3>Academic Research</h3>
+    <p class="usecase-quote">"MetaForge reduced our systematic review from 3 months to 2 hours. We published in Lancet within 6 weeks."</p>
+    <div class="usecase-author">— Research Team, Top Medical University</div>
+    <div class="usecase-metric">
+      <span class="metric-num">95%</span>
+      <span class="metric-label">Time Saved</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#129516;</div>
+    <h3>Pharmaceutical R&D</h3>
+    <p class="usecase-quote">"DrugClip screened 2M compounds in 48 hours. Previously this took our team 6 months with traditional methods."</p>
+    <div class="usecase-author">— VP of Discovery, Biotech Company</div>
+    <div class="usecase-metric">
+      <span class="metric-num">1000x</span>
+      <span class="metric-label">Faster Screening</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#128131;</div>
+    <h3>Clinical Decision Support</h3>
+    <p class="usecase-quote">"VoiceHealth detected early-stage conditions in 12% of screened patients who showed no symptoms."</p>
+    <div class="usecase-author">— Chief Medical Officer, Hospital Network</div>
+    <div class="usecase-metric">
+      <span class="metric-num">12%</span>
+      <span class="metric-label">Early Detection</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#127793;</div>
+    <h3>Solo Entrepreneurship</h3>
+    <p class="usecase-quote">"OPC Platform gave me the exact playbook to go from zero to $50K/month as a one-person medical AI company."</p>
+    <div class="usecase-author">— Independent Developer</div>
+    <div class="usecase-metric">
+      <span class="metric-num">$50K</span>
+      <span class="metric-label">Monthly Revenue</span>
+    </div>
+  </div>
+</div>
+</section>
+
+{{SEGMENTS_HTML}}
+
+<section class="section" id="pricing">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(16,185,129,.08);color:var(--green)" data-cn="定价">Pricing</div>
+  <h2 data-cn="灵活的定价方案">Flexible Plans for Every Scale</h2>
+  <p data-cn="从个人研究人员到大型药企 — 透明定价，无隐藏费用。">From individual researchers to enterprise pharma — transparent pricing, no hidden fees.</p>
+</div>
+<div class="pricing-toggle reveal">
+  <span class="toggle-label" id="toggleMonthly" data-cn="月付">Monthly</span>
+  <div class="toggle-switch" id="pricingToggle" onclick="togglePricing()"><div class="toggle-knob"></div></div>
+  <span class="toggle-label" id="toggleAnnual" data-cn="年付">Annual <span class="save-badge" data-cn="省 20%">Save 20%</span></span>
+</div>
+<div class="pricing-grid reveal">
+  <div class="price-card">
+    <div class="price-tier">Starter</div>
+    <div class="price-amount"><span class="currency">$</span>0</div>
+    <div class="price-period">Free forever</div>
+    <ul class="price-features">
+      <li>Access all open-source projects</li>
+      <li>Community support via GitHub</li>
+      <li>Basic documentation</li>
+      <li>Self-hosted deployment</li>
+    </ul>
+    <a href="https://github.com/MoKangMedical" class="price-btn secondary" target="_blank" data-cn="开始使用">Get Started</a>
+  </div>
+  <div class="price-card featured">
+    <div class="price-tier">Professional</div>
+    <div class="price-amount"><span class="currency">$</span>299</div>
+    <div class="price-period">per month</div>
+    <ul class="price-features">
+      <li>Everything in Starter</li>
+      <li>Research Suite (MetaForge + Biostats)</li>
+      <li>Priority email support</li>
+      <li>Monthly strategy call</li>
+      <li>Custom integrations</li>
+    </ul>
+    <a href="mailto:contact@mokangmedical.com?subject=Professional Plan Inquiry" class="price-btn primary" data-cn="联系销售">Contact Sales</a>
+  </div>
+  <div class="price-card">
+    <div class="price-tier">Enterprise</div>
+    <div class="price-amount"><span class="currency">$</span>2K+</div>
+    <div class="price-period">per month</div>
+    <ul class="price-features">
+      <li>Everything in Professional</li>
+      <li>Full Drug Pipeline Suite</li>
+      <li>Dedicated support engineer</li>
+      <li>On-premise deployment</li>
+      <li>Custom model training</li>
+      <li>SLA guarantee</li>
+    </ul>
+    <a href="mailto:contact@mokangmedical.com?subject=Enterprise Plan Inquiry" class="price-btn secondary" data-cn="联系销售">Contact Sales</a>
+  </div>
+  <div class="price-card">
+    <div class="price-tier">Project-Based</div>
+    <div class="price-amount"><span class="currency">$</span>5K+</div>
+    <div class="price-period">per project</div>
+    <ul class="price-features">
+      <li>SCI paper acceleration</li>
+      <li>Custom drug screening</li>
+      <li>Health economics modeling</li>
+      <li>Data-to-publication pipeline</li>
+      <li>One-time delivery</li>
+    </ul>
+    <a href="mailto:contact@mokangmedical.com?subject=Project-Based Inquiry" class="price-btn secondary">Discuss Project</a>
+  </div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(245,158,11,.08);color:var(--amber)" data-cn="常见问题">FAQ</div>
+  <h2 data-cn="常见问题">Frequently Asked Questions</h2>
+</div>
+<div class="faq-list reveal">{{FAQ_HTML}}</div>
+</section>
+
+<section class="section" id="team">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(239,68,68,.08);color:#ef4444" data-cn="加入我们">Join Us</div>
+  <h2 data-cn="团队与合作">Team &amp; Partnerships</h2>
+  <p data-cn="寻找优秀人才共建医疗 AI 的未来。">Looking for exceptional people to build the future of medical AI.</p>
+</div>
+<div class="team-grid reveal">{{TEAM_HTML}}</div>
+</section>
+
+<section class="contact-section reveal">
+  <h2 data-cn="准备好构建未来了吗？">Ready to Build the Future?</h2>
+  <p data-cn="无论您是研究人员、临床医生、药企还是独立创业者 — 让我们聊聊。">Whether you are a researcher, clinician, pharma company, or solo entrepreneur — let us talk.</p>
+  <div class="contact-btns">
+    <a href="mailto:contact@mokangmedical.com?subject=Partnership Inquiry" class="btn-primary">&#9993; Email Us</a>
+    <a href="https://github.com/MoKangMedical" class="btn-secondary" target="_blank" rel="noopener">View GitHub</a>
+  </div>
+  <div class="newsletter" style="margin-top:48px">
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:4px">Stay Updated</h3>
+    <p style="font-size:13px;color:var(--text3)">Get notified when we launch new projects or publish research.</p>
+    <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+      <input type="email" placeholder="your@email.com" required id="newsletterEmail">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p style="font-size:11px;color:var(--text3);margin-top:8px" id="newsletterMsg"></p>
+  </div>
+</section>
+
+
+<!-- ROI CALCULATOR -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(139,92,246,.08);color:var(--purple)" data-cn="投资回报计算器">ROI Calculator</div>
+  <h2 data-cn="看看您的时间和成本节省">See Your Time & Cost Savings</h2>
+  <p data-cn="估算 MoKangMedical 能为您的研究工作流节省多少。">Estimate how much MoKangMedical can save your research workflow.</p>
+</div>
+<div class="roi-section">
+  <div class="roi-grid">
+    <div class="roi-input-area">
+      <label for="roiSlider" data-cn="每周研究时间（小时）">Hours spent on research per week</label>
+      <div class="roi-slider-wrap">
+        <input type="range" class="roi-slider" id="roiSlider" min="1" max="80" value="20" oninput="updateROI()">
+      </div>
+      <div class="roi-hours-display" id="roiHoursDisplay">20</div>
+      <div class="roi-hours-label" data-cn="小时 / 周">hours / week</div>
+    </div>
+    <div class="roi-output-area">
+      <div class="roi-output-card">
+        <div class="roi-val green" id="roiSaved">16</div>
+        <div class="roi-label" data-cn="每周使用 MoKangMedical 节省的小时数">Hours saved per week with MoKangMedical</div>
+      </div>
+      <div class="roi-output-card">
+        <div class="roi-val pink" id="roiValue">$41,600</div>
+        <div class="roi-label" data-cn="每年节省时间的价值（按 $50/小时）">Annual value of time saved (at $50/hr)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TECH STACK SHOWCASE -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(6,182,212,.08);color:var(--cyan)" data-cn="技术栈">Tech Stack</div>
+  <h2 data-cn="采用现代技术构建">Built with Modern Technology</h2>
+  <p data-cn="我们的平台充分利用了 AI、Web 和数据科学领域的最佳工具。">Our platform leverages the best tools in AI, web, and data science.</p>
+</div>
+<div class="tech-grid">
+  <div class="tech-item"><span class="tech-icon">&#128013;</span><span class="tech-name">Python</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128308;</span><span class="tech-name">TypeScript</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9889;</span><span class="tech-name">Next.js</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9889;</span><span class="tech-name">FastAPI</span></div>
+  <div class="tech-item"><span class="tech-icon">&#129302;</span><span class="tech-name">PyTorch</span></div>
+  <div class="tech-item"><span class="tech-icon">&#129504;</span><span class="tech-name">HuggingFace</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128202;</span><span class="tech-name">R / Shiny</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128218;</span><span class="tech-name">LaTeX</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128421;</span><span class="tech-name">PostgreSQL</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128187;</span><span class="tech-name">Docker</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9729;&#65039;</span><span class="tech-name">Cloud</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128295;</span><span class="tech-name">CI/CD</span></div>
+</div>
+</section>
+
+<!-- INTEGRATION ECOSYSTEM -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(245,158,11,.08);color:var(--amber)" data-cn="集成">Integrations</div>
+  <h2 data-cn="与现有工具无缝协作">Works with Your Existing Tools</h2>
+  <p data-cn="与您正在使用的平台和工作流无缝连接。">Seamlessly connects with the platforms and workflows you already use.</p>
+</div>
+<div class="integration-grid">
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>GitHub</h4><p>Source control & CI</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>VS Code</h4><p>IDE extensions</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>Docker</h4><p>Containerized deploy</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128218;</span>
+    <div class="integration-info"><h4>Jupyter</h4><p>Notebook workflows</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#127973;</span>
+    <div class="integration-info"><h4>Epic EHR</h4><p>Clinical data</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#127973;</span>
+    <div class="integration-info"><h4>Cerner EHR</h4><p>Clinical data</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128202;</span>
+    <div class="integration-info"><h4>REDCap</h4><p>Data capture</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128240;</span>
+    <div class="integration-info"><h4>PubMed</h4><p>Literature APIs</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ACTIVITY FEED -->
+<div class="activity-section reveal">
+  <div class="section-header" style="margin-bottom:24px">
+    <div class="tag" style="background:rgba(16,185,129,.08);color:var(--green)" data-cn="动态">Activity</div>
+    <h2 data-cn="最新动态">Recent Activity</h2>
+    <p data-cn="生态系统最新更新。">Latest updates from across the ecosystem.</p>
+  </div>
+  <div class="activity-ticker">
+    <div class="activity-track" id="activityTrack"></div>
+  </div>
+</div>
+
+<!-- CONTRIBUTING GUIDE -->
+<div class="contributing-section reveal" id="contributing">
+  <div class="section-header">
+    <div class="tag" style="background:rgba(139,92,246,.08);color:var(--purple)" data-cn="社区">Community</div>
+    <h2 data-cn="贡献指南">Contributing</h2>
+    <p data-cn="我们欢迎来自全球的研究人员、开发者和医疗专业人士的贡献。">We welcome contributions from researchers, developers, and medical professionals worldwide.</p>
+  </div>
+  <div class="contributing-grid">
+    <div class="contributing-card">
+      <div class="contributing-icon">&#128260;</div>
+      <h3>1. Fork</h3>
+      <p>Fork the repository you'd like to contribute to. This creates your own copy where you can make changes freely.</p>
+    </div>
+    <div class="contributing-card">
+      <div class="contributing-icon">&#128261;</div>
+      <h3>2. Branch</h3>
+      <p>Create a feature branch from main. Use a descriptive name like <code style="color:var(--accent2)">feat/add-export</code> for your changes.</p>
+    </div>
+    <div class="contributing-card">
+      <div class="contributing-icon">&#128228;</div>
+      <h3>3. Pull Request</h3>
+      <p>Submit a PR with a clear description. We review all contributions and provide feedback within 48 hours.</p>
+    </div>
+  </div>
+  <div class="contributing-links">
+    <a href="https://github.com/MoKangMedical" class="contributing-link primary" target="_blank" rel="noopener">Good First Issues</a>
+    <a href="https://github.com/MoKangMedical" class="contributing-link secondary" target="_blank" rel="noopener">Code of Conduct</a>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL MODAL -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-content" id="modalContent">
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-impact" id="modalImpact"></div>
+      <div class="modal-meta-row" id="modalMeta"></div>
+      <a class="modal-github-link" id="modalGithub" href="javascript:void(0)" target="_blank" rel="noopener">View on GitHub</a>
+      <div class="modal-related">
+        <h4>Related Projects</h4>
+        <div class="modal-related-grid" id="modalRelated"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-palette-overlay" id="cmdPalette">
+  <div class="cmd-palette">
+    <div class="cmd-input-wrap">
+      <span class="cmd-icon">&#128269;</span>
+      <input type="text" class="cmd-input" id="cmdInput" placeholder="Search projects..." oninput="filterCmdResults()" onkeydown="handleCmdKey(event)">
+    </div>
+    <div class="cmd-results" id="cmdResults"></div>
+    <div class="cmd-hint">
+      <span><kbd>&#8593;&#8595;</kbd> Navigate</span>
+      <span><kbd>&#9166;</kbd> Open</span>
+      <span><kbd>Esc</kbd> Close</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+<div class="footer-grid">
+  <div class="footer-brand">
+    <h3>MoKang<span style="color:var(--accent)">Medical</span></h3>
+    <p>AI-powered medical innovation ecosystem. {{TOTAL_PROJECTS}} open-source projects across drug discovery, clinical research, digital health, and solo entrepreneur empowerment.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Research</h4>
+    <a href="#research">MetaForge</a>
+    <a href="#research">Biostats</a>
+    <a href="#research">MingEvidence</a>
+    <a href="#research">MedRoundTable</a>
+  </div>
+  <div class="footer-col">
+    <h4>Pharma</h4>
+    <a href="#pharma">DrugMind</a>
+    <a href="#pharma">DrugClip</a>
+    <a href="#pharma">PharmaSim</a>
+    <a href="#pharma">HEOR</a>
+  </div>
+  <div class="footer-col">
+    <h4>Health</h4>
+    <a href="#clinical">VoiceHealth</a>
+    <a href="#clinical">KnowHealth</a>
+    <a href="#clinical">MediChat-RD</a>
+    <a href="#digital">NarrowGate</a>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span>&copy; 2026 MoKangMedical &middot; Built with AI</span>
+  <span>Last updated: {{TODAY}}</span>
+</div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
+
+<script>
+/* Mobile slide-in nav */
+function toggleNav(){
+  var nl=document.querySelector('.nav-links');
+  var overlay=document.getElementById('mobileOverlay');
+  if(nl.classList.contains('mobile-open')){
+    closeMobileNav();
+  } else {
+    nl.classList.add('mobile-open');
+    requestAnimationFrame(function(){nl.classList.add('open')});
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+}
+function closeMobileNav(){
+  var nl=document.querySelector('.nav-links');
+  var overlay=document.getElementById('mobileOverlay');
+  nl.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){nl.classList.remove('mobile-open')},300);
+}
+
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.05});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+setTimeout(function(){document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){el.classList.add('visible')})},1000);
+
+var activeFilter='all';
+function setFilter(btn){
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  activeFilter=btn.dataset.filter;
+  filterProjects();
+}
+function filterProjects(){
+  var q=document.getElementById('search').value.toLowerCase();
+  var cards=document.querySelectorAll('.proj-card');
+  var visible=0;
+  cards.forEach(function(c){
+    var tier=c.dataset.tier,status=c.dataset.status;
+    var text=c.textContent.toLowerCase();
+    var show=true;
+    if(q&&text.indexOf(q)===-1)show=false;
+    if(activeFilter!=='all'){
+      if(activeFilter==='live'&&status!=='live')show=false;
+      if(activeFilter==='dev'&&status!=='dev')show=false;
+      if(activeFilter==='demos'&&c.dataset.pages!=='true')show=false;
+      if(activeFilter!=='live'&&activeFilter!=='dev'&&activeFilter!=='demos'&&tier!==activeFilter)show=false;
+    }
+    if(show){c.classList.remove('hidden');visible++}else{c.classList.add('hidden')}
+  });
+  document.querySelectorAll('.segment').forEach(function(s){
+    var has=s.querySelector('.proj-card:not(.hidden)');
+    s.style.display=has?'':'none';
+  });
+  document.getElementById('resultCount').textContent=visible+' project'+(visible!==1?'s':'');
+}
+
+function subscribeNewsletter(e){
+  e.preventDefault();
+  var email=document.getElementById('newsletterEmail').value;
+  document.getElementById('newsletterMsg').textContent='Thanks! We will send updates to '+email;
+  document.getElementById('newsletterEmail').value='';
+  return false;
+}
+
+// Pricing toggle
+var isAnnual=false;
+function togglePricing(){
+  isAnnual=!isAnnual;
+  var toggle=document.getElementById('pricingToggle');
+  var monthly=document.getElementById('toggleMonthly');
+  var annual=document.getElementById('toggleAnnual');
+  if(isAnnual){
+    toggle.classList.add('annual');
+    monthly.classList.remove('active');
+    annual.classList.add('active');
+  }else{
+    toggle.classList.remove('annual');
+    monthly.classList.add('active');
+    annual.classList.remove('active');
+  }
+  // Update prices
+  var prices=document.querySelectorAll('.price-amount');
+  var monthlyPrices=['0','299','2K+','5K+'];
+  var annualPrices=['0','239','1.6K+','4K+'];
+  var periods=['Free forever','per month','per month','per project'];
+  prices.forEach(function(el,i){
+    var currency=el.querySelector('.currency');
+    if(currency&&i<monthlyPrices.length){
+      var price=isAnnual?annualPrices[i]:monthlyPrices[i];
+      el.innerHTML='<span class="currency">$</span>'+price;
+    }
+  });
+}
+// Initialize
+document.getElementById('toggleMonthly').classList.add('active');
+
+var sections=document.querySelectorAll('.segment[id]');
+var navLinks=document.querySelectorAll('.nav-links a');
+var backTop=document.getElementById('backTop');
+var navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  var current='';
+  sections.forEach(function(s){if(window.scrollY>=s.offsetTop-200)current=s.id});
+  navLinks.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+current?'var(--text)':''});
+  // Nav scroll effect
+  if(window.scrollY>50){navEl.classList.add('scrolled')}else{navEl.classList.remove('scrolled')}
+  // Back to top button
+  if(window.scrollY>600){backTop.classList.add('show')}else{backTop.classList.remove('show')}
+});
+
+/* ROI Calculator */
+function updateROI(){
+  var hours=parseInt(document.getElementById('roiSlider').value);
+  var saved=Math.round(hours*0.8*10)/10;
+  var value=Math.round(saved*50*52);
+  document.getElementById('roiHoursDisplay').textContent=hours;
+  document.getElementById('roiSaved').textContent=saved;
+  document.getElementById('roiValue').textContent='$'+value.toLocaleString();
+}
+
+// Fetch real-time GitHub stars
+function fetchGitHubStars(){
+  var cards=document.querySelectorAll('.proj-card');
+  cards.forEach(function(card){
+    var link=card.querySelector('.proj-link');
+    if(!link)return;
+    var href=link.getAttribute('href');
+    var match=href.match(/github\.com\/MoKangMedical\/([^\/\?]+)/);
+    if(!match)return;
+    var repo=match[1];
+    fetch('https://api.github.com/repos/MoKangMedical/'+repo)
+      .then(function(r){return r.json()})
+      .then(function(data){
+        if(data.stargazers_count>0){
+          var meta=card.querySelector('.proj-meta');
+          if(meta){
+            var existing=meta.querySelector('.star-count');
+            if(!existing){
+              var badge=document.createElement('span');
+              badge.className='stat-badge star-count';
+              badge.title='Stars';
+              badge.innerHTML='&#9733; '+data.stargazers_count;
+              meta.appendChild(badge);
+            }
+          }
+        }
+      })
+      .catch(function(){});
+  });
+}
+// Fetch stars on load (delayed to not block rendering)
+setTimeout(fetchGitHubStars,3000);
+
+/* ===== PROJECT DETAIL MODAL ===== */
+function openModal(cardEl){
+  var name=cardEl.querySelector('.proj-name');
+  var desc=cardEl.querySelector('.proj-desc');
+  var impact=cardEl.querySelector('.proj-impact');
+  var link=cardEl.querySelector('.proj-link');
+  var meta=cardEl.querySelector('.proj-meta');
+  var segment=cardEl.closest('.segment');
+
+  document.getElementById('modalTitle').textContent=name?name.textContent:'';
+  document.getElementById('modalDesc').textContent=desc?desc.textContent:'';
+  document.getElementById('modalImpact').innerHTML=impact?impact.innerHTML:'';
+
+  var metaHtml='';
+  if(meta){
+    meta.querySelectorAll('.stat-badge').forEach(function(b){
+      metaHtml+='<span class="modal-meta-item">'+b.innerHTML+'</span>';
+    });
+  }
+  var tier=cardEl.dataset.tier;
+  if(tier){
+    var tierLabels={'cash-cow':'Cash Cow','growth':'Growth','pipeline':'Pipeline','moat':'Moat','support':'Support','niche':'Niche'};
+    metaHtml+='<span class="modal-meta-item">Tier: '+(tierLabels[tier]||tier)+'</span>';
+  }
+  var status=cardEl.dataset.status;
+  if(status){
+    metaHtml+='<span class="modal-meta-item">Status: '+(status==='live'?'Live':'In Development')+'</span>';
+  }
+  document.getElementById('modalMeta').innerHTML=metaHtml;
+
+  var ghLink=document.getElementById('modalGithub');
+  if(link){ghLink.href=link.href}else{ghLink.href='https://github.com/MoKangMedical'}
+
+  var relatedEl=document.getElementById('modalRelated');
+  relatedEl.innerHTML='';
+  if(segment){
+    var siblings=segment.querySelectorAll('.proj-card');
+    var count=0;
+    siblings.forEach(function(s){
+      if(s!==cardEl&&count<4){
+        var n=s.querySelector('.proj-name');
+        if(n){
+          var item=document.createElement('div');
+          item.className='modal-related-item';
+          item.textContent=n.textContent;
+          item.onclick=function(){openModal(s)};
+          relatedEl.appendChild(item);
+          count++;
+        }
+      }
+    });
+  }
+  if(relatedEl.children.length===0){
+    relatedEl.innerHTML='<span style="font-size:12px;color:var(--text3)">No related projects</span>';
+  }
+
+  var overlay=document.getElementById('projectModal');
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('projectModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('projectModal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+document.addEventListener('click',function(e){
+  var card=e.target.closest('.proj-card');
+  if(card&&!e.target.closest('.proj-link')&&!e.target.closest('a')){
+    openModal(card);
+  }
+});
+
+/* ===== COMMAND PALETTE ===== */
+var cmdActive=-1;
+function openCmdPalette(){
+  var overlay=document.getElementById('cmdPalette');
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+  var input=document.getElementById('cmdInput');
+  input.value='';
+  input.focus();
+  cmdActive=-1;
+  populateCmdResults('');
+}
+function closeCmdPalette(){
+  document.getElementById('cmdPalette').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('cmdPalette').addEventListener('click',function(e){
+  if(e.target===this)closeCmdPalette();
+});
+function getAllProjects(){
+  var projects=[];
+  document.querySelectorAll('.proj-card').forEach(function(card){
+    var name=card.querySelector('.proj-name');
+    var desc=card.querySelector('.proj-desc');
+    var segment=card.closest('.segment');
+    var segName='';
+    if(segment){
+      var segH=segment.querySelector('.seg-titles h2');
+      if(segH)segName=segH.textContent;
+    }
+    if(name){
+      projects.push({name:name.textContent,desc:desc?desc.textContent:'',segment:segName,card:card});
+    }
+  });
+  return projects;
+}
+function populateCmdResults(query){
+  var all=getAllProjects();
+  var q=query.toLowerCase().trim();
+  var filtered=q?all.filter(function(p){
+    return p.name.toLowerCase().indexOf(q)!==-1||p.desc.toLowerCase().indexOf(q)!==-1||p.segment.toLowerCase().indexOf(q)!==-1;
+  }):all;
+  var container=document.getElementById('cmdResults');
+  container.innerHTML='';
+  cmdActive=-1;
+  filtered.slice(0,20).forEach(function(p,i){
+    var item=document.createElement('div');
+    item.className='cmd-result-item';
+    item.innerHTML='<span class="cmd-result-name">'+p.name+'</span><span class="cmd-result-meta">'+p.segment+'</span>';
+    item.onclick=function(){
+      closeCmdPalette();
+      p.card.scrollIntoView({behavior:'smooth',block:'center'});
+      p.card.style.boxShadow='0 0 0 2px var(--accent),0 8px 32px rgba(99,102,241,.2)';
+      setTimeout(function(){p.card.style.boxShadow=''},2000);
+    };
+    container.appendChild(item);
+  });
+  if(filtered.length===0){
+    container.innerHTML='<div style="padding:24px;text-align:center;color:var(--text3);font-size:13px">No projects found</div>';
+  }
+}
+function filterCmdResults(){
+  populateCmdResults(document.getElementById('cmdInput').value);
+}
+function handleCmdKey(e){
+  var items=document.querySelectorAll('#cmdResults .cmd-result-item');
+  if(e.key==='Escape'){closeCmdPalette()}
+  else if(e.key==='ArrowDown'){e.preventDefault();if(cmdActive<items.length-1)cmdActive++;items.forEach(function(it,i){it.classList.toggle('active',i===cmdActive)});if(items[cmdActive])items[cmdActive].scrollIntoView({block:'nearest'})}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(cmdActive>0)cmdActive--;items.forEach(function(it,i){it.classList.toggle('active',i===cmdActive)});if(items[cmdActive])items[cmdActive].scrollIntoView({block:'nearest'})}
+  else if(e.key==='Enter'){e.preventDefault();if(items[cmdActive])items[cmdActive].click()}
+}
+document.addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){
+    e.preventDefault();
+    var overlay=document.getElementById('cmdPalette');
+    if(overlay.classList.contains('open')){closeCmdPalette()}else{openCmdPalette()}
+  }
+  if(e.key==='Escape'){
+    var modal=document.getElementById('projectModal');
+    if(modal.classList.contains('open'))closeModal();
+  }
+});
+
+/* ===== ACTIVITY FEED ===== */
+(function(){
+  var activities=[
+    {text:'New project added: PharmaSpark',color:'var(--green)',time:'2 min ago'},
+    {text:'MetaForge updated to v2.4.0',color:'var(--accent)',time:'15 min ago'},
+    {text:'DrugClip hit 500 stars',color:'var(--amber)',time:'1 hour ago'},
+    {text:'VoiceHealth: New voice model deployed',color:'var(--cyan)',time:'2 hours ago'},
+    {text:'BiostatsGPT: Performance boost 3x',color:'var(--purple)',time:'3 hours ago'},
+    {text:'KnowHealth: Community PR merged',color:'var(--pink)',time:'5 hours ago'},
+    {text:'New release: Research Pipeline v1.8',color:'var(--green)',time:'8 hours ago'},
+    {text:'MediChat-RD: Rare disease dataset added',color:'var(--accent)',time:'12 hours ago'},
+    {text:'PharmaSim: Simulation engine v3.0',color:'var(--amber)',time:'1 day ago'},
+    {text:'HEOR module: Cost-effectiveness analysis',color:'var(--cyan)',time:'1 day ago'},
+    {text:'MingEvidence: Evidence grading improved',color:'var(--purple)',time:'2 days ago'},
+    {text:'OPC Platform: Onboarding flow redesigned',color:'var(--pink)',time:'2 days ago'}
+  ];
+  var track=document.getElementById('activityTrack');
+  if(!track)return;
+  var html='';
+  for(var d=0;d<2;d++){
+    activities.forEach(function(a){
+      html+='<div class="activity-item">';
+      html+='<span class="activity-dot" style="background:'+a.color+'"></span>';
+      html+='<span class="activity-text">'+a.text+'</span>';
+      html+='<span class="activity-time">'+a.time+'</span>';
+      html+='</div>';
+    });
+  }
+  track.innerHTML=html;
+})();
+
+/* ===== BILINGUAL SUPPORT (CN/EN) ===== */
+(function(){
+  var currentLang = localStorage.getItem('lang') || 'en';
+
+  function applyLang(lang){
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+
+    /* Update toggle button display */
+    var toggle = document.getElementById('langToggle');
+    if(toggle){
+      if(lang === 'cn'){
+        toggle.innerHTML = '<span class="lang-inactive">EN</span><span class="lang-sep">/</span><span class="lang-active">CN</span>';
+      } else {
+        toggle.innerHTML = '<span class="lang-active">EN</span><span class="lang-sep">/</span><span class="lang-inactive">CN</span>';
+      }
+    }
+
+    /* Update html lang attribute */
+    document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
+
+    /* Translate all elements with data-cn attribute */
+    var els = document.querySelectorAll('[data-cn]');
+    els.forEach(function(el){
+      if(lang === 'cn'){
+        if(!el.dataset.en) el.dataset.en = el.innerHTML;
+        el.innerHTML = el.dataset.cn;
+      } else {
+        if(el.dataset.en) el.innerHTML = el.dataset.en;
+      }
+    });
+
+    /* Translate placeholders */
+    var phEls = document.querySelectorAll('[data-cn-placeholder]');
+    phEls.forEach(function(el){
+      if(lang === 'cn'){
+        if(!el.dataset.enPlaceholder) el.dataset.enPlaceholder = el.placeholder;
+        el.placeholder = el.dataset.cnPlaceholder;
+      } else {
+        if(el.dataset.enPlaceholder) el.placeholder = el.dataset.enPlaceholder;
+      }
+    });
+  }
+
+  window.toggleLang = function(){
+    applyLang(currentLang === 'en' ? 'cn' : 'en');
+  };
+
+  /* Apply stored language on load */
+  if(currentLang !== 'en'){
+    applyLang(currentLang);
+  }
+})();
+</script>
+</body>
+</html>

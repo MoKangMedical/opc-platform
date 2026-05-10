@@ -442,3 +442,65 @@ class Invoice(Base):
     
     # 关系
     order = relationship("Order", backref="invoices")
+
+
+# ========== 揭榜挂帅 — 政府项目 (from opc-marketplace) ==========
+class GovProject(Base):
+    __tablename__ = "gov_projects"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(300), nullable=False)
+    description = Column(Text)
+    publisher = Column(String(300))
+    publisher_contact = Column(String(200))
+    industry = Column(String(100))
+    tags = Column(JSON, default=list)
+    budget_min = Column(Integer)
+    budget_max = Column(Integer)
+    deadline = Column(DateTime)
+    project_duration = Column(String(100))
+    tech_requirements = Column(Text)
+    required_skills = Column(JSON, default=list)
+    status = Column(String(20), default="applying")
+    is_featured = Column(Boolean, default=False)
+    source_url = Column(String(500))
+    source_name = Column(String(200))
+    view_count = Column(Integer, default=0)
+    application_count = Column(Integer, default=0)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+
+
+class GovProjectApplication(Base):
+    __tablename__ = "gov_project_applications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    project_id = Column(Integer, ForeignKey("gov_projects.id"))
+    applicant_id = Column(Integer, ForeignKey("users.id"))
+    team_name = Column(String(200))
+    team_members = Column(JSON, default=list)
+    proposal = Column(Text)
+    proposed_budget = Column(Integer)
+    tech_approach = Column(Text)
+    qualifications = Column(JSON, default=list)
+    past_projects = Column(JSON, default=list)
+    status = Column(String(50), default="submitted")
+    score = Column(Float, default=0.0)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+# ========== 评价系统 (from opc-marketplace) ==========
+class Review(Base):
+    __tablename__ = "reviews"
+
+    id = Column(Integer, primary_key=True, index=True)
+    reviewer_id = Column(Integer, ForeignKey("users.id"))
+    reviewee_id = Column(Integer, ForeignKey("users.id"))
+    project_id = Column(Integer, nullable=True)
+    rating = Column(Float, nullable=False)
+    content = Column(Text)
+    quality_score = Column(Float)
+    communication_score = Column(Float)
+    timeliness_score = Column(Float)
+    professionalism_score = Column(Float)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)

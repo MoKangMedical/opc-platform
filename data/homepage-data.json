@@ -1,0 +1,643 @@
+{
+  "meta": {
+    "name": "MoKangMedical",
+    "tagline": "AI-Powered Medical Innovation Ecosystem",
+    "subtitle": "68 Projects · 6 Business Verticals · 5 Revenue Flywheels",
+    "description": "From drug discovery to clinical trials, from academic publishing to digital health — a complete AI-powered medical innovation platform built by a one-person company.",
+    "github": "https://github.com/MoKangMedical",
+    "updated": "2026-04-27"
+  },
+  "flywheels": [
+    {
+      "name": "Research Full Chain",
+      "icon": "research",
+      "projects": [
+        "MetaForge",
+        "Biostats",
+        "MingEvidence",
+        "MedRoundTable"
+      ],
+      "description": "From evidence mining → statistical analysis → paper writing → collaboration",
+      "arpu": "¥2,999-9,999/mo per institution",
+      "market": "3,000+ hospitals + 500+ medical schools in China"
+    },
+    {
+      "name": "Drug Development Pipeline",
+      "icon": "drug",
+      "projects": [
+        "DrugMind",
+        "DrugClip",
+        "PharmaSim",
+        "HEOR",
+        "Harmes"
+      ],
+      "description": "Target discovery → virtual screening → simulation → health economics → safety",
+      "arpu": "¥200K-500K per project",
+      "market": "5,000+ pharma companies + global CRO market"
+    },
+    {
+      "name": "Health C-End Gateway",
+      "icon": "health",
+      "projects": [
+        "VoiceHealth",
+        "HealthKnow",
+        "KnowHealth"
+      ],
+      "description": "Free screening → knowledge → management → premium consultation",
+      "arpu": "¥49-2,000 per user",
+      "market": "1.4B population health screening"
+    },
+    {
+      "name": "OPC Ecosystem",
+      "icon": "ecosystem",
+      "projects": [
+        "OPC Platform",
+        "OPC Marketplace",
+        "OPC Alliance"
+      ],
+      "description": "Learn → Build → Sell → Scale globally",
+      "arpu": "¥99-4,999 per member",
+      "market": "10M+ solo entrepreneurs in China"
+    },
+    {
+      "name": "Digital Eternity",
+      "icon": "digital",
+      "projects": [
+        "念念-Eterna",
+        "Cloud Memorial",
+        "Digital Sage"
+      ],
+      "description": "Memory preservation → AI companionship → eternal connection",
+      "arpu": "¥49-199/mo subscription",
+      "market": "Blue ocean — emotional AI market"
+    }
+  ],
+  "segments": [
+    {
+      "id": "research",
+      "name": "Medical Research AI",
+      "nameZh": "医学科研AI",
+      "tagline": "From Data to Publication in Hours, Not Months",
+      "color": "#6366f1",
+      "projects": [
+        {
+          "name": "MetaForge",
+          "desc": "AI Meta-analysis platform — 6 Agents reduce 45-day reviews to 1 hour",
+          "repo": "metaforge",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "45 days -> 1 hour analysis",
+          "featured": true
+        },
+        {
+          "name": "Biostats",
+          "desc": "AI biostatistics for clinical trials — publication-grade results",
+          "repo": "Biostats",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Publication-grade in minutes"
+        },
+        {
+          "name": "MingEvidence",
+          "desc": "Clinical evidence mining — PICO search → GRADE-ranked summaries",
+          "repo": "mingevidence",
+          "status": "live",
+          "tier": "growth",
+          "impact": "10x faster evidence mining",
+          "pages_url": "https://mokangmedical.github.io/mingevidence/"
+        },
+        {
+          "name": "MedRoundTable",
+          "desc": "14-Agent research collaboration — from question to publication",
+          "repo": "medroundtable",
+          "status": "live",
+          "tier": "growth",
+          "impact": "14 Agents collaborating"
+        },
+        {
+          "name": "Lancet Research Platform",
+          "desc": "Local research OS for NHANES, MIMIC, GBD studies",
+          "repo": "lancet-research-platform",
+          "status": "live",
+          "tier": "growth"
+        },
+        {
+          "name": "NHANES → Lancet",
+          "desc": "Automated NHANES analysis → top journal submission",
+          "repo": "nhanes-to-lancet",
+          "status": "live",
+          "tier": "pipeline",
+          "pages_url": "https://mokangmedical.github.io/nhanes-to-lancet/"
+        },
+        {
+          "name": "SEER → Oncology",
+          "desc": "US cancer data → top oncology journal pipeline",
+          "repo": "seer-data-to-top-oncology-journal",
+          "status": "live",
+          "tier": "pipeline",
+          "pages_url": "https://mokangmedical.github.io/seer-data-to-top-oncology-journal/"
+        },
+        {
+          "name": "Global Aging → Lancet",
+          "desc": "Global aging demographics → Lancet Global Health",
+          "repo": "global-aging-data-to-lancet-global-health",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "Clinical Trials Insight",
+          "desc": "Global clinical trial analysis and commentary platform",
+          "repo": "global-clinical-trials-insight-and-commentary-platform-overview",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "Meta-Analysis Figures",
+          "desc": "Publication-quality figures for systematic reviews",
+          "repo": "meta-analysis-figures",
+          "status": "live",
+          "tier": "support"
+        },
+        {
+          "name": "LabMind",
+          "desc": "Smart lab notebook — experiment recording + knowledge management",
+          "repo": "LabMind--",
+          "status": "dev",
+          "tier": "growth"
+        },
+        {
+          "name": "Med Research Collab",
+          "desc": "AI-powered medical research collaboration platform",
+          "repo": "med-research-collab",
+          "status": "dev",
+          "tier": "pipeline"
+        }
+      ]
+    },
+    {
+      "id": "pharma",
+      "name": "Drug Discovery & Development",
+      "nameZh": "药物研发AI",
+      "tagline": "AI-Powered Full Pipeline — From Target to Market",
+      "color": "#ec4899",
+      "projects": [
+        {
+          "name": "DrugMind",
+          "desc": "Digital twin for drug development — full pipeline collaboration",
+          "repo": "DrugMind",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Full pipeline digital twin"
+        },
+        {
+          "name": "DrugClip Platform",
+          "desc": "AI virtual screening — high-throughput molecular filtering",
+          "repo": "drugclip-platform",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "1000x faster screening"
+        },
+        {
+          "name": "MediPharma",
+          "desc": "ChEMBL 2.4M compounds + OpenTargets — AI drug activity prediction",
+          "repo": "medi-pharma",
+          "status": "live",
+          "tier": "growth"
+        },
+        {
+          "name": "PharmaSim",
+          "desc": "Full lifecycle drug simulation — target to approval",
+          "repo": "PharmaSim",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Target to approval simulation",
+          "pages_url": "https://mokangmedical.github.io/PharmaSim/"
+        },
+        {
+          "name": "PharmaSpark",
+          "desc": "3D Gaussian Splatting for pharmaceutical visualization",
+          "repo": "pharmaspark",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "Harmes Agent",
+          "desc": "Drug safety AI — adverse reaction monitoring + compliance",
+          "repo": "Harmes-Agent",
+          "status": "live",
+          "tier": "growth"
+        },
+        {
+          "name": "HEOR Modeling",
+          "desc": "Health economics & outcomes research — cost-effectiveness analysis",
+          "repo": "heor-modeling-platform",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Standardized cost-effectiveness",
+          "pages_url": "https://mokangmedical.github.io/heor-modeling-platform/"
+        },
+        {
+          "name": "AI4S Drug Agent",
+          "desc": "CNS challenge — targeted molecular design agent",
+          "repo": "ai4s-drug-agent",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "AI4S CNS Agent",
+          "desc": "CNS drug synthesis planning agent",
+          "repo": "ai4s-cns-agent",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "AI4S RNA-Protein",
+          "desc": "RNA-protein interaction prediction",
+          "repo": "ai4s-rna-protein",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "DrugClip Benchmark",
+          "desc": "AI4S competition — virtual screening optimization",
+          "repo": "drugclip-benchmark",
+          "status": "live",
+          "tier": "support"
+        },
+        {
+          "name": "DrugClip Paper",
+          "desc": "Research paper for DrugClip methodology",
+          "repo": "drugclip-paper",
+          "status": "dev",
+          "tier": "support"
+        },
+        {
+          "name": "DrugClip Agent",
+          "desc": "Autonomous DrugClip optimization agent",
+          "repo": "drugclip-agent",
+          "status": "dev",
+          "tier": "pipeline"
+        }
+      ]
+    },
+    {
+      "id": "clinical",
+      "name": "Clinical & Health AI",
+      "nameZh": "临床健康AI",
+      "tagline": "From Screening to Treatment — AI at Every Patient Touchpoint",
+      "color": "#10b981",
+      "projects": [
+        {
+          "name": "VoiceHealth",
+          "desc": "30-second voice → 25 disease early screening — biomarker AI",
+          "repo": "voicehealth",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "30s voice -> 25 diseases"
+        },
+        {
+          "name": "VoiceHealth Mini Program",
+          "desc": "WeChat mini program for voice health detection",
+          "repo": "voiceHealth-miniprogram",
+          "status": "live",
+          "tier": "cash-cow"
+        },
+        {
+          "name": "KnowHealth",
+          "desc": "Cross-border medical second opinion — AI + global specialists",
+          "repo": "KnowHealth",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Cross-border in 48 hours"
+        },
+        {
+          "name": "KnowHealth iOS",
+          "desc": "Native iOS app for cross-border medical consultation",
+          "repo": "KnowHealth-iOS",
+          "status": "live",
+          "tier": "growth"
+        },
+        {
+          "name": "MediChat-RD",
+          "desc": "Rare disease AI diagnosis — 66 skills, multi-agent system",
+          "repo": "medichat-rd",
+          "status": "live",
+          "tier": "growth",
+          "impact": "66 skills, rare disease AI",
+          "pages_url": "https://mokangmedical.github.io/medichat-rd/"
+        },
+        {
+          "name": "Chronic Disease Mgmt",
+          "desc": "HIS-integrated chronic disease management — risk stratification",
+          "repo": "chronicdiseasemanagement",
+          "status": "live",
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/chronicdiseasemanagement/"
+        },
+        {
+          "name": "HealthGuard OPC",
+          "desc": "Outpatient population health management platform",
+          "repo": "healthguard-opc",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "HealthKnow",
+          "desc": "AI health knowledge Q&A platform",
+          "repo": "health-know",
+          "status": "live",
+          "tier": "pipeline"
+        },
+        {
+          "name": "MediSlim",
+          "desc": "Consumer medical — AI body assessment + med-spa recommendations",
+          "repo": "medi-slim",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "MedIntel Cloud",
+          "desc": "Full-stack medical AI — diagnosis, treatment, follow-up",
+          "repo": "medintel-cloud",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "MediGuard",
+          "desc": "Medical safety monitoring system",
+          "repo": "MediGuard--",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "Pilot Stone Prediction",
+          "desc": "AI risk prediction for pilot urolithiasis — aviation medicine",
+          "repo": "pilot-stone-prediction",
+          "status": "live",
+          "tier": "niche"
+        }
+      ]
+    },
+    {
+      "id": "digital",
+      "name": "Digital Human & Emotional AI",
+      "nameZh": "数字人/情感AI",
+      "tagline": "Where Technology Meets the Human Soul",
+      "color": "#f59e0b",
+      "projects": [
+        {
+          "name": "念念 Eterna",
+          "desc": "AI digital memorial — voice, face, personality, memory preservation",
+          "repo": "念念-Eterna",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "Digital immortality"
+        },
+        {
+          "name": "Digital Sage",
+          "desc": "Converse with history's 100 greatest minds — AI intellectual salon",
+          "repo": "digital-sage",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "100 greatest minds",
+          "pages_url": "https://mokangmedical.github.io/digital-sage/"
+        },
+        {
+          "name": "Cloud Memorial",
+          "desc": "AI platform for preserving memories of loved ones",
+          "repo": "cloud-memorial",
+          "status": "live",
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/cloud-memorial/"
+        },
+        {
+          "name": "Minder",
+          "desc": "AI-powered personal knowledge management",
+          "repo": "minder",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "NarrowGate",
+          "desc": "AI soul evolution — 30-day courses, meditation, achievement system",
+          "repo": "narrowgate",
+          "status": "live",
+          "tier": "growth",
+          "impact": "30-day soul evolution",
+          "pages_url": "https://mokangmedical.github.io/narrowgate/"
+        }
+      ]
+    },
+    {
+      "id": "infra",
+      "name": "Infrastructure & Frameworks",
+      "nameZh": "基础设施/框架",
+      "tagline": "Open Source Foundations — The Technical Moat",
+      "color": "#8b5cf6",
+      "projects": [
+        {
+          "name": "Darwin Framework",
+          "desc": "Universal evolution framework — auto-improve any project",
+          "repo": "darwin-framework",
+          "status": "live",
+          "tier": "moat",
+          "impact": "Auto-improve any project"
+        },
+        {
+          "name": "EvoX",
+          "desc": "Triple-layer evolution engine — Darwin + EvoPrompt + SEW",
+          "repo": "evox",
+          "status": "live",
+          "tier": "moat"
+        },
+        {
+          "name": "Medical Harness",
+          "desc": "Medical AI agent orchestration framework",
+          "repo": "medical-harness",
+          "status": "live",
+          "tier": "moat"
+        },
+        {
+          "name": "OpenClaw Medical",
+          "desc": "5-step harness pipeline + MCP tools + multi-agent",
+          "repo": "openclaw-medical-harness",
+          "status": "live",
+          "tier": "moat"
+        },
+        {
+          "name": "Medical MultiAgent",
+          "desc": "Multi-agent medical research platform",
+          "repo": "medical-multiagent",
+          "status": "live",
+          "tier": "moat"
+        },
+        {
+          "name": "Virtual Cell",
+          "desc": "Single-cell foundation model benchmark — 15 models × 26 datasets",
+          "repo": "virtual-cell",
+          "status": "live",
+          "tier": "moat",
+          "impact": "15 models x 26 datasets"
+        },
+        {
+          "name": "Global App Starter",
+          "desc": "Industrialized go-global template — Next.js + i18n + Stripe + CI/CD",
+          "repo": "global-app-starter",
+          "status": "live",
+          "tier": "moat"
+        },
+        {
+          "name": "Ponder Knowledge",
+          "desc": "Medical knowledge engineering — graph construction + management",
+          "repo": "ponder-knowledge-platform",
+          "status": "dev",
+          "tier": "moat"
+        },
+        {
+          "name": "SearXNG",
+          "desc": "Private search engine deployment",
+          "repo": "searxng",
+          "status": "live",
+          "tier": "support"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "OPC Ecosystem & Platform",
+      "nameZh": "OPC生态平台",
+      "tagline": "Empowering Solo Entrepreneurs — From $0 to $100K",
+      "color": "#06b6d4",
+      "projects": [
+        {
+          "name": "OPC Platform",
+          "desc": "20 courses, 312 lessons — complete solo entrepreneur education",
+          "repo": "opc-platform",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "312 lessons, 20 courses",
+          "pages_url": "https://mokangmedical.github.io/opc-platform/"
+        },
+        {
+          "name": "OPC Marketplace",
+          "desc": "Two-sided platform — connecting demand with OPC supply",
+          "repo": "opc-marketplace",
+          "status": "live",
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/opc-marketplace/"
+        },
+        {
+          "name": "OPC Alliance",
+          "desc": "Solo entrepreneur community — networking + collaboration",
+          "repo": "opc-alliance",
+          "status": "live",
+          "tier": "growth"
+        },
+        {
+          "name": "OPC Legends",
+          "desc": "Hall of fame — successful OPC entrepreneurs worldwide",
+          "repo": "opc-legends",
+          "status": "live",
+          "tier": "support"
+        },
+        {
+          "name": "OPC Platform v2",
+          "desc": "Full learning path — 6 courses, 38 modules, 15+ templates",
+          "repo": "opcplatform",
+          "status": "live",
+          "tier": "cash-cow"
+        },
+        {
+          "name": "天眼 Tianyan",
+          "desc": "10,000+ virtual consumers — market behavior simulation",
+          "repo": "tianyan",
+          "status": "live",
+          "tier": "cash-cow",
+          "impact": "10,000+ virtual consumers",
+          "pages_url": "https://mokangmedical.github.io/tianyan/"
+        },
+        {
+          "name": "Kondratiev Wave",
+          "desc": "Economic cycle investment prediction — long wave theory",
+          "repo": "kondratiev-wave",
+          "status": "live",
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/kondratiev-wave/"
+        },
+        {
+          "name": "AgriMind",
+          "desc": "AI-powered smart agriculture knowledge platform",
+          "repo": "agri-mind",
+          "status": "dev",
+          "tier": "pipeline"
+        },
+        {
+          "name": "MediVisual Artist",
+          "desc": "AI medical visualization — illustrations + data viz",
+          "repo": "medivisual-artist",
+          "status": "live",
+          "tier": "pipeline"
+        }
+      ]
+    }
+  ],
+  "team_needs": [
+    {
+      "role": "Medical BD / Product Manager",
+      "priority": "urgent",
+      "desc": "Hospital procurement experience, 三甲医院 connections",
+      "type": "Full-time / Co-founder"
+    },
+    {
+      "role": "Knowledge Monetization Operator",
+      "priority": "urgent",
+      "desc": "Course conversion, community building, private domain",
+      "type": "Full-time / Commission"
+    },
+    {
+      "role": "Overseas Market BD",
+      "priority": "urgent",
+      "desc": "FDA/EMA experience, English fluent, HIMSS/DIA connections",
+      "type": "Full-time"
+    },
+    {
+      "role": "Full-stack Engineer",
+      "priority": "important",
+      "desc": "Python + Next.js + deployment, medical AI experience preferred",
+      "type": "Full-time"
+    },
+    {
+      "role": "Medical Advisory Board",
+      "priority": "important",
+      "desc": "Department chiefs, professors — credibility + paper co-authorship",
+      "type": "Part-time / Advisory"
+    },
+    {
+      "role": "Legal & Compliance",
+      "priority": "important",
+      "desc": "Medical device registration, FDA/NMPA experience",
+      "type": "Part-time"
+    }
+  ],
+  "pricing": {
+    "research_suite": {
+      "basic": 999,
+      "pro": 2999,
+      "enterprise": 9999
+    },
+    "pharma_pipeline": {
+      "project": "200K-500K",
+      "retainer": "50K/mo"
+    },
+    "health_c_end": {
+      "free": 0,
+      "premium": "49-199/mo",
+      "consultation": "500-2000"
+    },
+    "opc_ecosystem": {
+      "starter": 99,
+      "growth": 299,
+      "all_access": 1999
+    }
+  }
+}

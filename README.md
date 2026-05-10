@@ -1,247 +1,192 @@
-# OPC Platform
+# OPC Platform — 统一赋能平台
 
-一站式OPC（一人公司）赋能平台，连接、展示、赋能全球独立创业者。
+一站式OPC（One Person Company）统一平台，合并了 7 个核心子项目，为独立创业者提供项目对接、技能匹配、在线学习、健康管理、社群互动的完整生态。
 
-## 🚀 项目概述
+## 🚀 平台概述
 
-OPC Platform 是一个专注于服务独立创业者（One Person Company）的综合平台，提供项目对接、技能匹配、学习成长、健康管理等全方位服务。
+OPC Platform 是 MoKangMedical 生态的核心枢纽，整合了以下模块：
+
+- **揭榜挂帅**（政府项目+供需对接）
+- **超级个体**（AI Agent + SecondMe数字分身）
+- **名人堂**（传奇人物 + 商业哲学）
+- **OPC学院**（6门课程 + 38模块学习体系）
+- **健康管理**（运动打卡 + 数据追踪）
+- **社区联盟**（创业者联盟 + 交流互动）
+- **同步中心**（多仓库健康检查 + 自动同步）
 
 ## ✨ 核心功能
 
-### 1. 用户系统 ✅
-- 用户注册/登录（JWT认证）
-- 个人资料管理
-- 技能标签系统
+### 1. 用户系统
+- 注册/登录（JWT 认证）
+- 个人资料管理 + 技能标签
 - 权限管理（用户/导师/管理员）
 
-### 2. 揭榜挂帅（项目对接）✅
-- 67个AI项目展示
-- 智能项目匹配
-- 在线投标功能
-- 项目筛选与搜索
+### 2. 揭榜挂帅（项目对接+政府项目）
+- 67个AI项目展示 + 智能匹配
+- **政府项目**（揭榜挂帅）：行业分类、预算筛选、申报流程、倒计时
+- 供需对接：项目发布、投标、匹配评分
 
-### 3. 智能匹配算法 ✅
-- 基于技能的项目推荐
-- 用户与项目智能匹配
-- 导师匹配推荐
-- 匹配分数计算
+### 3. 评价系统
+- 多维评分：质量/沟通/及时性/专业度
+- 用户信誉体系
+- 评价统计
 
-### 4. 支付系统 ✅
-- 订单管理
-- 支付记录
-- 退款功能
-- 发票管理
+### 4. OPC 学院
+- 6门精品课程，38个学习模块
+- 课程：60天启动实战 / 内容创作 / 销售转化 / AI赋能 / 个人品牌 / 规模化增长
+- 导师匹配 + 学习路径 + 技能认证
 
-### 5. OPC学院 ✅
-- 精品课程展示
-- 导师匹配
-- 学习路径
-- 技能认证
+### 5. 健康管理
+- 运动打卡 + 健康数据追踪
+- 排行榜 + 成就系统
 
-### 6. 健康管理 ✅
-- 运动打卡
-- 健康数据追踪
-- 排行榜系统
-- 成就系统
+### 6. 超级个体（AI Agent）
+- SecondMe 数字分身
+- AI Agent 对话
+- A2A 协作架构
 
-### 7. 超级个体（AI Agent）✅
-- SecondMe数字分身
-- AI Agent对话
-- A2A协作架构
+### 7. 名人堂 + 社区
+- 传奇人物展示 + DNA 商业哲学
+- 创业者联盟 + 社区互动
+- AI 对话功能
 
-### 8. 名人堂 ✅
-- 传奇人物展示
-- 商业哲学DNA
-- AI对话功能
+### 8. 同步中心
+- 多仓库健康状态检查
+- 自动同步引擎
+- 同步状态报告
+
+### 9. 支付系统
+- 订单管理 + 支付记录
+- 退款 + 发票管理
 
 ## 🛠️ 技术栈
 
-### 后端
-- **框架**: FastAPI (Python 3.9+)
-- **数据库**: PostgreSQL + SQLAlchemy ORM
-- **认证**: JWT + bcrypt
-- **API**: RESTful API
+| 层级 | 技术 |
+|------|------|
+| 后端框架 | FastAPI (Python 3.9+) |
+| 数据库 | PostgreSQL + SQLAlchemy ORM |
+| 认证 | JWT + bcrypt |
+| 前端 | 原生 HTML/CSS/JavaScript，深色主题，响应式 |
+| 部署 | Render.com / 自托管 |
 
-### 前端
-- **技术**: 原生HTML/CSS/JavaScript
-- **设计**: 深色主题，响应式布局
-- **移动端**: 完整移动端支持
+## 📦 快速开始
 
-### 部署
-- **平台**: Render.com
-- **数据库**: PostgreSQL
-- **域名**: 自定义域名支持
-
-## 📦 安装与运行
-
-### 环境要求
-- Python 3.9+
-- PostgreSQL
-- pip
-
-### 安装步骤
-
-1. **克隆仓库**
 ```bash
+# 克隆
 git clone https://github.com/MoKangMedical/opc-platform.git
 cd opc-platform
-```
 
-2. **安装依赖**
-```bash
+# 安装依赖
 pip install -r requirements.txt
-```
 
-3. **配置数据库**
-```bash
-# 创建PostgreSQL数据库
-createdb opc_platform
-
-# 设置环境变量（可选）
-export DATABASE_URL=postgresql://user:password@localhost/opc_platform
-```
-
-4. **启动服务**
-```bash
+# 启动（SQLite模式，开箱即用）
 python start.py
+
+# API文档: http://localhost:8000/docs
+# 前端入口: http://localhost:8000
 ```
 
-服务将在 http://localhost:8000 启动
+## 🔌 API 端点
 
-## 🔌 API文档
+| 模块 | 前缀 | 说明 |
+|------|------|------|
+| 认证 | `/api/auth` | 注册/登录/密码 |
+| 用户 | `/api/users` | 用户CRUD/角色管理 |
+| 项目 | `/api/projects` | 项目CRUD/投标 |
+| 政府项目 | `/api/government` | 揭榜挂帅/行业/申报 |
+| 匹配 | `/api/matching` | 智能推荐/匹配分 |
+| 学院 | `/api/academy` | 课程/导师/学习 |
+| 健康 | `/api/health` | 运动记录/排行 |
+| 社区 | `/api/community` | 帖子/互动 |
+| 名人堂 | `/api/legends` | 人物/哲学/DNA |
+| Agent | `/api/agents` | AI Agent管理 |
+| 评价 | `/api/reviews` | 多维评分/统计 |
+| 支付 | `/api/payment` | 订单/支付/发票 |
+| 同步 | `/api/sync` | 仓库健康/同步 |
 
-启动服务后，访问以下地址查看API文档：
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-
-### 主要API端点
-
-#### 认证相关
-- `POST /api/auth/register` - 用户注册
-- `POST /api/auth/login` - 用户登录
-- `GET /api/auth/me` - 获取当前用户信息
-- `PUT /api/auth/me` - 更新用户信息
-- `POST /api/auth/change-password` - 修改密码
-
-#### 用户管理
-- `GET /api/users/{user_id}` - 获取用户信息
-- `GET /api/users/` - 获取用户列表
-- `PUT /api/users/{user_id}/role` - 更新用户角色（管理员）
-- `PUT /api/users/{user_id}/status` - 更新用户状态（管理员）
-
-#### 项目相关
-- `GET /api/projects` - 获取项目列表
-- `GET /api/projects/{project_id}` - 获取项目详情
-- `POST /api/projects/{project_id}/bid` - 提交投标
-- `GET /api/projects/{project_id}/bids` - 获取项目投标
-
-#### 匹配算法
-- `GET /api/matching/users/me/recommended-projects` - 获取推荐项目
-- `GET /api/matching/users/me/recommended-mentors` - 获取推荐导师
-- `GET /api/matching/projects/{project_id}/users` - 为项目匹配用户
-- `GET /api/matching/stats` - 获取匹配统计
-
-#### 支付系统
-- `POST /api/payment/orders` - 创建订单
-- `GET /api/payment/orders/{order_no}` - 获取订单详情
-- `GET /api/payment/orders` - 获取用户订单列表
-- `POST /api/payment/payments` - 创建支付
-- `POST /api/payment/refunds` - 创建退款
-
-#### 其他模块
-- `GET /api/academy/courses` - 获取课程列表
-- `GET /api/health/records` - 获取健康记录
-- `GET /api/legends` - 获取名人堂列表
-- `GET /api/agents` - 获取Agent列表
-
-## 📱 移动端支持
-
-平台已完整支持移动端访问，包括：
-- 响应式布局设计
-- 移动端底部导航栏
-- 触摸优化交互
-- 移动端表单优化
-
-## 🧪 测试
-
-运行API测试脚本：
-```bash
-python test_api.py
-```
-
-## 📄 项目结构
+## 📂 项目结构
 
 ```
 opc-platform/
-├── app/                    # 后端应用
-│   ├── main.py            # FastAPI主入口
-│   ├── database.py        # 数据库配置
-│   ├── models.py          # 数据模型
-│   ├── routes/            # API路由
-│   │   ├── auth.py        # 认证API
-│   │   ├── users.py       # 用户管理API
-│   │   ├── projects.py    # 项目API
-│   │   ├── matching.py    # 匹配算法API
-│   │   ├── payment.py     # 支付API
-│   │   └── ...            # 其他模块
-│   ├── services/          # 业务逻辑
-│   │   ├── matching.py    # 匹配算法服务
-│   │   └── payment.py     # 支付服务
-│   └── middleware/        # 中间件
-│       └── auth.py        # 认证中间件
-├── docs/                  # 前端文件
-│   ├── index.html         # 首页
-│   ├── platform.html      # 平台页
-│   ├── login.html         # 登录页
-│   ├── register.html      # 注册页
-│   ├── profile.html       # 个人资料页
-│   └── mobile.js          # 移动端优化脚本
-├── data/                  # 数据文件
-├── requirements.txt       # Python依赖
-├── start.py              # 启动脚本
-├── test_api.py           # API测试脚本
-└── README.md             # 项目说明
+├── app/                         # 后端
+│   ├── main.py                  # FastAPI 主入口（v3.0.0）
+│   ├── database.py              # 数据库配置
+│   ├── models.py                # 数据模型（15+表）
+│   ├── routes/                  # 14个路由模块
+│   │   ├── academy.py           # 学院
+│   │   ├── agents.py            # AI Agent
+│   │   ├── auth.py              # 认证
+│   │   ├── chat.py              # 聊天
+│   │   ├── community.py         # 社区
+│   │   ├── government.py        # 政府项目 ⭐
+│   │   ├── health.py            # 健康
+│   │   ├── matching.py          # 匹配算法
+│   │   ├── payment.py           # 支付
+│   │   ├── projects.py          # 项目
+│   │   ├── realtime_chat.py     # 实时聊天
+│   │   ├── reviews.py           # 评价系统 ⭐
+│   │   ├── secondme.py          # 数字分身
+│   │   ├── sync.py              # 同步中心 ⭐
+│   │   └── users.py             # 用户管理
+│   ├── services/                # 业务引擎
+│   │   ├── sync_engine.py       # 同步引擎 ⭐
+│   │   ├── health_checker.py    # 健康检查 ⭐
+│   │   ├── matching.py          # 匹配逻辑
+│   │   └── payment.py           # 支付服务
+│   └── middleware/
+├── docs/                        # 前端（19个页面）
+│   ├── index.html               # 入口
+│   ├── platform.html            # 平台主页
+│   ├── home.html                # 生态展示（68项目）⭐
+│   ├── government.html          # 揭榜挂帅
+│   ├── academy.html             # 学院
+│   ├── community.html           # 社区
+│   ├── legends.html             # 名人堂
+│   ├── health.html              # 健康
+│   ├── chat.html                # 聊天
+│   └── ...
+├── data/                        # 数据
+│   ├── courses/                 # 6门课程38模块 ⭐
+│   ├── toolkits/                # 工具箱
+│   ├── experts/                 # 专家库
+│   ├── resources/               # 资源
+│   └── homepage-data.json       # 展示数据
+├── scripts/                     # 工具脚本
+├── requirements.txt
+├── start.py
+└── README.md
 ```
+
+⭐ = 本次合并新增
+
+## 🏗️ 合并记录
+
+OPC Platform v3.0.0 合并了以下子项目：
+
+| 子项目 | 合并内容 | 状态 |
+|--------|----------|------|
+| opcplatform | 6门课程 + 38模块 + 工具包 | ✅ 已合并 |
+| opc-marketplace | 政府项目API + 评价系统 | ✅ 已合并 |
+| opc-homepage | 生态展示首页（68项目） | ✅ 已合并 |
+| opc-sync-hub | 同步引擎 + 健康检查 | ✅ 已合并 |
+| opc-alliance | 创业者联盟（前端已集成） | ✅ 已合并 |
+| opc-legends | 名人堂（前端已集成） | ✅ 已合并 |
+
+原6个子仓库内容已完全整合至 opc-platform，建议归档。
 
 ## 🎯 路线图
 
-### Phase 1 - 核心平台 ✅ 已完成
-- ✅ 用户系统
-- ✅ 项目展示
-- ✅ 智能匹配
-- ✅ 支付系统
-- ✅ 移动端支持
-
-### Phase 2 - 功能增强 🔲 进行中
-- 🔲 微信小程序
-- 🔲 更多支付方式
-- 🔲 消息通知系统
-- 🔲 数据分析面板
-
-### Phase 3 - 社区生态 🔲 计划中
-- 🔲 OPC社区论坛
-- 🔲 协作空间
-- 🔲 知识图谱
-- 🔲 AI网络
-
-### Phase 4 - 全球化 🔲 计划中
-- 🔲 多语言支持
-- 🔲 海外市场
-- 🔲 国际支付
-- 🔲 开放API
-
-## 🤝 贡献
-
-欢迎提交Issue和Pull Request！
+- ✅ Phase 1：核心平台（用户/项目/匹配/支付）
+- ✅ Phase 2：学院+名人堂+社区+Agent
+- ✅ Phase 3：7项目统一合并（v3.0.0）
+- 🔲 Phase 4：微信小程序 + 数据分析面板
+- 🔲 Phase 5：多语言 + 海外市场
 
 ## 📞 联系方式
 
-- 项目负责人: linzhang
-- GitHub: https://github.com/MoKangMedical/opc-platform
-
-## 📄 许可证
-
-MIT License
+- 负责人：linzhang
+- GitHub：https://github.com/MoKangMedical/opc-platform
+- 域名：opcplatform.cn
 
 ---
 

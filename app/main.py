@@ -38,6 +38,9 @@ from app.routes.auth import router as auth_router
 from app.routes.users import router as users_router
 from app.routes.matching import router as matching_router
 from app.routes.payment import router as payment_router
+from app.routes.government import router as government_router
+from app.routes.reviews import router as reviews_router
+from app.routes.sync import router as sync_router
 
 app.include_router(academy_router)
 app.include_router(health_router)
@@ -51,6 +54,9 @@ app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(matching_router)
 app.include_router(payment_router)
+app.include_router(government_router)
+app.include_router(reviews_router)
+app.include_router(sync_router)
 
 # 健康检查
 @app.get("/api/health")
