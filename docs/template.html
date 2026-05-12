@@ -669,36 +669,29 @@ input:focus, textarea:focus, select:focus{
 <link rel="canonical" href="https://mokangmedical.github.io/opc-platform/template.html">
 </head>
 <body>
-<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
-
-<nav>
-<div class="nav-inner">
-  <a href="javascript:void(0)" class="nav-logo">MoKang<span>Medical</span></a>
-  <div class="nav-links">
-    <a href="#flywheels" data-cn="商业模式">Business</a>
-    <a href="#featured" data-cn="精选">Featured</a>
-    <a href="#how" data-cn="工作原理">How It Works</a>
-    {{NAV_LINKS}}
-    <a href="#pricing" data-cn="定价">Pricing</a>
-    <a href="#faq" data-cn="常见问题">FAQ</a>
-    <a href="#team" data-cn="团队">Team</a>
-      <a href="index.html">首页</a>
-    <a href="academy.html">学院</a>
-    <a href="community.html">社区</a>
-    <a href="government.html">揭榜挂帅</a>
-    <a href="challenge.html" class="nl"><span class="zh">揭榜</span><span class="en" style="display:none">Challenge</span></a>
-    <a href="chat.html">聊天</a>
-    <a href="health.html">健康</a>
-    <a href="legends.html">名人堂</a>
-    <a href="superagent.html">超级个体</a>
-  </div>
-  <div class="nav-right">
-    <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Toggle language"><span class="lang-active">EN</span><span class="lang-sep">/</span><span class="lang-inactive">CN</span></button>
-    <a href="https://github.com/MoKangMedical" class="nav-cta" target="_blank" rel="noopener">GitHub</a>
-    <button class="nav-mobile" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
-  </div>
+<!-- NAV -->
+<nav class="nav" id="nav">
+<div class="nav-i">
+<a href="index.html" class="nav-logo"><span class="mk">◆</span> OPC Platform</a>
+<div class="nav-links">
+<a href="service.html" class="nl">创业助手</a>
+<a href="platform.html" class="nl">平台</a>
+<a href="government.html" class="nl">揭榜挂帅</a>
+<a href="challenge.html" class="nl"><span class="zh">揭榜</span><span class="en" style="display:none">Challenge</span></a>
+<a href="superagent.html" class="nl">超级个体</a>
+<a href="legends.html" class="nl">名人堂</a>
+<a href="academy.html" class="nl">学院</a>
+<a href="policy.html" class="nl">政策</a>
+<a href="community.html" class="nl">社区</a>
+<button class="lg" onclick="togLang()">🌐 EN/中</button>
+</div>
+<button class="mob" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">☰</button>
 </div>
 </nav>
+
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+
+
 
 <section class="hero">
   <div class="hero-mesh"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
@@ -1262,296 +1255,5 @@ window.addEventListener('scroll',function(){
   var current='';
   sections.forEach(function(s){if(window.scrollY>=s.offsetTop-200)current=s.id});
   navLinks.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+current?'var(--text)':''});
-  // Nav scroll effect
-  if(window.scrollY>50){navEl.classList.add('scrolled')}else{navEl.classList.remove('scrolled')}
-  // Back to top button
-  if(window.scrollY>600){backTop.classList.add('show')}else{backTop.classList.remove('show')}
-});
-
-/* ROI Calculator */
-function updateROI(){
-  var hours=parseInt(document.getElementById('roiSlider').value);
-  var saved=Math.round(hours*0.8*10)/10;
-  var value=Math.round(saved*50*52);
-  document.getElementById('roiHoursDisplay').textContent=hours;
-  document.getElementById('roiSaved').textContent=saved;
-  document.getElementById('roiValue').textContent='$'+value.toLocaleString();
-}
-
-// Fetch real-time GitHub stars
-function fetchGitHubStars(){
-  var cards=document.querySelectorAll('.proj-card');
-  cards.forEach(function(card){
-    var link=card.querySelector('.proj-link');
-    if(!link)return;
-    var href=link.getAttribute('href');
-    var match=href.match(/github\.com\/MoKangMedical\/([^\/\?]+)/);
-    if(!match)return;
-    var repo=match[1];
-    fetch('https://api.github.com/repos/MoKangMedical/'+repo)
-      .then(function(r){return r.json()})
-      .then(function(data){
-        if(data.stargazers_count>0){
-          var meta=card.querySelector('.proj-meta');
-          if(meta){
-            var existing=meta.querySelector('.star-count');
-            if(!existing){
-              var badge=document.createElement('span');
-              badge.className='stat-badge star-count';
-              badge.title='Stars';
-              badge.innerHTML='&#9733; '+data.stargazers_count;
-              meta.appendChild(badge);
-            }
-          }
-        }
-      })
-      .catch(function(){});
-  });
-}
-// Fetch stars on load (delayed to not block rendering)
-setTimeout(fetchGitHubStars,3000);
-
-/* ===== PROJECT DETAIL MODAL ===== */
-function openModal(cardEl){
-  var name=cardEl.querySelector('.proj-name');
-  var desc=cardEl.querySelector('.proj-desc');
-  var impact=cardEl.querySelector('.proj-impact');
-  var link=cardEl.querySelector('.proj-link');
-  var meta=cardEl.querySelector('.proj-meta');
-  var segment=cardEl.closest('.segment');
-
-  document.getElementById('modalTitle').textContent=name?name.textContent:'';
-  document.getElementById('modalDesc').textContent=desc?desc.textContent:'';
-  document.getElementById('modalImpact').innerHTML=impact?impact.innerHTML:'';
-
-  var metaHtml='';
-  if(meta){
-    meta.querySelectorAll('.stat-badge').forEach(function(b){
-      metaHtml+='<span class="modal-meta-item">'+b.innerHTML+'</span>';
-    });
-  }
-  var tier=cardEl.dataset.tier;
-  if(tier){
-    var tierLabels={'cash-cow':'Cash Cow','growth':'Growth','pipeline':'Pipeline','moat':'Moat','support':'Support','niche':'Niche'};
-    metaHtml+='<span class="modal-meta-item">Tier: '+(tierLabels[tier]||tier)+'</span>';
-  }
-  var status=cardEl.dataset.status;
-  if(status){
-    metaHtml+='<span class="modal-meta-item">Status: '+(status==='live'?'Live':'In Development')+'</span>';
-  }
-  document.getElementById('modalMeta').innerHTML=metaHtml;
-
-  var ghLink=document.getElementById('modalGithub');
-  if(link){ghLink.href=link.href}else{ghLink.href='https://github.com/MoKangMedical'}
-
-  var relatedEl=document.getElementById('modalRelated');
-  relatedEl.innerHTML='';
-  if(segment){
-    var siblings=segment.querySelectorAll('.proj-card');
-    var count=0;
-    siblings.forEach(function(s){
-      if(s!==cardEl&&count<4){
-        var n=s.querySelector('.proj-name');
-        if(n){
-          var item=document.createElement('div');
-          item.className='modal-related-item';
-          item.textContent=n.textContent;
-          item.onclick=function(){openModal(s)};
-          relatedEl.appendChild(item);
-          count++;
-        }
-      }
-    });
-  }
-  if(relatedEl.children.length===0){
-    relatedEl.innerHTML='<span style="font-size:12px;color:var(--text3)">No related projects</span>';
-  }
-
-  var overlay=document.getElementById('projectModal');
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('projectModal').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.getElementById('projectModal').addEventListener('click',function(e){
-  if(e.target===this)closeModal();
-});
-document.addEventListener('click',function(e){
-  var card=e.target.closest('.proj-card');
-  if(card&&!e.target.closest('.proj-link')&&!e.target.closest('a')){
-    openModal(card);
-  }
-});
-
-/* ===== COMMAND PALETTE ===== */
-var cmdActive=-1;
-function openCmdPalette(){
-  var overlay=document.getElementById('cmdPalette');
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-  var input=document.getElementById('cmdInput');
-  input.value='';
-  input.focus();
-  cmdActive=-1;
-  populateCmdResults('');
-}
-function closeCmdPalette(){
-  document.getElementById('cmdPalette').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.getElementById('cmdPalette').addEventListener('click',function(e){
-  if(e.target===this)closeCmdPalette();
-});
-function getAllProjects(){
-  var projects=[];
-  document.querySelectorAll('.proj-card').forEach(function(card){
-    var name=card.querySelector('.proj-name');
-    var desc=card.querySelector('.proj-desc');
-    var segment=card.closest('.segment');
-    var segName='';
-    if(segment){
-      var segH=segment.querySelector('.seg-titles h2');
-      if(segH)segName=segH.textContent;
-    }
-    if(name){
-      projects.push({name:name.textContent,desc:desc?desc.textContent:'',segment:segName,card:card});
-    }
-  });
-  return projects;
-}
-function populateCmdResults(query){
-  var all=getAllProjects();
-  var q=query.toLowerCase().trim();
-  var filtered=q?all.filter(function(p){
-    return p.name.toLowerCase().indexOf(q)!==-1||p.desc.toLowerCase().indexOf(q)!==-1||p.segment.toLowerCase().indexOf(q)!==-1;
-  }):all;
-  var container=document.getElementById('cmdResults');
-  container.innerHTML='';
-  cmdActive=-1;
-  filtered.slice(0,20).forEach(function(p,i){
-    var item=document.createElement('div');
-    item.className='cmd-result-item';
-    item.innerHTML='<span class="cmd-result-name">'+p.name+'</span><span class="cmd-result-meta">'+p.segment+'</span>';
-    item.onclick=function(){
-      closeCmdPalette();
-      p.card.scrollIntoView({behavior:'smooth',block:'center'});
-      p.card.style.boxShadow='0 0 0 2px var(--gold),0 8px 32px rgba(226,182,79,.2)';
-      setTimeout(function(){p.card.style.boxShadow=''},2000);
-    };
-    container.appendChild(item);
-  });
-  if(filtered.length===0){
-    container.innerHTML='<div style="padding:24px;text-align:center;color:var(--text3);font-size:13px">No projects found</div>';
-  }
-}
-function filterCmdResults(){
-  populateCmdResults(document.getElementById('cmdInput').value);
-}
-function handleCmdKey(e){
-  var items=document.querySelectorAll('#cmdResults .cmd-result-item');
-  if(e.key==='Escape'){closeCmdPalette()}
-  else if(e.key==='ArrowDown'){e.preventDefault();if(cmdActive<items.length-1)cmdActive++;items.forEach(function(it,i){it.classList.toggle('active',i===cmdActive)});if(items[cmdActive])items[cmdActive].scrollIntoView({block:'nearest'})}
-  else if(e.key==='ArrowUp'){e.preventDefault();if(cmdActive>0)cmdActive--;items.forEach(function(it,i){it.classList.toggle('active',i===cmdActive)});if(items[cmdActive])items[cmdActive].scrollIntoView({block:'nearest'})}
-  else if(e.key==='Enter'){e.preventDefault();if(items[cmdActive])items[cmdActive].click()}
-}
-document.addEventListener('keydown',function(e){
-  if((e.metaKey||e.ctrlKey)&&e.key==='k'){
-    e.preventDefault();
-    var overlay=document.getElementById('cmdPalette');
-    if(overlay.classList.contains('open')){closeCmdPalette()}else{openCmdPalette()}
-  }
-  if(e.key==='Escape'){
-    var modal=document.getElementById('projectModal');
-    if(modal.classList.contains('open'))closeModal();
-  }
-});
-
-/* ===== ACTIVITY FEED ===== */
-(function(){
-  var activities=[
-    {text:'New project added: PharmaSpark',color:'var(--green)',time:'2 min ago'},
-    {text:'MetaForge updated to v2.4.0',color:'var(--gold)',time:'15 min ago'},
-    {text:'DrugClip hit 500 stars',color:'var(--amber)',time:'1 hour ago'},
-    {text:'VoiceHealth: New voice model deployed',color:'var(--cyan)',time:'2 hours ago'},
-    {text:'BiostatsGPT: Performance boost 3x',color:'var(--purple)',time:'3 hours ago'},
-    {text:'KnowHealth: Community PR merged',color:'var(--pink)',time:'5 hours ago'},
-    {text:'New release: Research Pipeline v1.8',color:'var(--green)',time:'8 hours ago'},
-    {text:'MediChat-RD: Rare disease dataset added',color:'var(--gold)',time:'12 hours ago'},
-    {text:'PharmaSim: Simulation engine v3.0',color:'var(--amber)',time:'1 day ago'},
-    {text:'HEOR module: Cost-effectiveness analysis',color:'var(--cyan)',time:'1 day ago'},
-    {text:'MingEvidence: Evidence grading improved',color:'var(--purple)',time:'2 days ago'},
-    {text:'OPC Platform: Onboarding flow redesigned',color:'var(--pink)',time:'2 days ago'}
-  ];
-  var track=document.getElementById('activityTrack');
-  if(!track)return;
-  var html='';
-  for(var d=0;d<2;d++){
-    activities.forEach(function(a){
-      html+='<div class="activity-item">';
-      html+='<span class="activity-dot" style="background:'+a.color+'"></span>';
-      html+='<span class="activity-text">'+a.text+'</span>';
-      html+='<span class="activity-time">'+a.time+'</span>';
-      html+='</div>';
-    });
-  }
-  track.innerHTML=html;
-})();
-
-/* ===== BILINGUAL SUPPORT (CN/EN) ===== */
-(function(){
-  var currentLang = localStorage.getItem('lang') || 'en';
-
-  function applyLang(lang){
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-
-    /* Update toggle button display */
-    var toggle = document.getElementById('langToggle');
-    if(toggle){
-      if(lang === 'cn'){
-        toggle.innerHTML = '<span class="lang-inactive">EN</span><span class="lang-sep">/</span><span class="lang-active">CN</span>';
-      } else {
-        toggle.innerHTML = '<span class="lang-active">EN</span><span class="lang-sep">/</span><span class="lang-inactive">CN</span>';
-      }
-    }
-
-    /* Update html lang attribute */
-    document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
-
-    /* Translate all elements with data-cn attribute */
-    var els = document.querySelectorAll('[data-cn]');
-    els.forEach(function(el){
-      if(lang === 'cn'){
-        if(!el.dataset.en) el.dataset.en = el.innerHTML;
-        el.innerHTML = el.dataset.cn;
-      } else {
-        if(el.dataset.en) el.innerHTML = el.dataset.en;
-      }
-    });
-
-    /* Translate placeholders */
-    var phEls = document.querySelectorAll('[data-cn-placeholder]');
-    phEls.forEach(function(el){
-      if(lang === 'cn'){
-        if(!el.dataset.enPlaceholder) el.dataset.enPlaceholder = el.placeholder;
-        el.placeholder = el.dataset.cnPlaceholder;
-      } else {
-        if(el.dataset.enPlaceholder) el.placeholder = el.dataset.enPlaceholder;
-      }
-    });
-  }
-
-  window.toggleLang = function(){
-    applyLang(currentLang === 'en' ? 'cn' : 'en');
-  };
-
-  /* Apply stored language on load */
-  if(currentLang !== 'en'){
-    applyLang(currentLang);
-  }
-})();
-</script>
-</body>
+  </body>
 </html>
