@@ -1,0 +1,3 @@
+:HL["/knovault/_next/static/css/6d5cbee384a6db98.css","style"]
+:HL["/knovault/_next/static/css/4638abcee5ed53b4.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"N4mee9f54Nf0rs20L52nM"}
