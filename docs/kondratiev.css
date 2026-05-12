@@ -38,10 +38,61 @@
 
   /* Accent colors */
   --green: #22c55e;
+  --green2: #16a34a;
   --blue: #3b82f6;
   --purple: #a78bfa;
+  --purple2: #8b5cf6;
   --orange: #f59e0b;
   --red: #ef4444;
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --pink: #ec4899;
+
+  /* Shorthand aliases — used across all OPC pages */
+  --t1: var(--text);
+  --t2: var(--text2);
+  --t3: var(--text3);
+  --c: #6b7db3;
+  --g: var(--gold);
+  --gw: rgba(226, 182, 79, 0.12);
+  --gw2: rgba(226, 182, 79, 0.05);
+  --bdr: var(--border);
+  --bdr2: var(--border2);
+  --r: var(--red);
+  --pk: var(--pink);
+  --e: var(--green);
+  --or: var(--orange);
+  --p: var(--purple);
+  --sc: var(--gold);
+  --gd: linear-gradient(135deg, var(--gold), var(--gold2));
+  --bg4: #08080a;
+  --radius-lg: 20px;
+  --fd-accent: var(--gold);
+
+  /* Decorative/background aliases */
+  --fb: rgba(255, 255, 255, 0.02);
+  --fd: rgba(226, 182, 79, 0.06);
+  --bg-card: var(--card);
+  --bg-card-hover: var(--card2);
+  --bg-elevated: var(--bg3);
+  --bg-surface: var(--bg2);
+  --border-hover: var(--border2);
+  --text-dim: var(--text3);
+  --text-muted: var(--text3);
+  --text-secondary: var(--text2);
+
+  /* Typography aliases */
+  --font-body: var(--sans);
+  --font-display: var(--serif);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Superagent page */
+  --agent-a: var(--gold);
+  --agent-b: var(--blue);
+  --agent-c: var(--purple);
+  --agent-color: var(--gold);
+  --agent-glow: var(--gold-glow);
+  --transition: all 0.3s var(--ease);
 
   /* Typography */
   --serif: 'Noto Serif SC', Georgia, serif;
