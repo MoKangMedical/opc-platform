@@ -5,9 +5,35 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>OPC Health | OPC健康</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_kondratiev.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a12;--bg2:#111119;--bg3:#1a1a26;--bg4:#222230;--t1:#f0f0f5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--pink:#ec4899;--orange:#f97316;--border:#1e1e2e;--r:14px}
+:root {
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
 body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.5;-webkit-font-smoothing:antialiased}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .zh,.en{transition:opacity .2s}
@@ -24,7 +50,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 
 /* HERO */
 .hero{padding:80px 0 24px;text-align:center;background:linear-gradient(180deg,#0d1a0d,var(--bg))}
-.hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:6px}
+.hero h1{
+    font-family:var(--serif);font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:6px}
 .hero h1 .g{background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero>p{color:var(--t2);font-size:13px;max-width:400px;margin:0 auto}
 
@@ -65,7 +92,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 
 /* CHECKIN FORM */
 .cf{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px}
-.cf h2{font-size:16px;font-weight:700;margin-bottom:14px}
+.cf h2{
+    font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:14px}
 .fr{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .fg{flex:1;min-width:140px}
 .fg label{display:block;font-size:11px;color:var(--t2);margin-bottom:4px}
@@ -207,42 +235,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 <!-- MINI RINGS -->
 <div class="rings">
-  <div class="mini-ring" style="--c:var(--green)"><div class="mini-ring-in"><div class="mini-ring-n" id="rMood">--</div><div class="mini-ring-l"><span class="zh">心情</span><span class="en" style="display:none">Mood</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--cyan)"><div class="mini-ring-in"><div class="mini-ring-n" id="rSleep">--</div><div class="mini-ring-l"><span class="zh">睡眠</span><span class="en" style="display:none">Sleep</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--orange)"><div class="mini-ring-in"><div class="mini-ring-n" id="rExercise">--</div><div class="mini-ring-l"><span class="zh">运动</span><span class="en" style="display:none">Exercise</span></div></div></div>
-  <div class="mini-ring" style="--c:var(--pink)"><div class="mini-ring-in"><div class="mini-ring-n" id="rStress">--</div><div class="mini-ring-l"><span class="zh">压力</span><span class="en" style="display:none">Stress</span></div></div></div>
-</div>
-
-<!-- TABS -->
-<div class="tabs">
-  <button class="tab a" onclick="showTab('checkin',this)">📝 <span class="zh">打卡</span><span class="en" style="display:none">Check-in</span></button>
-  <button class="tab" onclick="showTab('activity',this)">🏃 <span class="zh">运动</span><span class="en" style="display:none">Activity</span></button>
-  <button class="tab" onclick="showTab('challenges',this)">🎯 <span class="zh">挑战</span><span class="en" style="display:none">Challenges</span></button>
-  <button class="tab" onclick="showTab('leaderboard',this)">🏆 <span class="zh">排行</span><span class="en" style="display:none">Rank</span></button>
-  <button class="tab" onclick="showTab('achievements',this)">🏅 <span class="zh">成就</span><span class="en" style="display:none">Badges</span></button>
-  <button class="tab" onclick="showTab('history',this)">📊 <span class="zh">记录</span><span class="en" style="display:none">History</span></button>
-</div>
-
-<!-- CHECKIN TAB -->
-<div class="tc a" id="tab-checkin">
-<div class="cf">
-  <h2>📝 <span class="zh">每日打卡</span><span class="en" style="display:none">Daily Check-in</span></h2>
-  <div class="fr">
-    <div class="fg"><label>😊 <span class="zh">心情</span><span class="en" style="display:none">Mood</span> <span class="sv" id="v1">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s1" oninput="document.getElementById('v1').textContent=this.value"><span>10</span></div></div>
-    <div class="fg"><label>⚡ <span class="zh">精力</span><span class="en" style="display:none">Energy</span> <span class="sv" id="v2">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s2" oninput="document.getElementById('v2').textContent=this.value"><span>10</span></div></div>
-    <div class="fg"><label>😰 <span class="zh">压力</span><span class="en" style="display:none">Stress</span> <span class="sv" id="v3">5</span></label><div class="sr"><span>1</span><input type="range" min="1" max="10" value="5" id="s3" oninput="document.getElementById('v3').textContent=this.value"><span>10</span></div></div>
-  </div>
-  <div class="fr">
-    <div class="fg"><label>😴 <span class="zh">睡眠(h)</span><span class="en" style="display:none">Sleep(h)</span></label><input type="number" id="iSleep" value="7" min="0" max="24" step="0.5"></div>
-    <div class="fg"><label>💧 <span class="zh">饮水(ml)</span><span class="en" style="display:none">Water(ml)</span></label><input type="number" id="iWater" value="1500" min="0" step="100"></div>
-    <div class="fg"><label>👣 <span class="zh">步数</span><span class="en" style="display:none">Steps</span></label><input type="number" id="iSteps" value="5000" min="0" step="500"></div>
-  </div>
-  <div class="fr">
-    <div class="fg"><label>⏰ <span class="zh">工作(h)</span><span class="en" style="display:none">Work(h)</span></label><input type="number" id="iWork" value="8" min="0" max="24" step="0.5"></div>
-    <div class="fg"><label>⚖️ <span class="zh">体重(kg)</span><span class="en" style="display:none">Weight(kg)</span></label><input type="number" id="iWeight" value="70" min="0" step="0.1"></div>
-  </div>
-  <div class="fg" style="margin-bottom:12px"><label>📝 <span class="zh">备注</span><span class="en" style="display:none">Notes</span></label><textarea id="iNotes" placeholder="今天状态如何？"></textarea></div>
-  <button class="btn btn-g" onclick="submitCheckin()" style="width:100%;padding:12px;font-size:14px">✅ <span class="zh">提交打卡</span><span class="en" style="display:none">Submit</span></button>
+  <div class="mini-ring" style="padding:12px;font-size:14px">✅ <span class="zh">提交打卡</span><span class="en" style="display:none">Submit</span></button>
 </div>
 </div>
 
@@ -490,7 +483,7 @@ loadActivities();
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'var(--gold)')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
 n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){

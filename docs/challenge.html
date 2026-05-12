@@ -7,27 +7,46 @@
 <meta name="description" content="OPC揭榜挂帅 - 解决技术难题，赢取丰厚奖励。连接全球创新力量，攻克AI、科技、商业领域的关键挑战。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_kondratiev.css">
 <link rel="stylesheet" href="challenge.css">
 <style>
 /* 复用主页的导航和其他基础样式 */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
-  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
-  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;
-  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
-  --gw:rgba(124,92,252,0.1);--gw2:rgba(34,211,238,0.06);
-  --ease:cubic-bezier(0.22,1,0.36,1);
-}
+:root {
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
 html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--a);color:#fff}a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:#fff}a{color:inherit;text-decoration:none}
 
 /* NAV - 统一样式 */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.6);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--bdr);transition:all .4s}
 .nav.on{background:rgba(6,6,10,0.93);box-shadow:0 2px 40px rgba(0,0,0,0.5)}
 .nav-i{max-width:1120px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:500;font-size:14px;letter-spacing:0;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif}
-.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--gw)}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--gold),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 20px var(--gw)}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nl{padding:8px 14px;border-radius:8px;color:var(--t2);font-size:14px;font-weight:400;transition:all .2s var(--ease);position:relative;font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;letter-spacing:0}
 .nl:hover{color:var(--t1);background:rgba(255,255,255,0.035)}
@@ -37,7 +56,7 @@ html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-syste
 
 /* 粒子背景 */
 .particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;width:4px;height:4px;background:var(--a);border-radius:50%;opacity:.3;animation:float 20s linear infinite}
+.particle{position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.3;animation:float 20s linear infinite}
 @keyframes float{
   0%{transform:translateY(100vh) rotate(0deg);opacity:0}
   10%{opacity:.3}

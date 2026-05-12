@@ -7,34 +7,35 @@
     <meta name="description" content="江苏省21家省属企业发布67个AI应用场景需求，面向全社会公开征集技术解决方案">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="_kondratiev.css">
     <style>
         :root {
-            --bg: #06060a;
-            --bg-elevated: #0d0d14;
-            --bg-card: #111119;
-            --bg-card-hover: #16161f;
-            --bg-surface: rgba(255,255,255,0.02);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(255,255,255,0.12);
-            --text: #e8e8f0;
-            --text-secondary: #9898b0;
-            --text-muted: #5a5a72;
-            --accent: #e74c3c;
-            --accent-light: #ff6b6b;
-            --accent-warm: #ff8a50;
-            --green: #00d68f;
-            --blue: #4ea8de;
-            --purple: #a78bfa;
-            --gold: #f0c040;
-            --font-display: 'Space Grotesk', -apple-system, sans-serif;
-            --font-body: 'Inter', -apple-system, sans-serif;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --radius-lg: 24px;
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
-            --duration: 0.5s;
-        }
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -72,7 +73,7 @@
             color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
             letter-spacing: -0.02em;
         }
-        .nav-logo .dot { color: var(--accent); }
+        .nav-logo .dot { color: var(--gold); }
         .nav-links { display: flex; align-items: center; gap: 32px; }
         .nav-link {
             text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
@@ -82,7 +83,7 @@
         .nav-link.active { color: var(--text); }
         .nav-link.active::after {
             content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-            height: 2px; background: var(--accent); border-radius: 1px;
+            height: 2px; background: var(--gold); border-radius: 1px;
         }
         .lang-btn {
             background: var(--bg-surface); border: 1px solid var(--border);
@@ -106,8 +107,8 @@
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
             font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
-            color: var(--accent-light); background: rgba(231,76,60,0.08);
-            border: 1px solid rgba(231,76,60,0.15); padding: 8px 20px;
+            color: var(--gold); background: rgba(226,182,79,0.08);
+            border: 1px solid rgba(226,182,79,0.15); padding: 8px 20px;
             border-radius: 100px; margin-bottom: 28px;
             animation: fadeUp 0.8s var(--ease) both;
         }
@@ -117,7 +118,7 @@
         }
 
         .hero-title {
-            font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-family: var(--serif); font-size: clamp(2.5rem, 5.5vw, 4rem);
             font-weight: 700; line-height: 1.08; margin-bottom: 24px;
             letter-spacing: -0.03em;
             animation: fadeUp 0.8s var(--ease) 0.1s both;
@@ -157,12 +158,12 @@
 
         .hero-cta {
             display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent); color: #fff; text-decoration: none;
+            background: var(--gold); color: #000; text-decoration: none;
             padding: 14px 32px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
             transition: all 0.3s var(--ease); border: none; cursor: pointer;
             animation: fadeUp 0.8s var(--ease) 0.4s both;
         }
-        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(231,76,60,0.3); }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(226,182,79,0.3); background: var(--gold2); }
 
         /* ===== Filter Section ===== */
         .filter-section {
@@ -180,8 +181,8 @@
         }
         .filter-btn:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-card); }
         .filter-btn.active {
-            background: var(--accent); border-color: var(--accent); color: #fff;
-            box-shadow: 0 4px 16px rgba(231,76,60,0.25);
+            background: var(--gold); border-color: var(--gold); color: #000;
+            box-shadow: 0 4px 16px rgba(226,182,79,0.25);
         }
 
         .search-bar {
@@ -211,7 +212,7 @@
             margin-bottom: 32px;
         }
         .section-title {
-            font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+            font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
             letter-spacing: -0.02em;
         }
         .section-count {
@@ -299,13 +300,13 @@
         }
         .btn-detail:hover { border-color: var(--border-hover); color: var(--text); }
         .btn-apply {
-            flex: 1; background: var(--accent); border: none;
-            color: #fff; padding: 10px 16px; border-radius: 10px;
+            flex: 1; background: var(--gold); border: none;
+            color: #000; padding: 10px 16px; border-radius: 10px;
             font-size: 0.82rem; font-weight: 600; cursor: pointer;
             transition: all 0.25s var(--ease); text-align: center; text-decoration: none;
             font-family: var(--font-body);
         }
-        .btn-apply:hover { box-shadow: 0 4px 16px rgba(231,76,60,0.3); transform: translateY(-1px); }
+        .btn-apply:hover { box-shadow: 0 4px 16px rgba(226,182,79,0.3); transform: translateY(-1px); background: var(--gold2); }
 
         /* ===== Empty State ===== */
         .empty-state {
@@ -669,7 +670,7 @@
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'var(--gold)')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
 n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){

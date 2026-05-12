@@ -5,9 +5,35 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>OPC Academy | OPC学院</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_kondratiev.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#08080d;--bg2:#0f0f18;--bg3:#18182a;--bg4:#1e1e30;--t1:#eeeef5;--t2:#9090a8;--t3:#55556a;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--gold:#f59e0b;--red:#ef4444;--pink:#ec4899;--cyan:#06b6d4;--border:#222238;--radius:14px}
+:root {
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
 body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .zh,.en{transition:opacity .2s}
@@ -24,7 +50,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 
 /* HERO */
 .hero{padding:100px 0 40px;text-align:center;background:linear-gradient(180deg,#0d0d2a 0%,var(--bg) 100%)}
-.hero h1{font-size:clamp(24px,4vw,40px);font-weight:800;margin-bottom:10px}
+.hero h1{
+    font-family:var(--serif);font-size:clamp(24px,4vw,40px);font-weight:800;margin-bottom:10px}
 .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero>p{color:var(--t2);font-size:14px;max-width:500px;margin:0 auto 28px}
 .hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
@@ -38,7 +65,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
 .section-head{margin-bottom:20px}
-.section-head h2{font-size:22px;font-weight:700;margin-bottom:4px}
+.section-head h2{
+    font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:4px}
 .section-head p{color:var(--t2);font-size:13px}
 
 /* COURSE CARDS */
@@ -47,7 +75,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .ccard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.08)}
 .ccard-cover{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px}
 .ccard-body{padding:16px}
-.ccard-body h3{font-size:15px;font-weight:600;margin-bottom:4px;line-height:1.4}
+.ccard-body h3{
+    font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:4px;line-height:1.4}
 .ccard-body .meta{font-size:11.5px;color:var(--t3);margin-bottom:8px}
 .ccard-body .desc{font-size:12.5px;color:var(--t2);margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ccard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
@@ -69,7 +98,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s}
 .mcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .mcard .av{width:56px;height:56px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--bg3)}
-.mcard h3{font-size:16px;margin-bottom:2px}
+.mcard h3{
+    font-family:var(--serif);font-size:16px;margin-bottom:2px}
 .mcard .title{font-size:12px;color:var(--gold);margin-bottom:8px}
 .mcard .bio{font-size:12px;color:var(--t2);margin-bottom:12px}
 .mcard .skills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px}
@@ -83,7 +113,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .certcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:center;transition:all .3s}
 .certcard:hover{border-color:var(--accent);transform:translateY(-2px)}
 .cert-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.certcard h3{font-size:15px;margin-bottom:3px}
+.certcard h3{
+    font-family:var(--serif);font-size:15px;margin-bottom:3px}
 .certcard .cdesc{font-size:12px;color:var(--t2)}
 .certcard .clevel{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
 
@@ -91,7 +122,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .pathgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
 .pcard .picon{font-size:32px;margin-bottom:12px}
-.pcard h3{font-size:16px;margin-bottom:4px}
+.pcard h3{
+    font-family:var(--serif);font-size:16px;margin-bottom:4px}
 .pcard .pdesc{font-size:12px;color:var(--t2);margin-bottom:16px}
 .pcard .steps{list-style:none;counter-reset:step}
 .pcard .steps li{font-size:12.5px;color:var(--t2);padding:5px 0;padding-left:26px;position:relative;counter-increment:step}
@@ -103,7 +135,8 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
 .modal-overlay.show{display:flex}
 .modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto}
-.modal h2{font-size:20px;margin-bottom:16px}
+.modal h2{
+    font-family:var(--serif);font-size:20px;margin-bottom:16px}
 .modal .close-btn{float:right;background:none;border:none;color:var(--t2);font-size:20px;cursor:pointer}
 .modal .lesson-list{list-style:none;margin:16px 0}
 .modal .lesson-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:13px}
@@ -501,7 +534,7 @@ document.getElementById('courseModal').addEventListener('click', e => { if (e.ta
 // ===== OPC Platform 增强功能 =====
 function showNotification(msg,type='success'){
 const n=document.createElement('div');
-n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'#7c5cfc')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
+n.style.cssText='position:fixed;top:80px;right:20px;z-index:9999;background:'+(type==='success'?'#00d68f':type==='error'?'#ff6b6b':'var(--gold)')+';color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fadeIn .3s';
 n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
 function toggleFavorite(id,type){

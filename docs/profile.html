@@ -7,23 +7,42 @@
 <meta name="description" content="管理你的OPC平台个人资料">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_kondratiev.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
-  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
-  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;
-  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
-  --gw:rgba(124,92,252,0.1);
-  --ease:cubic-bezier(0.22,1,0.36,1);
-}
+:root {
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
 html{scroll-behavior:smooth}
 body{
   font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;
   background:var(--bg);color:var(--t1);line-height:1.6;
   -webkit-font-smoothing:antialiased;min-height:100vh;
 }
-::selection{background:var(--a);color:#fff}
+::selection{background:var(--gold);color:#fff}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
@@ -34,7 +53,7 @@ a{color:inherit;text-decoration:none}
   display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.3px}
 .nav-logo .mk{width:26px;height:26px;border-radius:7px;
-  background:linear-gradient(135deg,var(--a),var(--c));
+  background:linear-gradient(135deg,var(--gold),var(--c));
   display:flex;align-items:center;justify-content:center;
   font-size:11px;font-weight:900;color:#fff}
 
@@ -45,14 +64,15 @@ a{color:inherit;text-decoration:none}
 .profile-header{display:flex;align-items:center;gap:24px;margin-bottom:40px;
   padding:32px;background:var(--bg2);border:1px solid var(--bdr);border-radius:20px}
 .profile-avatar{width:80px;height:80px;border-radius:50%;
-  background:linear-gradient(135deg,var(--a),var(--c));
+  background:linear-gradient(135deg,var(--gold),var(--c));
   display:flex;align-items:center;justify-content:center;
   font-size:32px;font-weight:700;color:#fff;flex-shrink:0}
-.profile-info h1{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
+.profile-info h1{
+    font-family:var(--serif);font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
 .profile-info p{color:var(--t2);font-size:14px;margin-bottom:12px}
 .profile-info .badges{display:flex;gap:8px;flex-wrap:wrap}
 .badge{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:.5px}
-.badge-role{background:rgba(124,92,252,0.1);color:var(--a2);border:1px solid rgba(124,92,252,0.2)}
+.badge-role{background:rgba(124,92,252,0.1);color:var(--gold2);border:1px solid rgba(124,92,252,0.2)}
 .badge-skill{background:rgba(34,211,238,0.1);color:var(--c);border:1px solid rgba(34,211,238,0.2)}
 
 /* TABS */
@@ -60,11 +80,12 @@ a{color:inherit;text-decoration:none}
 .tab{flex:1;padding:12px;border-radius:8px;font-size:13px;font-weight:600;
   cursor:pointer;transition:all .2s var(--ease);text-align:center;color:var(--t2)}
 .tab:hover{color:var(--t1);background:rgba(255,255,255,0.03)}
-.tab.active{background:var(--a);color:#fff}
+.tab.active{background:var(--gold);color:#fff}
 
 /* FORM */
 .form-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;padding:32px;margin-bottom:24px}
-.form-card h2{font-size:20px;font-weight:700;margin-bottom:24px;letter-spacing:-.3px}
+.form-card h2{
+    font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:24px;letter-spacing:-.3px}
 
 .form-group{margin-bottom:20px}
 .form-label{display:block;font-size:12.5px;font-weight:600;color:var(--t2);
@@ -73,7 +94,7 @@ a{color:inherit;text-decoration:none}
   border:1px solid var(--bdr);border-radius:10px;
   color:var(--t1);font-size:15px;font-family:inherit;
   transition:all .25s var(--ease);outline:none}
-.form-input:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--gw)}
+.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gw)}
 .form-input::placeholder{color:var(--t3)}
 
 .form-row{display:flex;gap:16px}
@@ -88,7 +109,7 @@ textarea.form-input{min-height:100px;resize:vertical}
   color:var(--t1);font-size:14px;outline:none}
 .skill-tag{display:flex;align-items:center;gap:6px;padding:6px 12px;
   background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2);
-  border-radius:6px;font-size:12px;color:var(--a2)}
+  border-radius:6px;font-size:12px;color:var(--gold2)}
 .skill-tag button{background:none;border:none;color:var(--t3);cursor:pointer;font-size:14px}
 .skill-tag button:hover{color:var(--pk)}
 
@@ -98,7 +119,7 @@ textarea.form-input{min-height:100px;resize:vertical}
   cursor:pointer;transition:all .35s var(--ease);border:none;
   letter-spacing:.15px;font-family:inherit}
 
-.btn-p{background:linear-gradient(135deg,var(--a),#6d4cf7);color:#fff;
+.btn-p{background:linear-gradient(135deg,var(--gold),#6d4cf7);color:#fff;
   box-shadow:0 0 32px var(--gw),inset 0 1px 0 rgba(255,255,255,0.1)}
 .btn-p:hover{transform:translateY(-2px);
   box-shadow:0 0 48px var(--gw),0 12px 40px rgba(0,0,0,0.4),
@@ -106,7 +127,7 @@ textarea.form-input{min-height:100px;resize:vertical}
 .btn-p:disabled{opacity:0.6;cursor:not-allowed;transform:none}
 
 .btn-s{background:var(--bg3);border:1px solid var(--bdr2);color:var(--t1)}
-.btn-s:hover{border-color:var(--a);background:rgba(124,92,252,0.04)}
+.btn-s:hover{border-color:var(--gold);background:rgba(124,92,252,0.04)}
 
 .btn-d{background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pk)}
 .btn-d:hover{background:rgba(244,114,182,0.2)}
@@ -170,7 +191,7 @@ body{padding-top:44px}
 <nav class="nav"><div class="nav-i">
   <a href="index.html" class="nav-logo">
     <div class="mk">◆</div>
-    <span>OPC <span style="color:var(--a2)">Platform</span></span>
+    <span>OPC <span style="color:var(--gold2)">Platform</span></span>
   </a>
   <div id="authNav" style="display:flex;gap:8px">
     <a href="login.html" class="btn btn-s" style="padding:6px 16px;font-size:12px">登录</a>
@@ -435,7 +456,7 @@ function updateAuthNav() {
       const user = JSON.parse(userStr);
       authNav.innerHTML = `
         <div style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--bdr)">
-          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff">
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--c));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff">
             ${(user.display_name || user.username || 'U').charAt(0).toUpperCase()}
           </div>
           <div style="font-size:13px;font-weight:500;color:var(--t1)">${user.display_name || user.username}</div>

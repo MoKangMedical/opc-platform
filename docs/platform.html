@@ -6,55 +6,78 @@
 <title>OPC Platform | 一站式赋能平台</title>
 <meta name="description" content="OPC一站式赋能平台。揭榜挂帅、超级个体、名人堂、学院、健康、社区、政策全覆盖。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_kondratiev.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#06060a;--bg2:#0b0b12;--bg3:#111119;--bg4:#171722;
-  --t1:#eaebf0;--t2:#9191a8;--t3:#56566e;
-  --a:#7c5cfc;--a2:#a78bfa;--g:#34d399;--gd:#fbbf24;--c:#22d3ee;--pk:#f472b6;--or:#ff8a50;--r:#ff6b6b;
-  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);
-  --ease:cubic-bezier(0.22,1,0.36,1);
-}
-html{scroll-behavior:smooth}body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root {
+    --bg: #09090b;
+    --bg2: #0f0f13;
+    --bg3: #18181b;
+    --card: #1c1c21;
+    --card2: #222228;
+    --card3: #2a2a32;
+    --border: #27272a;
+    --border2: #3f3f46;
+    --text: #fafafa;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --gold: #e2b64f;
+    --gold2: #f5d98a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a78bfa;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+html{scroll-behavior:smooth}body{font-family:'Inter','Noto Serif SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Noto Serif SC','Inter',-apple-system,serif}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(6,6,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
 .nav-i{max-width:1200px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px}
-.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.nav-logo .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--gold),var(--c));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nl{padding:6px 12px;border-radius:7px;color:var(--t2);font-size:12.5px;font-weight:500;transition:all .2s}
 .nl:hover{color:var(--t1);background:rgba(255,255,255,0.03)}
-.nl.a{color:var(--a);background:rgba(124,92,252,0.08)}
+.nl.a{color:var(--gold);background:rgba(226,182,79,0.08)}
 
 /* HERO */
 .hero{padding:100px 28px 60px;text-align:center;position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(124,92,252,0.08),transparent 70%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(226,182,79,0.08),transparent 70%)}
 .hero-c{position:relative;z-index:1;max-width:800px;margin:0 auto}
-.hero-bdg{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.12);font-size:12px;color:var(--a2);margin-bottom:24px}
-.hero h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
-.hero h1 span{background:linear-gradient(135deg,var(--a2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-bdg{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;background:rgba(226,182,79,0.06);border:1px solid rgba(226,182,79,0.12);font-size:12px;color:var(--gold2);margin-bottom:24px}
+.hero h1{
+    font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,var(--gold2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{color:var(--t2);font-size:15px;max-width:600px;margin:0 auto 32px}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border-radius:14px;overflow:hidden;max-width:600px;margin:0 auto 48px}
 .stat{background:var(--bg2);padding:20px 12px;text-align:center}
-.stat-n{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--a2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-n{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--gold2),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-l{font-size:11px;color:var(--t3);margin-top:4px}
 
 /* TAB NAV */
 .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
 .tab{padding:10px 20px;border-radius:10px;background:var(--bg3);border:1px solid var(--bdr);color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:6px}
 .tab:hover{border-color:var(--bdr2);color:var(--t1)}
-.tab.a{background:linear-gradient(135deg,rgba(124,92,252,0.15),rgba(34,211,238,0.08));border-color:var(--a);color:var(--t1)}
+.tab.a{background:linear-gradient(135deg,rgba(226,182,79,0.15),rgba(59,130,246,0.08));border-color:var(--gold);color:var(--t1)}
 
 /* SECTIONS */
 .sec{padding:40px 28px 60px;max-width:1200px;margin:0 auto}
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
 .sec-title{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
-.sec-link{color:var(--a);font-size:13px;font-weight:500}
+.sec-link{color:var(--gold);font-size:13px;font-weight:500}
 
 /* PROJECT CARDS */
 .p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
@@ -95,8 +118,8 @@ a{color:inherit;text-decoration:none}
 .c-title{font-size:14px;font-weight:600;margin-bottom:6px}
 .c-teacher{font-size:12px;color:var(--t2);margin-bottom:10px}
 .c-meta{display:flex;gap:8px;font-size:11px}
-.c-tag{padding:3px 8px;border-radius:4px;background:rgba(124,92,252,0.08);color:var(--a2)}
-.c-price{color:var(--a);font-weight:700}
+.c-tag{padding:3px 8px;border-radius:4px;background:rgba(226,182,79,0.08);color:var(--gold2)}
+.c-price{color:var(--gold);font-weight:700}
 
 /* HEALTH WIDGET */
 .h-widget{background:var(--bg3);border:1px solid var(--bdr);border-radius:16px;padding:28px;max-width:500px;margin:0 auto;text-align:center}
@@ -132,14 +155,15 @@ a{color:inherit;text-decoration:none}
 .po-tag{font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--t3)}
 
 /* CTA */
-.cta{background:linear-gradient(135deg,rgba(124,92,252,0.1),rgba(34,211,238,0.06));border:1px solid rgba(124,92,252,0.12);border-radius:16px;padding:48px 32px;text-align:center;margin-top:40px}
-.cta h2{font-size:28px;font-weight:800;margin-bottom:12px}
+.cta{background:linear-gradient(135deg,rgba(226,182,79,0.1),rgba(59,130,246,0.06));border:1px solid rgba(226,182,79,0.12);border-radius:16px;padding:48px 32px;text-align:center;margin-top:40px}
+.cta h2{
+    font-family:var(--serif);font-size:28px;font-weight:800;margin-bottom:12px}
 .cta p{color:var(--t2);margin-bottom:24px}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-p{padding:12px 28px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--c));color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,0.3)}
+.btn-p{padding:12px 28px;border-radius:10px;background:var(--gold);color:#000;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(226,182,79,0.3)}
 .btn-s{padding:12px 28px;border-radius:10px;background:transparent;border:1px solid var(--bdr2);color:var(--t2);font-size:14px;font-weight:500;cursor:pointer;transition:all .3s}
-.btn-s:hover{border-color:var(--a);color:var(--t1)}
+.btn-s:hover{border-color:var(--gold);color:var(--t1)}
 
 footer{border-top:1px solid var(--bdr);padding:40px 28px;text-align:center}
 footer p{font-size:12px;color:var(--t3)}
@@ -337,13 +361,13 @@ footer p{font-size:12px;color:var(--t3)}
 </div>
 <div class="co-grid">
 <div class="co-card">
-<div class="co-head"><div class="co-ava" style="background:rgba(124,92,252,0.12)">🧑‍💻</div><div><div class="co-name">张三</div><div class="co-time">2小时前</div></div></div>
+<div class="co-head"><div class="co-ava" style="background:rgba(226,182,79,0.12)">🧑‍💻</div><div><div class="co-name">张三</div><div class="co-time">2小时前</div></div></div>
 <div class="co-title">我的第一个SaaS产品月入$5000的经验分享</div>
 <p class="co-desc">从零开始，用了3个月时间，终于做到了月入$5000...</p>
 <div class="co-stats"><span>❤️ 128</span><span>💬 45</span><span>🔄 23</span></div>
 </div>
 <div class="co-card">
-<div class="co-head"><div class="co-ava" style="background:rgba(34,211,238,0.12)">🤖</div><div><div class="co-name">王五</div><div class="co-time">1天前</div></div></div>
+<div class="co-head"><div class="co-ava" style="background:rgba(59,130,246,0.12)">🤖</div><div><div class="co-name">王五</div><div class="co-time">1天前</div></div></div>
 <div class="co-title">用AI做了个小工具，意外月入$3000</div>
 <p class="co-desc">本来只是解决自己的问题，没想到很多人也需要...</p>
 <div class="co-stats"><span>❤️ 256</span><span>💬 78</span><span>🔄 45</span></div>
