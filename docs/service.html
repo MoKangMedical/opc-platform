@@ -68,7 +68,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;
 .ai-msg{margin-bottom:16px;display:flex;gap:12px}
 .ai-msg.bot .bubble{background:var(--bg2);border:1px solid var(--border);border-radius:12px 12px 12px 4px;padding:12px 16px;max-width:80%}
 .ai-msg.user{flex-direction:row-reverse}
-.ai-msg.user .bubble{background:linear-gradient(135deg,var(--green),var(--blue));color:#000;border-radius:12px 12px 4px 12px;padding:12px 16px;max-width:80%;font-weight:500}
+.ai-msg.user .bubble{background:linear-gradient(135deg,var(--green),var(--blue));color:var(--text);border-radius:12px 12px 4px 12px;padding:12px 16px;max-width:80%;font-weight:500}
 .ai-input-area{padding:16px 24px;border-top:1px solid var(--border)}
 .ai-quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .aq{padding:6px 14px;border-radius:100px;background:rgba(0,214,143,.08);border:1px solid rgba(0,214,143,.15);color:var(--green);font-size:.78rem;cursor:pointer;transition:all .2s}
@@ -76,7 +76,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);line-height:1.6;
 .ai-input{display:flex;gap:12px}
 .ai-input input{flex:1;background:var(--bg2);border:1px solid var(--border);color:var(--t1);padding:12px 16px;border-radius:12px;font-size:.88rem;font-family:var(--fb);outline:none}
 .ai-input input:focus{border-color:var(--green)}
-.ai-input button{background:linear-gradient(135deg,var(--green),var(--blue));border:none;color:#000;padding:12px 24px;border-radius:12px;font-weight:600;cursor:pointer}
+.ai-input button{background:linear-gradient(135deg,var(--green),var(--blue));border:none;color:var(--text);padding:12px 24px;border-radius:12px;font-weight:600;cursor:pointer}
 /* Services Grid */
 .services{padding:60px 0}
 .s-title{font-family:var(--fd);font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:8px}
@@ -374,7 +374,7 @@ function showRecommendCategory(category) {
                         <div style="font-size: 1.2rem; font-weight: 700; color: var(--green);">${item.match}</div>
                         <div style="font-size: 0.75rem; color: var(--t3);">匹配度</div>
                     </div>
-                    <button onclick="applyRecommendation('${item.title}')" style="background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color: #000; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;">立即对接</button>
+                    <button onclick="applyRecommendation('${item.title}')" style="background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color:var(--text); padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;">立即对接</button>
                 </div>
             `).join('')}
         </div>
@@ -446,7 +446,7 @@ function openServiceMatching() {
                     </label>
                 </div>
                 
-                <button type="submit" style="width: 100%; background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color: #000; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交需求</button>
+                <button type="submit" style="width: 100%; background: linear-gradient(135deg, var(--green), var(--blue)); border: none; color:var(--text); padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交需求</button>
             </form>
         </div>
     `;
@@ -481,7 +481,7 @@ if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.write
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:var(--text3);font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
 document.body.appendChild(m);
 }
 function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}

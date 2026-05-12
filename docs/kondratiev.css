@@ -29,6 +29,13 @@
   --gold-glow: rgba(226, 182, 79, 0.15);
   --gold-glow-strong: rgba(226, 182, 79, 0.25);
 
+  /* Legacy accent aliases (OPC pages reference these) */
+  --accent: var(--gold);
+  --accent2: var(--gold2);
+  --accent-light: #fde4a0;
+  --accent-warm: #d4a54a;
+  --accent-glow: rgba(226, 182, 79, 0.12);
+
   /* Accent colors */
   --green: #22c55e;
   --blue: #3b82f6;

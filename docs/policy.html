@@ -69,7 +69,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .filter{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
 .fb{background:var(--card);border:1px solid var(--border);color:var(--t2);padding:8px 18px;border-radius:100px;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .25s var(--e);font-family:var(--fb)}
 .fb:hover{border-color:var(--border2);color:var(--t1)}
-.fb.a{background:var(--gold);border-color:var(--gold);color:#000;font-weight:600}
+.fb.a{background:var(--gold);border-color:var(--gold);color:var(--text);font-weight:600}
 /* Policy Cards */
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
 .pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .4s var(--e);position:relative;overflow:hidden}
@@ -87,7 +87,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .pc-amount{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:8px}
 .pc-deadline{font-size:.82rem;color:var(--t3);margin-bottom:16px}
 .pc-actions{display:flex;gap:10px}
-.btn{flex:1;background:linear-gradient(135deg,var(--gold),var(--orange));border:none;color:#000;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s var(--e);font-family:var(--fb);text-align:center}
+.btn{flex:1;background:linear-gradient(135deg,var(--gold),var(--orange));border:none;color:var(--text);padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s var(--e);font-family:var(--fb);text-align:center}
 .btn:hover{box-shadow:0 4px 16px rgba(240,192,64,.3);transform:translateY(-1px)}
 .btn-o{flex:1;background:transparent;border:1px solid var(--border);color:var(--t2);padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--fb);text-align:center}
 .btn-o:hover{border-color:var(--border2);color:var(--t1)}
@@ -345,35 +345,35 @@ function openApplicationFlow(policyTitle) {
                 <h3 style="font-weight: 600; margin-bottom: 16px;">📝 申请步骤</h3>
                 <div style="display: flex; flex-direction: column; gap: 16px;">
                     <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color:var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
                         <div>
                             <div style="font-weight: 600; margin-bottom: 4px;">准备材料</div>
                             <div style="font-size: 0.9rem; color: var(--t2);">身份证、营业执照、项目计划书、财务报表等</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color:var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
                         <div>
                             <div style="font-weight: 600; margin-bottom: 4px;">在线填报</div>
                             <div style="font-size: 0.9rem; color: var(--t2);">填写申请表格，上传相关材料</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color:var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
                         <div>
                             <div style="font-weight: 600; margin-bottom: 4px;">材料审核</div>
                             <div style="font-size: 0.9rem; color: var(--t2);">相关部门对材料进行审核（5-10个工作日）</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">4</div>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color:var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">4</div>
                         <div>
                             <div style="font-weight: 600; margin-bottom: 4px;">现场核查</div>
                             <div style="font-size: 0.9rem; color: var(--t2);">如有需要，工作人员将进行现场核查</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-start; gap: 16px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">5</div>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color:var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">5</div>
                         <div>
                             <div style="font-weight: 600; margin-bottom: 4px;">审批公示</div>
                             <div style="font-size: 0.9rem; color: var(--t2);">审批结果将在官网公示（7天）</div>
@@ -409,7 +409,7 @@ function openApplicationFlow(policyTitle) {
                         <label style="display: block; margin-bottom: 8px; font-weight: 500;">申请理由 *</label>
                         <textarea required rows="3" style="width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem; resize: vertical;"></textarea>
                     </div>
-                    <button type="submit" style="width: 100%; background: var(--gold); border: none; color: #000; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交申请</button>
+                    <button type="submit" style="width: 100%; background: var(--gold); border: none; color:var(--text); padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">提交申请</button>
                 </form>
             </div>
             
@@ -509,7 +509,7 @@ function openProgressTracker() {
                 <h3 style="font-weight: 600; margin-bottom: 16px;">🔍 查询申请进度</h3>
                 <div style="display: flex; gap: 12px;">
                     <input type="text" placeholder="输入申请编号或手机号..." style="flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--t1); font-size: 0.95rem;">
-                    <button style="background: var(--gold); border: none; color: #000; padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer;">查询</button>
+                    <button style="background: var(--gold); border: none; color:var(--text); padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer;">查询</button>
                 </div>
             </div>
         </div>
@@ -539,7 +539,7 @@ if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.write
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:var(--text3);font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
 document.body.appendChild(m);
 }
 function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}

@@ -702,7 +702,7 @@ if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.write
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:var(--text3);font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
 document.body.appendChild(m);
 }
 function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}

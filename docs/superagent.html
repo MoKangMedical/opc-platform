@@ -72,7 +72,7 @@
         }
         .logo-orb {
             width: 32px; height: 32px; border-radius: 50%;
-            background: conic-gradient(var(--accent), var(--agent-a), var(--agent-c), var(--accent));
+            background: conic-gradient(var(--gold), var(--agent-a), var(--agent-c), var(--gold));
             animation: orb-spin 6s linear infinite;
             box-shadow: 0 0 20px var(--accent-glow);
         }
@@ -125,7 +125,7 @@
             background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
             padding: 24px; text-align: center; transition: var(--transition);
         }
-        .arch-layer:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 32px var(--accent-glow); }
+        .arch-layer:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 32px var(--accent-glow); }
         .arch-layer.full { grid-column: 1 / -1; }
         .arch-icon { font-size: 2rem; margin-bottom: 12px; }
         .arch-label { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; }
@@ -163,14 +163,14 @@
         }
         .agent-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--agent-color, var(--accent)), transparent);
+            background: linear-gradient(90deg, var(--agent-color, var(--gold)), transparent);
         }
         .agent-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
         .agent-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .agent-avatar {
             width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 1.4rem; background: var(--agent-color, var(--accent-glow));
-            border: 2px solid var(--agent-color, var(--accent));
+            border: 2px solid var(--agent-color, var(--gold));
             box-shadow: 0 0 16px var(--agent-glow, var(--accent-glow));
         }
         .agent-info h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; }
@@ -207,13 +207,13 @@
             text-decoration: none;
         }
         .agent-btn-primary {
-            background: var(--accent); color: #fff;
+            background: var(--gold); color: #fff;
         }
         .agent-btn-primary:hover { background: var(--accent-light); }
         .agent-btn-secondary {
             background: transparent; color: var(--text-dim); border: 1px solid var(--border);
         }
-        .agent-btn-secondary:hover { border-color: var(--accent); color: var(--accent-light); }
+        .agent-btn-secondary:hover { border-color: var(--gold); color: var(--accent-light); }
 
         /* ---- A2A Chat Demo ---- */
         .chat-section { padding: 60px 24px; position: relative; z-index: 1; }
@@ -261,9 +261,9 @@
             padding: 10px 20px; color: var(--text); font-size: 0.85rem; outline: none;
             font-family: var(--font-body); transition: var(--transition);
         }
-        .chat-input:focus { border-color: var(--accent); }
+        .chat-input:focus { border-color: var(--gold); }
         .chat-send {
-            background: var(--accent); color: #fff; border: none; border-radius: 100px;
+            background: var(--gold); color: #fff; border: none; border-radius: 100px;
             padding: 10px 24px; font-size: 0.85rem; font-weight: 500; cursor: pointer;
             transition: var(--transition); font-family: var(--font-body);
         }
@@ -577,7 +577,7 @@
                 </div>
             </div>
             <div class="chat-msg from-b">
-                <div class="chat-msg-avatar" style="background: rgba(124,92,252,0.15); border: 1px solid var(--accent);">🏗️</div>
+                <div class="chat-msg-avatar" style="background: rgba(124,92,252,0.15); border: 1px solid var(--gold);">🏗️</div>
                 <div>
                     <div class="chat-msg-name">张工的Agent</div>
                     <div class="chat-msg-bubble">
@@ -686,7 +686,7 @@
 // ---- A2A API Configuration ----
 const chatAgents = {
     '林博士': { avatar: '🔬', color: 'var(--agent-a)', bg: 'rgba(0,214,143,0.15)' },
-    '张工': { avatar: '🏗️', color: 'var(--accent)', bg: 'rgba(124,92,252,0.15)' },
+    '张工': { avatar: '🏗️', color: 'var(--gold)', bg: 'rgba(124,92,252,0.15)' },
     '李总': { avatar: '🌱', color: 'var(--agent-b)', bg: 'rgba(255,107,107,0.15)' },
     '王安': { avatar: '🛡️', color: 'var(--gold)', bg: 'rgba(240,192,64,0.15)' },
     '陈港': { avatar: '🚢', color: 'var(--blue)', bg: 'rgba(59,130,246,0.15)' },
@@ -719,7 +719,7 @@ async function createAgent() {
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:480px;width:90%;">
             <h3 style="font-family:var(--font-display);margin-bottom:16px;">🤖 创建你的 Agent</h3>
             <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:20px;">选择创建方式</p>
-            <button onclick="createFromSecondMe()" style="width:100%;padding:14px;border-radius:100px;background:var(--accent);color:#fff;border:none;font-size:0.9rem;cursor:pointer;margin-bottom:12px;font-family:var(--font-body);">
+            <button onclick="createFromSecondMe()" style="width:100%;padding:14px;border-radius:100px;background:var(--gold);color:#fff;border:none;font-size:0.9rem;cursor:pointer;margin-bottom:12px;font-family:var(--font-body);">
                 🧠 一键连接 SecondMe 数字分身
             </button>
             <button onclick="createManual()" style="width:100%;padding:14px;border-radius:100px;background:transparent;color:var(--text);border:1px solid var(--border);font-size:0.9rem;cursor:pointer;margin-bottom:12px;font-family:var(--font-body);">
@@ -880,7 +880,7 @@ function sendMessage() {
     const msg = document.createElement('div');
     msg.className = 'chat-msg from-b';
     msg.innerHTML = `
-        <div class="chat-msg-avatar" style="background:rgba(124,92,252,0.15);border:1px solid var(--accent);">👤</div>
+        <div class="chat-msg-avatar" style="background:rgba(124,92,252,0.15);border:1px solid var(--gold);">👤</div>
         <div>
             <div class="chat-msg-name">你的Agent</div>
             <div class="chat-msg-bubble">${text}</div>
@@ -955,7 +955,7 @@ if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.write
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:var(--text3);font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
 document.body.appendChild(m);
 }
 function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}

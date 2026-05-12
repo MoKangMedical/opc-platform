@@ -43,7 +43,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,13,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px;color:var(--t1);text-decoration:none}
-.nav-logo .dot{color:var(--accent);font-size:18px}
+.nav-logo .dot{color:var(--gold);font-size:18px}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nav-link{padding:6px 11px;border-radius:8px;color:var(--t2);font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .2s}
 .nav-link:hover,.nav-link.active{color:var(--t1);background:var(--bg3)}
@@ -52,17 +52,17 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .hero{padding:100px 0 40px;text-align:center;background:linear-gradient(180deg,#0d0d2a 0%,var(--bg) 100%)}
 .hero h1{
     font-family:var(--serif);font-size:clamp(24px,4vw,40px);font-weight:800;margin-bottom:10px}
-.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 .grad{background:linear-gradient(135deg,var(--gold),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero>p{color:var(--t2);font-size:14px;max-width:500px;margin:0 auto 28px}
 .hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
-.hs .n{font-size:28px;font-weight:700;color:var(--accent);font-family:'Space Grotesk'}
+.hs .n{font-size:28px;font-weight:700;color:var(--gold);font-family:'Space Grotesk'}
 .hs .l{font-size:11px;color:var(--t3)}
 
 /* TABS */
 .tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto}
 .tab-btn{padding:12px 20px;font-size:13.5px;font-weight:600;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .tab-btn:hover{color:var(--t2)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
 
 .section-head{margin-bottom:20px}
 .section-head h2{
@@ -72,7 +72,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 /* COURSE CARDS */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;cursor:pointer}
-.ccard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.08)}
+.ccard:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 30px rgba(226,182,79,0.08)}
 .ccard-cover{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px}
 .ccard-body{padding:16px}
 .ccard-body h3{
@@ -84,14 +84,14 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .ccard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
 .price{font-weight:700;color:var(--green);font-size:15px}
 .students{font-size:11px;color:var(--t3)}
-.enroll-btn{padding:6px 16px;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.enroll-btn{padding:6px 16px;border-radius:6px;background:var(--gold);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
 .enroll-btn:hover{background:var(--accent2)}
 .enroll-btn.enrolled{background:var(--bg3);color:var(--green)}
 
 /* FILTER */
 .filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
 .fbtn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--bg2);color:var(--t2);font-size:12px;cursor:pointer;transition:all .2s}
-.fbtn:hover,.fbtn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fbtn:hover,.fbtn.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 
 /* MENTOR CARDS */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
@@ -105,18 +105,18 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .mcard .skills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:12px}
 .stag{padding:3px 9px;border-radius:8px;font-size:10.5px;background:var(--bg3);color:var(--t2)}
 .mcard .rating{font-size:12px;color:var(--gold);margin-bottom:10px}
-.match-btn{padding:7px 20px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
-.match-btn:hover{background:var(--accent);color:#fff}
+.match-btn{padding:7px 20px;border-radius:6px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
+.match-btn:hover{background:var(--gold);color:#fff}
 
 /* CERT CARDS */
 .certgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .certcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:center;transition:all .3s}
-.certcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.certcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .cert-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .certcard h3{
     font-family:var(--serif);font-size:15px;margin-bottom:3px}
 .certcard .cdesc{font-size:12px;color:var(--t2)}
-.certcard .clevel{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
+.certcard .clevel{font-size:11px;color:var(--gold);font-weight:600;margin-top:4px}
 
 /* LEARNING PATH */
 .pathgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
@@ -127,9 +127,9 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .pcard .pdesc{font-size:12px;color:var(--t2);margin-bottom:16px}
 .pcard .steps{list-style:none;counter-reset:step}
 .pcard .steps li{font-size:12.5px;color:var(--t2);padding:5px 0;padding-left:26px;position:relative;counter-increment:step}
-.pcard .steps li::before{content:counter(step);position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--bg3);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pcard .steps li::before{content:counter(step);position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--bg3);color:var(--gold);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .pcard .prog{margin-top:14px;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
-.pcard .prog-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+.pcard .prog-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--cyan))}
 
 /* MODAL */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
@@ -142,7 +142,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .modal .lesson-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:13px}
 .modal .lesson-list .free{color:var(--green);font-size:11px}
 .modal .enroll-action{margin-top:20px;text-align:center}
-.modal .enroll-big{padding:12px 32px;border-radius:10px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer}
+.modal .enroll-big{padding:12px 32px;border-radius:10px;background:var(--gold);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer}
 .modal .enroll-big:hover{background:var(--accent2)}
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:300;display:none;animation:fadeInUp .3s}
@@ -157,13 +157,13 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;text-decoration:none;color:var(--t1,#e8e8ed)}
-.nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
+.nav-logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--gold),#06b6d4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
 .nav-links{display:flex;align-items:center;gap:2px}
-.nl{padding:6px 12px;border-radius:7px;color:#8888a0;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
+.nl{padding:6px 12px;border-radius:7px;color:var(--text3);font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;transition:all .25s}
 .nl:hover{color:#e8e8ed;background:rgba(255,255,255,0.05)}
-.nl.a{color:#e8e8ed;background:rgba(99,102,241,0.1)}
-.lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#8888a0;font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
-.lang-btn:hover{border-color:#6366f1;color:#e8e8ed}
+.nl.a{color:#e8e8ed;background:rgba(226,182,79,0.1)}
+.lang-btn{padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--text3);font-size:11px;cursor:pointer;margin-left:6px;transition:all .25s}
+.lang-btn:hover{border-color:var(--gold);color:#e8e8ed}
 </style>
 
 <meta name="description" content="系统化创业课程体系，涵盖商业模式、AI技术、市场策略、融资路演等核心模块，赋能一人公司快速成长。">
@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 <nav class="nav">
 <div class="nav-in">
-  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:#818cf8">Platform</span></span></a>
+  <a href="index.html" class="nav-logo"><div class="mark">◆</div><span>OPC <span style="color:var(--gold)">Platform</span></span></a>
   <div class="nav-links">
     <a href="home.html" class="nl"><span class="zh">首页</span><span class="en" style="display:none">Home</span></a>
     <a href="platform.html" class="nl"><span class="zh">平台</span><span class="en" style="display:none">Platform</span></a>
@@ -547,7 +547,7 @@ if(navigator.share){navigator.share({title,url});}else{navigator.clipboard.write
 }
 function showModal(c){
 const m=document.createElement('div');m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px';
-m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:#9191a8;font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
+m.innerHTML='<div style="background:#111119;border-radius:16px;padding:32px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onclick="this.closest(\'[style*=fixed]\').remove()" style="background:none;border:none;color:var(--text3);font-size:24px;cursor:pointer">×</button></div>'+c+'</div>';
 document.body.appendChild(m);
 }
 function saveUserData(k,d){localStorage.setItem('opc-'+k,JSON.stringify(d));}
