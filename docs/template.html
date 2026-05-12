@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoKangMedical — AI-Powered Medical Innovation Ecosystem | {{TOTAL_PROJECTS}} Projects</title>
+<title>MoKangMedical — AI-Powered Medical Innovation Ecosystem</title>
 <meta name="description" content="{{TOTAL_PROJECTS}} AI projects across drug discovery, clinical research, digital health, and solo entrepreneur ecosystem. 6 business verticals, 5 revenue flywheels.">
 <meta name="keywords" content="medical AI, drug discovery, clinical research, Meta-analysis, biostatistics, rare disease, digital health, OPC, one person company">
 <meta property="og:title" content="MoKangMedical — AI-Powered Medical Innovation Ecosystem">
@@ -32,7 +32,7 @@
     --gold: #e2b64f;
     --gold2: #f5d98a;
     --green: #22c55e;
-    --blue: #3b82f6;
+    --blue: var(--gold);
     --purple: #a78bfa;
     --orange: #f59e0b;
     --red: #ef4444;
@@ -66,8 +66,8 @@ nav.scrolled{background:rgba(9,9,11,.85);border-bottom-color:rgba(226,182,79,.15
 .hero-mesh{position:absolute;inset:0;z-index:0;overflow:hidden!important}
 .hero>*:not(.hero-mesh){position:relative;z-index:1}
 .hero-mesh .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:morph 18s ease-in-out infinite alternate}
-.hero-mesh .orb-1{width:600px;height:600px;background:radial-gradient(circle,var(--gold),#8b5cf6);top:-15%;left:10%;animation-delay:0s}
-.hero-mesh .orb-2{width:500px;height:500px;background:radial-gradient(circle,#ec4899,#8b5cf6);bottom:-10%;right:5%;animation-delay:-6s}
+.hero-mesh .orb-1{width:600px;height:600px;background:radial-gradient(circle,var(--gold),var(--gold));top:-15%;left:10%;animation-delay:0s}
+.hero-mesh .orb-2{width:500px;height:500px;background:radial-gradient(circle,#ec4899,var(--gold));bottom:-10%;right:5%;animation-delay:-6s}
 .hero-mesh .orb-3{width:400px;height:400px;background:radial-gradient(circle,#06b6d4,var(--gold));top:20%;right:25%;animation-delay:-12s}
 @keyframes morph{0%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-20px,40px) scale(.95)}100%{transform:translate(30px,10px) scale(1.05)}}
 .hero-grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
@@ -1114,38 +1114,42 @@ input:focus, textarea:focus, select:focus{
 </div>
 
 <footer>
-<div class="footer-grid">
-  <div class="footer-brand">
-    <h3>MoKang<span style="color:var(--gold)">Medical</span></h3>
-    <p>AI-powered medical innovation ecosystem. {{TOTAL_PROJECTS}} open-source projects across drug discovery, clinical research, digital health, and solo entrepreneur empowerment.</p>
-  </div>
-  <div class="footer-col">
-    <h4>Research</h4>
-    <a href="#research">MetaForge</a>
-    <a href="#research">Biostats</a>
-    <a href="#research">MingEvidence</a>
-    <a href="#research">MedRoundTable</a>
-  </div>
-  <div class="footer-col">
-    <h4>Pharma</h4>
-    <a href="#pharma">DrugMind</a>
-    <a href="#pharma">DrugClip</a>
-    <a href="#pharma">PharmaSim</a>
-    <a href="#pharma">HEOR</a>
-  </div>
-  <div class="footer-col">
-    <h4>Health</h4>
-    <a href="#clinical">VoiceHealth</a>
-    <a href="#clinical">KnowHealth</a>
-    <a href="#clinical">MediChat-RD</a>
-    <a href="#digital">NarrowGate</a>
-  </div>
-</div>
-<div class="footer-bottom">
-  <span>&copy; 2026 MoKangMedical &middot; Built with AI</span>
-  <span>Last updated: {{TODAY}}</span>
-</div>
-</footer>
+    <div class="ft-i">
+      <div>
+        <div class="ft-brand"><span class="mk">◆</span> OPC Platform</div>
+        <p class="ft-desc">一站式OPC赋能平台，连接、展示、赋能全球独立创业者。一个人的公司，无限可能。</p>
+      </div>
+      <div class="ft-col">
+        <h4>平台</h4>
+        <a href="service.html">创业助手</a>
+        <a href="platform.html">全功能平台</a>
+        <a href="government.html">揭榜挂帅</a>
+        <a href="superagent.html">超级个体</a>
+      </div>
+      <div class="ft-col">
+        <h4>资源</h4>
+        <a href="legends.html">名人堂</a>
+        <a href="academy.html">学院</a>
+        <a href="policy.html">政策汇总</a>
+        <a href="community.html">社区</a>
+      </div>
+      <div class="ft-col">
+        <h4>支持</h4>
+        <a href="chat.html">实时聊天</a>
+        <a href="health.html">健康</a>
+        <a href="login.html">登录</a>
+        <a href="register.html">注册</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 OPC Platform. All rights reserved.</span>
+      <div class="ft-social">
+        <a href="#">Twitter</a>
+        <a href="#">GitHub</a>
+        <a href="#">微信</a>
+      </div>
+    </div>
+  </footer>
 
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
 
