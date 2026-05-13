@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="card card-pad">
+    <view class="eyebrow">OPC INTELLIGENCE</view>
+    <view class="title-lg">OPC 信息平台</view>
+    <view class="body mt">
+      聚合政策、案例、活动、项目机会和工具清单，让一人公司少花时间找信息，多花时间做交易。
+    </view>
+  </view>
+
+  <scroll-view class="category-scroll" scroll-x>
+    <view class="category-row">
+      <button
+        class="category {{activeCategory === item ? 'on' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="*this"
+        data-category="{{item}}"
+        bindtap="selectCategory"
+      >{{item}}</button>
+    </view>
+  </scroll-view>
+
+  <view class="section">
+    <view class="info-card card card-pad" wx:for="{{infos}}" wx:key="id">
+      <view class="row space-between">
+        <view class="tag gold">{{item.category}}</view>
+        <view class="muted">{{item.time}}</view>
+      </view>
+      <view class="title-md mt-sm">{{item.title}}</view>
+      <view class="body mt-sm">{{item.summary}}</view>
+      <view class="read-link">阅读全文 →</view>
+    </view>
+  </view>
+</view>

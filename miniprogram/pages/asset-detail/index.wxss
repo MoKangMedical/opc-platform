@@ -1,0 +1,51 @@
+.mt {
+  margin-top: 24rpx;
+}
+
+.mt-sm {
+  margin-top: 14rpx;
+}
+
+.gold {
+  border-color: rgba(226, 182, 79, 0.34);
+  color: #f5d98a;
+}
+
+.kv-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+  font-size: 25rpx;
+}
+
+.kv-row text:last-child {
+  max-width: 420rpx;
+  color: #ffffff;
+  text-align: right;
+  word-break: break-all;
+}
+
+.mono {
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 21rpx;
+}
+
+.event {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  min-height: 64rpx;
+  color: #d4d4d8;
+  font-size: 25rpx;
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #e2b64f;
+  box-shadow: 0 0 18rpx rgba(226, 182, 79, 0.6);
+}

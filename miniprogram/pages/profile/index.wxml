@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="profile card card-pad">
+    <view class="avatar">OPC</view>
+    <view class="title-lg mt">{{profile.name}}</view>
+    <view class="muted mt-sm">钱包：{{profile.wallet}}</view>
+    <view class="row wrap gap-sm mt">
+      <view class="tag">学习 {{profile.learning}}</view>
+      <view class="tag">资产 {{profile.assets}}</view>
+      <view class="tag gold">待认证</view>
+    </view>
+    <button class="btn-primary mt" bindtap="applyVerify">申请 Verified OPC</button>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="title-md">我的订阅</view>
+    <view class="order" wx:for="{{orders}}" wx:key="id">
+      <view>
+        <view class="order-title">{{item.title}}</view>
+        <view class="muted">{{item.id}} · {{item.chain}}</view>
+      </view>
+      <view class="order-side">
+        <view class="order-value">{{item.value}}</view>
+        <view class="order-status">{{item.status}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="title-md">链上交易入口</view>
+    <view class="body mt-sm">真实 MON 订阅需要打开 KnoVault H5 并连接钱包。小程序负责发现、预览、意向单和记录展示。</view>
+    <button class="btn-secondary mt" bindtap="copyH5">复制 KnoVault H5 链接</button>
+  </view>
+</view>

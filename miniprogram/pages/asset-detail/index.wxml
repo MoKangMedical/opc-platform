@@ -1,0 +1,58 @@
+<view class="page" wx:if="{{asset}}">
+  <view class="card card-pad">
+    <view class="row wrap gap-sm">
+      <view class="tag">{{asset.type}}</view>
+      <view class="tag gold">Verified OPC</view>
+      <view class="tag">{{asset.mode}}</view>
+    </view>
+    <view class="title-lg mt">{{asset.title}}</view>
+    <view class="body mt-sm">{{asset.promise}}</view>
+    <view class="grid-2 mt">
+      <view class="metric">
+        <view class="metric-value">{{asset.price}}</view>
+        <view class="metric-label">{{asset.duration}}访问权</view>
+      </view>
+      <view class="metric">
+        <view class="metric-value">{{asset.rating}}</view>
+        <view class="metric-label">{{asset.subscriptions}} 次订阅</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="eyebrow">PREVIEW</view>
+    <view class="title-md mt-sm">免费预览</view>
+    <view class="body mt-sm">{{asset.preview}}</view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="eyebrow">VERSION</view>
+    <view class="title-md mt-sm">版本与来源</view>
+    <view class="kv-row">
+      <text>当前版本</text>
+      <text>{{asset.version}}</text>
+    </view>
+    <view class="kv-row">
+      <text>发布者</text>
+      <text>{{asset.seller}}</text>
+    </view>
+    <view class="kv-row">
+      <text>合约</text>
+      <text class="mono">{{contract}}</text>
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="eyebrow">TRUST EVENTS</view>
+    <view class="event" wx:for="{{events}}" wx:key="*this">
+      <view class="dot"></view>
+      <view>{{item}}</view>
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="title-md">订阅权益</view>
+    <view class="body mt-sm">你购买的是订阅期内的内容访问权、更新访问权和可追踪购买记录；不包含所有权、转售权和二次分发权。</view>
+    <button class="btn-primary mt" bindtap="createIntent">生成订阅意向</button>
+  </view>
+</view>

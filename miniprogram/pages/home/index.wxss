@@ -1,0 +1,60 @@
+.hero {
+  padding-top: 42rpx;
+}
+
+.hero-title {
+  margin-top: 28rpx;
+}
+
+.hero-desc {
+  margin-top: 22rpx;
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16rpx;
+  margin-top: 32rpx;
+}
+
+.entry-list {
+  display: grid;
+  gap: 18rpx;
+  margin-top: 20rpx;
+}
+
+.entry {
+  transition: opacity 0.2s;
+}
+
+.entry:active {
+  opacity: 0.72;
+}
+
+.entry-link {
+  margin-top: 18rpx;
+  color: #e2b64f;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.price {
+  flex-shrink: 0;
+  color: #f5d98a;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.mt {
+  margin-top: 18rpx;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom-grid {
+  padding-bottom: 24rpx;
+}

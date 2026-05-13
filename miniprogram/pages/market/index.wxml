@@ -1,0 +1,57 @@
+<view class="page">
+  <view class="card card-pad">
+    <view class="eyebrow">OPC MARKET</view>
+    <view class="title-lg">OPC 的淘宝交易平台</view>
+    <view class="body mt">
+      交易对象不是简历，而是具体的知识资产、服务能力和可复用交付包。先看预览和可信记录，再形成订阅意向。
+    </view>
+    <view class="search-wrap">
+      <input class="search" placeholder="搜索报告、模板、数据集、服务能力" value="{{keyword}}" bindinput="onSearch" />
+    </view>
+    <view class="segmented">
+      <button class="seg {{active === 'asset' ? 'on' : ''}}" data-mode="asset" bindtap="switchMode">知识资产</button>
+      <button class="seg {{active === 'service' ? 'on' : ''}}" data-mode="service" bindtap="switchMode">服务能力</button>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{active === 'asset'}}">
+    <view class="asset-card card card-pad" wx:for="{{filteredAssets}}" wx:key="id">
+      <view class="row space-between gap-md">
+        <view class="min">
+          <view class="row wrap gap-sm">
+            <view class="tag">{{item.type}}</view>
+            <view class="tag gold" wx:if="{{item.verified}}">Verified OPC</view>
+          </view>
+          <view class="title-md mt-sm">{{item.title}}</view>
+        </view>
+        <view class="price">{{item.price}}</view>
+      </view>
+      <view class="body mt-sm">{{item.promise}}</view>
+      <view class="row wrap gap-sm mt">
+        <view class="tag">{{item.mode}}</view>
+        <view class="tag">{{item.version}}</view>
+        <view class="tag">{{item.rating}} 分</view>
+        <view class="tag">{{item.subscriptions}} 次订阅</view>
+      </view>
+      <view class="asset-actions">
+        <button class="btn-secondary" data-id="{{item.id}}" bindtap="openAsset">查看详情</button>
+        <button class="btn-primary" data-title="{{item.title}}" bindtap="createIntent">订阅意向</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{active === 'service'}}">
+    <view class="asset-card card card-pad" wx:for="{{services}}" wx:key="id">
+      <view class="row space-between gap-md">
+        <view class="title-md">{{item.title}}</view>
+        <view class="price">{{item.price}}</view>
+      </view>
+      <view class="muted mt-sm">{{item.provider}}</view>
+      <view class="body mt-sm">{{item.desc}}</view>
+      <view class="asset-actions">
+        <button class="btn-secondary">咨询详情</button>
+        <button class="btn-primary">预约服务</button>
+      </view>
+    </view>
+  </view>
+</view>

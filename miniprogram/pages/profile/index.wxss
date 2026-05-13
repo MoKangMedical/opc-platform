@@ -1,0 +1,61 @@
+.profile {
+  text-align: center;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0 auto;
+  border-radius: 36rpx;
+  background: linear-gradient(135deg, #e2b64f, #6b7db3);
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.mt {
+  margin-top: 24rpx;
+}
+
+.mt-sm {
+  margin-top: 14rpx;
+}
+
+.gold {
+  border-color: rgba(226, 182, 79, 0.34);
+  color: #f5d98a;
+}
+
+.order {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.08);
+}
+
+.order-title {
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.order-side {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.order-value {
+  color: #f5d98a;
+  font-size: 25rpx;
+  font-weight: 900;
+}
+
+.order-status {
+  margin-top: 8rpx;
+  color: #a1a1aa;
+  font-size: 22rpx;
+}

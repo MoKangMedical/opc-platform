@@ -13,6 +13,7 @@ OPC Platform 是 MoKangMedical 生态的核心枢纽，整合了以下模块：
 - **健康管理**（运动打卡 + 数据追踪）
 - **社区联盟**（创业者联盟 + 交流互动）
 - **同步中心**（多仓库健康检查 + 自动同步）
+- **微信小程序**（OPC 的淘宝交易、培训和信息入口）
 
 ## ✨ 核心功能
 
@@ -58,6 +59,13 @@ OPC Platform 是 MoKangMedical 生态的核心枢纽，整合了以下模块：
 ### 9. 支付系统
 - 订单管理 + 支付记录
 - 退款 + 发票管理
+
+### 10. 微信小程序
+- 首页：OPC 交易、培训、信息三大入口
+- 交易：知识资产、服务能力、订阅意向
+- 学院：OPC 课程和学习路径
+- 信息：政策、案例、活动、项目机会
+- 我的：订阅记录、认证入口、KnoVault H5 链接
 
 ## 🛠️ 技术栈
 
@@ -145,6 +153,15 @@ opc-platform/
 │   ├── health.html              # 健康
 │   ├── chat.html                # 聊天
 │   └── ...
+├── miniprogram/                 # 微信小程序
+│   ├── app.json                 # 小程序页面与 tab 配置
+│   ├── pages/home               # 首页
+│   ├── pages/market             # OPC 淘宝交易
+│   ├── pages/asset-detail       # 知识资产详情
+│   ├── pages/training           # OPC 学院
+│   ├── pages/info               # 信息平台
+│   ├── pages/profile            # 我的 OPC
+│   └── utils/data.js            # Demo 数据
 ├── data/                        # 数据
 │   ├── courses/                 # 6门课程38模块 ⭐
 │   ├── toolkits/                # 工具箱
@@ -179,7 +196,8 @@ OPC Platform v3.0.0 合并了以下子项目：
 - ✅ Phase 1：核心平台（用户/项目/匹配/支付）
 - ✅ Phase 2：学院+名人堂+社区+Agent
 - ✅ Phase 3：7项目统一合并（v3.0.0）
-- 🔲 Phase 4：微信小程序 + 数据分析面板
+- ✅ Phase 4：微信小程序 MVP
+- 🔲 Phase 4.1：微信登录、后端 API、交易状态同步和数据分析面板
 - 🔲 Phase 5：多语言 + 海外市场
 
 ## 📞 联系方式

@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/market/index",
+    "pages/asset-detail/index",
+    "pages/training/index",
+    "pages/info/index",
+    "pages/profile/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "OPC Platform",
+    "navigationBarBackgroundColor": "#09090b",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#09090b",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#71717a",
+    "selectedColor": "#e2b64f",
+    "backgroundColor": "#0f0f13",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/market/index",
+        "text": "交易"
+      },
+      {
+        "pagePath": "pages/training/index",
+        "text": "学院"
+      },
+      {
+        "pagePath": "pages/info/index",
+        "text": "信息"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

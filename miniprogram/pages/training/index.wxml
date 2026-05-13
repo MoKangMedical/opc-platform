@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="card card-pad">
+    <view class="eyebrow">OPC ACADEMY</view>
+    <view class="title-lg">OPC 培训学院</view>
+    <view class="body mt">
+      学习如何把个人能力产品化：从定位、AI 生产系统、知识资产设计，到第一笔交易和长期声誉。
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="title-md">学习路径</view>
+    <view class="track-list">
+      <view class="track" wx:for="{{tracks}}" wx:key="*this">
+        <view class="track-index">{{index + 1}}</view>
+        <view>{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="course card card-pad" wx:for="{{courses}}" wx:key="id">
+      <view class="row space-between gap-md">
+        <view class="tag gold">{{item.level}}</view>
+        <view class="muted">{{item.lessons}} 节 · {{item.duration}}</view>
+      </view>
+      <view class="title-md mt-sm">{{item.title}}</view>
+      <view class="body mt-sm">{{item.desc}}</view>
+      <view class="row wrap gap-sm mt">
+        <view class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</view>
+      </view>
+      <button class="btn-primary mt" data-id="{{item.id}}" bindtap="enroll">加入学习清单</button>
+    </view>
+  </view>
+</view>

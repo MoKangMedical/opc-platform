@@ -1,0 +1,43 @@
+.mt {
+  margin-top: 24rpx;
+}
+
+.mt-sm {
+  margin-top: 14rpx;
+}
+
+.gold {
+  border-color: rgba(226, 182, 79, 0.34);
+  color: #f5d98a;
+}
+
+.track-list {
+  display: grid;
+  gap: 14rpx;
+  margin-top: 22rpx;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  min-height: 68rpx;
+  color: #d4d4d8;
+  font-size: 26rpx;
+}
+
+.track-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 14rpx;
+  background: rgba(226, 182, 79, 0.14);
+  color: #f5d98a;
+  font-weight: 900;
+}
+
+.course {
+  margin-top: 18rpx;
+}

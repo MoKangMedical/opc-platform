@@ -1,0 +1,65 @@
+<view class="page">
+  <view class="hero card card-pad">
+    <view class="pill">OPC Platform · 一人公司基础设施</view>
+    <view class="title-xl hero-title">交易、培训、信息一站式入口</view>
+    <view class="body hero-desc">
+      面向 AI 时代的一人公司：把技能、知识库、数据集和商业能力包装成可交易资产，同时提供课程、政策、案例和项目机会。
+    </view>
+    <view class="hero-actions">
+      <button class="btn-primary" bindtap="openKnoVault">进入 KnoVault 交易</button>
+      <button class="btn-secondary" data-path="/pages/training/index" bindtap="goTo">开始学习</button>
+    </view>
+  </view>
+
+  <view class="section grid-2">
+    <view class="metric" wx:for="{{stats}}" wx:key="label">
+      <view class="metric-value">{{item.value}}</view>
+      <view class="metric-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="eyebrow">THREE ENTRIES</view>
+        <view class="title-lg">OPC 核心入口</view>
+      </view>
+    </view>
+    <view class="entry-list">
+      <view class="entry card card-pad" wx:for="{{entries}}" wx:key="title" data-path="{{item.path}}" bindtap="goTo">
+        <view class="title-md">{{item.title}}</view>
+        <view class="body">{{item.desc}}</view>
+        <view class="entry-link">进入 →</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section card card-pad">
+    <view class="row space-between gap-md">
+      <view>
+        <view class="eyebrow">FEATURED TRADE</view>
+        <view class="title-md">{{featuredAsset.title}}</view>
+      </view>
+      <view class="price">{{featuredAsset.price}}</view>
+    </view>
+    <view class="body mt">{{featuredAsset.promise}}</view>
+    <view class="row wrap gap-sm mt">
+      <view class="tag">{{featuredAsset.type}}</view>
+      <view class="tag">{{featuredAsset.mode}}</view>
+      <view class="tag">{{featuredAsset.version}}</view>
+    </view>
+  </view>
+
+  <view class="section grid-2 bottom-grid">
+    <view class="card card-pad">
+      <view class="eyebrow">COURSE</view>
+      <view class="title-md">{{featuredCourse.title}}</view>
+      <view class="muted mt">{{featuredCourse.lessons}} 节 · {{featuredCourse.duration}}</view>
+    </view>
+    <view class="card card-pad">
+      <view class="eyebrow">INFO</view>
+      <view class="title-md">{{latestInfo.title}}</view>
+      <view class="muted mt">{{latestInfo.category}} · {{latestInfo.time}}</view>
+    </view>
+  </view>
+</view>
