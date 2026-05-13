@@ -123,6 +123,28 @@ h1,h2,h3,h4{font-family:'Noto Serif SC','Inter',-apple-system,serif}
 .mod-link{font-size:13px;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:4px}
 .mod-link:hover{color:var(--c)}
 
+/* KNOVAULT */
+.knv-panel{position:relative;overflow:hidden;border:1px solid rgba(226,182,79,0.24);border-radius:20px;background:linear-gradient(135deg,rgba(226,182,79,0.09),rgba(107,125,179,0.07) 42%,rgba(15,15,19,0.96));padding:40px;box-shadow:0 28px 90px rgba(0,0,0,0.34)}
+.knv-panel::before{content:'';position:absolute;inset:auto -20% -42% 18%;height:220px;background:radial-gradient(ellipse,rgba(226,182,79,0.18),transparent 62%);pointer-events:none}
+.knv-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:32px;align-items:center}
+.knv-title{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px;margin:8px 0 14px}
+.knv-desc{color:var(--t2);font-size:15px;line-height:1.8;max-width:620px}
+.knv-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.knv-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;max-width:560px}
+.knv-metric{border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.035);padding:14px}
+.knv-metric strong{display:block;font-size:18px;color:var(--text)}
+.knv-metric span{display:block;margin-top:3px;font-size:11px;color:var(--t3)}
+.knv-flow{border:1px solid rgba(255,255,255,0.09);border-radius:16px;background:rgba(9,9,11,0.72);padding:18px}
+.knv-flow-head{display:flex;justify-content:space-between;gap:12px;color:var(--t2);font-size:12px;margin-bottom:14px}
+.knv-chain{display:grid;gap:9px}
+.knv-event{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.035);padding:10px 12px;animation:knvPulse 4s ease-in-out infinite}
+.knv-event:nth-child(2){animation-delay:.45s}
+.knv-event:nth-child(3){animation-delay:.9s}
+.knv-event:nth-child(4){animation-delay:1.35s}
+.knv-event span:first-child{font-size:12px;font-weight:700;color:var(--text)}
+.knv-event span:last-child{font-size:11px;color:var(--gold2)}
+@keyframes knvPulse{0%,100%{border-color:rgba(255,255,255,0.08);transform:translateX(0)}50%{border-color:rgba(226,182,79,0.32);transform:translateX(4px)}}
+
 /* WHY */
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .why-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:16px;padding:32px;display:flex;gap:20px}
@@ -165,12 +187,15 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 
 @media(max-width:900px){
   .mods{grid-template-columns:repeat(2,1fr)}
+  .knv-grid{grid-template-columns:1fr}
   .why-grid,.test-grid{grid-template-columns:1fr}
   .ft-i{grid-template-columns:1fr 1fr}
   .stats{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
   .mods{grid-template-columns:1fr}
+  .knv-panel{padding:26px}
+  .knv-metrics{grid-template-columns:1fr}
   .nav-links{display:none}
   .mob{display:block}
   .hero h1{
@@ -196,6 +221,7 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 <div class="nav-links">
 <a href="service.html" class="nl">创业助手</a>
 <a href="platform.html" class="nl">平台</a>
+<a href="/knovault/" class="nl">KnoVault</a>
 <a href="government.html" class="nl">揭榜挂帅</a>
 <a href="challenge.html" class="nl"><span class="zh">揭榜</span><span class="en" style="display:none">Challenge</span></a>
     <a href="superagent.html" class="nl">超级个体</a>
@@ -218,7 +244,8 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 <h1>一站式<span class="gr">OPC赋能平台</span></h1>
 <p class="hero-sub">连接、展示、赋能全球独立创业者。揭榜挂帅真实项目 · A2A超级个体协作 · 名人堂智慧传承 · 政策补贴一站获取</p>
 <div class="hero-ctas">
-<a href="service.html" class="btn-p">🚀 开始创业之旅</a>
+<a href="/knovault/" class="btn-p">进入KnoVault交易 →</a>
+<a href="service.html" class="btn-s">🚀 开始创业之旅</a>
 <a href="platform.html" class="btn-s">探索全部功能 →</a>
 </div>
 <div class="stats">
@@ -226,6 +253,39 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 <div class="stat"><div class="stat-n" data-count="25000">0</div><div class="stat-l">总预算(万)</div></div>
 <div class="stat"><div class="stat-n" data-count="21">0</div><div class="stat-l">省属企业</div></div>
 <div class="stat"><div class="stat-n" data-count="18">0</div><div class="stat-l">传奇人物</div></div>
+</div>
+</div>
+</section>
+
+<!-- KNOVAULT -->
+<section class="sec">
+<div class="sec-i">
+<div class="knv-panel fade-up">
+<div class="knv-grid">
+<div>
+<div class="sec-tag">OPC TRUST MARKET</div>
+<h2 class="knv-title">OPC KnoVault 可信知识资产交易层</h2>
+<p class="knv-desc">把一人公司的报告、模板、方法论和数据包包装成可订阅的 Knowledge Contract。买家用 MON 完成订阅，Monad 记录资产、版本、订阅、反馈和托管放款事件，形成 OPC 长期可信声誉。</p>
+<div class="knv-actions">
+<a href="/knovault/" class="btn-p">一键进入交易 Demo</a>
+<a href="/knovault/" class="btn-s">查看 Monad Trust Events</a>
+</div>
+<div class="knv-metrics">
+<div class="knv-metric"><strong>3类资产</strong><span>Report / Template / Dataset</span></div>
+<div class="knv-metric"><strong>2.5%</strong><span>演示平台服务费</span></div>
+<div class="knv-metric"><strong>10143</strong><span>Monad Testnet Chain ID</span></div>
+</div>
+</div>
+<div class="knv-flow" aria-label="KnoVault trust event flow">
+<div class="knv-flow-head"><span>Demo Flow</span><span>Live on /knovault</span></div>
+<div class="knv-chain">
+<div class="knv-event"><span>Verified OPC 发布资产</span><span>AssetRegistered</span></div>
+<div class="knv-event"><span>版本哈希上链留痕</span><span>VersionPublished</span></div>
+<div class="knv-event"><span>买家 MON 订阅托管</span><span>SubscriptionCreated</span></div>
+<div class="knv-event"><span>反馈与放款沉淀声誉</span><span>Feedback / Release</span></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -280,6 +340,13 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 <p class="sec-desc">从项目对接到个人成长，全方位赋能</p>
 </div>
 <div class="mods">
+<div class="mod fade-up">
+<div class="mod-icon">🔐</div>
+<div class="mod-name">KnoVault可信交易</div>
+<div class="mod-desc">知识资产合约市场。OPC发布报告、模板、数据包，买家用MON订阅，Monad记录可信交易事件。</div>
+<div class="mod-fts"><span class="mod-ft">MON订阅</span><span class="mod-ft">版本哈希</span><span class="mod-ft">声誉事件</span></div>
+<a href="/knovault/" class="mod-link">进入交易 →</a>
+</div>
 <div class="mod fade-up">
 <div class="mod-icon">🏛️</div>
 <div class="mod-name">揭榜挂帅</div>
@@ -383,6 +450,7 @@ footer{border-top:1px solid var(--bdr);padding:48px 28px 32px}
 </div>
 <div class="ft-col">
 <h4>平台</h4>
+<a href="/knovault/">KnoVault可信交易</a>
 <a href="service.html">创业助手</a>
 <a href="platform.html">全功能平台</a>
 <a href="government.html">揭榜挂帅</a>
