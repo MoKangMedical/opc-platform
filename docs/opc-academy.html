@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC 能力搭建学院 — 10门核心课程 · 从零到AI指挥官</title>
+<meta name="description" content="OPC能力搭建学院：10门系统课程，覆盖Hermes智能体搭建、Skills开发、多Agent编排、知识管理、自动化工作流、私域增长、商业变现，从AI使用者进化为AI指挥官。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*
+ * ═══════════════════════════════════════════
+ *  OPC 能力搭建学院 — 课程中心 v1.0
+ *  设计语言: 深空金 · 极简 · 沉浸
+ *  继承自: 康波研究院 v3.0 设计系统
+ * ═══════════════════════════════════════════
+ */
+:root{
+  --bg:#07070a; --bg2:#0a0a10; --bg3:#0f0f16;
+  --card:#121218; --card2:#18181f; --card3:#1e1e27;
+  --border:#22222d; --border2:#2e2e3a;
+  --text:#f5f5f7; --text2:#a0a0ab; --text3:#656570;
+  --gold:#e2b64f; --gold-light:#f0d478; --gold-dark:#b8922e;
+  --accent1:#e2b64f; --accent2:#22c55e; --accent3:#3b82f6; --accent4:#8b5cf6; --accent5:#f59e0b; --accent6:#ec4899;
+  --serif:'Noto Serif SC',serif; --sans:'Inter',-apple-system,sans-serif;
+  --radius:14px; --radius-lg:20px; --radius-xl:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(7,7,10,0.82);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-inner{max-width:1260px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.02em}
+.nav-brand svg{width:26px;height:26px;flex-shrink:0}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:0.8rem;color:var(--text3);font-weight:500;padding:8px 16px;border-radius:8px;transition:all .25s;letter-spacing:.02em}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,0.04)}
+.nav-links a.active{color:var(--gold)}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;padding:140px 0 80px;text-align:center;overflow:hidden;background:radial-gradient(ellipse 70% 50% at 50% 25%,rgba(226,182,79,0.07) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 60%,rgba(139,92,246,0.04) 0%,transparent 60%)}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg) 20%,transparent);z-index:0}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 24px}
+.hero-badge{display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);background:rgba(226,182,79,0.08);border:1px solid rgba(226,182,79,0.15);padding:6px 20px;border-radius:40px;margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.2rem);font-weight:900;line-height:1.25;margin-bottom:18px;letter-spacing:-.01em}
+.hero h1 .hl{background:linear-gradient(135deg,var(--gold) 20%,var(--gold-light) 60%,var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--text2);font-size:1.05rem;line-height:1.8;max-width:560px;margin:0 auto 36px}
+.hero-stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px 22px;text-align:center;min-width:90px;backdrop-filter:blur(8px)}
+.hero-stat-num{font-size:1.6rem;font-weight:800;color:var(--gold);font-family:var(--serif);line-height:1}
+.hero-stat-label{font-size:0.7rem;color:var(--text3);margin-top:4px;letter-spacing:.04em}
+
+/* ═══ TRACK INDICATOR ═══ */
+.tracks-hint{max-width:900px;margin:0 auto 24px;padding:0 24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.track-badge{font-size:0.72rem;font-weight:500;padding:6px 14px;border-radius:20px;letter-spacing:.03em;cursor:pointer;transition:all .25s;border:1px solid transparent}
+.track-badge:hover{border-color:rgba(255,255,255,0.08)}
+.track-foundation{background:rgba(34,197,94,0.06);color:#22c55e}
+.track-skills{background:rgba(59,130,246,0.06);color:#60a5fa}
+.track-advanced{background:rgba(139,92,246,0.06);color:#a78bfa}
+.track-business{background:rgba(236,72,153,0.06);color:#f9a8d4}
+.track-foundation.active{background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3)}
+.track-skills.active{background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3)}
+.track-advanced.active{background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.3)}
+.track-business.active{background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.3)}
+
+/* ═══ SEARCH ═══ */
+.search-wrap{max-width:660px;margin:-20px auto 50px;padding:0 24px;position:relative;z-index:10}
+.search-box{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 20px;transition:all .3s}
+.search-box:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(226,182,79,0.08)}
+.search-icon{font-size:1.1rem;color:var(--text3);flex-shrink:0}
+.search-input{flex:1;background:none;border:none;color:var(--text);font-size:0.95rem;outline:none;font-family:var(--sans)}
+.search-input::placeholder{color:var(--text3)}
+.search-clear{display:none;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1.1rem;padding:4px}
+.search-clear:hover{color:var(--text)}
+.search-hint{font-size:0.7rem;color:var(--text3);margin-top:8px;padding-left:4px}
+
+/* ═══ SECTION HEADER ═══ */
+.section-header{display:flex;align-items:center;gap:14px;padding:18px 24px;margin:0 auto 16px;max-width:900px;border-bottom:1px solid var(--border);position:sticky;top:64px;background:rgba(7,7,10,0.95);backdrop-filter:blur(20px);z-index:50}
+.section-icon{font-size:1.6rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(226,182,79,0.06);border-radius:10px}
+.section-info{flex:1}
+.section-title{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--gold);letter-spacing:.01em}
+.section-sub{font-size:0.75rem;color:var(--text3);margin-top:2px}
+.section-count{font-size:0.72rem;color:var(--text3);background:var(--card2);padding:4px 12px;border-radius:20px;flex-shrink:0}
+
+/* ═══ COURSE CARD ═══ */
+.course-grid{display:grid;grid-template-columns:1fr;gap:10px;padding:0 24px;max-width:900px;margin:0 auto 48px}
+.course-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative}
+.course-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:var(--radius);background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(226,182,79,0.03),transparent 50%);pointer-events:none}
+.course-card:hover::before{opacity:1}
+.course-card:hover{border-color:#333;transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.course-card.open{border-color:var(--gold);box-shadow:0 4px 24px rgba(226,182,79,0.06)}
+.course-card.filtered-out{display:none}
+
+.course-row{display:flex;align-items:stretch;padding:18px 22px;gap:16px}
+.course-num-wrap{flex-shrink:0;display:flex;align-items:center}
+.course-num{width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:800;color:#1a1a0a;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));font-family:var(--serif);position:relative;z-index:1}
+.course-num::after{content:'';position:absolute;inset:-2px;border-radius:14px;background:linear-gradient(135deg,var(--gold-light),transparent);opacity:0.3;z-index:-1}
+.course-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.course-title{font-size:1.02rem;font-weight:600;color:var(--text);letter-spacing:-.01em;line-height:1.3}
+.course-desc{font-size:0.82rem;color:var(--text3);margin-top:4px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.course-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.course-tag{font-size:0.68rem;font-weight:500;padding:3px 10px;border-radius:6px;letter-spacing:.02em}
+.tag-beginner{background:rgba(34,197,94,0.1);color:#22c55e}
+.tag-core{background:rgba(59,130,246,0.1);color:#60a5fa}
+.tag-advanced{background:rgba(139,92,246,0.1);color:#a78bfa}
+.tag-master{background:rgba(236,72,153,0.1);color:#f9a8d4}
+.tag-time{background:var(--card3);color:var(--text3)}
+.tag-track{background:rgba(226,182,79,0.08);color:var(--gold-dark);font-size:0.63rem;text-transform:uppercase;letter-spacing:.04em}
+.course-arrow-wrap{flex-shrink:0;display:flex;align-items:center}
+.course-arrow{font-size:1.3rem;color:var(--text3);transition:all .3s;line-height:1}
+.course-card.open .course-arrow{transform:rotate(90deg);color:var(--gold)}
+
+/* ═══ EXPANDED CONTENT ═══ */
+.course-body{display:none;border-top:1px solid var(--border);background:var(--bg2)}
+.course-card.open .course-body{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.course-body-inner{padding:28px 28px 20px}
+.course-body-inner p{font-size:0.9rem;color:var(--text2);line-height:1.8;margin:8px 0}
+.course-body-inner strong{color:var(--text)}
+.course-syllabus{margin:12px 0 0}
+.course-syllabus h4{font-size:0.85rem;font-weight:600;color:var(--gold);margin:14px 0 6px;letter-spacing:.02em}
+.course-syllabus ul{padding-left:18px;margin:6px 0}
+.course-syllabus li{font-size:0.84rem;color:var(--text3);margin:4px 0;line-height:1.6}
+.course-syllabus li::marker{color:var(--gold-dark)}
+
+.course-body-actions{display:flex;gap:10px;padding:12px 28px 22px;border-top:1px solid rgba(255,255,255,0.03);flex-wrap:wrap}
+.btn-start{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--gold);color:#1a1a0a;font-weight:600;border-radius:10px;font-size:0.85rem;transition:all .25s;letter-spacing:.01em}
+.btn-start:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-audio{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--card3);color:var(--text2);border:1px solid var(--border);border-radius:10px;font-size:0.8rem;cursor:pointer;transition:all .25s}
+.btn-audio:hover{border-color:var(--gold);color:var(--gold)}
+.btn-github{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--card3);color:var(--text2);border:1px solid var(--border);border-radius:10px;font-size:0.8rem;cursor:pointer;transition:all .25s}
+.btn-github:hover{border-color:var(--accent4);color:var(--accent4)}
+
+/* ═══ LEARNING PATH ═══ */
+.path-section{max-width:900px;margin:0 auto 48px;padding:0 24px}
+.path-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:20px;text-align:center}
+.path-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.path-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center;transition:all .25s}
+.path-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.path-card-num{font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--gold);opacity:0.3;line-height:1}
+.path-card-title{font-size:0.88rem;font-weight:600;color:var(--text);margin:8px 0 4px}
+.path-card-desc{font-size:0.72rem;color:var(--text3);line-height:1.5}
+
+/* ═══ BACK TO TOP ═══ */
+.back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--gold);color:#1a1a0a;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:99;opacity:0;transform:translateY(12px);transition:all .3s;box-shadow:0 4px 16px rgba(226,182,79,0.2);display:flex;align-items:center;justify-content:center}
+.back-top.visible{opacity:1;transform:translateY(0)}
+.back-top:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 6px 24px rgba(226,182,79,0.3)}
+
+/* ═══ BANNER ═══ */
+.cta-banner{max-width:900px;margin:0 auto 48px;padding:0 24px}
+.cta-inner{background:linear-gradient(135deg,rgba(226,182,79,0.08),rgba(226,182,79,0.02));border:1px solid rgba(226,182,79,0.15);border-radius:var(--radius-lg);padding:32px;text-align:center}
+.cta-inner h3{font-family:var(--serif);font-size:1.2rem;color:var(--gold);margin-bottom:8px}
+.cta-inner p{font-size:0.88rem;color:var(--text2);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* ═══ FOOTER ═══ */
+.footer{padding:40px 24px 32px;text-align:center;border-top:1px solid var(--border);margin-top:32px}
+.footer p{font-size:0.75rem;color:var(--text3);line-height:1.7}
+.footer .gold{color:var(--gold-dark)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .hero{padding:120px 0 60px}
+  .hero h1{font-size:1.8rem}
+  .hero-stats{gap:6px}
+  .hero-stat{padding:10px 14px;min-width:70px}
+  .hero-stat-num{font-size:1.3rem}
+  .nav-inner{padding:0 16px}
+  .nav-links a{padding:6px 10px;font-size:0.72rem}
+  .course-row{padding:14px 16px;gap:12px}
+  .course-num{width:40px;height:40px;font-size:1.1rem;border-radius:10px}
+  .course-title{font-size:0.95rem}
+  .course-body-inner{padding:20px 16px}
+  .course-body-actions{padding:10px 16px 18px}
+  .path-grid{grid-template-columns:repeat(2,1fr)}
+  .section-header{padding:12px 16px;top:56px}
+  .section-title{font-size:1rem}
+}
+@media(max-width:480px){
+  .path-grid{grid-template-columns:1fr}
+  .hero h1{font-size:1.5rem}
+  .tracks-hint{gap:6px}
+  .track-badge{padding:5px 10px;font-size:0.68rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#e2b64f" opacity="0.12"/><path d="M16 6L18.5 13.5L26 16L18.5 18.5L16 26L13.5 18.5L6 16L13.5 13.5Z" fill="#e2b64f"/></svg>
+      OPC Platform
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="academy.html" class="active">学院</a>
+      <a href="knovault/">KnoVault</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">OPC Capability Academy</div>
+    <h1>从 AI 使用者<br>进化为 <span class="hl">AI 指挥官</span></h1>
+    <p>10门系统课程，从 Hermes 智能体搭建到多Agent协作编排，从私域增长到全球化商业变现。手把手教你搭建属于自己的一人公司AI作战体系。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">10</div><div class="hero-stat-label">核心课程</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">学习阶段</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50K+</div><div class="hero-stat-label">总字数</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">∞</div><div class="hero-stat-label">AI 能力边界</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEARNING PATH ═══ -->
+<div class="path-section">
+  <div class="path-title">四阶段学习路径</div>
+  <div class="path-grid">
+    <div class="path-card">
+      <div class="path-card-num">01</div>
+      <div class="path-card-title">地基搭建</div>
+      <div class="path-card-desc">认识一人公司模型，掌握 Hermes Agent 核心能力</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-num">02</div>
+      <div class="path-card-title">技能体系</div>
+      <div class="path-card-desc">Skills 开发、多Agent编排、知识管理与自动化</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-num">03</div>
+      <div class="path-card-title">商业增长</div>
+      <div class="path-card-desc">私域运营、AI写作获客、商业变现模型搭建</div>
+    </div>
+    <div class="path-card">
+      <div class="path-card-num">04</div>
+      <div class="path-card-title">全球化进阶</div>
+      <div class="path-card-desc">康波周期视野、全球化产品、一人公司终局</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TRACK FILTER ═══ -->
+<div class="tracks-hint">
+  <span class="track-badge track-foundation active" onclick="filterTrack('all')">全部课程</span>
+  <span class="track-badge track-foundation" onclick="filterTrack('foundation')">🏗 地基搭建</span>
+  <span class="track-badge track-skills" onclick="filterTrack('skills')">🔧 技能体系</span>
+  <span class="track-badge track-advanced" onclick="filterTrack('growth')">📈 商业增长</span>
+  <span class="track-badge track-business" onclick="filterTrack('global')">🌍 全球化进阶</span>
+</div>
+
+<!-- ═══ SEARCH ═══ -->
+<div class="search-wrap">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" placeholder="搜索课程 (如: Agent编排、私域、变...)" oninput="searchCourses(this.value)">
+    <button class="search-clear" onclick="clearSearch()">✕</button>
+  </div>
+  <div class="search-hint">支持中文、拼音、英文关键词搜索</div>
+</div>
+
+<!-- ═══ COURSE LIST ═══ -->
+<div class="section-header">
+  <div class="section-icon">📚</div>
+  <div class="section-info">
+    <div class="section-title">全部课程</div>
+    <div class="section-sub">10门课程 · 从零基础到AI指挥官</div>
+  </div>
+  <div class="section-count" id="courseCounter">10 门</div>
+</div>
+
+<div class="course-grid" id="courseGrid">
+
+  <!-- Course 01 -->
+  <div class="course-card" data-track="foundation">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">01</div></div>
+      <div class="course-info">
+        <div class="course-title">OPC一人公司基础：AI时代的新个体崛起</div>
+        <div class="course-desc">理解一人公司的核心理念、三环交叉法和最小可行产品策略</div>
+        <div class="course-tags">
+          <span class="course-tag tag-beginner">入门</span>
+          <span class="course-tag tag-time">⏱ 25分</span>
+          <span class="course-tag tag-track">地基搭建</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>核心理念：</strong>AI让"一人公司"从梦想变为现实。本课系统讲解 Naval 财富哲学、三环交叉法找到你的 MVP、价值阶梯设计原则。你不需要团队，不需要融资——你需要的是一套 AI 作战体系。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>一人公司的核心定义与时代背景</li>
+            <li>Naval 财富哲学与杠杆理论</li>
+            <li>三环交叉法：找到你的独特定位</li>
+            <li>最小可行产品 (MVP) 策略</li>
+            <li>AI 工具矩阵与 OPC 平台能力全景</li>
+            <li>实战：搭建你的第一个 Hermes Agent</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson1.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/01-opc-one-person-company-basics.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/01-opc-one-person-company-basics.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 02 -->
+  <div class="course-card" data-track="foundation">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">02</div></div>
+      <div class="course-info">
+        <div class="course-title">Hermes Agent 搭建实战：从安装到生产级部署</div>
+        <div class="course-desc">完整掌握 Hermes Agent 的安装、配置、Provider 设置与生产级部署</div>
+        <div class="course-tags">
+          <span class="course-tag tag-core">核心</span>
+          <span class="course-tag tag-time">⏱ 22分</span>
+          <span class="course-tag tag-track">地基搭建</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>手把手实战：</strong>从零开始安装和配置 Hermes Agent，包括 config.yaml 详解、Provider 选择策略（DeepSeek/Claude/OpenAI）、网关配置、环境变量管理。你将在本课后拥有一个生产可用的 AI Agent。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>Hermes Agent 架构概览与能力边界</li>
+            <li>安装配置与配置文件详解</li>
+            <li>Provider 选择策略与模型对比</li>
+            <li>工具集 (Toolset) 启用与权限管理</li>
+            <li>网关模式与远程部署</li>
+            <li>常见问题排查与优化技巧</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson2.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/02-hermes-agent-setup.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/02-hermes-agent-setup.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 03 -->
+  <div class="course-card" data-track="skills">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">03</div></div>
+      <div class="course-info">
+        <div class="course-title">Hermes Skills 系统：构建你的专属能力工厂</div>
+        <div class="course-desc">深入 Skills 机制：YAML 规范、编写最佳实践、知识注入与版本管理</div>
+        <div class="course-tags">
+          <span class="course-tag tag-core">核心</span>
+          <span class="course-tag tag-time">⏱ 23分</span>
+          <span class="course-tag tag-track">技能体系</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>Skills 是 Hermes 的灵魂。</strong>本课深入讲解 Skill 的 YAML 规范、frontmatter 结构、编写最佳实践、知识注入方法。你将学会创建自己的专属 Skill，把重复性工作封装为可复用的能力模块。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>Skill 机制原理：加载、匹配、注入</li>
+            <li>YAML Frontmatter 完整字段详解</li>
+            <li>Skill 编写最佳实践与反模式</li>
+            <li>多 Skill 协作与优先级管理</li>
+            <li>Skill 版本管理与持续迭代</li>
+            <li>实战：编写你的第一个业务 Skill</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson3.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/03-hermes-skills-system.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/03-hermes-skills-system.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 04 -->
+  <div class="course-card" data-track="skills">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">04</div></div>
+      <div class="course-info">
+        <div class="course-title">多Agent协作编排：从单兵到军团</div>
+        <div class="course-desc">掌握多Agent架构设计、Orchestrator模式、并行委托与故障容错</div>
+        <div class="course-tags">
+          <span class="course-tag tag-advanced">进阶</span>
+          <span class="course-tag tag-time">⏱ 22分</span>
+          <span class="course-tag tag-track">技能体系</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>从"AI 使用者"进化为"AI 指挥官"。</strong>本课系统讲解多 Agent 架构：星型 vs 树型 vs 网型、Orchestrator 设计、并行委托策略、上下文继承、故障容错与降级方案。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>多Agent系统的价值与适用场景</li>
+            <li>三种架构模式：星型、树型、网型</li>
+            <li>Orchestrator Agent 设计原则</li>
+            <li>并行委托与上下文管理</li>
+            <li>故障容错、重试策略与降级方案</li>
+            <li>实战：搭建 3 Agent 内容生产流水线</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson4.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/04-multi-agent-orchestration.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/04-multi-agent-orchestration.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 05 -->
+  <div class="course-card" data-track="skills">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">05</div></div>
+      <div class="course-info">
+        <div class="course-title">知识管理系统：打造你的第二大脑</div>
+        <div class="course-desc">AI驱动的知识采集、整理、检索与复用体系——让信息真正为你工作</div>
+        <div class="course-tags">
+          <span class="course-tag tag-core">核心</span>
+          <span class="course-tag tag-time">⏱ 23分</span>
+          <span class="course-tag tag-track">技能体系</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>知识是AI时代最被低估的资产。</strong>本课讲解如何利用 Hermes 构建个人/企业知识管理系统：RAG架构、Obsidian联动、Memory持久化、语义检索与自动摘要。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>知识管理的经济学：为什么信息差就是利润</li>
+            <li>RAG 架构详解与 Hermes Memory 系统</li>
+            <li>Obsidian 笔记联动与双向链接</li>
+            <li>自动化知识采集：RSS、网页、飞书整合</li>
+            <li>语义检索与智能摘要生成</li>
+            <li>实战：搭建自动化的行业情报系统</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson5.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/05-knowledge-management.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/05-knowledge-management.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 06 -->
+  <div class="course-card" data-track="skills">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">06</div></div>
+      <div class="course-info">
+        <div class="course-title">自动化工作流：让AI替你干活</div>
+        <div class="course-desc">定时任务、Webhook触发器、条件分支与多步骤工作流编排</div>
+        <div class="course-tags">
+          <span class="course-tag tag-core">核心</span>
+          <span class="course-tag tag-time">⏱ 24分</span>
+          <span class="course-tag tag-track">技能体系</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>自动化是你的杠杆放大器。</strong>本课讲解 Hermes Cron 定时任务、Webhook 事件触发、条件分支逻辑、多步骤工作流链式编排，以及自动化脚本的最佳实践。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>自动化工作流的价值公式：节省多少时间？</li>
+            <li>Hermes Cron 定时任务详解</li>
+            <li>Webhook 触发器与事件驱动架构</li>
+            <li>条件分支、重试策略与告警通知</li>
+            <li>多步骤工作流的链式编排</li>
+            <li>实战：构建每日自动报告生成系统</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson6.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/06-automation-workflows.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/06-automation-workflows.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 07 -->
+  <div class="course-card" data-track="growth">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">07</div></div>
+      <div class="course-info">
+        <div class="course-title">AI私域增长：从0到1构建用户飞轮</div>
+        <div class="course-desc">微信生态、社群运营自动化、裂变增长与用户LTV最大化策略</div>
+        <div class="course-tags">
+          <span class="course-tag tag-core">核心</span>
+          <span class="course-tag tag-time">⏱ 27分</span>
+          <span class="course-tag tag-track">商业增长</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>流量在微信，生意在私域。</strong>本课讲解如何利用 AI Agent 实现私域的自动化运营：内容自动生成、用户标签管理、裂变活动设计、成交话术优化。用AI把私域变成印钞机。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>私域经济的底层逻辑与微信格局论</li>
+            <li>AI驱动的用户画像与标签体系</li>
+            <li>公众号自动写作与排版系统</li>
+            <li>社群AI助手：自动欢迎、问答、转化</li>
+            <li>裂变增长设计：拼团、分销、打卡</li>
+            <li>LTV最大化的闭环设计</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson7.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/07-private-domain-growth.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/07-private-domain-growth.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 08 -->
+  <div class="course-card" data-track="growth">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">08</div></div>
+      <div class="course-info">
+        <div class="course-title">商业变现模型：从月入100到月入10万</div>
+        <div class="course-desc">SaaS订阅、知识付费、咨询服务的AI变现模型搭建与定价策略</div>
+        <div class="course-tags">
+          <span class="course-tag tag-advanced">进阶</span>
+          <span class="course-tag tag-time">⏱ 25分</span>
+          <span class="course-tag tag-track">商业增长</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>技术是手段，变现是目的。</strong>本课系统讲解一人公司的商业变现路径：SaaS 订阅模式、知识付费产品化、AI 咨询服务定价、支付集成与国际化收款。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>一人公司的三种变现模型对比</li>
+            <li>SaaS 订阅：定价心理学与分层策略</li>
+            <li>知识付费产品化：课程、社群、工具包</li>
+            <li>AI 咨询服务的高溢价定位</li>
+            <li>Stripe 支付集成与全球化收款</li>
+            <li>从 $100 到 $10,000 的真实增长路径</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson8.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/08-monetization-models.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/08-monetization-models.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 09 -->
+  <div class="course-card" data-track="global">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">09</div></div>
+      <div class="course-info">
+        <div class="course-title">康波周期与AI浪潮：站在时代的风口</div>
+        <div class="course-desc">用50年经济周期视角理解AI革命，校准你的创业方向与节奏</div>
+        <div class="course-tags">
+          <span class="course-tag tag-advanced">进阶</span>
+          <span class="course-tag tag-time">⏱ 27分</span>
+          <span class="course-tag tag-track">全球化进阶</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>在错误的时间做正确的事，和做错事一样致命。</strong>本课将康波周期理论与 AI 浪潮结合，帮助你理解当前所处的技术周期位置，校准创业方向和节奏。顺势而为，事半功倍。</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>康波周期理论入门：50年经济节律</li>
+            <li>AI 浪潮在康波周期中的位置判断</li>
+            <li>历史技术革命的共同模式</li>
+            <li>周期视角下的创业时机选择</li>
+            <li>AI 一人公司的红利窗口有多长？</li>
+            <li>实战：绘制你的个人康波日历</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson9.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/09-kondratiev-ai-cycles.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/09-kondratiev-ai-cycles.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 10 -->
+  <div class="course-card" data-track="global">
+    <div class="course-row" onclick="toggleCard(this)">
+      <div class="course-num-wrap"><div class="course-num">10</div></div>
+      <div class="course-info">
+        <div class="course-title">OPC大师课：一人公司的终局与无限游戏</div>
+        <div class="course-desc">9课融合贯通，构建你的完整AI商业系统，开启无限游戏</div>
+        <div class="course-tags">
+          <span class="course-tag tag-master">大师</span>
+          <span class="course-tag tag-time">⏱ 31分</span>
+          <span class="course-tag tag-track">全球化进阶</span>
+        </div>
+      </div>
+      <div class="course-arrow-wrap"><span class="course-arrow">▶</span></div>
+    </div>
+    <div class="course-body">
+      <div class="course-body-inner">
+        <p><strong>这不是结束，而是开始。</strong>本课将前9课的知识整合为完整的 AI 商业系统，并探讨一人公司的终局：是保持小而美，还是进化为平台？是全球化的无限游戏，还是找到自己的利基深耕？</p>
+        <div class="course-syllabus">
+          <h4>📋 课程大纲</h4>
+          <ul>
+            <li>前9课知识整合：从零件到系统</li>
+            <li>一人公司 vs 平台化：终局选择</li>
+            <li>全球化出海：技术栈、支付、合规</li>
+            <li>无限游戏思维：持续迭代与反脆弱</li>
+            <li>OPC 生态全景与社区共建</li>
+            <li>你的下一步：30天行动计划</li>
+          </ul>
+        </div>
+      </div>
+      <div class="course-body-actions">
+        <a href="opc-academy/courses/lesson10.html" class="btn-start">📖 开始学习 →</a>
+        <a href="opc-academy/audio/10-opc-masterclass.mp3" class="btn-audio" target="_blank">🎧 听课模式</a>
+        <a href="https://github.com/MoKangMedical/opc-platform/blob/main/docs/opc-academy/courses/10-opc-masterclass.md" class="btn-github" target="_blank">📄 查看源码</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ CTA BANNER ═══ -->
+<div class="cta-banner">
+  <div class="cta-inner">
+    <h3>🚀 准备好成为 AI 指挥官了吗？</h3>
+    <p>10门课程全部免费开源。从今天开始，用 AI 搭建你的一人公司作战体系。</p>
+    <a href="opc-academy/courses/lesson1.html" class="btn-start" style="display:inline-flex">📖 从第一课开始 →</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <p>OPC 能力搭建学院 · <span class="gold">OPC Capability Academy</span></p>
+  <p>Powered by <span class="gold">Hermes Agent</span> · 课程内容持续更新中</p>
+  <p style="margin-top:8px">© 2026 OPC Platform · <a href="https://github.com/MoKangMedical/opc-platform" class="gold" target="_blank">GitHub</a></p>
+</footer>
+
+<!-- ═══ BACK TO TOP ═══ -->
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// Toggle course detail
+function toggleCard(row) {
+  const card = row.closest('.course-card');
+  const wasOpen = card.classList.contains('open');
+  // Close all other cards
+  document.querySelectorAll('.course-card.open').forEach(c => c.classList.remove('open'));
+  // Toggle this one (unless it was already open)
+  if (!wasOpen) card.classList.add('open');
+}
+
+// Track filter
+function filterTrack(track) {
+  document.querySelectorAll('.track-badge').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const cards = document.querySelectorAll('#courseGrid .course-card');
+  let visible = 0;
+  cards.forEach(card => {
+    if (track === 'all' || card.dataset.track === track) {
+      card.classList.remove('filtered-out');
+      visible++;
+    } else {
+      card.classList.add('filtered-out');
+    }
+  });
+  document.getElementById('courseCounter').textContent = visible + ' 门';
+}
+
+// Search
+function searchCourses(query) {
+  const q = query.toLowerCase().trim();
+  const clearBtn = document.querySelector('.search-clear');
+  clearBtn.style.display = q ? 'block' : 'none';
+  const cards = document.querySelectorAll('#courseGrid .course-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (!q || text.includes(q)) {
+      card.classList.remove('filtered-out');
+      visible++;
+    } else {
+      card.classList.add('filtered-out');
+    }
+  });
+  // Reset track badges
+  if (q) {
+    document.querySelectorAll('.track-badge').forEach(b => b.classList.remove('active'));
+    document.querySelector('.track-badge.track-foundation').classList.add('active');
+  }
+  document.getElementById('courseCounter').textContent = visible + ' 门';
+}
+
+function clearSearch() {
+  document.querySelector('.search-input').value = '';
+  document.querySelector('.search-clear').style.display = 'none';
+  filterTrack('all');
+}
+
+// Back to top
+window.addEventListener('scroll', () => {
+  document.querySelector('.back-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+// Mouse tracking for card glow
+document.querySelectorAll('.course-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent 安装与配置全攻略 — OPC 能力搭建学院</title>
+<meta name="description" content="OPC能力搭建学院第2课：Hermes Agent 安装与配置全攻略。🏗 阶段一 · 地基搭建">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#07070a;--bg2:#0a0a10;--card:#121218;--card2:#18181f;--card3:#1e1e27;--border:#22222d;--border2:#2e2e3a;--text:#f5f5f7;--text2:#a0a0ab;--text3:#656570;--gold:#e2b64f;--gold-light:#f0d478;--gold-dark:#b8922e;--green:#22c55e;--blue:#3b82f6;--purple:#a78bfa;--serif:'Noto Serif SC',serif;--sans:'Inter',-apple-system,sans-serif;--radius:14px;--radius-lg:20px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,10,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.06);height:60px;display:flex;align-items:center}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--gold)}
+.nav-info{font-size:.78rem;color:var(--text3);background:var(--card2);padding:4px 14px;border-radius:20px}
+
+.progress-bar{position:fixed;top:60px;left:0;right:0;height:3px;background:var(--border);z-index:99}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .1s;width:0}
+
+.main{max-width:800px;margin:0 auto;padding:90px 28px 60px}
+
+.lesson-header{text-align:center;margin-bottom:48px}
+.lesson-phase{display:inline-block;font-size:.7rem;font-weight:600;color:var(--gold);background:rgba(226,182,79,.08);border:1px solid rgba(226,182,79,.15);padding:5px 16px;border-radius:20px;margin-bottom:16px;letter-spacing:.08em}
+.lesson-header h1{font-family:var(--serif);font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;line-height:1.25;margin-bottom:14px;background:linear-gradient(135deg,var(--text) 30%,var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lesson-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:var(--text3);font-size:.82rem}
+.lesson-meta span{display:flex;align-items:center;gap:5px}
+.lesson-meta .badge{padding:3px 10px;border-radius:6px;font-size:.7rem;font-weight:500}
+
+.audio-player{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin:28px 0;display:flex;align-items:center;gap:14px;transition:border-color .3s}
+.audio-player:hover{border-color:rgba(226,182,79,.2)}
+.audio-player audio{width:100%;height:36px;filter:sepia(100%) saturate(300%) hue-rotate(350deg)}
+.audio-label{font-size:.78rem;color:var(--text3);margin-bottom:2px}
+.audio-title-mini{font-size:.9rem;font-weight:600;color:var(--text)}
+
+.content h1{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.content h2{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--text);margin:40px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.content h2::before{content:'';width:3px;height:20px;background:var(--gold);border-radius:2px;flex-shrink:0}
+.content h3{font-size:1.1rem;font-weight:600;color:var(--gold-light);margin:28px 0 10px}
+.content h4{font-size:1rem;font-weight:600;color:var(--text);margin:20px 0 8px}
+.content p{color:var(--text2);font-size:1rem;margin-bottom:12px;line-height:1.9}
+.content strong{color:var(--text);font-weight:600}
+.content em{color:var(--gold);font-style:italic}
+.content blockquote{background:linear-gradient(135deg,rgba(226,182,79,.06),rgba(226,182,79,.02));border-left:3px solid var(--gold);padding:16px 20px;margin:20px 0;border-radius:0 10px 10px 0;color:var(--text);font-size:.95rem;line-height:1.8}
+.content blockquote p:last-child{margin-bottom:0}
+.content ul,.content ol{padding-left:24px;margin:12px 0;color:var(--text2)}
+.content li{margin:6px 0}
+.content li::marker{color:var(--gold-dark)}
+.content code{background:var(--card3);color:var(--gold-light);padding:2px 7px;border-radius:5px;font-size:.85rem}
+.content pre{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin:16px 0;overflow-x:auto}
+.content pre code{background:none;padding:0;color:var(--text2);font-size:.85rem}
+.content hr{border:none;border-top:1px solid var(--border);margin:28px 0}
+.content .data-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.content .data-table th{background:rgba(226,182,79,.08);color:var(--gold);font-weight:600;text-align:left;padding:11px 15px;border-bottom:2px solid rgba(226,182,79,.2);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.content .data-table td{padding:11px 15px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+.content .data-table tr:last-child td{border-bottom:none}
+.content .data-table tr:nth-child(even){background:rgba(255,255,255,.015)}
+
+.callout{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin:24px 0}
+.callout.gold{border-left:4px solid var(--gold)}
+.callout-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;color:var(--gold)}
+
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;padding:40px 0;margin-top:48px;border-top:1px solid var(--border)}
+.bottom-nav a{display:flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:500;transition:all .25s;font-size:.93rem}
+.bottom-nav .prev{color:var(--text3);border:1px solid var(--border)}
+.bottom-nav .prev:hover{border-color:var(--gold);color:var(--gold)}
+.bottom-nav .next{background:var(--gold);color:#1a1a0a}
+.bottom-nav .next:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+@media(max-width:640px){
+  .main{padding:80px 16px 48px}
+  .lesson-header h1{font-size:1.5rem}
+  .content h2{font-size:1.15rem}
+  .content .data-table{font-size:.75rem}
+  .content .data-table th,.content .data-table td{padding:8px 10px}
+  .bottom-nav a{padding:12px 20px;font-size:.85rem}
+}
+.badge-core{background:rgba(3b82f6,0.1);color:#3b82f6}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../../opc-academy.html" class="nav-brand">
+      <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#e2b64f" opacity="0.12"/><path d="M14 5L16.5 12.5L24 14L16.5 15.5L14 23L11.5 15.5L4 14L11.5 12.5Z" fill="#e2b64f"/></svg>
+      OPC 能力搭建学院
+    </a>
+    <div class="nav-info">第 2 课 / 共 10 课</div>
+  </div>
+</nav>
+
+<div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+
+<main class="main">
+  <div class="lesson-header">
+    <div class="lesson-phase">🏗 阶段一 · 地基搭建</div>
+    <h1>Hermes Agent 安装与配置全攻略</h1>
+    <div class="lesson-meta">
+      <span>📚 <span class="badge badge-core">核心</span></span>
+      <span>⏱️ 22分钟</span>
+      <span>📖 第 2/10 课</span>
+      <span>✍️ 含练习</span>
+    </div>
+  </div>
+
+  <div class="audio-player">
+    <span style="font-size:1.3rem">🎧</span>
+    <div style="flex:1"><div class="audio-label">课程音频 · 课间收听</div><audio controls preload="none"><source src="../audio/02-hermes-agent-setup.mp3" type="audio/mpeg"></audio></div>
+  </div>
+
+  <div class="content">
+<blockquote><p><strong>导语</strong>：如果说编程IDE是你的"剑"，那Hermes Agent就是你的"指挥中心"。它不是另一个AI聊天工具——它是让你通过自然语言操控整个数字工作流的中枢系统。从管理GitHub仓库到操控浏览器，从读写文件到编排多个AI子代理协同作战，Hermes Agent把"一个人+AI=一个团队"这句话变成了可执行的技术方案。本课程将带你从零开始，一步步完成Hermes Agent的安装、配置与集成，搭建属于你的一人公司指挥中心。</p></blockquote>
+<hr>
+<h2>一、认识Hermes Agent：OPC的AI中枢</h2>
+<h3>1.1 Hermes Agent是什么？</h3>
+<p><strong>Hermes Agent</strong> 是由 Nous Research 开发的开源AI代理框架。它不是一个大模型，而是一个"模型的操作系统"——它连接大语言模型（LLM）和真实世界的工具，让AI不只是"聊天"，而是能<strong>实际做事</strong>。</p>
+<p>用一句话理解：<strong>Hermes Agent = LLM（大脑）+ 工具集（双手）+ 技能系统（技能）</strong></p>
+<p>它能做什么？举几个真实的OPC场景：</p>
+<ul><li><strong>代码项目管理</strong>：一句话"帮我初始化一个Next.js项目，配置Tailwind和Prisma，然后推送到GitHub"——它自动完成全部操作</li><li><strong>内容生产流水线</strong>："搜索最近一周AI创业的热点话题，写一篇深度分析，生成封面图，发布到我的博客"——端到端自动化</li><li><strong>多任务并行推进</strong>：同时处理"优化网站SEO"、"回复客户邮件"、"分析上周销售数据"三个任务</li><li><strong>系统运维</strong>："检查服务器状态，如果有异常自动重启并通知我"</li></ul>
+<h3>1.2 为什么选择Hermes Agent而不是其他方案？</h3>
+<p>市面上有很多AI代理方案（AutoGPT、CrewAI、LangChain Agent等），Hermes Agent的独特优势在于：</p>
+<table class="data-table"><tr><th>特性</th><th>Hermes Agent</th><th>其他方案</th></tr><tr><td><strong>本地运行</strong></td><td>✅ 完全本地，数据不出你的电脑</td><td>❌ 多数依赖云端</td></tr><tr><td><strong>工具生态</strong></td><td>✅ 内置丰富的工具集（浏览器、终端、文件、GitHub等）</td><td>⚠️ 需要自己搭建</td></tr><tr><td><strong>技能系统</strong></td><td>✅ 可扩展的Skills架构，社区共享</td><td>⚠️ 无标准化</td></tr><tr><td><strong>多Agent编排</strong></td><td>✅ 原生的子代理委托机制</td><td>⚠️ 需要额外框架</td></tr><tr><td><strong>平台集成</strong></td><td>✅ 飞书/微信/Telegram等多平台</td><td>⚠️ 需要自己开发</td></tr><tr><td><strong>开源</strong></td><td>✅ Apache 2.0 协议</td><td>⚠️ 部分商业限制</td></tr></table>
+<p>对于OPC创业者来说，最关键的三个优势是：<strong>数据本地化（安全）、技能可复用（效率）、多Agent协作（规模化）</strong>。</p>
+<h3>1.3 系统要求与环境准备</h3>
+<p>在开始安装之前，确保你的环境满足以下要求：</p>
+<p><strong>硬件要求：</strong></p>
+<ul><li><strong>CPU</strong>：至少4核（推荐8核以上，用于多Agent并行）</li><li><strong>内存</strong>：至少8GB RAM（推荐16GB以上，大模型推理需要）</li><li><strong>存储</strong>：至少20GB可用空间（模型文件可能占用10-15GB）</li><li><strong>GPU</strong>（可选但推荐）：NVIDIA GPU with 8GB+ VRAM（用于本地模型推理）</li></ul>
+<p><strong>软件要求：</strong></p>
+<ul><li><strong>操作系统</strong>：macOS 12+ / Ubuntu 20.04+ / Windows 11（WSL2推荐）</li><li><strong>Python</strong>：3.10 或更高版本</li><li><strong>Git</strong>：2.30+</li><li><strong>Node.js</strong>（可选）：18+（部分工具集成需要）</li></ul>
+<p><strong>网络要求：</strong></p>
+<ul><li>稳定的互联网连接（使用云端API模型时需要）</li><li>如果使用本地模型（Ollama），需要能访问模型下载源</li></ul>
+<hr>
+<h2>二、多种安装方式详解</h2>
+<h3>2.1 方式一：pip 安装（推荐新手）</h3>
+<p>最简安装路径，适合大多数用户：</p>
+<pre><code># 1. 创建虚拟环境（强烈建议）
+python3 -m venv hermes-env
+source hermes-env/bin/activate  # macOS/Linux
+# .\hermes-env\Scripts\activate  # Windows
+
+# 2. 升级pip
+pip install --upgrade pip
+
+# 3. 安装 Hermes Agent
+pip install hermes-agent
+
+# 4. 验证安装
+hermes-agent --version</code></pre>
+<p><strong>为什么用虚拟环境？</strong>隔离依赖冲突。Python生态中不同项目可能需要不同版本的库，虚拟环境让你每个项目独立。</p>
+<h3>2.2 方式二：Docker 安装（推荐有容器经验的用户）</h3>
+<p>Docker安装的优势是环境完全隔离，不污染主机系统：</p>
+<pre><code># 1. 拉取镜像
+docker pull nousresearch/hermes-agent:latest
+
+# 2. 创建配置目录
+mkdir -p ~/.hermes
+
+# 3. 运行容器
+docker run -d \
+  --name hermes-agent \
+  -v ~/.hermes:/root/.hermes \
+  -v $(pwd):/workspace \
+  -p 8080:8080 \
+  nousresearch/hermes-agent:latest
+
+# 4. 查看运行状态
+docker logs hermes-agent</code></pre>
+<p><strong>Docker方式的特别注意事项：</strong></p>
+<ul><li><code>-v ~/.hermes:/root/.hermes</code>：挂载配置目录，持久化你的设置和技能</li><li><code>-v $(pwd):/workspace</code>：挂载当前工作目录，让Agent能访问你的项目文件</li><li>端口映射根据你的需要调整</li></ul>
+<h3>2.3 方式三：源码安装（推荐高级用户/贡献者）</h3>
+<p>适合需要定制或参与开发的用户：</p>
+<pre><code># 1. 克隆仓库
+git clone https://github.com/NousResearch/hermes-agent.git
+cd hermes-agent
+
+# 2. 安装依赖
+pip install -e ".[dev]"
+
+# 3. 运行
+python -m hermes_agent</code></pre>
+<p>源码安装的好处是你可以直接修改源码，调试问题，甚至提交PR贡献代码。</p>
+<h3>2.4 安装后验证清单</h3>
+<p>安装完成后，逐一检查以下项：</p>
+<pre><code># ✅ 检查版本
+hermes-agent --version
+
+# ✅ 检查工具列表
+hermes-agent tools list
+
+# ✅ 运行健康检查
+hermes-agent health
+
+# ✅ 测试基本对话
+hermes-agent chat "你好，请介绍一下你能做什么"</code></pre>
+<p>如果以上四项都通过，恭喜你，Hermes Agent安装成功。</p>
+<h3>2.5 常见安装问题排查</h3>
+<table class="data-table"><tr><th>问题</th><th>可能原因</th><th>解决方案</th></tr><tr><td><code>pip install</code> 失败</td><td>网络或依赖冲突</td><td>使用国内镜像：<code>pip install hermes-agent -i https://pypi.tuna.tsinghua.edu.cn/simple</code></td></tr><tr><td><code>command not found</code></td><td>PATH未包含pip的bin目录</td><td>检查 <code>echo $PATH</code>，添加 <code>~/.local/bin</code> 到PATH</td></tr><tr><td>Docker端口被占用</td><td>8080端口已被其他服务占用</td><td>改用其他端口：<code>-p 9090:8080</code></td></tr><tr><td>权限错误</td><td>文件权限不足</td><td>Docker方式检查挂载目录权限；pip方式检查虚拟环境</td></tr><tr><td>Python版本不兼容</td><td>Python版本过低</td><td>使用 <code>pyenv</code> 安装Python 3.10+</td></tr></table>
+<hr>
+<h2>三、模型选择与Provider配置</h2>
+<h3>3.1 理解模型Provider架构</h3>
+<p>Hermes Agent的Provider设计让你可以灵活选择"用什么模型驱动Agent"：</p>
+<pre><code>你的输入 → Hermes Agent → Provider层（API网关） → 实际模型
+                                    ├── OpenAI API
+                                    ├── Anthropic API  
+                                    ├── Ollama（本地）
+                                    ├── DeepSeek API
+                                    └── 自定义Provider</code></pre>
+<h3>3.2 Provider配置详解</h3>
+<p>核心配置文件位于 <code>~/.hermes/hermes-agent/config.yaml</code>（或JSON格式）。一个典型的配置示例：</p>
+<pre><code># ~/.hermes/hermes-agent/config.yaml
+default_provider: anthropic
+
+providers:
+  anthropic:
+    type: anthropic
+    api_key: ${ANTHROPIC_API_KEY}  # 从环境变量读取
+    model: claude-sonnet-4-20250514
+    max_tokens: 4096
+    temperature: 0.7
+
+  openai:
+    type: openai
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-4o
+    base_url: https://api.openai.com/v1
+
+  deepseek:
+    type: openai_compatible
+    api_key: ${DEEPSEEK_API_KEY}
+    model: deepseek-chat
+    base_url: https://api.deepseek.com/v1
+
+  ollama:
+    type: ollama
+    model: qwen2.5:14b
+    base_url: http://localhost:11434</code></pre>
+<h3>3.3 模型选择策略：不同场景用不同模型</h3>
+<p><strong>选模型的核心原则：不同任务用不同模型，而非一个模型打天下。</strong></p>
+<table class="data-table"><tr><th>任务类型</th><th>推荐模型</th><th>理由</th></tr><tr><td>日常对话/指令分发</td><td>Claude Sonnet / GPT-4o mini</td><td>够快，够聪明，成本低</td></tr><tr><td>深度分析/长文写作</td><td>Claude Opus / GPT-4o</td><td>推理能力最强</td></tr><tr><td>代码生成与调试</td><td>Claude Sonnet / DeepSeek Coder</td><td>代码能力突出</td></tr><tr><td>本地隐私任务</td><td>Ollama + Qwen2.5 / Llama 3</td><td>数据不出本地</td></tr><tr><td>高频低成本任务</td><td>DeepSeek V3 / GPT-4o mini</td><td>性价比最高</td></tr><tr><td>多Agent编排（Orchestrator）</td><td>Claude Sonnet / GPT-4o</td><td>需要强指令遵循能力</td></tr></table>
+<h3>3.4 API Key安全管理</h3>
+<p><strong>千万注意</strong>：API Key是你钱包的钥匙，泄露可能造成巨额损失。</p>
+<pre><code># ❌ 错误做法：硬编码在配置文件里
+api_key: "sk-abc123def456..."
+
+# ✅ 正确做法1：环境变量
+export ANTHROPIC_API_KEY="sk-xxx"
+# 配置文件引用：api_key: ${ANTHROPIC_API_KEY}
+
+# ✅ 正确做法2：使用 .env 文件（加入 .gitignore）
+echo "ANTHROPIC_API_KEY=sk-xxx" > ~/.hermes/.env
+echo ".env" >> ~/.hermes/.gitignore
+
+# ✅ 正确做法3：macOS Keychain
+security add-generic-password -a hermes -s anthropic-api-key -w "sk-xxx"</code></pre>
+<p><strong>额外的安全措施：</strong></p>
+<ul><li>在API平台设置月度消费上限（建议初期设100-300元/月）</li><li>启用API使用通知（有异常用量时立即短信/邮件提醒）</li><li>定期轮换API Key（每3个月更换一次）</li><li>永远不要把包含Key的配置文件提交到Git仓库</li></ul>
+<hr>
+<h2>四、平台集成：连接你的工作入口</h2>
+<h3>4.1 飞书（Lark）集成</h3>
+<p>飞书是国内创业者最常用的协作平台。Hermes Agent可以直接接入飞书，让你在飞书聊天窗口中指挥Agent：</p>
+<pre><code># config.yaml 中增加飞书配置
+platforms:
+  feishu:
+    enabled: true
+    app_id: ${FEISHU_APP_ID}
+    app_secret: ${FEISHU_APP_SECRET}
+    verification_token: ${FEISHU_VERIFICATION_TOKEN}
+    encrypt_key: ${FEISHU_ENCRYPT_KEY}  # 可选</code></pre>
+<p><strong>配置步骤：</strong></p>
+<ol><li>登录 [飞书开放平台](https://open.feishu.cn)</li><li>创建企业自建应用</li><li>获取 App ID 和 App Secret</li><li>在"事件订阅"中配置请求网址（需要公网可访问的URL）</li><li>订阅 <code>im.message.receive_v1</code> 事件</li><li>发布应用并添加到群聊</li></ol>
+<p><strong>本地开发测试技巧</strong>：使用 ngrok 做内网穿透：</p>
+<pre><code>ngrok http 8080
+# 将生成的 https://xxx.ngrok.io 填入飞书的事件请求网址</code></pre>
+<h3>4.2 微信集成</h3>
+<p>微信集成相对复杂（因为微信开放生态的限制），但有几种可行方案：</p>
+<ul><li><strong>企业微信</strong>：通过企业微信应用API接入，相对规范</li><li><strong>个人微信（WeChat）</strong>：通过 itchat-uos 等第三方库，但有封号风险</li><li><strong>微信公众号</strong>：通过公众号消息接口接入，最稳定但交互有限</li></ul>
+<p>推荐OPC创业者优先使用<strong>企业微信方案</strong>，稳定且合法合规。</p>
+<h3>4.3 Telegram集成</h3>
+<p>Telegram的Bot API最为开放友好：</p>
+<pre><code>platforms:
+  telegram:
+    enabled: true
+    bot_token: ${TELEGRAM_BOT_TOKEN}
+    allowed_users:  # 白名单
+      - 123456789
+      - 987654321</code></pre>
+<p>配置非常简单：</p>
+<ol><li>在Telegram中搜索 <code>@BotFather</code>，发送 <code>/newbot</code> 创建机器人</li><li>获取 Bot Token</li><li>填入配置，重启Agent即可</li></ol>
+<h3>4.4 多平台同步策略</h3>
+<p>如果你同时使用飞书、微信、Telegram，建议的策略：</p>
+<ul><li><strong>飞书</strong>：作为主要工作入口，处理项目管理和团队协作（如果你有小团队）</li><li><strong>Telegram</strong>：作为个人移动端入口，在外面时快速下达任务</li><li><strong>微信</strong>：作为客户对接入口，自动回复客户常见问题</li></ul>
+<p>关键是：<strong>所有平台共享同一个Agent后端</strong>，无论在哪个平台下达任务，Agent的行为是一致的、上下文是打通的。</p>
+<hr>
+<h2>五、安全配置最佳实践</h2>
+<h3>5.1 权限控制三层模型</h3>
+<p>Hermes Agent的安全架构基于三层权限控制：</p>
+<pre><code>第一层：工具权限（哪些工具可用）
+  └── 第二层：路径权限（工具的访问范围）
+      └── 第三层：操作确认（敏感操作需人工确认）</code></pre>
+<p><strong>配置示例：</strong></p>
+<pre><code>security:
+  # 第一层：工具白名单
+  allowed_tools:
+    - read_file
+    - write_file
+    - terminal
+    - search_files
+    - web_search
+    # 不包含 delete_file, git_push 等敏感操作
+
+  # 第二层：路径限制
+  workspace_root: /Users/yourname/Projects  # 只能访问这个目录
+  forbidden_paths:
+    - ~/.ssh
+    - ~/.aws
+    - /etc
+    - /System
+
+  # 第三层：需要确认的操作
+  require_confirmation:
+    - git push
+    - rm -rf
+    - pip install
+    - 金额大于100元的支付操作</code></pre>
+<h3>5.2 密钥管理的"零硬编码"原则</h3>
+<p><strong>黄金法则</strong>：所有敏感信息（API Key、Token、密码）只存在于环境变量或密钥管理服务中，绝不出现在配置文件、代码或日志中。</p>
+<p>推荐方案分级：</p>
+<table class="data-table"><tr><th>级别</th><th>方案</th><th>适用场景</th></tr><tr><td>基础</td><td><code>.env</code> + <code>.gitignore</code></td><td>个人开发者</td></tr><tr><td>进阶</td><td>macOS Keychain / 1Password CLI</td><td>需要跨设备同步</td></tr><tr><td>专业</td><td>HashiCorp Vault / AWS Secrets Manager</td><td>多项目/团队协作</td></tr><tr><td>极致</td><td>硬件安全密钥（YubiKey）+ PGP</td><td>最高安全需求</td></tr></table>
+<h3>5.3 日志与审计</h3>
+<p>开启审计日志，记录Agent的所有操作：</p>
+<pre><code>audit:
+  enabled: true
+  log_level: info
+  log_path: ~/.hermes/logs/
+  retention_days: 30
+  redact_patterns:  # 自动脱敏
+    - "sk-[a-zA-Z0-9]{32,}"
+    - "Bearer [a-zA-Z0-9._\\-]+"
+    - "[0-9]{16,19}"  # 信用卡号</code></pre>
+<p>定期检查日志中的异常操作模式。建议每周花5分钟过一遍。</p>
+<h3>5.4 网络隔离与本地优先</h3>
+<p>一个容易被忽视的安全维度：<strong>网络隔离</strong>。</p>
+<ul><li><strong>本地模型优先</strong>：敏感数据处理的场景，使用Ollama等本地模型，数据不出你的电脑</li><li><strong>VPN/代理隔离</strong>：访问外部API时走独立网络通道</li><li><strong>API网关</strong>：如果向客户提供Agent服务，在Agent前加一层API网关做认证和限流</li></ul>
+<hr>
+<h2>六、性能调优与故障排查</h2>
+<h3>6.1 性能监控指标</h3>
+<p>关注这些关键指标，帮你发现瓶颈：</p>
+<ul><li><strong>TTFT（Time to First Token）</strong>：从发送指令到Agent开始响应的时间。理想值 < 3秒</li><li><strong>工具调用耗时</strong>：每个工具调用的平均耗时。终端命令通常 < 5秒，网络请求 < 10秒</li><li><strong>上下文窗口使用率</strong>：对话历史占模型上下文窗口的比例。超过70%应考虑压缩或切换长上下文模型</li><li><strong>并发处理能力</strong>：同时处理多个任务时的响应延迟。如果线性增长说明模型/API成了瓶颈</li></ul>
+<h3>6.2 常见性能问题</h3>
+<table class="data-table"><tr><th>症状</th><th>诊断方法</th><th>解决方案</th></tr><tr><td>响应越来越慢</td><td>检查上下文窗口使用率</td><td>定期 <code>/clear</code> 或设置自动上下文压缩</td></tr><tr><td>工具调用超时</td><td>查看具体哪个工具慢</td><td>为慢工具设置更合理的超时时间</td></tr><tr><td>API费用爆炸</td><td>查看Token用量统计</td><td>切换到更便宜的模型处理简单任务</td></tr><tr><td>内存占用过高</td><td><code>htop</code> 或活动监视器</td><td>减小上下文窗口，或升级内存</td></tr><tr><td>Agent"忘记"前面说过的话</td><td>上下文窗口溢出</td><td>使用 <code>summarize</code> 技能压缩历史</td></tr></table>
+<h3>6.3 调优建议</h3>
+<p><strong>模型层面：</strong></p>
+<ul><li>指令型任务（编排、路由）用能力中等但速度快的模型（如 GPT-4o mini）</li><li>创造性任务（写作、分析）用能力最强的模型</li><li>敏感任务用本地模型，牺牲一点质量换取隐私</li></ul>
+<p><strong>系统层面：</strong></p>
+<ul><li>macOS用户检查"内存压力"：绿色=正常，黄色=注意，红色=需要升级</li><li>使用SSD而非HDD存储模型文件，加载速度差距可达10倍</li><li>定期清理 <code>~/.hermes/logs/</code> 中的旧日志</li></ul>
+<h3>6.4 建立你的"紧急恢复预案"</h3>
+<p>任何系统都可能出问题。准备工作：</p>
+<ol><li><strong>备份配置文件</strong>：<code>cp ~/.hermes/config.yaml ~/backup/hermes-config-$(date +%Y%m%d).yaml</code></li><li><strong>记录依赖版本</strong>：<code>pip freeze > requirements-freeze.txt</code></li><li><strong>准备备用模型</strong>：在主Provider不可用时自动降级到备用</li><li><strong>监控脚本</strong>：一个简单的cron脚本，每5分钟检查Agent是否存活</li></ol>
+<hr>
+<h2>附：OPC实战——从安装到第一个任务的30分钟速通</h2>
+<p>光说不练假把式。这部分我们以一个OPC创业者的真实需求为例，演示从零到产出第一个成果的完整流程。</p>
+<p><strong>场景</strong>：你是一位独立开发者，正在开发一个SaaS产品。你想让Hermes Agent帮你完成一件事：<strong>搜索过去一周关于你所在赛道（假设是"AI代码审查工具"）的最新动态，写一份竞品分析简报，并保存为Markdown文件。</strong></p>
+<p>整个流程30分钟内完成，下面是每一步的详细操作。</p>
+<p><strong>Step 1：安装（5分钟）</strong></p>
+<pre><code>python3 -m venv hermes-env && source hermes-env/bin/activate
+pip install hermes-agent</code></pre>
+<p>安装完成后：</p>
+<pre><code>hermes-agent --version  # 确认安装成功</code></pre>
+<p><strong>Step 2：配置模型（5分钟）</strong></p>
+<p>创建 <code>~/.hermes/config.yaml</code>：</p>
+<pre><code>default_provider: anthropic
+providers:
+  anthropic:
+    type: anthropic
+    api_key: ${ANTHROPIC_API_KEY}
+    model: claude-sonnet-4-20250514</code></pre>
+<p>设置环境变量：</p>
+<pre><code>export ANTHROPIC_API_KEY=sk-ant-***</code></pre>
+<p><strong>Step 3：第一次对话（5分钟）</strong></p>
+<p>启动Agent，直接描述你的需求：</p>
+<blockquote><p>"帮我做一件事：搜索AI代码审查工具赛道过去一周的最新动态和竞品信息，整理成一份竞品分析简报。格式要求：Markdown，包含（1）本周重要动态（2）主要竞品更新（3）市场趋势判断（4）对我方产品的建议。保存到 /Users/me/Projects/competitive-analysis.md"</p></blockquote>
+<p>Agent会自动调用web_search工具搜索信息，然后用AI分析整理，最后写入文件。</p>
+<p><strong>Step 4：审查与迭代（10分钟）</strong></p>
+<p>打开生成的文件，你会看到一份结构化的竞品分析。如果你发现某个部分不够深入，直接追加指令：</p>
+<blockquote><p>"第2部分竞品分析不够详细，请针对Cursor和GitHub Copilot这两个竞品，补充它们最近一个月的更新内容和技术路线差异"</p></blockquote>
+<p>Agent会重新搜索这两个竞品的具体信息，补充到文件中。<strong>注意：它是在原文件基础上修改，而不是重写整个文件。</strong></p>
+<p><strong>Step 5：建立自动化（5分钟）</strong></p>
+<p>你发现这个竞品分析每周都要做。与其每次都手动触发，不如写入一个cron任务：</p>
+<pre><code># 每周一早上8点自动执行
+0 8 * * 1 hermes-agent task "进行AI代码审查工具赛道的每周竞品分析，保存到 ~/Reports/competitive-$(date +%Y%W).md"</code></pre>
+<p>从这一刻起，每周一的竞品分析报告会自动出现在你的文件夹里。<strong>你花了30分钟做第一次，然后用一个cron命令让它永久自动化。</strong></p>
+<p><strong>这个流程的本质</strong>：不是"用了AI工具"，而是"建立了AI工作流"。第一次你手把手教Agent怎么做，第二次开始它自己跑。OPC的效率杠杆，就体现在这个"第一次"到"第N次"的跃迁中。</p>
+<hr>
+<h2>小结</h2>
+<p>Hermes Agent是你作为OPC创业者的"数字指挥中心"。它的安装并不复杂——如果你熟悉命令行，30分钟足以完成从零到可用的全过程。真正需要投入时间的是：选择合适的模型组合、做好安全配置、根据你的业务场景做平台集成。</p>
+<p>记住这个优先级：<strong>先跑通（pip install）→ 再跑稳（安全+配置）→ 最后跑优（平台集成+性能调优）</strong>。不要试图一步到位，让Agent在实际使用中逐步完善。</p>
+<hr>
+<h2>七、远程部署与移动访问</h2>
+<h3>7.1 服务器部署方案</h3>
+<p>当你在外面、电脑没开机时想用Agent怎么办？把它部署到一台VPS上：</p>
+<pre><code># 方案A：直接 pip 安装到服务器
+ssh your-server
+python3 -m venv hermes-env && source hermes-env/bin/activate
+pip install hermes-agent
+# 配置好 config.yaml 后
+hermes-agent serve --port 8080 --host 0.0.0.0</code></pre>
+<p><strong>服务器选型建议：</strong></p>
+<ul><li>入门级（个人用）：2核4G，月费约40-60元（阿里云/腾讯云轻量应用服务器）</li><li>推荐级（多Agent并发）：4核8G，月费约100-150元</li><li>如果用量不大，可以用家里的旧电脑+内网穿透方案，零额外成本</li></ul>
+<h3>7.2 远程访问安全配置</h3>
+<p>把Agent暴露到公网必须做好安全：</p>
+<pre><code># 安全配置扩展
+remote:
+  auth:
+    type: bearer_token  # 或 api_key
+    token: ${HERMES_REMOTE_TOKEN}
+  tls:
+    enabled: true
+    cert_path: /etc/letsencrypt/live/yourdomain/fullchain.pem
+    key_path: /etc/letsencrypt/live/yourdomain/privkey.pem
+  ip_whitelist:  # 可选白名单
+    - "你的家庭/办公室公网IP"
+  rate_limit:
+    requests_per_minute: 30</code></pre>
+<p><strong>最低安全底线</strong>（至少做到这三条）：</p>
+<ol><li><strong>必须启用HTTPS</strong>（用 Let's Encrypt 免费证书）</li><li><strong>必须设置强认证Token</strong>（32位以上随机字符串）</li><li><strong>必须配置访问限流</strong>（防止暴力破解和滥用）</li></ol>
+<h3>7.3 移动端访问方案</h3>
+<p>Agent部署到服务器后，通过飞书/Telegram在手机上随时指挥它。这是OPC创业者最常用的模式——你在咖啡馆、机场、甚至度假时，Agent依然在服务器上忠诚工作。</p>
+<p><strong>三种移动端方案对比：</strong></p>
+<table class="data-table"><tr><th>方案</th><th>适用场景</th><th>优势</th><th>局限</th></tr><tr><td>飞书手机App</td><td>日常任务下达+查看结果</td><td>最自然，已有工作流</td><td>需要飞书开放平台配置</td></tr><tr><td>Telegram Bot</td><td>快速查询+通知推送</td><td>配置最简单</td><td>国内需梯子</td></tr><tr><td>Web界面</td><td>复杂操作+多轮对话</td><td>功能最全</td><td>手机浏览器体验一般</td></tr></table>
+<p><strong>实践建议</strong>：主力用飞书（日常任务），备用Telegram（当飞书出问题时），关键通知同时推送两个渠道。这样就建立了一个简单的"高可用通知体系"。</p>
+<h3>7.4 系统服务化：开机自启+崩溃自动重启</h3>
+<p>不管在本地Mac还是远程服务器上，你都不希望每次手动启动Agent：</p>
+<p><strong>macOS（本地）——LaunchAgent方案：</strong></p>
+<pre><code># 创建 ~/Library/LaunchAgents/com.hermes.agent.plist
+cat > ~/Library/LaunchAgents/com.hermes.agent.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.hermes.agent</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/path/to/hermes-env/bin/hermes-agent</string>
+        <string>serve</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>
+EOF
+launchctl load ~/Library/LaunchAgents/com.hermes.agent.plist</code></pre>
+<p><strong>Linux服务器——systemd方案：</strong></p>
+<pre><code>sudo cat > /etc/systemd/system/hermes-agent.service << 'EOF'
+[Unit]
+Description=Hermes Agent Service
+After=network.target
+
+[Service]
+Type=simple
+User=youruser
+ExecStart=/home/youruser/hermes-env/bin/hermes-agent serve
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl enable --now hermes-agent</code></pre>
+<p>设置好之后，Agent会像一个可靠的员工——永远在线、崩溃自动重启、开机自启。你只需偶尔检查日志确认一切正常。</p>
+<hr>
+<h2>小结</h2>
+<p>Hermes Agent是你作为OPC创业者的"数字指挥中心"。它的安装并不复杂——如果你熟悉命令行，30分钟足以完成从零到可用的全过程。真正需要投入时间的是：选择合适的模型组合、做好安全配置、根据你的业务场景做平台集成。</p>
+<p>记住这个优先级：<strong>先跑通（pip install）→ 再跑稳（安全+配置+服务化）→ 最后跑优（平台集成+性能调优+远程部署）</strong>。不要试图一步到位，让Agent在实际使用中逐步完善。</p>
+<hr>
+<h2>思考题</h2>
+<ol><li>你的工作场景中，哪些任务是"重复性高、规则明确"的？这些是Agent最先接管的候选</li><li>画一张你的"数字工作流地图"：从获取信息→处理信息→产出结果→发布分发，Agent能在哪些节点介入？</li><li>如果你的API Key泄露了，你的最大损失可能是什么？你现在的密钥管理方案能抵御这个风险吗？</li><li>对比一下你每月在AI工具上的总花费（包括ChatGPT Plus、Cursor等），估算如果全面使用Hermes Agent+API，总费用是增加还是减少？</li><li>假如你下周一要去旅行一周，只带手机。你需要提前做哪些配置，才能确保在外面也能像在电脑前一样指挥Agent工作？</li></ol>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-label">💡 学习提示</div>
+    <p style="color:var(--text2);font-size:.93rem;line-height:1.85">完成本课后，建议先在本地环境中实际操作一遍。知识只有转化为能力，才是真正的收获。如遇到问题，可以在 <a href="https://github.com/MoKangMedical/opc-platform/issues" target="_blank">GitHub Issues</a> 中提问。</p>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="lesson1.html" class="prev">← OPC 一人公司通识：从零到一的认知革命...</a>
+    <a href="lesson3.html" class="next">技能系统：构建你的AI武器库... →</a>
+  </nav>
+</main>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('pf').style.width=pct+'%';
+});
+</script>
+</body>
+</html>
